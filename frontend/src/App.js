@@ -32,7 +32,7 @@ function App() {
               "Content-Type": "application/json"
             }
           }
-          console.log('ok')
+          console.log('ok', data);
           try {
 
             const res = await Axios.post("http://ide.shoa-apps.live/api/question/run", JSON.stringify(data), config)
