@@ -4,6 +4,7 @@ import Axios from "axios";
 import Editor from "./components/Editor/Editor";
 function App() {
   const [value, setValue] = useState("");
+  const [input, setInput] = useState("");
   const langData = {
     cpp: "text/x-c++src",
     c: "text/x-csrc",
@@ -24,7 +25,7 @@ function App() {
           let data = {
             code: value,
             lang: Object.keys(langData).find(key => langData[key] === language),
-            input: "",
+            input,
           }
           const config = {
             headers: {
@@ -52,6 +53,8 @@ function App() {
           language={language}
           displayName="Code"
           value={value}
+          input={input}
+          inputChange={setInput}
           onChange={setValue}
         ></Editor>
         <button type="submit">Submit Code</button>

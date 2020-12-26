@@ -7,27 +7,34 @@ import "codemirror/addon/edit/closetag";
 import "codemirror/mode/clike/clike";
 import React from "react";
 
-const Editor = ({ language, value, onChange }) => {
+const Editor = ({ language, value, onChange, setInput, input }) => {
   const handleChange = (editor, data, value) => {
     onChange(value);
   };
 
   return (
-    <CodeMirror
-      onBeforeChange={handleChange}
-      value={value}
-      className="code-mirror-wrapper"
-      options={{
-        lineWrapping: true,
-        lint: true,
-        mode: language,
-        theme: "material",
-        lineNumbers: true,
-        matchBrackets: true,
-        autoCloseBrackets: true,
-        autoCloseTags: true,
-      }}
-    ></CodeMirror>
+    <React.Fragment>
+      <CodeMirror
+        onBeforeChange={handleChange}
+        value={value}
+        className="code-mirror-wrapper"
+        options={{
+          lineWrapping: true,
+          lint: true,
+          mode: language,
+          theme: "material",
+          lineNumbers: true,
+          matchBrackets: true,
+          autoCloseBrackets: true,
+          autoCloseTags: true,
+        }}
+      ></CodeMirror>
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+    </React.Fragment>
   );
 };
 
