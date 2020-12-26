@@ -7,7 +7,7 @@ import "codemirror/addon/edit/closetag";
 import "codemirror/mode/clike/clike";
 import React from "react";
 
-const Editor = ({ language, value, onChange, setInput, input }) => {
+const Editor = ({ language, value, onChange, inputChange, input }) => {
   const handleChange = (editor, data, value) => {
     onChange(value);
   };
@@ -32,7 +32,7 @@ const Editor = ({ language, value, onChange, setInput, input }) => {
       <input
         type="text"
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(e) => inputChange(e.target.value)}
       />
     </React.Fragment>
   );
