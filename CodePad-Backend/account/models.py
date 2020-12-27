@@ -44,8 +44,13 @@ class User(AbstractUser):
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
 
+    username = models.CharField(max_length=16, unique=True)
+    admission_no = models.CharField(max_length=8, unique=True)
+    first_name = models.CharField(max_length=16)
+    last_name = models.CharField(max_length=16)
+
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['username', 'admission_no']
 
     objects = UserManager()
 
