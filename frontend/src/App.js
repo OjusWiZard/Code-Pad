@@ -35,7 +35,7 @@ function App() {
           console.log('ok', data);
           try {
 
-            const res = await Axios.post("http://ide.shoa-apps.live/api/question/run", JSON.stringify(data), config)
+            const res = await Axios.post("https://cors-anywhere.herokuapp.com/http://ide.shoa-apps.live/api/question/run", JSON.stringify(data), config)
             console.log(res.data);
           } catch (error) {
             console.log(error);
