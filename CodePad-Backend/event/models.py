@@ -10,7 +10,7 @@ class Event(models.Model):
     datetime    = models.DateTimeField(auto_now=False)
     duration    = models.DurationField(default=timedelta(hours=2))
     
-    leaderboard = models.ManyToManyField(User, through='Leaderboard')
+    leaderboard = models.ManyToManyField(User, through='Leaderboard', related_name='event_of_this_leaderboard')
     
     def __str__(self):
         return self.title
@@ -19,8 +19,8 @@ class Event(models.Model):
 class Leaderboard(models.Model):
     score       = models.IntegerField(default=0)
     
-    user        = models.ForeignKey(User)
-    event       = models.ForeignKey(Event)
+    user        = models.ForeignKey(User, on_delete=models.CASCADE)
+    event       = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='leaderboard_of_this_event')
     
     def __str__(self):
         return self.user + " in " + self.event
@@ -28,7 +28,7 @@ class Leaderboard(models.Model):
 
 class Problem(models.Model):
     title               = models.CharField(max_length=32)
-    problem_statement   = models.TextField(max_lenght=2048)
+    problem_statement   = models.TextField(max_length=2048)
     input_statement     = models.TextField(max_length=1024)
     output_statement    = models.TextField(max_length=1024)
     contraints          = models.TextField(max_length=1024)
@@ -38,7 +38,7 @@ class Problem(models.Model):
     solution_input      = models.TextField(max_length=4096)
     solution_output     = models.TextField(max_length=4096)
 
-    event               = models.ForeignKey(Event)
+    event               = models.ForeignKey(Event, on_delete=models.CASCADE)
     submission_from     = models.ManyToManyField(User, through='Submission')
     
     def __str__(self):
@@ -53,8 +53,8 @@ class Submission(models.Model):
     language            = models.CharField(max_length=16)
     solution            = models.TextField(max_length=4096)
 
-    user                = models.ForeignKey(User)
-    problem             = models.ForeignKey(Problem)
+    user                = models.ForeignKey(User, on_delete=models.CASCADE)
+    problem             = models.ForeignKey(Problem, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.user.username + "'s " + self.problem.title
