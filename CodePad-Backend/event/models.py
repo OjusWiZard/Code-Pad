@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import timedelta
 from account.models import User
+from .validators import validate_text_file
 
 
 class Event(models.Model):
@@ -27,6 +28,11 @@ class Leaderboard(models.Model):
 
 
 class Problem(models.Model):
+    def get_input_testcase_path(instance, filename):
+        return 'testcases/{0}/input.txt'.format(instance.title)
+    def get_output_testcase_path(instance, filename):
+        return 'testcases/{0}/output.txt'.format(instance.title)
+    
     title               = models.CharField(max_length=32)
     problem_statement   = models.TextField(max_length=2048)
     input_statement     = models.TextField(max_length=1024)
@@ -35,8 +41,8 @@ class Problem(models.Model):
     example_input       = models.TextField(max_length=512)
     example_output      = models.TextField(max_length=512)
     example_explanation = models.TextField(max_length=1024)
-    solution_input      = models.TextField(max_length=4096)
-    solution_output     = models.TextField(max_length=4096)
+    solution_input      = models.FileField(upload_to=get_input_testcase_path, validators=[validate_text_file])
+    solution_output     = models.FileField(upload_to=get_output_testcase_path, validators=[validate_text_file])
 
     event               = models.ForeignKey(Event, on_delete=models.CASCADE)
     submission_from     = models.ManyToManyField(User, through='Submission')

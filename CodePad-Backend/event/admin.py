@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.apps import apps
 from .models import Event, Leaderboard, Problem, Submission
 
 
@@ -32,7 +31,6 @@ class Submission_Admin(admin.ModelAdmin):
     readonly_fields = ['datetime', 'result_score', 'solution', 'user', 'problem', 'language', 'time_while_ran', 'memory_while_ran']
 
 
-apps.get_model('auth.Group')._meta.app_label = 'account'
 admin.site.register(Event, Event_Admin)
 admin.site.register(Leaderboard, Leaderboard_Admin)
 admin.site.register(Problem, Problem_Admin)
