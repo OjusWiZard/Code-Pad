@@ -1,6 +1,4 @@
 from .models import Event
-from django.utils import timezone
-from django.db.models import F
 from .serializers import Event_List_Serializer, Event_Details_Serializer
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
