@@ -24,7 +24,7 @@ def decode(base64_string):
 
 def submission(program, language, test_input=None, test_output=None):
 
-    submit_url = judge['host'] + "submissions/?base64_encoded=true"
+    submit_url = 'https://' + judge['host'] + "/submissions/?base64_encoded=true"
 
     payload = {
         'source_code': encode(str(program)),
@@ -43,6 +43,7 @@ def submission(program, language, test_input=None, test_output=None):
     headers = {
         'Content-Type': 'application/json',
         'x-rapidapi-key': judge['key'],
+        'x-rapidapi-host': judge['host']
     }
 
     response = requests.request("POST", submit_url, headers=headers, data=json.dumps(payload))
@@ -53,8 +54,11 @@ def submission(program, language, test_input=None, test_output=None):
 
 def get_submission_details(token):
 
-    submit_url = judge['host'] + "submissions/" + token + '?base64_encoded=true'
-    headers = {'x-rapidapi-key': judge['key']}
+    submit_url = 'https://' + judge['host'] + "/submissions/" + token + '?base64_encoded=true'
+    headers = {
+        'x-rapidapi-key': judge['key'],
+        'x-rapidapi-host': judge['host']
+        }
     response = requests.request("GET", submit_url, headers=headers)
     
     decoded_response = response.json()
