@@ -1,0 +1,43 @@
+html,
+body {
+  font-size: 100%;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth;
+}
+:root {
+  --darkOrange: #ffa43e;
+  --brown: #663d14;
+  --darkBrown: #1a0f05;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 10px;
+}
+@font-face {
+  font-family: Vcr;
+  src: url(.././src/fonts/VCR_OSD_MONO_1.001.ttf);
+  font-display: swap;
+}
+@font-face {
+  font-family: Robot;
+  src: url(.././src/fonts/RobotoMono-Regular.ttf);
+  font-display: swap;
+}
+.font-vcr {
+  margin: 0;
+  font-family: Vcr !important;
+}
+.font-robot {
+  margin: 0;
+  font-family: Robot !important;
+}
+.font-blue {
+  color: #35a4d3;
+}
