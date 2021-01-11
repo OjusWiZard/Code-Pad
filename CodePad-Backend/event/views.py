@@ -1,7 +1,17 @@
-from .models import Event
-from .serializers import Event_List_Serializer, Event_Details_Serializer
+from .models import Event,Problem
+from .serializers import Event_List_Serializer, Event_Details_Serializer, Problem_List_Serializer, Problem_Detail_Serializer
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
+
+
+class Problem_Viewset(ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Problem.objects.all().order_by('-event__datetime')
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return Problem_Detail_Serializer
+        return Problem_List_Serializer
 
 
 class Event_Viewset(ReadOnlyModelViewSet):
