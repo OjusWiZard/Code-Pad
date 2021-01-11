@@ -5,6 +5,7 @@ import Form from "./components/editor/Form";
 import Home from "./components/home/Home";
 import Events from "./components/events/Events";
 import Default from "./components/default/Default";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   
