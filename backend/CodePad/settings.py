@@ -44,12 +44,22 @@ INSTALLED_APPS = [
     'event',
 
     'rest_framework',
+    'djoser'
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
+}
+
+DJOSER = {
+    'LOGIN_FIELD': 'email',
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SET_PASSWORD_RETYPE': True,
+    'TOKEN_MODEL': None
 }
 
 SIMPLE_JWT = {
