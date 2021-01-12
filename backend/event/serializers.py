@@ -1,11 +1,13 @@
 from rest_framework import serializers
 from .models import Event, Leaderboard, Problem, Submission
+from account.serializers import User_Serializer
 
 
 class Submission_Serializer(serializers.HyperlinkedModelSerializer):
+    user = User_Serializer()
     class Meta:
         model = Submission
-        fields = '__all__'
+        fields = ['user', 'problem', 'datetime', 'result_score', 'time_while_ran', 'memory_while_ran', 'language', 'solution']
 
 
 class Problem_List_Serializer(serializers.HyperlinkedModelSerializer):
