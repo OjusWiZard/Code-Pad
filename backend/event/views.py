@@ -1,7 +1,13 @@
-from .models import Event,Problem
-from .serializers import Event_List_Serializer, Event_Details_Serializer, Problem_List_Serializer, Problem_Detail_Serializer
+from .models import Event, Problem, Submission
+from .serializers import Event_List_Serializer, Event_Details_Serializer, Problem_List_Serializer, Problem_Detail_Serializer, Submission_Serializer
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
+
+
+class Submission_Viewset(ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Submission.objects.all().order_by('-datetime')
+    serializer_class = Submission_Serializer
 
 
 class Problem_Viewset(ReadOnlyModelViewSet):

@@ -37,10 +37,10 @@ class Problem(models.Model):
     problem_statement   = models.TextField(max_length=2048)
     input_statement     = models.TextField(max_length=1024)
     output_statement    = models.TextField(max_length=1024)
-    contraints          = models.TextField(max_length=1024)
-    example_input       = models.TextField(max_length=512)
-    example_output      = models.TextField(max_length=512)
-    example_explanation = models.TextField(max_length=1024)
+    contraints          = models.TextField(max_length=1024, blank=True, null=True)
+    example_input       = models.TextField(max_length=512, blank=True, null=True)
+    example_output      = models.TextField(max_length=512, blank=True, null=True)
+    example_explanation = models.TextField(max_length=1024, blank=True, null=True)
     solution_input      = models.FileField(upload_to=get_input_testcase_path, validators=[validate_text_file])
     solution_output     = models.FileField(upload_to=get_output_testcase_path, validators=[validate_text_file])
 
@@ -60,7 +60,7 @@ class Submission(models.Model):
     solution            = models.TextField(max_length=4096)
 
     user                = models.ForeignKey(User, on_delete=models.CASCADE)
-    problem             = models.ForeignKey(Problem, on_delete=models.CASCADE)
+    problem             = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name='submissions')
     
     def __str__(self):
         return self.user.username + "'s " + self.problem.title

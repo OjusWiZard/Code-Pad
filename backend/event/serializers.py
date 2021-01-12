@@ -2,6 +2,12 @@ from rest_framework import serializers
 from .models import Event, Leaderboard, Problem, Submission
 
 
+class Submission_Serializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Submission
+        fields = '__all__'
+
+
 class Problem_List_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Problem
@@ -9,9 +15,10 @@ class Problem_List_Serializer(serializers.HyperlinkedModelSerializer):
 
 
 class Problem_Detail_Serializer(serializers.HyperlinkedModelSerializer):
+    submissions = Submission_Serializer(many=True, read_only=True)
     class Meta:
         model = Problem
-        exclude = ['solution_input', 'solution_output', 'event', 'submission_from']
+        fields = ['title', 'problem_statement', 'input_statement', 'output_statement', 'contraints', 'example_input', 'example_output', 'example_explanation', 'submissions']
 
 
 class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
