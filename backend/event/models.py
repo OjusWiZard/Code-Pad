@@ -24,7 +24,7 @@ class Leaderboard(models.Model):
     event       = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='leaderboard_of_this_event')
     
     def __str__(self):
-        return self.user + " in " + self.event
+        return self.user.username + " in " + self.event.title
 
 
 class Problem(models.Model):

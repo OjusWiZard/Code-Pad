@@ -23,6 +23,13 @@ class Problem_Detail_Serializer(serializers.HyperlinkedModelSerializer):
         fields = ['title', 'problem_statement', 'input_statement', 'output_statement', 'contraints', 'example_input', 'example_output', 'example_explanation', 'submissions']
 
 
+class Leaderboard_Serializer(serializers.HyperlinkedModelSerializer):
+    user = User_Serializer()
+    class Meta:
+        model = Leaderboard
+        fields = ['event', 'user', 'score']
+
+
 class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
@@ -31,6 +38,7 @@ class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
 
 class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
     problem_set = Problem_List_Serializer(many=True)
+    leaderboard_of_this_event = Leaderboard_Serializer(many=True)
     class Meta:
         model = Event
-        fields = ['title', 'description', 'is_contest', 'datetime', 'duration', 'problem_set']
+        fields = ['title', 'description', 'is_contest', 'datetime', 'duration', 'problem_set', 'leaderboard_of_this_event']
