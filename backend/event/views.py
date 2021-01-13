@@ -1,3 +1,5 @@
+from django.db.models import F
+from django.utils import timezone
 from .models import Event, Problem, Submission
 from .serializers import Event_List_Serializer, Event_Details_Serializer, Problem_List_Serializer, Problem_Detail_Serializer, Submission_Detail_Serializer, Submission_List_Serializer
 from rest_framework.viewsets import ReadOnlyModelViewSet
@@ -10,7 +12,9 @@ class Submission_Viewset(ReadOnlyModelViewSet):
     
     def get_serializer_class(self):
         if self.action == 'retrieve':
-            return Submission_Detail_Serializer
+            live_events = Event.objects.filter(datetime__lt=timezone.now()).filter(datetime__gt=timezone.now() - F('duration'))
+            if not live_events:
+                return Submission_Detail_Serializer
         return Submission_List_Serializer
 
 
