@@ -34,5 +34,7 @@ class Event_Viewset(ReadOnlyModelViewSet):
     
     def get_serializer_class(self):
         if self.action == 'retrieve':
-            return Event_Details_Serializer
+            event = self.get_object()
+            if timezone.localtime(event.datetime) < timezone.now():
+                return Event_Details_Serializer
         return Event_List_Serializer
