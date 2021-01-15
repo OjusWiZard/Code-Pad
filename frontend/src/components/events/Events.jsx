@@ -2,7 +2,6 @@ import React from "react";
 import frame from "../../images/events/Frame.png";
 import logo from "../../images/events/event_logo.png";
 import line from "../../images/home/line.png";
-import { Link } from "react-router-dom";
 import "./events.css";
 
 function Events() {
