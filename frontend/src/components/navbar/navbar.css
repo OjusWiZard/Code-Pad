@@ -1,0 +1,23 @@
+.navbar {
+  background: #010a0f !important;
+}
+.nav-item {
+  width: 120px;
+  vertical-align: center;
+  background: #35a4d3;
+  border-right: #405c6b 2px solid;
+  border-left: #405c6b 2px solid;
+  border-spacing: 10px;
+}
+/* .nav-item {
+  background: #35a4d3;
+  border-style: ridge;
+  border-spacing: 10px;
+  position: relative;
+} */
+/* .nav-item:after {
+  content: "";
+  position: absolute;
+  border-right: #405c6b 2px solid;
+  border-left: #405c6b 2px solid;
+} */

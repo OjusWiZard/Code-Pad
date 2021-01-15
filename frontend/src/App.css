@@ -5,9 +5,9 @@ body {
   scroll-behavior: smooth;
 }
 :root {
-  --darkOrange: #ffa43e;
-  --brown: #663d14;
-  --darkBrown: #1a0f05;
+  --blue: #35a4d3;
+  --grey: #131c20;
+  --lightGrey: #7a8589;
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -40,4 +40,16 @@ body {
 }
 .font-blue {
   color: #35a4d3;
+}
+.font-lightGrey {
+  color: var(--lightGrey);
+}
+.font-grey {
+  color: var(--grey) !important;
+}
+.font-14 {
+  font-size: 14px;
+}
+.font-16 {
+  font-size: 16px !important;
 }
