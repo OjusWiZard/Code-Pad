@@ -10,11 +10,11 @@
 .nav-item:hover {
   color: #ffffff !important;
 }
-/* .active-nav-item {
-  background: #35a4d3 !important;
-  color: #131c20;
+.active-nav-item {
+  /* background: #35a4d3 !important; */
+  /* color: #131c20 !important; */
   font-weight: 900;
-} */
+}
 /* .nav-item {
   background: #35a4d3;
   border-style: ridge;
