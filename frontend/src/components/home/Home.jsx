@@ -11,7 +11,7 @@ function Home() {
     <React.Fragment>
       <div className="main-background">
         <div className="container pt-5">
-          <div className="row pt-5">
+          <div className="row">
             <div className="col-lg-8 col-md-8 col-sm-10 col-10 mx-auto my-5 content-background px-5">
               <div className="d-flex justify-content-center pt-5">
                 <img src={logo} alt="" className="img-fluid" />

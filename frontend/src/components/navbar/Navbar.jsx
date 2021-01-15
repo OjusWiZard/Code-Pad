@@ -9,16 +9,15 @@ function navbar() {
         <div>
             <nav className="navbar navbar-expand-lg">
               <Nav.Link className="navbar-brand" to="/">
-                {/* <img src={logo} alt="Code-pad" className="img-fluid my-2 mx-0 px-0"/> */}
-                Navbar
+                <img src={logo} alt="Code-pad" className="img-fluid mx-0 px-0" width="120px"/>                
               </Nav.Link>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
                     </button>
                     <div className="collapse navbar-collapse" id="navbarText">
-                      <Nav className="navbar-nav mx-auto mt-4">                        
+                      <Nav className="navbar-nav mx-auto mt-5">                        
                         {/* <NavLink exact to="/" activeClassName="active-nav-item">*/}
-                          <Nav.Link className="text-center nav-item mx-5 font-blue font-16 font-vcr" href="/">
+                          <Nav.Link className="text-center nav-item mr-5 font-blue font-16 font-vcr" href="/">
                             HOME
                           </Nav.Link>                          
                         {/* </NavLink>*/}
@@ -29,7 +28,7 @@ function navbar() {
                             EDITOR
                           </Nav.Link>                        
                       </Nav>
-                      <Nav.Link className="text-center nav-item font-blue font-16 font-vcr" href="/login">
+                      <Nav.Link className="text-center nav-item font-blue font-16 font-vcr mt-n2" href="/login">
                          LOGIN
                       </Nav.Link>                      
                     </div>
