@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../images/home/Logo.png";
+import logo from "../../images/home/logo.png";
 import line from "../../images/home/line.png";
 import frame from "../../images/home/Frame.png";
 import button from "../../images/home/button.png";

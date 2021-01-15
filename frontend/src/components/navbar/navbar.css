@@ -1,14 +1,20 @@
 .navbar {
-  background: #010a0f !important;
+  background: #000307 !important;
 }
 .nav-item {
   width: 120px;
-  vertical-align: center;
-  background: #35a4d3;
+  background: #131c20;
   border-right: #405c6b 2px solid;
   border-left: #405c6b 2px solid;
-  border-spacing: 10px;
 }
+.nav-item:hover {
+  color: #ffffff !important;
+}
+/* .active-nav-item {
+  background: #35a4d3 !important;
+  color: #131c20;
+  font-weight: 900;
+} */
 /* .nav-item {
   background: #35a4d3;
   border-style: ridge;
