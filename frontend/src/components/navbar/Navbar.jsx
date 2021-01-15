@@ -1,38 +1,39 @@
 import React from 'react'
-import { NavLink } from 'react-bootstrap';
 import './navbar.css'
+import Nav from "react-bootstrap/Nav";
+import { NavLink, Link } from "react-router-dom";
 
 function navbar() {
     return (
         <div>
             <nav className="navbar navbar-expand-lg">
-              <NavLink className="navbar-brand" to="/">
+              <Nav.Link className="navbar-brand" to="/">
                 Navbar
-              </NavLink>
+              </Nav.Link>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
                     </button>
                     <div className="collapse navbar-collapse" id="navbarText">
                       <ul className="navbar-nav mx-auto mt-4">
                         <li className="nav-item mx-2">
-                          <NavLink className="text-center nav-link font-grey font-16 font-vcr" to="/">
+                          <Nav.Link className="text-center nav-link font-grey font-16 font-vcr" href="/">
                             HOME
-                          </NavLink>
+                          </Nav.Link>
                         </li>
                         <li className="nav-item mx-2">
-                          <NavLink className="text-center nav-link font-grey font-16 font-vcr" to="/events">
+                          <Nav.Link className="text-center nav-link font-grey font-16 font-vcr" href="/events">
                             EVENTS
-                          </NavLink>
+                          </Nav.Link>
                         </li>
                         <li className="nav-item mx-2">
-                          <NavLink className="text-center nav-link font-grey font-16 font-vcr" to="/editor">
+                          <Nav.Link className="text-center nav-link font-grey font-16 font-vcr" href="/editor">
                             EDITOR
-                          </NavLink>
+                          </Nav.Link>
                         </li>
                       </ul>
-                      <NavLink className="text-center nav-link nav-item font-grey font-16 font-vcr" to="/login">
+                      <Nav.Link className="text-center nav-link nav-item font-grey font-16 font-vcr" href="/login">
                          LOGIN
-                      </NavLink>                      
+                      </Nav.Link>                      
                     </div>
                   </nav>
         </div>
