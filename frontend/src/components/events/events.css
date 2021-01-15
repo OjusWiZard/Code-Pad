@@ -32,9 +32,9 @@
 .date {
   font-size: 14px;
   line-height: 18.46px;
-  font-family: Roboto Mono, sans-serif;
   font-style: normal;
   font-weight: normal;
+  color: #777777;
 }
 
 .frame:hover {
