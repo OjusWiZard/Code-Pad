@@ -1,0 +1,42 @@
+.main-background {
+  background: url("../../images/home/background.png");
+  background-repeat: no-repeat;
+  height: auto;
+  background-size: cover;
+}
+
+.content-background {
+  background: url("../../images/home/contentBackground.png");
+  background-repeat: no-repeat;
+  height: auto;
+  overflow-y: auto;
+  background-size: cover;
+}
+
+.event-block {
+  /* border: 1px solid #35a4d3 !important; */
+  background: transparent !important;
+}
+
+.event-block:hover {
+  background: url("../../images/home/eventBlockHover.png") transparent !important;
+  background-repeat: no-repeat !important;
+  background-size: contain;
+}
+
+#ongoing {
+  font-size: 18px;
+  line-height: 32.79px;
+  text-transform: uppercase;
+}
+.date {
+  font-size: 14px;
+  line-height: 18.46px;
+  font-style: normal;
+  font-weight: normal;
+  color: #777777;
+}
+
+.frame:hover {
+  background: url("../../images/events/hover_frame.png");
+}
