@@ -27,7 +27,7 @@ class Problem_Detail_Serializer(serializers.HyperlinkedModelSerializer):
     submissions = Submission_List_Serializer(many=True, read_only=True)
     class Meta:
         model = Problem
-        fields = ['title', 'problem_statement', 'input_statement', 'output_statement', 'contraints', 'example_input', 'example_output', 'example_explanation', 'submissions']
+        fields = ['id', 'title', 'problem_statement', 'input_statement', 'output_statement', 'contraints', 'example_input', 'example_output', 'example_explanation', 'submissions']
 
 
 class Leaderboard_Serializer(serializers.HyperlinkedModelSerializer):
