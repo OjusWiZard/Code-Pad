@@ -6,11 +6,13 @@ import Home from "./components/home/Home";
 import Events from "./components/events/Events";
 import Default from "./components/default/Default";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Navbar from './components/navbar/Navbar'
 
 function App() {
   
   return (
     <div className="App">
+      <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/editor" component={Form} />
