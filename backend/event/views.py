@@ -1,9 +1,14 @@
+from django.http import Http404
 from django.db.models import F
 from django.utils import timezone
-from .models import Event, Problem, Submission
+from django.shortcuts import get_object_or_404
+from .models import Event, Problem, Submission, Leaderboard
 from .serializers import Event_List_Serializer, Event_Details_Serializer, Problem_List_Serializer, Problem_Detail_Serializer, Submission_Detail_Serializer, Submission_List_Serializer
+from ide.judge import submit_code, supported_languages
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError
 
 
 class Submission_Viewset(ReadOnlyModelViewSet):
@@ -16,6 +21,42 @@ class Submission_Viewset(ReadOnlyModelViewSet):
             if not live_events:
                 return Submission_Detail_Serializer
         return Submission_List_Serializer
+
+    def create(self, request):
+
+        def get_submission_data(key):
+            try:
+                return request.data[key]
+            except:
+                raise ValidationError(key + ' not found in the form data')
+
+        problem = get_object_or_404(Problem, id=get_submission_data('problem_id'))
+        language_id = int(get_submission_data('language_id'))
+        submitted_solution = get_submission_data('solution')
+        testcases_input_file = problem.solution_input.open(mode='r')
+        testcases_input = testcases_input_file.read()
+        testcases_input_file.close()
+        testcases_output_file = problem.solution_output.open(mode='r')
+        testcases_output = testcases_output_file.read()
+        testcases_output_file.close()
+
+        result, status = submit_code(language_id=language_id, program=submitted_solution, test_in=testcases_input, test_out=testcases_output)
+
+        if result['status']['id'] == 3:
+            current_event = problem.event
+            if current_event.datetime <= timezone.now() <= (current_event.datetime+current_event.duration):
+                current_leaderboard_field = Leaderboard.objects.get_or_create(user=request.user, event=current_event)[0]
+                accepted_submissions = Submission.objects.filter(user=request.user, result_score=100, problem=problem)
+                if not accepted_submissions:
+                    current_leaderboard_field.score += 1
+                    current_leaderboard_field.save()
+            score = 100
+        else:
+            score = 0
+        
+        Submission.objects.create(user=request.user, problem=problem, result_score=score, time_while_ran=result['time'], memory_while_ran=result['memory'], language=supported_languages[language_id], solution=submitted_solution)
+
+        return Response(data=result, status=status)
 
 
 class Problem_Viewset(ReadOnlyModelViewSet):

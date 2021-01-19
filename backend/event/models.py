@@ -56,7 +56,7 @@ class Submission(models.Model):
     result_score        = models.IntegerField()
     time_while_ran      = models.FloatField()
     memory_while_ran    = models.FloatField()
-    language            = models.CharField(max_length=16)
+    language            = models.CharField(max_length=64)
     solution            = models.TextField(max_length=4096)
 
     user                = models.ForeignKey(User, on_delete=models.CASCADE)
