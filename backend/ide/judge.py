@@ -73,7 +73,7 @@ def get_submission_details(token):
         decoded_response['message'] = decode(decoded_response['message'])
 
     print( str(response) + ' ' + json.dumps(decoded_response))
-    return decoded_response, response
+    return decoded_response, response.status_code
 
 
 def submit_code(language_id, program, test_in=None, test_out=None):
@@ -88,7 +88,7 @@ def submit_code(language_id, program, test_in=None, test_out=None):
 
         retries = 3
         while retries or test_out:
-            response, encoded_response = get_submission_details(submission_token)
+            response, status = get_submission_details(submission_token)
             if response['status']['id'] > 2:
                 break
             else:
@@ -108,7 +108,7 @@ def submit_code(language_id, program, test_in=None, test_out=None):
             }
         }
 
-        return custom_response, encoded_response.status_code
+        return custom_response, status
 
 
 supported_languages = {
