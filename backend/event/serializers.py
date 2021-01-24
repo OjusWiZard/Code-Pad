@@ -6,7 +6,11 @@ from account.serializers import User_Serializer
 class Problem_List_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Problem
-        fields = ['title','url']
+        fields = ['title', 'url']
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
 
 
 class Submission_List_Serializer(serializers.HyperlinkedModelSerializer):
@@ -29,6 +33,10 @@ class Problem_Detail_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Problem
         fields = ['id', 'title', 'problem_statement', 'input_statement', 'output_statement', 'contraints', 'example_input', 'example_output', 'example_explanation', 'submissions']
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
 
 
 class Leaderboard_Serializer(serializers.HyperlinkedModelSerializer):
@@ -41,7 +49,11 @@ class Leaderboard_Serializer(serializers.HyperlinkedModelSerializer):
 class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
-        exclude = ['description', 'is_contest', 'leaderboard']
+        exclude = ['description', 'is_contest', 'leaderboard', 'slug']
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
 
 
 class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
@@ -50,3 +62,7 @@ class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
         fields = ['title', 'description', 'is_contest', 'datetime', 'duration', 'problem_set', 'leaderboard_of_this_event']
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
