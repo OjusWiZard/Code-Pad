@@ -54,7 +54,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
         else:
             score = 0
         
-        Submission.objects.create(user=request.user, problem=problem, result_score=score, time_while_ran=result['time'], memory_while_ran=result['memory'], language=supported_languages[language_id], solution=submitted_solution)
+        Submission.objects.create(user=request.user, problem=problem, submission_token=result['token'], solution=submitted_solution)
 
         return Response(data=result, status=status)
 

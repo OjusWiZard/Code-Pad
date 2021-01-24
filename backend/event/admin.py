@@ -24,11 +24,11 @@ class Problem_Admin(admin.ModelAdmin):
 
 
 class Submission_Admin(admin.ModelAdmin):
-    list_display = ['user', 'problem', 'datetime', 'result_score']
-    list_filter = ['problem__event', 'language', 'result_score', 'problem__event__title']
+    list_display = ['user', 'problem', 'datetime', 'submission_token']
+    list_filter = ['problem__event']
     ordering = ['-datetime']
     search_fields = ['user', 'problem', 'problem__event']
-    readonly_fields = ['datetime', 'result_score', 'solution', 'user', 'problem', 'language', 'time_while_ran', 'memory_while_ran']
+    readonly_fields = ['datetime', 'solution', 'user', 'problem', 'submission_token']
 
 
 admin.site.register(Event, Event_Admin)

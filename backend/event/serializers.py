@@ -14,14 +14,14 @@ class Submission_List_Serializer(serializers.HyperlinkedModelSerializer):
     problem = Problem_List_Serializer()
     class Meta:
         model = Submission
-        fields = ['url', 'user', 'problem', 'datetime', 'result_score', 'time_while_ran', 'memory_while_ran', 'language']
+        fields = ['url', 'user', 'problem', 'datetime', 'submission_token']
 
 
 class Submission_Detail_Serializer(serializers.HyperlinkedModelSerializer):
     user = User_Serializer()
     class Meta:
         model = Submission
-        fields = ['user', 'problem', 'datetime', 'result_score', 'time_while_ran', 'memory_while_ran', 'language', 'solution']
+        fields = ['user', 'problem', 'datetime', 'submission_token', 'solution']
 
 
 class Problem_Detail_Serializer(serializers.HyperlinkedModelSerializer):

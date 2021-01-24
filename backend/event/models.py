@@ -53,10 +53,7 @@ class Problem(models.Model):
 
 class Submission(models.Model):
     datetime            = models.DateTimeField(auto_now_add=True, auto_created=True)
-    result_score        = models.IntegerField()
-    time_while_ran      = models.FloatField()
-    memory_while_ran    = models.FloatField()
-    language            = models.CharField(max_length=64)
+    submission_token    = models.CharField(max_length=64)
     solution            = models.TextField(max_length=4096)
 
     user                = models.ForeignKey(User, on_delete=models.CASCADE)
