@@ -5,6 +5,7 @@ from .validators import validate_text_file
 
 
 class Event(models.Model):
+    slug        = models.SlugField(max_length=8, unique=True)
     title       = models.CharField(max_length=32)
     description = models.TextField(max_length=1024)
     is_contest  = models.BooleanField(default=True)
@@ -33,6 +34,7 @@ class Problem(models.Model):
     def get_output_testcase_path(instance, filename):
         return 'testcases/{0}/output.txt'.format(instance.title)
     
+    slug                = models.SlugField(max_length=8, unique=True)
     title               = models.CharField(max_length=32)
     problem_statement   = models.TextField(max_length=2048)
     input_statement     = models.TextField(max_length=1024)
@@ -54,7 +56,7 @@ class Problem(models.Model):
 class Submission(models.Model):
     datetime            = models.DateTimeField(auto_now_add=True, auto_created=True)
     submission_token    = models.CharField(max_length=64)
-    solution = models.TextField(max_length=4096)
+    solution            = models.TextField(max_length=4096)
     is_accepted         = models.BooleanField()
 
     user                = models.ForeignKey(User, on_delete=models.CASCADE)
