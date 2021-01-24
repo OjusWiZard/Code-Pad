@@ -61,7 +61,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
 
 class Problem_Viewset(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Problem.objects.all().order_by('-event__datetime')
+    queryset = Problem.objects.filter(event__datetime__lt=timezone.now()).order_by('-event__datetime')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
