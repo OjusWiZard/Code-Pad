@@ -54,7 +54,8 @@ class Problem(models.Model):
 class Submission(models.Model):
     datetime            = models.DateTimeField(auto_now_add=True, auto_created=True)
     submission_token    = models.CharField(max_length=64)
-    solution            = models.TextField(max_length=4096)
+    solution = models.TextField(max_length=4096)
+    is_accepted         = models.BooleanField()
 
     user                = models.ForeignKey(User, on_delete=models.CASCADE)
     problem             = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name='submissions')

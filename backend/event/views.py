@@ -1,14 +1,16 @@
+from os import environ
 from django.http import Http404
 from django.db.models import F
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 from .models import Event, Problem, Submission, Leaderboard
 from .serializers import Event_List_Serializer, Event_Details_Serializer, Problem_List_Serializer, Problem_Detail_Serializer, Submission_Detail_Serializer, Submission_List_Serializer
-from ide.judge import submit_code, supported_languages
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
+from judge0api.client import Client
+from judge0api.submission import submit
 
 
 class Submission_Viewset(ReadOnlyModelViewSet):
@@ -32,31 +34,46 @@ class Submission_Viewset(ReadOnlyModelViewSet):
 
         problem = get_object_or_404(Problem, id=get_submission_data('problem_id'))
         language_id = int(get_submission_data('language_id'))
-        submitted_solution = get_submission_data('solution')
+        submitted_solution = str(get_submission_data('solution')).encode('ascii')
         testcases_input_file = problem.solution_input.open(mode='r')
-        testcases_input = testcases_input_file.read()
+        testcases_input = str(testcases_input_file.read()).encode('ascii')
         testcases_input_file.close()
         testcases_output_file = problem.solution_output.open(mode='r')
-        testcases_output = testcases_output_file.read()
+        testcases_output = str(testcases_output_file.read()).encode('ascii')
         testcases_output_file.close()
 
-        result, status = submit_code(language_id=language_id, program=submitted_solution, test_in=testcases_input, test_out=testcases_output)
-
-        if result['status']['id'] == 3:
+        client = Client(environ['JUDGE_HOST'])
+        submission = submit(client=client, source_code=submitted_solution, language=language_id, stdin=testcases_input, expected_output=testcases_output)
+        
+        if submission.status['id'] == 3:
             current_event = problem.event
             if current_event.datetime <= timezone.now() <= (current_event.datetime+current_event.duration):
                 current_leaderboard_field = Leaderboard.objects.get_or_create(user=request.user, event=current_event)[0]
-                accepted_submissions = Submission.objects.filter(user=request.user, result_score=100, problem=problem)
+                accepted_submissions = Submission.objects.filter(user=request.user, is_accepted=True, problem=problem)
                 if not accepted_submissions:
                     current_leaderboard_field.score += 1
                     current_leaderboard_field.save()
-            score = 100
+            accepted = True
         else:
-            score = 0
+            accepted = False
         
-        Submission.objects.create(user=request.user, problem=problem, submission_token=result['token'], solution=submitted_solution)
+        Submission.objects.create(user=request.user, problem=problem, submission_token=submission.token, solution=submitted_solution, is_accepted=True)
 
-        return Response(data=result, status=status)
+        custom_response = {
+            "stdout": submission.stdout,
+            "time": submission.time,
+            "memory": submission.memory,
+            "stderr": submission.stderr,
+            "token": submission.token,
+            "compile_output": submission.compile_output,
+            "message": submission.message,
+            "status": {
+                "id": submission.status['id'],
+                "description": submission.status['description']
+            }
+        }
+
+        return Response(data=custom_response)
 
 
 class Problem_Viewset(ReadOnlyModelViewSet):
