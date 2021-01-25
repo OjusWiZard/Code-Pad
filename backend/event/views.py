@@ -1,5 +1,4 @@
 from os import environ
-from django.http import Http404
 from django.db.models import F
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
