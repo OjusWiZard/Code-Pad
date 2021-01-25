@@ -23,6 +23,7 @@ class Submission_List_Serializer(serializers.HyperlinkedModelSerializer):
 
 class Submission_Detail_Serializer(serializers.HyperlinkedModelSerializer):
     user = User_Serializer()
+    problem = Problem_List_Serializer()
     class Meta:
         model = Submission
         fields = ['user', 'problem', 'datetime', 'submission_token', 'solution']
