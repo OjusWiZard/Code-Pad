@@ -26,6 +26,9 @@ class Leaderboard(models.Model):
     
     def __str__(self):
         return self.user.username + " in " + self.event.title
+    
+    class Meta:
+        ordering = ['-score']
 
 
 class Problem(models.Model):
