@@ -56,7 +56,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
         else:
             accepted = False
         
-        Submission.objects.create(user=request.user, problem=problem, submission_token=submission.token, solution=submitted_solution, is_accepted=True)
+        Submission.objects.create(user=request.user, problem=problem, submission_token=submission.token, solution=submitted_solution, is_accepted=accepted)
 
         custom_response = {
             "stdout": submission.stdout,
