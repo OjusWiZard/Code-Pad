@@ -46,7 +46,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
         
         if submission.status['id'] == 3:
             current_event = problem.event
-            if current_event.datetime <= timezone.now() <= (current_event.datetime+current_event.duration):
+            if current_event.datetime <= timezone.now() <= (current_event.datetime+current_event.duration) and current_event.is_contest:
                 current_leaderboard_field = Leaderboard.objects.get_or_create(user=request.user, event=current_event)[0]
                 accepted_submissions = Submission.objects.filter(user=request.user, is_accepted=True, problem=problem)
                 if not accepted_submissions:
