@@ -1,0 +1,41 @@
+.main-background {
+  background: url("../../images/home/background.png") no-repeat cover;
+  height: auto;
+}
+.content-background {
+  background: url("../../images/home/contentBackground.png") no-repeat cover;
+  max-width: 100vw !important;
+}
+.content-background img {
+  object-fit: contain;
+  border: none;
+  height: 50px;
+  width: 382px;
+  outline: none;
+}
+select {
+  padding: 20px;
+  width: 240px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: url("../../images/editor/dropdown.png") no-repeat;
+}
+select:active {
+  border: none;
+  outline: none;
+}
+select:hover {
+  border: none;
+  outline: none;
+}
+
+.CodeMirror-scroll {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+#custom {
+  width: 525px;
+  height: 137px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+}

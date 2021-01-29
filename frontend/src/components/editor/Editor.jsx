@@ -29,11 +29,6 @@ const Editor = ({ language, value, onChange, inputChange, input }) => {
           autoCloseTags: true,
         }}
       ></CodeMirror>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => inputChange(e.target.value)}
-      />
     </React.Fragment>
   );
 };
