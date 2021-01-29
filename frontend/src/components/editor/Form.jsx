@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import "./Editor.css";
 import IDE from "../../images/editor/IDE.png";
+import download from "../../images/editor/download.png";
 import Editor from "./Editor";
 
 const Form = () => {
@@ -49,7 +50,7 @@ const Form = () => {
           <div className="row">
             <div className="col-lg-8 col-md-8 col-sm-10 col-10 mx-auto my-5 content-background px-5">
               <div className="d-flex justify-content-center pt-5">
-                <img src={IDE} alt="IDE" />
+                <img id="logo" src={IDE} alt="IDE" />
               </div>
               <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. amet
@@ -58,38 +59,37 @@ const Form = () => {
                 esse molestiae et iusto tenetur laboriosam ipsam ab nemo harum
                 impedit.
               </p>
-              <React.Fragment>
-                <h2 align="center">NCS CODEPAD</h2>
-                <form onSubmit={(e) => handleSubmit(e)}>
-                  <div className="d-flex font-vcr justify-content-between align-items-center py-3">
-                    <select
-                      onChange={(e) => changeLanguage(e)}
-                      value={language}
-                    >
-                      <option value="text/x-c++src">C++</option>
-                      <option value="text/x-csrc">C</option>
-                      <option value="text/x-java">Java</option>
-                    </select>
-                    <span>X</span>
-                  </div>
-                  <Editor
-                    language={language}
-                    displayName="Code"
-                    value={value}
-                    input={input}
-                    onChange={setValue}
-                  ></Editor>
-                  <div className="d-flex align-items-start justify-content-between mt-3">
-                    <input
-                      type="text"
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                      id="custom"
-                    />
-                    <button type="submit">Submit Code</button>
-                  </div>
-                </form>
-              </React.Fragment>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <div className="d-flex font-vcr justify-content-between align-items-center py-3">
+                  <select onChange={(e) => changeLanguage(e)} value={language}>
+                    <option value="text/x-c++src">C++</option>
+                    <option value="text/x-csrc">C</option>
+                    <option value="text/x-java">Java</option>
+                  </select>
+                  <img src={download} alt="Download" />
+                </div>
+                <Editor
+                  language={language}
+                  displayName="Code"
+                  value={value}
+                  input={input}
+                  onChange={setValue}
+                ></Editor>
+                <div className="d-flex align-items-start justify-content-between mt-3">
+                  <textarea
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    id="custom"
+                  />
+                  <button type="submit"></button>
+                </div>
+              </form>
+
+              <p className="font-vcr font-blue font-weight-bold">
+                &lt;&lt;&nbsp;&nbsp;HELLO OUTPUT&nbsp;&nbsp;&gt;&gt;
+              </p>
+              <textarea className="output"></textarea>
             </div>
           </div>
         </div>
