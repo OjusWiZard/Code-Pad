@@ -1,0 +1,46 @@
+.main-background {
+  background: url("../../images/home/background.png") no-repeat cover;
+  height: auto;
+}
+.content-background {
+  background: url("../../images/home/contentBackground.png") no-repeat cover;
+  max-width: 100vw !important;
+}
+#logo {
+  object-fit: contain;
+  border: none;
+  height: 50px;
+  width: 382px;
+  outline: none;
+}
+select {
+  border: none;
+  color: #fff;
+  outline: none;
+  background: url("../../images/editor/dropdown.png");
+  background-repeat: no-repeat;
+}
+select:active {
+  border: none;
+}
+.CodeMirror-scroll {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+textarea[type="text"] {
+  color: #fff;
+  width: 525px;
+  height: 137px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+button[type="submit"] {
+  background: url("../../images/editor/button.png") no-repeat center;
+  border: none;
+  outline: none;
+  width: 120px;
+  height: 40px;
+}
+.output {
+  width: 100%;
+  height: 30%;
+  background-color: black;
+}
