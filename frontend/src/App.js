@@ -7,6 +7,8 @@ import Events from "./components/events/Events";
 import Default from "./components/default/Default";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/navbar/Navbar'
+import SignUp from "./components/auth/signup/SignUp";
+import Login from "./components/auth/login/Login";
 
 function App() {
   
@@ -17,8 +19,10 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/editor" component={Form} />
         <Route exact path="/events" component={Events} />
+        {/* <Route exact path="/signup" component={SignUp} /> */}
+        <Route exact path="/login" component={Login} />
         <Route component={Default} />
-      </Switch>      
+      </Switch>
     </div>
   );
 }

@@ -33,7 +33,7 @@ function navbar() {
               exact
               to="/"
               activeClassName="active-nav-item"
-              className="mr-5 "
+              className="mr-5"
             >
               <Nav.Link
                 className="text-center font-16 font-vcr font-blue nav-item"
@@ -45,10 +45,10 @@ function navbar() {
             <NavLink
               to="/events"
               activeClassName="active-nav-item"
-              className="mr-5"
+              className="mx-5"
             >
               <Nav.Link
-                className="text-center nav-item mx-5 font-blue font-16 font-vcr"
+                className="text-center nav-item font-blue font-16 font-vcr"
                 href="/events"
               >
                 EVENTS
@@ -57,10 +57,10 @@ function navbar() {
             <NavLink
               to="/editor"
               activeClassName="active-nav-item"
-              className="mr-5"
+              className="mx-5"
             >
               <Nav.Link
-                className="text-center nav-item mx-5 font-blue font-16 font-vcr"
+                className="text-center nav-item font-blue font-16 font-vcr"
                 href="/editor"
               >
                 EDITOR
@@ -70,7 +70,7 @@ function navbar() {
           <NavLink
             to="/login"
             activeClassName="active-nav-item"
-            className="mr-5"
+            className="mx-3"
           >
             <Nav.Link
               className="text-center nav-item font-blue font-16 font-vcr mt-n2"

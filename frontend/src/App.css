@@ -53,3 +53,13 @@ body {
 .font-16 {
   font-size: 16px !important;
 }
+.form-control{
+  background-image: url('../src/images/auth/input.png'), linear-gradient( 130deg, #010A0F 0, #010A0F 51%);
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none !important;
+}
+input:focus{
+  border: none !important;
+  outline: none;
+}

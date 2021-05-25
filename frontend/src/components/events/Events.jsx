@@ -14,90 +14,135 @@ function Events() {
               <div className="d-flex justify-content-center pt-5">
                 <img src={logo} alt="" className="img-fluid" />
               </div>
-              <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold" id="ongoing">
+              <h4
+                className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold"
+                id="ongoing"
+              >
                 &lt;&lt;&nbsp;&nbsp;ONGOING EVENTS&nbsp;&nbsp;&gt;&gt;
               </h4>
-              <div className="d-flex justify-content-around pt-5 mt-5">
-                <span className="d-flex flex-column frame-container">
-                  <img src={frame} alt="" className="img-fluid frame" />
-                  <div className="text-center pt-3">
-                    <span className="font-vcr font-blue">CODEWARS</span>
-                    <p className="date font-robot pt-1">ENDS ON 10-JAN-2018</p>
+              <div className="row d-flex justify-content-center mt-3">
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                  <div className="text-center">
+                    <img src={frame} alt="" className="img-fluid frame" />
+                    <div className="text-center pt-3">
+                      <span className="font-vcr font-blue">CODEWARS</span>
+                      <p className="date pt-1 font-robot">
+                        ENDS ON 10-JAN-2018
+                      </p>
+                    </div>
                   </div>
-                </span>
-                <span className="d-flex flex-column frame-container">
-                  <img src={frame} alt="" className="img-fluid frame" />
-                  <div className="text-center pt-3">
-                    <span className="font-vcr font-blue">CODEWARS</span>
-                    <p className="date font-robot pt-1">ENDS ON 10-JAN-2018</p>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                  <div className="text-center">
+                    <img src={frame} alt="" className="img-fluid frame" />
+                    <div className="text-center pt-3">
+                      <span className="font-vcr font-blue">CODEWARS</span>
+                      <p className="date pt-1 font-robot">
+                        ENDS ON 10-JAN-2018
+                      </p>
+                    </div>
                   </div>
-                </span>
-                <span className="d-flex flex-column frame-container">
-                  <img src={frame} alt="" className="img-fluid frame" />
-                  <div className="text-center pt-3">
-                    <span className="font-vcr font-blue">CODEWARS</span>
-                    <p className="date font-robot pt-1">ENDS ON 10-JAN-2018</p>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                  <div className="text-center">
+                    <img src={frame} alt="" className="img-fluid frame" />
+                    <div className="text-center pt-3">
+                      <span className="font-vcr font-blue">CODEWARS</span>
+                      <p className="date pt-1 font-robot">
+                        ENDS ON 10-JAN-2018
+                      </p>
+                    </div>
                   </div>
-                </span>
+                </div>
               </div>
               <div className="d-flex justify-content-center pt-5">
                 <img src={line} alt="" className="img-fluid" />
               </div>
-              <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold" id="ongoing">
+              <h4
+                className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold"
+                id="ongoing"
+              >
                 &lt;&lt;&nbsp;&nbsp;UPCOMING EVENTS&nbsp;&nbsp;&gt;&gt;
               </h4>
-              <div className="d-flex justify-content-around pt-5 mt-5">
-                <span className="d-flex flex-column frame-container">
-                  <img src={frame} alt="" className="img-fluid frame" />
-                  <div className="text-center pt-3">
-                    <span className="font-vcr font-blue">CODEWARS</span>
-                    <p className="date font-robot pt-1">ENDS ON 10-JAN-2018</p>
+              <div className="row d-flex justify-content-center mt-3">
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                  <div className="text-center">
+                    <img src={frame} alt="" className="img-fluid frame" />
+                    <div className="text-center pt-3">
+                      <span className="font-vcr font-blue">CODEWARS</span>
+                      <p className="date pt-1 font-robot">
+                        ENDS ON 10-JAN-2018
+                      </p>
+                    </div>
                   </div>
-                </span>
-                <span className="d-flex flex-column frame-container">
-                  <img src={frame} alt="" className="img-fluid frame" />
-                  <div className="text-center pt-3">
-                    <span className="font-vcr font-blue">CODEWARS</span>
-                    <p className="date font-robot pt-1">ENDS ON 10-JAN-2018</p>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                  <div className="text-center">
+                    <img src={frame} alt="" className="img-fluid frame" />
+                    <div className="text-center pt-3">
+                      <span className="font-vcr font-blue">CODEWARS</span>
+                      <p className="date pt-1 font-robot">
+                        ENDS ON 10-JAN-2018
+                      </p>
+                    </div>
                   </div>
-                </span>
-                <span className="d-flex flex-column frame-container">
-                  <img src={frame} alt="" className="img-fluid frame" />
-                  <div className="text-center pt-3">
-                    <span className="font-vcr font-blue">CODEWARS</span>
-                    <p className="date font-robot pt-1">ENDS ON 10-JAN-2018</p>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                  <div className="text-center">
+                    <img src={frame} alt="" className="img-fluid frame" />
+                    <div className="text-center pt-3">
+                      <span className="font-vcr font-blue">CODEWARS</span>
+                      <p className="date pt-1 font-robot">
+                        ENDS ON 10-JAN-2018
+                      </p>
+                    </div>
                   </div>
-                </span>
+                </div>
               </div>
               <div className="d-flex justify-content-center pt-5">
                 <img src={line} alt="" className="img-fluid" />
               </div>
-              <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold" id="ongoing">
+              <h4
+                className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold"
+                id="ongoing"
+              >
                 &lt;&lt;&nbsp;&nbsp;PAST EVENTS&nbsp;&nbsp;&gt;&gt;
               </h4>
-              <div className="d-flex justify-content-around pt-5 mt-5">
-                <span className="d-flex flex-column frame-container">
-                  <img src={frame} alt="" className="img-fluid frame" />
-                  <div className="text-center pt-3">
-                    <span className="font-vcr font-blue">CODEWARS</span>
-                    <p className="date font-robot pt-1">ENDS ON 10-JAN-2018</p>
+              <div className="row d-flex justify-content-center mt-3">
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                  <div className="text-center">
+                    <img src={frame} alt="" className="img-fluid frame" />
+                    <div className="text-center pt-3">
+                      <span className="font-vcr font-blue">CODEWARS</span>
+                      <p className="date pt-1 font-robot">
+                        ENDS ON 10-JAN-2018
+                      </p>
+                    </div>
                   </div>
-                </span>
-                <span className="d-flex flex-column frame-container">
-                  <img src={frame} alt="" className="img-fluid frame" />
-                  <div className="text-center pt-3">
-                    <span className="font-vcr font-blue">CODEWARS</span>
-                    <p className="date font-robot pt-1">ENDS ON 10-JAN-2018</p>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                  <div className="text-center">
+                    <img src={frame} alt="" className="img-fluid frame" />
+                    <div className="text-center pt-3">
+                      <span className="font-vcr font-blue">CODEWARS</span>
+                      <p className="date pt-1 font-robot">
+                        ENDS ON 10-JAN-2018
+                      </p>
+                    </div>
                   </div>
-                </span>
-                <span className="d-flex flex-column frame-container">
-                  <img src={frame} alt="" className="img-fluid frame" />
-                  <div className="text-center pt-3">
-                    <span className="font-vcr font-blue">CODEWARS</span>
-                    <p className="date font-robot pt-1">ENDS ON 10-JAN-2018</p>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                  <div className="text-center">
+                    <img src={frame} alt="" className="img-fluid frame" />
+                    <div className="text-center pt-3">
+                      <span className="font-vcr font-blue">CODEWARS</span>
+                      <p className="date pt-1 font-robot">
+                        ENDS ON 10-JAN-2018
+                      </p>
+                    </div>
                   </div>
-                </span>
-              </div>              
+                </div>
+              </div>
             </div>
           </div>
         </div>

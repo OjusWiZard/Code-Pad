@@ -5,13 +5,13 @@
   background-size: cover;
 }
 
-.content-background {
+/* .content-background {
   background: url("../../images/home/contentBackground.png");
   background-repeat: no-repeat;
   height: auto;
   overflow-y: auto;
   background-size: cover;
-}
+} */
 
 .event-block {
   /* border: 1px solid #35a4d3 !important; */
