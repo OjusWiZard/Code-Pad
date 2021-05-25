@@ -6,10 +6,11 @@
 }
 
 .content-background {
-  background: url("../../images/home/contentBackground.png");
+  background-image: url("../../images/common/lines.svg"), linear-gradient( 130deg, #010A0F 0, #010A0F 51%, #010A0F 100%);
   background-repeat: no-repeat;
   height: auto;
   background-size: cover;
+  border: 0.5px solid #35A4D3 
 }
 
 .event-block {

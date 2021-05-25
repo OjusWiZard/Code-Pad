@@ -1,5 +1,5 @@
 .navbar {
-  background: #000307 !important;
+  background-image: linear-gradient( 180deg, #010A0F 75%, #000 51%);
 }
 .nav-item {
   width: 120px;
@@ -8,11 +8,12 @@
   border-left: #405c6b 2px solid;
 }
 .nav-item:hover {
-  color: #ffffff !important;
+  color: #131c20;
+  background: #35A4D3;
 }
 .active-nav-item {
-  /* background: #35a4d3 !important; */
-  /* color: #131c20 !important; */
+  background: #35a4d3 !important;
+  color: #131c20 !important;
   font-weight: 900;
 }
 /* .nav-item {
