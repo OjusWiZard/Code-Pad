@@ -48,7 +48,7 @@ const Form = () => {
       <div className="main-background">
         <div className="container pt-5">
           <div className="row">
-            <div className="col-lg-8 col-md-8 col-sm-10 col-10 mx-auto my-5 content-background px-5">
+            <div className="col-lg-8 col-md-8 col-sm-10 col-10 mx-auto my-5 content-background px-5 py-5">
               <div className="d-flex justify-content-center pt-5">
                 <img id="logo" src={IDE} alt="IDE" />
               </div>
@@ -75,21 +75,24 @@ const Form = () => {
                   input={input}
                   onChange={setValue}
                 ></Editor>
-                <div className="d-flex align-items-start justify-content-between mt-3">
-                  <textarea
-                    type="text"
+                <div className="mt-3">
+                  <textarea    
+                    className="output w-100"
+                    rows="10"                       
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     id="custom"
                   />
-                  <button type="submit"></button>
                 </div>
+                <div className="text-center mt-4">
+                <button type="submit"></button>
+                </div>                
               </form>
 
-              <p className="font-vcr font-blue font-weight-bold">
+              <p className="font-vcr font-blue font-weight-bold mt-5">
                 &lt;&lt;&nbsp;&nbsp;HELLO OUTPUT&nbsp;&nbsp;&gt;&gt;
               </p>
-              <textarea className="output"></textarea>
+              <textarea className="output w-100" rows="5"></textarea>
             </div>
           </div>
         </div>
