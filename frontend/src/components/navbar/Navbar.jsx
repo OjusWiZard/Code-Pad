@@ -55,6 +55,30 @@ function navbar() {
               </Nav.Link>
             </NavLink>
             <NavLink
+              to="/profile"
+              activeClassName="active-nav-item"
+              className="mx-5"
+            >
+              <Nav.Link
+                className="text-center nav-item font-blue font-16 font-vcr"
+                href="/profile"
+              >
+                PROFILE
+              </Nav.Link>
+            </NavLink>
+            <NavLink
+              to="/signup"
+              activeClassName="active-nav-item"
+              className="mx-5"
+            >
+              <Nav.Link
+                className="text-center nav-item font-blue font-16 font-vcr"
+                href="/signup"
+              >
+                SIGNUP
+              </Nav.Link>
+            </NavLink>
+            <NavLink
               to="/editor"
               activeClassName="active-nav-item"
               className="mx-5"
