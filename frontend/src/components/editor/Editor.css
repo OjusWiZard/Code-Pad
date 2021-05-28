@@ -40,7 +40,5 @@ button[type="submit"] {
   height: 40px;
 }
 .output {
-  width: 100%;
-  height: 30%;
   background-color: black;
 }
