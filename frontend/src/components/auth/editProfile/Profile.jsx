@@ -25,7 +25,7 @@ function SignUp() {
                   <img src={activeAvatar} alt="" className="img-fluid mx-2" />
                   <img src={avatarFour} alt="" className="img-fluid m-2" />
                 </div>
-                <form action="" className="mt-5 px-lg-5 mx-lg-5">
+                <form className="mt-5 px-lg-5 mx-lg-5">
                   <div className="mt-4">
                     <input
                       type="text"

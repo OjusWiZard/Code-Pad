@@ -1,0 +1,39 @@
+.rules {
+  background-color: #000000;
+  border: 1px solid #405c6b;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+li {
+  list-style-image: url("../../images/eventDetails/pointer.svg");
+  padding: 1rem 0 0 0;
+}
+
+.rules li:first-of-type {
+  margin-top: 1.5rem;
+}
+.exit {
+  text-align: left;
+}
+.main {
+  margin-left: 22px;
+}
+.codewars {
+  align-items: flex-start;
+}
+.codewars-span {
+  margin-left: 10px;
+}
+.codewar-title {
+  flex-direction: column;
+}
+.codewar-title li:first-of-type {
+  margin-top: 10px;
+}
+.codewar-title li {
+  font-size: 16px;
+  list-style-image: none !important;
+  list-style-type: none !important;
+  padding-left: 25px;
+}
