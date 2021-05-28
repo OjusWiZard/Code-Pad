@@ -3,6 +3,7 @@ body {
   font-size: 100%;
   overflow-x: hidden !important;
   scroll-behavior: smooth;
+  background: #000000;  
 }
 :root {
   --blue: #35a4d3;
@@ -38,8 +39,11 @@ body {
   margin: 0;
   font-family: Robot !important;
 }
+::placeholder{
+  color: #35a4d3 !important;
+}
 .font-blue {
-  color: #35a4d3;
+  color: #35a4d3 !important;
 }
 .font-lightGrey {
   color: var(--lightGrey);
@@ -56,10 +60,21 @@ body {
 .form-control{
   background-image: url('../src/images/auth/input.png'), linear-gradient( 130deg, #010A0F 0, #010A0F 51%);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
   border: none !important;
+  border-top: 1px solid var(--blue);
+  border-bottom: 1px solid var(--blue);
+  padding: 10px 20px !important;
 }
 input:focus{
-  border: none !important;
   outline: none;
+  border-top: 1px solid var(--blue) !important;
+  border-bottom: 1px solid var(--blue) !important;
+}
+.bg-black{
+  background: #000000;
+}
+textarea:focus, input:focus{
+  outline: none !important;
 }
