@@ -76,20 +76,20 @@ const Form = () => {
                   onChange={setValue}
                 ></Editor>
                 <div className="mt-3">
-                  <textarea    
+                  <textarea
                     className="output w-100"
-                    rows="10"                       
+                    rows="10"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     id="custom"
                   />
                 </div>
                 <div className="text-center mt-4">
-                <button type="submit"></button>
-                </div>                
+                  <button type="submit"></button>
+                </div>
               </form>
 
-              <p className="font-vcr font-blue font-weight-bold mt-5">
+              <p className="font-vcr font-blue font-weight-bold mt-5 text-center mb-3">
                 &lt;&lt;&nbsp;&nbsp;HELLO OUTPUT&nbsp;&nbsp;&gt;&gt;
               </p>
               <textarea className="output w-100" rows="5"></textarea>
