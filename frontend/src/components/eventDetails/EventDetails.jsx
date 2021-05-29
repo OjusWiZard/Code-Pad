@@ -12,19 +12,23 @@ function EventDetails() {
       <div className="main-background">
         <div className="container py-5">
           <div className="row">
-            <div className="col-xl-8 col-lg-8 col-md-9 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
+            <div className="col-xl-10 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
               <div className="my-5 py-3 px-lg-3">
                 <div className="d-flex font-vcr font-lightGrey text-center justify-content-between mt-5">
                   <div style={{ textAlign: "left" }}>
                     <img src={pointerLeft} alt="left-pointer" /> Exit
                     <div className="d-flex codewars mt-5 pt-2 pb-5">
                       <div className="dash">
-                        <img src={dash} alt="dash" />
+                        <img src={dash} alt="dash" className="img-fluid mt-3"    />
                       </div>
                       <div className="codewar-title d-flex">
                         <div className="main d-flex px-1 justify-content-between">
-                          <img src={folder} alt="folder" />
-                          <span className="codewars-span font-vcr font-16 font-blue">
+                          <img
+                            src={folder}
+                            alt="folder"
+                            className="img-fluid mt-3"
+                          />
+                          <span className="codewars-span font-vcr font-16 mt-3 font-blue">
                             CODEWARS
                           </span>
                         </div>
@@ -35,10 +39,11 @@ function EventDetails() {
                     </div>
                   </div>
                   <div style={{ flex: 0.95 }}>
-                    Dashboard
-                    <div className="rules mt-5 pt-2 pb-5">
-                      <div className="font-blue font-vcr font-18">#RULES</div>
-
+                    *&nbsp;Dashboard&nbsp;*
+                    <div className="rules mt-5 pt-2 pb-5 px-lg-4">
+                      <div className="font-blue font-vcr font-18 mt-3">
+                        #RULES
+                      </div>
                       <li>
                         Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
                       </li>

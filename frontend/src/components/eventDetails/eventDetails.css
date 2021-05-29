@@ -10,9 +10,6 @@ li {
   padding: 1rem 0 0 0;
 }
 
-.rules li:first-of-type {
-  margin-top: 1.5rem;
-}
 .exit {
   text-align: left;
 }

@@ -11,13 +11,15 @@ import SignUp from "./components/auth/signup/SignUp";
 import Login from "./components/auth/login/Login";
 import Profile from "./components/auth/editProfile/Profile";
 import Footer from "./components/footer/Footer";
-import { Profiler } from "react";
 import EventDetails from "./components/eventDetails/EventDetails";
 
 function App() {
 
   return (
     <div className="App">
+      <div className="scan-lines">
+        <div></div>
+      </div>
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />

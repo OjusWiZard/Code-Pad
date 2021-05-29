@@ -27,46 +27,53 @@ function SignUp() {
                   <img src={avatarThree} alt="" className="img-fluid mx-2" />
                   <img src={avatarFour} alt="" className="img-fluid mx-2" />
                 </div>
-                <form action="" className="mt-5 px-lg-5 mx-lg-5">
+                <form action="" className="mt-5 px-lg-5 mx-lg-5 px-3">
                   <div className="mt-4">
-                    <input
-                      type="text"
-                      className="form-control font-vcr font-blue"
-                      placeholder="EMAIL"
-                    />
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            type="text"
+                            className="font-vcr font-blue"
+                            placeholder="EMAIL"
+                          />
+                        </div>                        
+                      </div>
+                    </div>                    
                   </div>
                   <div className="mt-4">
                     <input
                       type="text"
-                      className="form-control font-vcr font-blue"
+                      className="form-control font-vcr font-blue pixel-input"
                       placeholder="NAME"
                     />
                   </div>
                   <div className="mt-4">
                     <input
                       type="text"
-                      className="form-control font-vcr font-blue"
+                      className="form-control font-vcr font-blue pixel-input"
                       placeholder="PASSWORD"
                     />
                   </div>
                   <div className="mt-4">
                     <input
                       type="text"
-                      className="form-control font-vcr font-blue"
+                      className="form-control font-vcr font-blue pixel-input"
                       placeholder="CONFIRM PASSWORD"
                     />
                   </div>
                   <div className="mt-4">
                     <input
                       type="text"
-                      className="form-control font-vcr font-blue"
+                      className="form-control font-vcr font-blue pixel-input"
                       placeholder="ADMISSION NUMBER"
                     />
                   </div>
                   <div className="mt-4">
                     <input
                       type="text"
-                      className="form-control font-vcr font-blue"
+                      className="form-control font-vcr font-blue pixel-input"
                       placeholder="CONTACT NUMBER"
                     />
                   </div>
