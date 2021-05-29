@@ -48,11 +48,11 @@ const Form = () => {
       <div className="main-background">
         <div className="container pt-5">
           <div className="row">
-            <div className="col-lg-8 col-md-8 col-sm-10 col-10 mx-auto my-5 content-background px-5 py-5">
+            <div className="col-lg-8 col-md-8 col-sm-10 col-10 mx-auto my-5 content-background px-lg-5 py-5">
               <div className="d-flex justify-content-center pt-5">
-                <img id="logo" src={IDE} alt="IDE" />
+                <img id="logo" src={IDE} alt="IDE" className="img-fluid" />
               </div>
-              <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14">
+              <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14 font-weight-bold">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. amet
                 qui! Sed, distinctio maiores consequatur velit, voluptatibus
                 deleniti voluptate suscipit corrupti odio amet inventore sunt,

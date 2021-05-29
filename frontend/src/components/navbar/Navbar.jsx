@@ -7,7 +7,7 @@ import logo from "../../images/home/logo.png";
 function navbar() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar navbar-expand-xl">
         <Nav.Link className="navbar-brand" href="/">
           <img
             src={logo}

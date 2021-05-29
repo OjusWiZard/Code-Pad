@@ -1,12 +1,6 @@
-.main-background {
-  background: url("../../images/home/background.png");
-  background-repeat: no-repeat;
-  height: auto;
-  background-size: cover;
-}
 
 .content-background {
-  background-image: url("../../images/common/lines.svg"), linear-gradient( 130deg, #010A0F 0, #010A0F 51%, #010A0F 100%);
+  background: #010A0F;
   background-repeat: no-repeat;
   height: auto;
   background-size: cover;
@@ -22,4 +16,114 @@
   background: url("../../images/home/eventBlockHover.png") transparent !important;
   background-repeat: no-repeat !important;
   background-size: contain;
+}
+
+.dots {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 60;
+  pointer-events: none;
+}
+.dots .dot-1 {
+  position: fixed;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 100vh;
+  pointer-events: none;
+}
+.dots .dot-1:before {
+  content: "";
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background:var(--primaryColor);
+  background: var(--primaryColor);
+  opacity: 0.5;
+  -webkit-animation: hline 6.25s linear infinite;
+  animation: hline 10s linear infinite;
+}
+.dots .dot-2 {
+  position: fixed;
+  top: 0;
+  left: 30%;
+  right: 10%;
+  height: 100vh;
+  pointer-events: none;
+}
+.dots .dot-2:before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background:var(--primaryColor);
+  background: var(--primaryColor);
+  opacity: 0.5;
+  -webkit-animation: hline 6.25s linear infinite;
+  animation: hline 10s linear infinite;
+}
+.dots .dot-3 {
+  position: fixed;
+  top: 0;
+  left: 20%;
+  right: 10%;
+  height: 100vh;
+  pointer-events: none;
+}
+.dots .dot-3:before {
+  content: "";
+  position: absolute;
+  top: 80%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background:var(--primaryColor);
+  background: var(--primaryColor);
+  opacity: 0.5;
+  -webkit-animation: hline 6.25s linear infinite;
+  animation: hline 10s linear infinite;
+}
+.dots .dot-4 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  pointer-events: none;
+}
+.dots .dot-4:before {
+  content: "";
+  position: absolute;
+  top: 65%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background:var(--primaryColor);
+  background: var(--primaryColor);
+  opacity: 0.5;
+  -webkit-animation: hline 6.25s linear infinite;
+  animation: hline 10s linear infinite;
+}
+@keyframes hline {
+  0% {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
 }
