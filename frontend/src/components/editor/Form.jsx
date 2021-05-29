@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Axios from "axios";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Editor.css";
 import IDE from "../../images/editor/IDE.png";
 import download from "../../images/editor/download.png";
@@ -8,40 +8,39 @@ import Editor from "./Editor";
 const Form = () => {
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
-  const langData = {
-    cpp: "text/x-c++src",
-    c: "text/x-csrc",
-    java: "text/x-java",
+  const [language, setLanguage] = useState([]);
+  const [languageId, setLanguageId] = useState("");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
+  useEffect(() => {
+    async function abc() {
+      const lang = await axios.get(
+        "https://467ff821670c.in.ngrok.io/languages"
+      );
+      setLanguage(new Object(lang.data));
+    }
+    abc();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let data = {
-      code: value,
-      lang: Object.keys(langData).find((key) => langData[key] === language),
-      input,
+      source_code: value,
+      language_id: languageId,
     };
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    console.log("ok", data);
     try {
-      const res = await Axios.post(
-        "https://cors-anywhere.herokuapp.com/http://ide.shoa-apps.live/api/question/run",
+      const res = await axios.post(
+        "https://467ff821670c.in.ngrok.io/submissions/?wait=true",
         JSON.stringify(data),
         config
       );
-      console.log(res.data);
+      setInput(res.data.status.description);
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
-    console.log(language, JSON.stringify(value));
-  };
-  const [language, setLanguage] = useState("text/x-c++src");
-  const changeLanguage = (e) => {
-    setLanguage(e.target.value);
   };
   return (
     <React.Fragment>
@@ -61,10 +60,10 @@ const Form = () => {
               </p>
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="d-flex font-vcr justify-content-between align-items-center py-3">
-                  <select onChange={(e) => changeLanguage(e)} value={language}>
-                    <option value="text/x-c++src">C++</option>
-                    <option value="text/x-csrc">C</option>
-                    <option value="text/x-java">Java</option>
+                  <select onChange={(e) => setLanguageId(e.target.value)}>
+                    {language.map((lan) => (
+                      <option value={lan.id}>{lan.name}</option>
+                    ))}
                   </select>
                   <img src={download} alt="Download" />
                 </div>
@@ -77,7 +76,7 @@ const Form = () => {
                 ></Editor>
                 <div className="mt-3">
                   <textarea
-                    className="output w-100"
+                    className="output w-100 font-vcr"
                     rows="10"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}

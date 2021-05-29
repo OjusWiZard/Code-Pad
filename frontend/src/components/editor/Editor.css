@@ -6,12 +6,13 @@
   width: 382px;
   outline: none;
 }
-select {
+select, option{
   border: none;
   color: #fff;
   outline: none;
   background: url("../../images/editor/dropdown.png");
   background-repeat: no-repeat;
+  background: #000;
 }
 select:active {
   border: none;
@@ -19,8 +20,8 @@ select:active {
 .CodeMirror-scroll {
   background-color: rgba(0, 0, 0, 0.8);
 }
-textarea[type="text"] {
-  color: #fff;
+textarea {
+  color: #fff !important;
   width: 525px;
   height: 137px;
   background-color: rgba(0, 0, 0, 0.8);
