@@ -49,14 +49,14 @@
   border-radius: 50%;
   background:var(--primaryColor);
   background: var(--primaryColor);
-  opacity: 0.5;
+  opacity: 0.2;
   -webkit-animation: hline 6.25s linear infinite;
   animation: hline 10s linear infinite;
 }
 .dots .dot-2 {
   position: fixed;
   top: 0;
-  left: 30%;
+  left: 40%;
   right: 10%;
   height: 100vh;
   pointer-events: none;
@@ -71,7 +71,7 @@
   border-radius: 50%;
   background:var(--primaryColor);
   background: var(--primaryColor);
-  opacity: 0.5;
+  opacity: 0.2;
   -webkit-animation: hline 6.25s linear infinite;
   animation: hline 10s linear infinite;
 }
@@ -93,7 +93,7 @@
   border-radius: 50%;
   background:var(--primaryColor);
   background: var(--primaryColor);
-  opacity: 0.5;
+  opacity: 0.2;
   -webkit-animation: hline 6.25s linear infinite;
   animation: hline 10s linear infinite;
 }
@@ -115,7 +115,29 @@
   border-radius: 50%;
   background:var(--primaryColor);
   background: var(--primaryColor);
-  opacity: 0.5;
+  opacity: 0.2;
+  -webkit-animation: hline 6.25s linear infinite;
+  animation: hline 10s linear infinite;
+}
+.dots .dot-5 {
+  position: fixed;
+  top: 0;
+  left: 20%;
+  right: 10%;
+  height: 100vh;
+  pointer-events: none;
+}
+.dots .dot-5:before {
+  content: "";
+  position: absolute;
+  top: 90%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background:var(--primaryColor);
+  background: var(--primaryColor);
+  opacity: 0.2;
   -webkit-animation: hline 6.25s linear infinite;
   animation: hline 10s linear infinite;
 }
