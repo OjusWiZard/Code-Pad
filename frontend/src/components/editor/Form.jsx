@@ -20,6 +20,7 @@ const Form = () => {
       const lang = await axios.get(
         "https://467ff821670c.in.ngrok.io/languages"
       );
+      console.log(lang);
       setLanguage(new Object(lang.data));
     }
     abc();
