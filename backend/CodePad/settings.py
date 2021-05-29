@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from datetime import timedelta
+from datetime import time, timedelta
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -64,6 +64,7 @@ DJOSER = {
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(weeks=4)
 }
 
 MIDDLEWARE = [
