@@ -1,4 +1,3 @@
-
 #logo {
   object-fit: contain;
   border: none;
@@ -6,7 +5,8 @@
   width: 382px;
   outline: none;
 }
-select, option{
+select,
+option {
   border: none;
   color: #fff;
   outline: none;
