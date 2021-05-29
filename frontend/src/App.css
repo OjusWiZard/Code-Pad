@@ -3,10 +3,10 @@ body {
   font-size: 100%;
   overflow-x: hidden !important;
   scroll-behavior: smooth;
-  background: #000000;  
+  background: #000000;
 }
 :root {
-  --blue: #35a4d3;
+  --primaryColor: #35a4d3;
   --grey: #131c20;
   --lightGrey: #7a8589;
 }
@@ -39,7 +39,7 @@ body {
   margin: 0;
   font-family: Robot !important;
 }
-::placeholder{
+::placeholder {
   color: #35a4d3 !important;
 }
 .font-blue {
@@ -57,24 +57,242 @@ body {
 .font-16 {
   font-size: 16px !important;
 }
-.form-control{
-  background-image: url('../src/images/auth/input.png'), linear-gradient( 130deg, #010A0F 0, #010A0F 51%);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+
+.pixel-input {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #000000;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+}
+.form-control {
+  background: #000000 !important;
+  outline: none !important;
   border: none !important;
-  border-top: 1px solid var(--blue);
-  border-bottom: 1px solid var(--blue);
-  padding: 10px 20px !important;
 }
-input:focus{
+input:focus {
   outline: none;
-  border-top: 1px solid var(--blue) !important;
-  border-bottom: 1px solid var(--blue) !important;
+  border-top: 1px solid var(--primaryColor) !important;
+  border-bottom: 1px solid var(--primaryColor) !important;
 }
-.bg-black{
+.bg-black {
   background: #000000;
 }
-textarea:focus, input:focus{
+textarea:focus,
+input:focus {
   outline: none !important;
+}
+
+.pixel-btn {
+  position: relative;
+  display: inline-block;
+  font-family: "VCR OSD Mono", sans-serif;
+  font-size: 1.6rem;
+  color: #000000 !important;
+  padding: 0.5rem 0.5rem;
+  margin: 0;
+  background: #637484;
+  cursor: pointer;
+  text-decoration: none !important;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  z-index: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+.input-group {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  width: 100%;
+}
+.input-group .pixel-input-wrapper {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  margin-bottom: 0;
+  padding-right: 2rem;
+  z-index: 0;
+}
+.pixel-input-wrapper {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+}
+.pixel-input-wrapper > span {
+  position: absolute;
+  top: 0;
+  right: 1.2rem;
+  bottom: 0;
+  left: 1.2rem;
+  height: 100%;
+  display: block;
+  background: var(--primaryColor);
+  pointer-events: none;
+  z-index: -1;
+}
+.pixel-input-wrapper > span:before {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 1.2rem;
+  bottom: 1.2rem;
+  left: -1.2rem;
+  right: -1.2rem;
+  background: inherit;
+  z-index: -1;
+}
+.pixel-input-wrapper > span:after {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: -0.7rem;
+  right: -0.7rem;
+  background: inherit;
+  z-index: -1;
+}
+.pixel-input {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #000000;
+}
+.pixel-input:before {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 1.2rem;
+  bottom: 1.2rem;
+  left: -1.2rem;
+  right: -1.2rem;
+  background: inherit;
+  z-index: -1;
+}
+.pixel-input:after {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: -0.7rem;
+  right: -0.7rem;
+  background: inherit;
+  z-index: -1;
+}
+.pixel-input > input {
+  display: block;
+  font-family: inherit !important;
+  width: 100%;
+  height: 100%;
+  font-size: 1.4rem;
+  padding: 0.5rem 2rem;
+  margin: 0;
+  background: transparent;
+  font-family: Vcr;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.scan-lines {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 69;
+  pointer-events: none;
+}
+.scan-lines:before {
+  display: block;
+  content: "";
+  height: 100%;
+  width: 100%;
+  pointer-events: none;  
+  background: -webkit-linear-gradient(#444 50%, #111 50%);
+  background: -o-linear-gradient(#444 50%, #111 50%);
+  background: linear-gradient(#444 50%, #111 50%);
+  background-size: 100% 4px;
+  background-repeat: repeat-y;
+  opacity: 0.15;
+  -webkit-box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.8);
+}
+.scan-lines > div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  pointer-events: none;
+}
+.scan-lines > div:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+  background: #000000;
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 255, 255, 0) 0%,
+    #35a4d3 50%,
+    rgba(0, 0, 0, 0.98) 51%,
+    rgba(0, 255, 255, 0) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(0, 255, 255, 0) 0%,
+    #35a4d3 50%,
+    rgba(0, 0, 0, 0.98) 51%,
+    rgba(0, 255, 255, 0) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 255, 255, 0) 0%,
+    #35a4d3 50%,
+    rgba(0, 0, 0, 0.98) 51%,
+    rgba(0, 255, 255, 0) 100%
+  );
+  opacity: 0.04;
+  -webkit-animation: vline 6.25s linear infinite;
+  animation: vline 6.25s linear infinite;
+}
+@keyframes vline {
+  0% {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
 }

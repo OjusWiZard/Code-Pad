@@ -17,7 +17,7 @@ function Home() {
                 <div className="d-flex justify-content-center pt-5">
                   <img src={logo} alt="" className="img-fluid" />
                 </div>
-                <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14">
+                <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14 font-weight-bold">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. amet
                   qui! Sed, distinctio maiores consequatur velit, voluptatibus
                   deleniti voluptate suscipit corrupti odio amet inventore sunt,
