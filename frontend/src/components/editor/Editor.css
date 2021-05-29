@@ -1,11 +1,4 @@
-.main-background {
-  background: url("../../images/home/background.png") no-repeat cover;
-  height: auto;
-}
-/* .content-background {
-  background: url("../../images/home/contentBackground.png") no-repeat cover;
-  max-width: 100vw !important;
-} */
+
 #logo {
   object-fit: contain;
   border: none;

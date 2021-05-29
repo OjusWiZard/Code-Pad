@@ -10,6 +10,13 @@ function Home() {
   return (
     <React.Fragment>
       <div className="main-background">
+        <div className="dots">
+          <div className="dot-1"></div>
+          <div className="dot-2"></div>
+          <div className="dot-3"></div>
+          <div className="dot-4"></div>
+          <div className="dot-5"></div>'
+        </div>
         <div className="container pt-5">
           <div className="row">
             <div className="col-lg-8 col-md-10 col-sm-10 col-10 mx-auto my-5 content-background px-lg-5">

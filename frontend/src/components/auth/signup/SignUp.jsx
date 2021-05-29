@@ -38,9 +38,9 @@ function SignUp() {
                             className="font-vcr font-blue"
                             placeholder="EMAIL"
                           />
-                        </div>                        
+                        </div>
                       </div>
-                    </div>                    
+                    </div>
                   </div>
                   <div className="mt-4">
                     <input
