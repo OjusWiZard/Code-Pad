@@ -78,7 +78,7 @@ function SignUp() {
                     />
                   </div>
                 </form>
-                <div className="mt-5 text-center">
+                <div className="mt-5 text-center button-hover">
                   <img src={signup} alt="signup" className="img-fluid mt-4" />
                 </div>
                 <div className="mt-4 text-center">
