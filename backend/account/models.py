@@ -49,9 +49,10 @@ class User(AbstractUser):
     admission_no    = models.CharField(max_length=8, unique=True, validators=[validate_admission_number])
     first_name      = models.CharField(max_length=16)
     last_name       = models.CharField(max_length=16)
+    avatar          = models.SmallIntegerField()
 
     USERNAME_FIELD  = 'email'
-    REQUIRED_FIELDS = ['username', 'admission_no', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['username', 'admission_no', 'first_name', 'last_name', 'avatar']
 
     objects         = UserManager()
 
