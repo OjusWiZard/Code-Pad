@@ -86,11 +86,11 @@
 .dots .dot-3:before {
   content: "";
   position: absolute;
-  top: 80%;
+  top: 75%;
   left: 0;
   width: 10px;
   height: 10px;
-  border-radius: 50%;
+  border-radius: 45%;
   background:var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
@@ -108,7 +108,7 @@
 .dots .dot-4:before {
   content: "";
   position: absolute;
-  top: 65%;
+  top: 60%;
   left: 0;
   width: 10px;
   height: 10px;
