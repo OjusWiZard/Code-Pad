@@ -76,7 +76,6 @@ class Submission_Viewset(ReadOnlyModelViewSet):
 
 
 class Problem_Viewset(ReadOnlyModelViewSet):
-    permission_classes = [IsAuthenticated]
     queryset = Problem.objects.filter(event__datetime__lt=timezone.now()).order_by('-event__datetime')
     lookup_field = 'slug'
 
@@ -87,7 +86,6 @@ class Problem_Viewset(ReadOnlyModelViewSet):
 
 
 class Event_Viewset(ReadOnlyModelViewSet):
-    permission_classes = [IsAuthenticated]
     queryset = Event.objects.all().order_by('-datetime')
     lookup_field = 'slug'
     
