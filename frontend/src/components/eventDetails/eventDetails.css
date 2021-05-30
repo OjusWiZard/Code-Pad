@@ -34,3 +34,40 @@ li {
   list-style-type: none !important;
   padding-left: 25px;
 }
+
+.leadeboard-leads {
+  padding: 18px 28px;
+  background-color: #000000;
+}
+
+.leaderboard-bg {
+  text-align: center;
+  align-items: center;
+  background-color: #000a0f;
+  padding: 22px 32px;
+  border-bottom: 1px solid #fff;
+}
+.user-image {
+  text-align: center;
+  height: 30px;
+  width: 30px;
+  flex: 0.1;
+}
+.user-name {
+  flex: 0.9;
+}
+.user-info {
+  max-width: 50%;
+}
+.user-data {
+  border: 1px solid #405c6b;
+}
+@media (max-width: 768px) {
+  .mainContainer {
+    flex-direction: column;
+  }
+  .user-info {
+    padding-left: 0;
+    flex-direction: column;
+  }
+}
