@@ -21,7 +21,7 @@ const Editor = ({ language, value, onChange, inputChange, input }) => {
         options={{
           lineWrapping: true,
           lint: true,
-          mode: language,
+          mode: "text/x-csrc",
           theme: "material",
           lineNumbers: true,
           matchBrackets: true,

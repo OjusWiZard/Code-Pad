@@ -20,6 +20,7 @@ const Form = () => {
       const lang = await axios.get(
         "https://467ff821670c.in.ngrok.io/languages"
       );
+      console.log(lang);
       setLanguage(new Object(lang.data));
     }
     abc();
@@ -46,8 +47,8 @@ const Form = () => {
     <React.Fragment>
       <div className="main-background">
         <div className="container pt-5">
-          <div className="row">
-            <div className="col-lg-8 col-md-8 col-sm-10 col-10 mx-auto my-5 content-background px-lg-5 py-5">
+          <div className="row d-flex justify-content-center">
+            <div className="col-lg-8 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-5">
               <div className="d-flex justify-content-center pt-5">
                 <img id="logo" src={IDE} alt="IDE" className="img-fluid" />
               </div>
