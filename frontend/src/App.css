@@ -106,7 +106,6 @@ body {
   left: 0;
   right: 0;
   overflow: hidden;
-  z-index: 69;
   pointer-events: none;
 }
 .scan-lines:before {
@@ -115,7 +114,7 @@ body {
   height: 100%;
   width: 100%;
   pointer-events: none;
-  background: linear-gradient(#334 50%, #000 50%);
+  background: linear-gradient(#555 50%, #000 50%);
   background-size: 100% 4px;
   background-repeat: repeat-y;
   opacity: 0.15;
