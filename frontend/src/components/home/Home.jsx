@@ -10,17 +10,11 @@ function Home() {
   return (
     <React.Fragment>
       <div className="main-background">
-        <div className="dots">
-          <div className="dot-1"></div>
-          <div className="dot-2"></div>
-          <div className="dot-3"></div>
-          <div className="dot-4"></div>
-          <div className="dot-5"></div>'
-        </div>
         <div className="container pt-5">
           <div className="row d-flex justify-content-center">
             <div className="col-lg-8 col-md-10 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
               <div>
+                <div className="scan-lines"></div>
                 <div className="d-flex justify-content-center pt-5">
                   <img src={logo} alt="" className="img-fluid" />
                 </div>
@@ -44,7 +38,10 @@ function Home() {
                   &lt;&lt;&nbsp;&nbsp;ONGOING EVENTS&nbsp;&nbsp;&gt;&gt;
                 </h4>
                 <div className="row d-flex justify-content-center mt-3">
-                  <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                  <Link
+                    to="/events/1"
+                    className="button-hover link col-lg-4 col-md-4 col-sm-12 col-12 mt-3"
+                  >
                     <div className="text-center">
                       <img src={frame} alt="" className="img-fluid frame" />
                       <div className="text-center pt-3">
@@ -54,7 +51,7 @@ function Home() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                   <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
                     <div className="text-center">
                       <img src={frame} alt="" className="img-fluid frame" />

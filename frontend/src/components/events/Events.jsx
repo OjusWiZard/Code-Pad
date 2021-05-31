@@ -2,6 +2,7 @@ import React from "react";
 import frame from "../../images/events/Frame.png";
 import logo from "../../images/events/event_logo.png";
 import line from "../../images/home/line.png";
+import { Link } from "react-router-dom";
 import "./events.css";
 
 function Events() {
@@ -21,7 +22,10 @@ function Events() {
                 &lt;&lt;&nbsp;&nbsp;ONGOING EVENTS&nbsp;&nbsp;&gt;&gt;
               </h4>
               <div className="row d-flex justify-content-center mt-3">
-                <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
+                <Link
+                  to="/events/1"
+                  className="button-hover link col-lg-4 col-md-4 col-sm-12 col-12 mt-3"
+                >
                   <div className="text-center">
                     <img src={frame} alt="" className="img-fluid frame" />
                     <div className="text-center pt-3">
@@ -31,7 +35,7 @@ function Events() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </Link>
                 <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
                   <div className="text-center">
                     <img src={frame} alt="" className="img-fluid frame" />

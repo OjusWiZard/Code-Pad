@@ -28,7 +28,6 @@
   left: 0;
   right: 0;
   overflow: hidden;
-  z-index: 60;
   pointer-events: none;
 }
 .dots .dot-1 {
