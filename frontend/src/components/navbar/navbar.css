@@ -1,5 +1,5 @@
 .navbar {
-  background-image: linear-gradient(180deg, #010a0f 75%, #000 51%);
+  background-image: linear-gradient(180deg, #010a0f 75%, transparent 51%);
 }
 .nav-item {
   width: 120px;
@@ -16,15 +16,3 @@
   color: #131c20 !important;
   font-weight: 900;
 }
-/* .nav-item {
-  background: #35a4d3;
-  border-style: ridge;
-  border-spacing: 10px;
-  position: relative;
-} */
-/* .nav-item:after {
-  content: "";
-  position: absolute;
-  border-right: #405c6b 2px solid;
-  border-left: #405c6b 2px solid;
-} */

@@ -12,8 +12,8 @@ function SignUp() {
     <React.Fragment>
       <div className="main-background">
         <div className="container py-5">
-          <div className="row">
-            <div className="col-xl-7 col-lg-7 col-md-8 col-sm-10 col-10 mx-auto my-5 content-background px-lg-5">
+          <div className="row d-flex justify-content-center">
+            <div className="col-xl-7 col-lg-7 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
               <div className="my-5 py-3 px-lg-3">
                 <h4 className="font-vcr font-blue text-center font-weight-bold">
                   **&nbsp;SIGNUP&nbsp;**
@@ -43,42 +43,77 @@ function SignUp() {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <input
-                      type="text"
-                      className="form-control font-vcr font-blue pixel-input"
-                      placeholder="NAME"
-                    />
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            type="text"
+                            className="font-vcr font-blue"
+                            placeholder="NAME"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="mt-4">
-                    <input
-                      type="text"
-                      className="form-control font-vcr font-blue pixel-input"
-                      placeholder="PASSWORD"
-                    />
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            type="password"
+                            className="font-vcr font-blue"
+                            placeholder="PASSWORD"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="mt-4">
-                    <input
-                      type="text"
-                      className="form-control font-vcr font-blue pixel-input"
-                      placeholder="CONFIRM PASSWORD"
-                    />
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            type="password"
+                            className="font-vcr font-blue"
+                            placeholder="CONFIRM PASSWORD"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="mt-4">
-                    <input
-                      type="text"
-                      className="form-control font-vcr font-blue pixel-input"
-                      placeholder="ADMISSION NUMBER"
-                    />
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            type="text"
+                            className="font-vcr font-blue"
+                            placeholder="ADMISSION NUMBER"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="mt-4">
-                    <input
-                      type="text"
-                      className="form-control font-vcr font-blue pixel-input"
-                      placeholder="CONTACT NUMBER"
-                    />
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            type="text"
+                            className="font-vcr font-blue"
+                            placeholder="CONTACT NUMBER"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </form>
-                <div className="mt-5 text-center">
+                <div className="mt-5 text-center button-hover">
                   <img src={signup} alt="signup" className="img-fluid mt-4" />
                 </div>
                 <div className="mt-4 text-center">

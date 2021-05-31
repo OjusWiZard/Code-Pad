@@ -13,8 +13,8 @@ function SignUp() {
     <React.Fragment>
       <div className="main-background">
         <div className="container py-5">
-          <div className="row">
-            <div className="col-xl-7 col-lg-7 col-md-8 col-sm-10 col-10 mx-auto my-5 content-background px-lg-5">
+          <div className="row d-flex justify-content-center">
+            <div className="col-xl-7 col-lg-7 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
               <div className="my-5 py-3 px-lg-3">
                 <h4 className="font-vcr font-blue text-center font-weight-bold">
                   **&nbsp;EDIT PROFILE&nbsp;**
@@ -27,32 +27,60 @@ function SignUp() {
                 </div>
                 <form className="mt-5 px-lg-5 mx-lg-5">
                   <div className="mt-4">
-                    <input
-                      type="text"
-                      className="form-control font-vcr font-blue"
-                      placeholder="EMAIL"
-                    />
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            type="email"
+                            className="font-vcr font-blue"
+                            placeholder="EMAIL"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="mt-4">
-                    <input
-                      type="text"
-                      className="form-control font-vcr font-blue"
-                      placeholder="NAME"
-                    />
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            type="name"
+                            className="font-vcr font-blue"
+                            placeholder="NAME"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="mt-4">
-                    <input
-                      type="text"
-                      className="form-control font-vcr font-blue"
-                      placeholder="PASSWORD"
-                    />
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            type="password"
+                            className="font-vcr font-blue"
+                            placeholder="PASSWORD"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="mt-4">
-                    <input
-                      type="text"
-                      className="form-control font-vcr font-blue"
-                      placeholder="CONTACT NUMBER"
-                    />
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            type="text"
+                            className="font-vcr font-blue"
+                            placeholder="CONTACT NUMBER"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </form>
                 <div className="mt-5 text-center">
