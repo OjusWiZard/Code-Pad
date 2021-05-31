@@ -4,8 +4,9 @@ body {
   overflow-x: hidden !important;
   scroll-behavior: smooth;
   background: #000000 !important;
-  /* background: url('../src/images/home/background.png'); */
 }
+
+/* Root */
 :root {
   --primaryColor: #35a4d3;
   --grey: #131c20;
@@ -18,6 +19,21 @@ body {
   height: auto;
   background-size: cover;
 }
+@media(max-width:1350px){
+  #root {
+    background: url("../src/images/common/background_md.png");
+    background-repeat: no-repeat;
+    height: auto;
+    background-size: cover;
+  }
+}
+@media(max-width:500px){
+  #root {
+    background: transparent;
+  } 
+}
+
+/* ScrollBar */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -29,6 +45,15 @@ body {
   background: #000000;
   border-radius: 10px;
 }
+
+
+/* Placeholder */
+::placeholder {
+  color: var(--primaryColor);
+}
+
+
+/* Font Family */
 @font-face {
   font-family: Vcr;
   src: url(.././src/fonts/VCR_OSD_MONO_1.001.ttf);
@@ -47,11 +72,11 @@ body {
   margin: 0;
   font-family: Robot !important;
 }
-::placeholder {
-  color: #35a4d3 !important;
-}
+
+
+/* Font Color */
 .font-blue {
-  color: #35a4d3 !important;
+  color: var(--primaryColor) !important;
 }
 .font-lightGrey {
   color: var(--lightGrey);
@@ -59,6 +84,9 @@ body {
 .font-grey {
   color: var(--grey) !important;
 }
+
+
+/* Font Size */
 .font-14 {
   font-size: 14px;
 }
@@ -66,33 +94,8 @@ body {
   font-size: 16px !important;
 }
 
-.pixel-input {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  background: #000000;
-  width: calc(100% - 2px);
-  height: calc(100% - 2px);
-}
-.form-control {
-  background: #000000 !important;
-  outline: none !important;
-  border: none !important;
-}
-input:focus {
-  outline: none;
-  border-top: 1px solid var(--primaryColor) !important;
-  border-bottom: 1px solid var(--primaryColor) !important;
-}
-.bg-black {
-  background: #000000;
-}
-textarea:focus,
-input:focus {
-  outline: none !important;
-}
 
+/* Scan Lines */
 .scan-lines {
   position: absolute;
   display: -webkit-box;
@@ -112,7 +115,7 @@ input:focus {
   height: 100%;
   width: 100%;
   pointer-events: none;
-  background: linear-gradient(#444 50%, #000 50%);
+  background: linear-gradient(#334 50%, #000 50%);
   background-size: 100% 4px;
   background-repeat: repeat-y;
   opacity: 0.15;
@@ -137,21 +140,21 @@ input:focus {
   background: -webkit-linear-gradient(
     top,
     rgba(0, 255, 255, 0) 0%,
-    #35a4d3 50%,
+    var(--primaryColor) 50%,
     rgba(0, 0, 0, 0.98) 51%,
     rgba(0, 255, 255, 0) 100%
   );
   background: -o-linear-gradient(
     top,
     rgba(0, 255, 255, 0) 0%,
-    #35a4d3 50%,
+    var(--primaryColor) 50%,
     rgba(0, 0, 0, 0.98) 51%,
     rgba(0, 255, 255, 0) 100%
   );
   background: linear-gradient(
     to bottom,
     rgba(0, 255, 255, 0) 0%,
-    #35a4d3 50%,
+    var(--primaryColor) 50%,
     rgba(0, 0, 0, 0.98) 51%,
     rgba(0, 255, 255, 0) 100%
   );
