@@ -20,6 +20,13 @@ function App() {
       <div className="scan-lines">
         <div></div>
       </div>
+      <div className="dots">
+        <div className="dot-1"></div>
+        <div className="dot-2"></div>
+        <div className="dot-3"></div>
+        <div className="dot-4"></div>
+        <div className="dot-5"></div>'
+      </div>
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
