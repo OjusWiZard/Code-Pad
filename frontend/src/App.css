@@ -27,7 +27,15 @@ body {
     background-size: cover;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 950px) {
+  #root {
+    background: url("../src/images/common/background-sm.svg");
+    background-repeat: no-repeat;
+    height: auto;
+    background-size: cover;
+  }
+}
+@media (max-width: 760px) {
   #root {
     background: transparent;
   }
@@ -109,7 +117,7 @@ body {
   height: 100%;
   width: 100%;
   pointer-events: none;
-  background: linear-gradient(rgba(255, 255, 255, 0.15) 50%, #000 50%);
+  background: linear-gradient(#333 50%, #000 50%);
   background-size: 100% 3px;
   background-repeat: repeat-y;
   opacity: 0.25;

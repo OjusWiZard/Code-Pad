@@ -1,5 +1,8 @@
 .navbar {
   background: url("../../images/common/navbar.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .nav-item {
