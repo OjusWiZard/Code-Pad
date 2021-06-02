@@ -2,20 +2,20 @@ import React from "react";
 import "./navbar.css";
 import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
-import logo from "../../images/home/logo.png";
+import logo from "../../images/home/logo.svg";
 
 function navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-xl">
-        <Nav.Link className="navbar-brand" href="/">
+        <NavLink className="navbar-brand" exact to="/">
           <img
             src={logo}
             alt="Code-pad"
             className="img-fluid mx-0 px-0"
             width="120px"
           />
-        </Nav.Link>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -35,60 +35,65 @@ function navbar() {
               activeClassName="active-nav-item"
               className="mr-5"
             >
-              <Nav.Link
-                className="text-center font-16 font-vcr font-blue nav-item"
-                href="/"
+              <NavLink
+                className="p-3 text-center p-3 font-16 font-vcr font-blue nav-item"
+                exact
+                to="/"
               >
                 HOME
-              </Nav.Link>
+              </NavLink>
             </NavLink>
             <NavLink
               to="/events"
               activeClassName="active-nav-item"
               className="mx-5"
             >
-              <Nav.Link
-                className="text-center nav-item font-blue font-16 font-vcr"
-                href="/events"
+              <NavLink
+                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                exact
+                to="/events"
               >
                 EVENTS
-              </Nav.Link>
+              </NavLink>
             </NavLink>
             <NavLink
               to="/profile"
               activeClassName="active-nav-item"
               className="mx-5"
             >
-              <Nav.Link
-                className="text-center nav-item font-blue font-16 font-vcr"
-                href="/profile"
+              <NavLink
+                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                exact
+                to="/profile"
               >
                 PROFILE
-              </Nav.Link>
+              </NavLink>
             </NavLink>
             <NavLink
               to="/signup"
               activeClassName="active-nav-item"
               className="mx-5"
             >
-              <Nav.Link
-                className="text-center nav-item font-blue font-16 font-vcr"
-                href="/signup"
+              <NavLink
+                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                exact
+                to="/signup"
               >
                 SIGNUP
-              </Nav.Link>
+              </NavLink>
             </NavLink>
             <NavLink
               to="/editor"
               activeClassName="active-nav-item"
               className="mx-5"
             >
-              <Nav.Link
-                className="text-center nav-item font-blue font-16 font-vcr"
-                href="/editor"
+              <NavLink
+                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                exact
+                to="/editor"
               >
                 EDITOR
-              </Nav.Link>
+              </NavLink>
             </NavLink>
           </Nav>
           <NavLink
@@ -96,12 +101,13 @@ function navbar() {
             activeClassName="active-nav-item"
             className="mx-3"
           >
-            <Nav.Link
-              className="text-center nav-item font-blue font-16 font-vcr mt-n2"
-              href="/login"
+            <NavLink
+              className="text-center p-3 nav-item font-blue font-16 font-vcr mt-n2"
+              exact
+              to="/login"
             >
               LOGIN
-            </Nav.Link>
+            </NavLink>
           </NavLink>
         </div>
       </nav>

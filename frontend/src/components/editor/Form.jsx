@@ -21,7 +21,7 @@ const Form = () => {
         "https://467ff821670c.in.ngrok.io/languages"
       );
       console.log(lang);
-      setLanguage(new Object(lang.data));
+      // setLanguage(new Object(lang.data));
     }
     abc();
   }, []);

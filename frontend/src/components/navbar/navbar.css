@@ -1,7 +1,9 @@
 .navbar {
-  background-image: linear-gradient(180deg, #010a0f 75%, transparent 51%);
+  background: url("../../images/common/navbar.svg");
 }
+
 .nav-item {
+  margin-top: 1rem;
   width: 120px;
   background: #131c20;
   border-right: #405c6b 2px solid;

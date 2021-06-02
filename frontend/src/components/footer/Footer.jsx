@@ -1,6 +1,6 @@
 import React from "react";
-import borderBottom from "../../images/footer/borderBottom.png";
-import heart from "../../images/footer/heart.png";
+import borderBottom from "../../images/footer/borderBottom.svg";
+import heart from "../../images/footer/heart.svg";
 
 function Footer() {
   return (

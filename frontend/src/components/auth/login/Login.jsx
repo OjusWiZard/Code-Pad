@@ -1,7 +1,7 @@
 import React from "react";
-import login from "../../../images/auth/login.png";
-import line from "../../../images/home/line.png";
-import { Link } from "react-router-dom";
+import login from "../../../images/auth/login.svg";
+import line from "../../../images/home/line.svg";
+
 import "./login.css";
 
 function Login() {

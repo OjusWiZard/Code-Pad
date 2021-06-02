@@ -19,18 +19,18 @@ body {
   height: auto;
   background-size: cover;
 }
-@media(max-width:1350px){
+@media (max-width: 1350px) {
   #root {
-    background: url("../src/images/common/background_md.png");
+    background: url("../src/images/common/background-md.svg");
     background-repeat: no-repeat;
     height: auto;
     background-size: cover;
   }
 }
-@media(max-width:500px){
+@media (max-width: 500px) {
   #root {
     background: transparent;
-  } 
+  }
 }
 
 /* ScrollBar */
@@ -46,12 +46,10 @@ body {
   border-radius: 10px;
 }
 
-
 /* Placeholder */
 ::placeholder {
   color: var(--primaryColor);
 }
-
 
 /* Font Family */
 @font-face {
@@ -73,7 +71,6 @@ body {
   font-family: Robot !important;
 }
 
-
 /* Font Color */
 .font-blue {
   color: var(--primaryColor) !important;
@@ -85,7 +82,6 @@ body {
   color: var(--grey) !important;
 }
 
-
 /* Font Size */
 .font-14 {
   font-size: 14px;
@@ -93,7 +89,6 @@ body {
 .font-16 {
   font-size: 16px !important;
 }
-
 
 /* Scan Lines */
 .scan-lines {
