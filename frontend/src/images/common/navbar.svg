@@ -1,0 +1,25 @@
+<svg width="1366" height="93" viewBox="0 0 1366 93" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1366" height="93">
+<path d="M58 50L51.5 57H0V0H1366V57H1315L1308 50H1107.5L1074.5 93H293L259.5 50H58Z" fill="#000A0F"/>
+</mask>
+<g mask="url(#mask0)">
+<path d="M58 49.5L50.5 57H0V0H1366V57H1315.5L1308 49.5H1107L1073.5 92H293L259.5 49.5H58Z" fill="#000A0F"/>
+<line y1="-0.5" x2="11.3137" y2="-0.5" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 50 57)" stroke="#405C6B"/>
+<line x1="1315.65" y1="57.3536" x2="1307.65" y2="49.3536" stroke="#405C6B"/>
+<line x1="293.368" y1="92.7238" x2="259.605" y2="49.3069" stroke="#405C6B"/>
+<line y1="-0.5" x2="54.9994" y2="-0.5" transform="matrix(0.613872 -0.789406 -0.789406 -0.613872 1073 92.4169)" stroke="#405C6B"/>
+<g opacity="0.015">
+<line y1="7" x2="1366" y2="7" stroke="white" stroke-width="2"/>
+<line y1="15" x2="1366" y2="15" stroke="white" stroke-width="2"/>
+<line y1="23" x2="1366" y2="23" stroke="white" stroke-width="2"/>
+<line y1="31" x2="1366" y2="31" stroke="white" stroke-width="2"/>
+<line y1="39" x2="1366" y2="39" stroke="white" stroke-width="2"/>
+<line y1="47" x2="1366" y2="47" stroke="white" stroke-width="2"/>
+<line y1="55" x2="1366" y2="55" stroke="white" stroke-width="2"/>
+<line y1="63" x2="1366" y2="63" stroke="white" stroke-width="2"/>
+<line y1="71" x2="1366" y2="71" stroke="white" stroke-width="2"/>
+<line y1="79" x2="1366" y2="79" stroke="white" stroke-width="2"/>
+<line y1="87" x2="1366" y2="87" stroke="white" stroke-width="2"/>
+</g>
+</g>
+</svg>

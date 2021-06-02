@@ -1,14 +1,12 @@
 import React from "react";
-import avatarOne from "../../../images/auth/avatarOne.png";
-import avatarTwo from "../../../images/auth/avatarTwo.png";
-import avatarThree from "../../../images/auth/avatarThree.png";
-import activeAvatar from "../../../images/auth/activeAvatar.png";
-import avatarFour from "../../../images/auth/avatarFour.png";
-import signup from "../../../images/auth/signup.png";
-import line from "../../../images/home/line.png";
-import { Link } from "react-router-dom";
+import avatarOne from "../../../images/auth/peach.svg";
+import avatarTwo from "../../../images/auth/mario.svg";
+import activeAvatar from "../../../images/auth/pacman-active.svg";
+import avatarFour from "../../../images/auth/frog.svg";
+import update from "../../../images/auth/update.svg";
+import line from "../../../images/home/line.svg";
 
-function SignUp() {
+function EditProfile() {
   return (
     <React.Fragment>
       <div className="main-background">
@@ -83,8 +81,8 @@ function SignUp() {
                     </div>
                   </div>
                 </form>
-                <div className="mt-5 text-center">
-                  <img src={signup} alt="signup" className="img-fluid mt-4" />
+                <div className="mt-5 text-center button-hover">
+                  <img src={update} alt="update" className="img-fluid mt-4" />
                 </div>
                 <div className="mt-4 text-center">
                   <img src={line} alt="signup" className="img-fluid mt-4" />
@@ -98,4 +96,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default EditProfile;

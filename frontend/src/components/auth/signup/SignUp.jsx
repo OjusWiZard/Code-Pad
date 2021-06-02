@@ -1,12 +1,11 @@
 import React from "react";
-import avatarOne from "../../../images/auth/avatarOne.png";
-import avatarTwo from "../../../images/auth/avatarTwo.png";
-import avatarThree from "../../../images/auth/avatarThree.png";
-import avatarFour from "../../../images/auth/avatarFour.png";
-import signup from "../../../images/auth/signup.png";
-import line from "../../../images/home/line.png";
-import { Link } from "react-router-dom";
-
+import avatarOne from "../../../images/auth/peach.svg";
+import avatarTwo from "../../../images/auth/mario.svg";
+import avatarThree from "../../../images/auth/pacman.svg";
+import avatarFour from "../../../images/auth/frog.svg";
+import signup from "../../../images/auth/signup.svg";
+import line from "../../../images/home/line.svg";
+import "./signup.css";
 function SignUp() {
   return (
     <React.Fragment>
@@ -21,7 +20,7 @@ function SignUp() {
                 <p className="font-vcr font-lightGrey text-center mt-5">
                   SELECT YOUR AVATAR
                 </p>
-                <div className="d-flex justify-content-center mt-3">
+                <div className="d-flex justify-content-center mt-3 avatar-container">
                   <img src={avatarOne} alt="" className="img-fluid mx-2" />
                   <img src={avatarTwo} alt="" className="img-fluid mx-2" />
                   <img src={avatarThree} alt="" className="img-fluid mx-2" />

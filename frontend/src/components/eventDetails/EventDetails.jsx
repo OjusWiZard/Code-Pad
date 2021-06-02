@@ -3,7 +3,7 @@ import pointerLeft from "../../images/eventDetails/pointer-left.svg";
 import dash from "../../images/eventDetails/dash.svg";
 import "./eventDetails.css";
 import line from "../../images/eventDetails/line.svg";
-import avatarOne from "../../images/auth/avatarOne.png";
+import avatarOne from "../../images/auth/mario.svg";
 import folder from "../../images/eventDetails/folder.svg";
 
 function EventDetails() {
