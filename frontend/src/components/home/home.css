@@ -42,14 +42,13 @@
   position: absolute;
   top: 40%;
   left: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 18px;
+  height: 18px;  
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hline 6.25s linear infinite;
-  animation: hline 10s linear infinite;
+  -webkit-animation: hlineLeft 4s linear infinite;
+  animation: hlineLeft 4s linear infinite;
 }
 .dots .dot-2 {
   position: fixed;
@@ -65,13 +64,12 @@
   top: 15%;
   left: 0;
   width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  height: 10px;  
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hline 6.25s linear infinite;
-  animation: hline 10s linear infinite;
+  -webkit-animation: hlineLeft 4s linear infinite;
+  animation: hlineLeft 4s linear infinite;
 }
 .dots .dot-3 {
   position: fixed;
@@ -86,14 +84,13 @@
   position: absolute;
   top: 75%;
   left: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 45%;
+  width: 15px;
+  height: 15px;  
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hline 6.25s linear infinite;
-  animation: hline 10s linear infinite;
+  -webkit-animation: hlineLeft 4s linear infinite;
+  animation: hlineLeft 4s linear infinite;
 }
 .dots .dot-4 {
   position: fixed;
@@ -109,13 +106,12 @@
   top: 60%;
   left: 0;
   width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  height: 10px;  
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hline 6.25s linear infinite;
-  animation: hline 10s linear infinite;
+  -webkit-animation: hlineLeft 4s linear infinite;
+  animation: hlineLeft 4s linear infinite;
 }
 .dots .dot-5 {
   position: fixed;
@@ -131,19 +127,18 @@
   top: 90%;
   left: 0;
   width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  height: 10px;  
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hline 6.25s linear infinite;
-  animation: hline 10s linear infinite;
+  -webkit-animation: hlineLeft 4s linear infinite;
+  animation: hlineLeft 4s linear infinite;
 }
-@keyframes hline {
+@keyframes hlineLeft {
   0% {
-    left: 0;
+    left: inherit;
   }
   to {
-    left: 100%;
+    left: 0;
   }
 }
