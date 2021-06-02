@@ -1,6 +1,6 @@
 import React from "react";
-import frame from "../../images/events/Frame.png";
-import logo from "../../images/events/event_logo.png";
+import frame from "../../images/events/Frame.svg";
+import logo from "../../images/events/event_logo.svg";
 import line from "../../images/home/line.png";
 import { Link } from "react-router-dom";
 import "./events.css";

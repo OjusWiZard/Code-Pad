@@ -1,10 +1,9 @@
-
 .content-background {
-  background: #010A0F;
+  background: #010a0f;
   background-repeat: no-repeat;
   height: auto;
   background-size: cover;
-  border: 0.5px solid #35A4D3 
+  border: 0.5px solid #35a4d3;
 }
 
 .event-block {
@@ -13,7 +12,7 @@
 }
 
 .event-block:hover {
-  background: url("../../images/home/eventBlockHover.png") transparent !important;
+  background: url("../../images/events/hover_frame.svg") transparent !important;
   background-repeat: no-repeat !important;
   background-size: contain;
 }
@@ -46,7 +45,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background:var(--primaryColor);
+  background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
   -webkit-animation: hline 6.25s linear infinite;
@@ -68,7 +67,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background:var(--primaryColor);
+  background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
   -webkit-animation: hline 6.25s linear infinite;
@@ -90,7 +89,7 @@
   width: 10px;
   height: 10px;
   border-radius: 45%;
-  background:var(--primaryColor);
+  background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
   -webkit-animation: hline 6.25s linear infinite;
@@ -112,7 +111,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background:var(--primaryColor);
+  background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
   -webkit-animation: hline 6.25s linear infinite;
@@ -134,7 +133,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background:var(--primaryColor);
+  background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
   -webkit-animation: hline 6.25s linear infinite;
