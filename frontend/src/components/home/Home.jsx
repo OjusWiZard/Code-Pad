@@ -14,7 +14,6 @@ function Home() {
           <div className="row d-flex justify-content-center">
             <div className="col-lg-8 col-md-10 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
               <div>
-                <div className="scan-lines"></div>
                 <div className="d-flex justify-content-center pt-5">
                   <img src={logo} alt="" className="img-fluid" />
                 </div>
