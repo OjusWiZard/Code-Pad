@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Editor.css";
-import IDE from "../../images/editor/IDE.png";
-import download from "../../images/editor/download.png";
+import IDE from "../../images/editor/IDE.svg";
+import download from "../../images/editor/download.svg";
 import Editor from "./Editor";
 
 const Form = () => {
