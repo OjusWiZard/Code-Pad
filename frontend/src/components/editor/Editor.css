@@ -36,3 +36,16 @@ button[type="submit"] {
 .output {
   background-color: black;
 }
+div.react-codemirror2.code-mirror-wrapper > div {
+  border: 1px solid #405c6b;
+  background: #000000;
+}
+div.CodeMirror-gutters > div {
+  background: #000000;
+}
+.textarea-input {
+  flex: 0.9;
+}
+.output {
+  border: 1px solid #405c6b;
+}
