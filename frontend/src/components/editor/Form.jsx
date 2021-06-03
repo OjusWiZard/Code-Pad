@@ -75,17 +75,20 @@ const Form = () => {
                   input={input}
                   onChange={setValue}
                 ></Editor>
-                <div className="mt-3">
-                  <textarea
-                    className="output w-100 font-vcr"
-                    rows="10"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    id="custom"
-                  />
-                </div>
-                <div className="text-center mt-4">
-                  <button type="submit"></button>
+                <div className="lower-section d-flex w-100 justify-content-between">
+                  <div className="textarea-input mt-3">
+                    <textarea
+                      className="output w-100 font-vcr"
+                      rows="10"
+                      placeholder="Custom Input here..."
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      id="custom"
+                    />
+                  </div>
+                  <div className="text-center mt-4">
+                    <button type="submit"></button>
+                  </div>
                 </div>
               </form>
 
