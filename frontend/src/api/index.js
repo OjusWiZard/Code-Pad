@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseUrl: 'http://ojuswireturns.pythonanywhere.com'
+    baseUrl: 'https://ojuswireturns.pythonanywhere.com'
 })
 
 API.interceptors.request.use(req => {
