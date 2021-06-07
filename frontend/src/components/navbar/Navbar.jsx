@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import Nav from "react-bootstrap/Nav";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../images/home/logo.svg";
 
 function Navbar() {
+  const location = useLocation();
   const [sidebar, setSidebar] = useState(false);
   const handleClick = () => {
     setSidebar(!sidebar);
-    if(sidebar){
-      document.getElementById('sidebar').style.display = 'block'
-    }else{
-      document.getElementById('sidebar').style.display = 'none'
+    if (sidebar) {
+      document.getElementById("sidebar").style.display = "block";
+    } else {
+      document.getElementById("sidebar").style.display = "none";
     }
-  }
+  };
+  useEffect(() => {
+    setSidebar(false);
+    document.getElementById("sidebar").style.display = "none";
+  }, [location]);
   return (
     <div>
       <nav className="navbar navbar-expand-xl">
