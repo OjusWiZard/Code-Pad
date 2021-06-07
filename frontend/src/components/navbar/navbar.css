@@ -23,17 +23,17 @@
 }
 
 .search-overlay {
+  display: none;
   position: fixed;
   top: 0px;
-  left: 0px;
+  right: 0px;
   width: 25vw;
   height: 100%;
   z-index: 1;
-  background-color: var(--grey);
+  background-color: #131C20;
   animation: all 1s ease;
   display: block;
   padding: 20px;
-  display: none;
 }
 
 @media(max-width: 900px){

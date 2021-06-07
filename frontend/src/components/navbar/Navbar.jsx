@@ -27,7 +27,7 @@ function Navbar() {
         </NavLink>
         <button
           className="navbar-toggler"
-          type="button"          
+          type="button"
           aria-label="Toggle navigation"
           onClick={handleClick}
         >
@@ -37,23 +37,27 @@ function Navbar() {
         </button>
         <div class="search-overlay" id="sidebar">
           <div class="search-content">
-            <div class="clearfix" onClick={handleClick} style={{cursor: 'pointer'}}>
+            <div
+              class="clearfix"
+              onClick={handleClick}
+              style={{ cursor: "pointer" }}
+            >
               <i class="fas fa-times-circle fa-2x text-white float-right mb-4"></i>
             </div>
             <Link to="/">
-              <div className="mt-3 font-vcr font-blue font-25">Home</div>
+              <div className="mt-3 font-vcr font-blue font-25">HOME</div>
             </Link>
             <Link to="/events">
-              <div className="mt-3 font-vcr font-blue font-25">Events</div>
+              <div className="mt-3 font-vcr font-blue font-25">EVENTS</div>
             </Link>
             <Link to="/profile">
-              <div className="mt-3 font-vcr font-blue font-25">Profile</div>
+              <div className="mt-3 font-vcr font-blue font-25">PROFILE</div>
             </Link>
             <Link to="/signup">
-              <div className="mt-3 font-vcr font-blue font-25">Signup</div>
+              <div className="mt-3 font-vcr font-blue font-25">SIGNUP</div>
             </Link>
             <Link to="/login">
-              <div className="mt-3 font-vcr font-blue font-25">Login</div>
+              <div className="mt-3 font-vcr font-blue font-25">LOGIN</div>
             </Link>
           </div>
         </div>
