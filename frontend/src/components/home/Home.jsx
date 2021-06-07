@@ -1,8 +1,8 @@
 import React from "react";
-import logo from "../../images/home/logo.png";
-import line from "../../images/home/line.png";
-import frame from "../../images/home/Frame.png";
-import button from "../../images/home/button.png";
+import logo from "../../images/home/logo.svg";
+import line from "../../images/home/line.svg";
+import frame from "../../images/events/Frame.svg";
+import button from "../../images/home/button.svg";
 import { Link } from "react-router-dom";
 import "./home.css";
 
@@ -14,7 +14,6 @@ function Home() {
           <div className="row d-flex justify-content-center">
             <div className="col-lg-8 col-md-10 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
               <div>
-                <div className="scan-lines"></div>
                 <div className="d-flex justify-content-center pt-5">
                   <img src={logo} alt="" className="img-fluid" />
                 </div>

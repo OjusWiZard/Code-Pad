@@ -10,7 +10,7 @@ option {
   border: none;
   color: #fff;
   outline: none;
-  background: url("../../images/editor/dropdown.png");
+  background: url("../../images/editor/dropdown.svg");
   background-repeat: no-repeat;
   background: #000;
 }
@@ -27,7 +27,7 @@ textarea {
   background-color: rgba(0, 0, 0, 0.8);
 }
 button[type="submit"] {
-  background: url("../../images/editor/button.png") no-repeat center;
+  background: url("../../images/editor/button.svg") no-repeat center;
   border: none;
   outline: none;
   width: 120px;
@@ -35,4 +35,17 @@ button[type="submit"] {
 }
 .output {
   background-color: black;
+}
+div.react-codemirror2.code-mirror-wrapper > div {
+  border: 1px solid #405c6b;
+  background: #000000;
+}
+div.CodeMirror-gutters > div {
+  background: #000000;
+}
+.textarea-input {
+  flex: 0.9;
+}
+.output {
+  border: 1px solid #405c6b;
 }
