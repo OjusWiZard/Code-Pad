@@ -1,3 +1,6 @@
 .avatar-container img:hover {
   cursor: pointer;
 }
+.active-avatar {
+  transform: scale(1.3);
+}
