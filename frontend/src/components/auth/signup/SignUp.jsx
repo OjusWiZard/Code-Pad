@@ -11,15 +11,15 @@ import { signUp } from "../../../api";
 function SignUp() {
   const history = useHistory();
   const [formData, setFormData] = useState({
-    username: null,
-    admission_no: null,
-    first_name: null,
-    last_name: null,
-    email: null,
-    avatar: null,
-    password: null,
-    contact: null,
-    re_password: null,
+    username: "",
+    admission_no: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    avatar: "",
+    password: "",
+    contact_no: "",
+    re_password: "",
   });
   const handleAvatar = (e) => {
     setFormData({ ...formData, avatar: e.target.name });
@@ -174,8 +174,8 @@ function SignUp() {
                         <div className="pixel-input w-100">
                           <input
                             onChange={handleChange}
-                            name="contact"
-                            value={formData.contact}
+                            name="contact_no"
+                            value={formData.contact_no}
                             type="number"
                             className="font-vcr font-blue"
                             placeholder="CONTACT NUMBER"
