@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Route, Switch } from 'react-router-dom';
 import Form from "./components/editor/Form";
@@ -12,9 +12,15 @@ import Login from "./components/auth/login/Login";
 import Profile from "./components/auth/editProfile/Profile";
 import Footer from "./components/footer/Footer";
 import EventDetails from "./components/eventDetails/EventDetails";
+import { userInfo } from "./api";
 
 function App() {
-
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    setUser(userInfo());
+    console.log('user: ', user);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return (
     <div className="App">
       <div className="scan-lines">
