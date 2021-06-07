@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.css";
 import Nav from "react-bootstrap/Nav";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../images/home/logo.svg";
 
-function navbar() {
+function Navbar() {
+  const [sidebar, setSidebar] = useState(false);
+  const handleClick = () => {
+    setSidebar(!sidebar);
+    if(sidebar){
+      document.getElementById('sidebar').style.display = 'block'
+    }else{
+      document.getElementById('sidebar').style.display = 'none'
+    }
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-xl">
@@ -18,15 +27,36 @@ function navbar() {
         </NavLink>
         <button
           className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false"
+          type="button"          
           aria-label="Toggle navigation"
+          onClick={handleClick}
         >
-          <span className="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon">
+            <i className="fas fa-2x fa-grip-lines font-blue"></i>
+          </span>
         </button>
+        <div class="search-overlay" id="sidebar">
+          <div class="search-content">
+            <div class="clearfix" onClick={handleClick} style={{cursor: 'pointer'}}>
+              <i class="fas fa-times-circle fa-2x text-white float-right mb-4"></i>
+            </div>
+            <Link to="/">
+              <div className="mt-3 font-vcr font-blue font-25">Home</div>
+            </Link>
+            <Link to="/events">
+              <div className="mt-3 font-vcr font-blue font-25">Events</div>
+            </Link>
+            <Link to="/profile">
+              <div className="mt-3 font-vcr font-blue font-25">Profile</div>
+            </Link>
+            <Link to="/signup">
+              <div className="mt-3 font-vcr font-blue font-25">Signup</div>
+            </Link>
+            <Link to="/login">
+              <div className="mt-3 font-vcr font-blue font-25">Login</div>
+            </Link>
+          </div>
+        </div>
         <div className="collapse navbar-collapse" id="navbarText">
           <Nav className="navbar-nav mx-auto mt-5">
             <NavLink
@@ -115,4 +145,4 @@ function navbar() {
   );
 }
 
-export default navbar;
+export default Navbar;
