@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
-from .validators import validate_admission_number
+from .validators import validate_admission_number, validate_contact_number
 
 
 class UserManager(BaseUserManager):
@@ -47,12 +47,12 @@ class User(AbstractUser):
 
     username        = models.SlugField(max_length=16, unique=True)
     admission_no    = models.CharField(max_length=8, unique=True, validators=[validate_admission_number])
-    first_name      = models.CharField(max_length=16)
-    last_name       = models.CharField(max_length=16)
+    full_name       = models.CharField(max_length=32)
+    contact_no      = models.CharField(max_length=10, validators=[validate_contact_number])
     avatar          = models.SmallIntegerField()
 
     USERNAME_FIELD  = 'email'
-    REQUIRED_FIELDS = ['username', 'admission_no', 'first_name', 'last_name', 'avatar']
+    REQUIRED_FIELDS = ['username', 'admission_no', 'full_name', 'contact_no', 'avatar']
 
     objects         = UserManager()
 
