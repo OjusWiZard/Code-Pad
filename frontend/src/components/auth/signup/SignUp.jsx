@@ -10,7 +10,7 @@ import "./signup.css";
 import { signUp } from "../../../api";
 function SignUp() {
   const history = useHistory();
-  const [rePassword, setRePassword] = useState("");
+
   const [formData, setFormData] = useState({
     username: "",
     admission_no: "",

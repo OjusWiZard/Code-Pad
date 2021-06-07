@@ -14,15 +14,17 @@ function EditProfile() {
     ...JSON.parse(localStorage.getItem("user")),
     password: "",
   });
-
-  const handleAvatar = (e) => {
-    setFormData({ ...formData, avatar: e.target.name });
-  };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(formData);
   };
-
+  const handleAvatar = (e) => {
+    setFormData({ ...formData, avatar: e.target.name });
+    document
+      .querySelectorAll(".avatar-container .img-fluid")
+      .forEach((img) => img.classList.remove("active-avatar"));
+    e.target.classList.add("active-avatar");
+  };
   useEffect(() => {
     let avatars = document.querySelectorAll(".avatar-container .img-fluid");
     avatars[formData.avatar - 1].classList.add("active-avatar");
@@ -110,7 +112,7 @@ function EditProfile() {
                             onChange={handleChange}
                             value={formData.password}
                             className="font-vcr font-blue"
-                            placeholder="PASSWORD"
+                            placeholder="Leave blank if you dont want to change"
                           />
                         </div>
                       </div>
