@@ -34,7 +34,7 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signUp(formData));
+    // dispatch(signUp(formData));
     console.log(formData);
   };
 
