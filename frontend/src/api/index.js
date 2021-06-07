@@ -46,6 +46,7 @@ export const signIn = async (formData, history) => {
 export const signOut = (history) => {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('user');
     history.push('/');
 }
 
@@ -53,8 +54,22 @@ export const signOut = (history) => {
 export const userInfo = async () => {
     try {
         const { data } = await API.get('/accounts/users/me');
+        console.log(data);
+        localStorage.setItem('user', JSON.stringify(data));
 
-        return data;
+    } catch (error) {
+        console.log("error Login: ", error.message);
+    }
+}
+
+
+export const editUserInfo = async (formData, history) => {
+    try {
+        console.log('data: ', formData);
+        const { data } = await API.patch('/accounts/users/me/', formData, config);
+        console.log(data);
+        localStorage.setItem('user', JSON.stringify(data));
+        history.push('/')
     } catch (error) {
         console.log("error Login: ", error.message);
     }

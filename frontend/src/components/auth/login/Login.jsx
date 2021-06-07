@@ -9,8 +9,8 @@ import "./login.css";
 function Login() {
   const history = useHistory();
   const [formData, setFormData] = useState({
-    email: null,
-    password: null,
+    email: "",
+    password: "",
   });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

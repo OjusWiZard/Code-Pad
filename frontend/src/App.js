@@ -15,11 +15,9 @@ import EventDetails from "./components/eventDetails/EventDetails";
 import { userInfo } from "./api";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(localStorage.getItem('user'));
   useEffect(() => {
-    setUser(userInfo());
-    console.log('user: ', user);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    userInfo();
   }, [])
   return (
     <div className="App">
