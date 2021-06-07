@@ -97,8 +97,15 @@ body {
 .font-16 {
   font-size: 16px !important;
 }
+.font-25{
+  font-size: 25px;
+}
 
-/* Scan Lines */
+
+.bg-grey{
+  background: var(--grey);
+}
+
 .scan-lines {
   position: absolute;
   display: -webkit-box;
@@ -178,5 +185,8 @@ body {
 .link {
   text-decoration: none !important;
   color: inherit !important;
+  outline: none !important;
+}
+button:focus{
   outline: none !important;
 }
