@@ -4,6 +4,14 @@ const API = axios.create({
     baseUrl: 'http://ojuswireturns.pythonanywhere.com'
 })
 
+API.interceptors.request.use(req => {
+    if (localStorage.getItem('accessToken')) {
+        req.headers.Authorization = `Bearer ${(localStorage.getItem('accessToken'))}`
+    }
+
+    return req;
+})
+
 const config = {
     headers: {
         'Content-Type': 'application/json'
@@ -13,7 +21,7 @@ const config = {
 
 export const signUp = async (formData, history) => {
     try {
-        const { data } = await API.post('/accounts/users/', formData, config);
+        await API.post('/accounts/users/', formData, config);
 
         history.push('/login');
     } catch (error) {
@@ -39,4 +47,15 @@ export const signOut = (history) => {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessToken');
     history.push('/');
+}
+
+
+export const userInfo = async () => {
+    try {
+        const { data } = await API.get('/accounts/users/me');
+
+        return data;
+    } catch (error) {
+        console.log("error Login: ", error.message);
+    }
 }
