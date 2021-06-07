@@ -17,7 +17,9 @@ import { userInfo } from "./api";
 function App() {
   const [user, setUser] = useState(localStorage.getItem('user'));
   useEffect(() => {
-    userInfo();
+    if (localStorage.getItem('accessToken')) {
+      userInfo();
+    }
   }, [])
   return (
     <div className="App">
