@@ -19,18 +19,26 @@ body {
   height: auto;
   background-size: cover;
 }
-@media(max-width:1350px){
+@media (max-width: 1350px) {
   #root {
-    background: url("../src/images/common/background_md.png");
+    background: url("../src/images/common/background-md.svg");
     background-repeat: no-repeat;
     height: auto;
     background-size: cover;
   }
 }
-@media(max-width:500px){
+@media (max-width: 950px) {
+  #root {
+    background: url("../src/images/common/background-sm.svg");
+    background-repeat: no-repeat;
+    height: auto;
+    background-size: cover;
+  }
+}
+@media (max-width: 760px) {
   #root {
     background: transparent;
-  } 
+  }
 }
 
 /* ScrollBar */
@@ -46,12 +54,10 @@ body {
   border-radius: 10px;
 }
 
-
 /* Placeholder */
 ::placeholder {
   color: var(--primaryColor);
 }
-
 
 /* Font Family */
 @font-face {
@@ -73,7 +79,6 @@ body {
   font-family: Robot !important;
 }
 
-
 /* Font Color */
 .font-blue {
   color: var(--primaryColor) !important;
@@ -85,7 +90,6 @@ body {
   color: var(--grey) !important;
 }
 
-
 /* Font Size */
 .font-14 {
   font-size: 14px;
@@ -93,9 +97,15 @@ body {
 .font-16 {
   font-size: 16px !important;
 }
+.font-25{
+  font-size: 25px;
+}
 
 
-/* Scan Lines */
+.bg-grey{
+  background: var(--grey);
+}
+
 .scan-lines {
   position: absolute;
   display: -webkit-box;
@@ -114,7 +124,7 @@ body {
   height: 100%;
   width: 100%;
   pointer-events: none;
-  background: linear-gradient(rgba(255, 255, 255, 0.15) 50%, #000 50%);
+  background: linear-gradient(#333 50%, #000 50%);
   background-size: 100% 3px;
   background-repeat: repeat-y;
   opacity: 0.25;
@@ -175,5 +185,8 @@ body {
 .link {
   text-decoration: none !important;
   color: inherit !important;
+  outline: none !important;
+}
+button:focus{
   outline: none !important;
 }

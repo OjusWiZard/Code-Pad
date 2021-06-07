@@ -1,32 +1,71 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import Nav from "react-bootstrap/Nav";
-import { NavLink } from "react-router-dom";
-import logo from "../../images/home/logo.png";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import logo from "../../images/home/logo.svg";
 
-function navbar() {
+function Navbar() {
+  const location = useLocation();
+  const [sidebar, setSidebar] = useState(false);
+  const handleClick = () => {
+    setSidebar(!sidebar);
+    if (sidebar) {
+      document.getElementById("sidebar").style.display = "block";
+    } else {
+      document.getElementById("sidebar").style.display = "none";
+    }
+  };
+  useEffect(() => {
+    setSidebar(false);
+    document.getElementById("sidebar").style.display = "none";
+  }, [location]);
   return (
     <div>
       <nav className="navbar navbar-expand-xl">
-        <Nav.Link className="navbar-brand" href="/">
+        <NavLink className="navbar-brand" exact to="/">
           <img
             src={logo}
             alt="Code-pad"
             className="img-fluid mx-0 px-0"
             width="120px"
           />
-        </Nav.Link>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false"
           aria-label="Toggle navigation"
+          onClick={handleClick}
         >
-          <span className="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon">
+            <i className="fas fa-2x fa-grip-lines font-blue"></i>
+          </span>
         </button>
+        <div class="search-overlay" id="sidebar">
+          <div class="search-content">
+            <div
+              class="clearfix"
+              onClick={handleClick}
+              style={{ cursor: "pointer" }}
+            >
+              <i class="fas fa-times-circle fa-2x text-white float-right mb-4"></i>
+            </div>
+            <Link to="/">
+              <div className="mt-3 font-vcr font-blue font-25">HOME</div>
+            </Link>
+            <Link to="/events">
+              <div className="mt-3 font-vcr font-blue font-25">EVENTS</div>
+            </Link>
+            <Link to="/profile">
+              <div className="mt-3 font-vcr font-blue font-25">PROFILE</div>
+            </Link>
+            <Link to="/signup">
+              <div className="mt-3 font-vcr font-blue font-25">SIGNUP</div>
+            </Link>
+            <Link to="/login">
+              <div className="mt-3 font-vcr font-blue font-25">LOGIN</div>
+            </Link>
+          </div>
+        </div>
         <div className="collapse navbar-collapse" id="navbarText">
           <Nav className="navbar-nav mx-auto mt-5">
             <NavLink
@@ -35,60 +74,65 @@ function navbar() {
               activeClassName="active-nav-item"
               className="mr-5"
             >
-              <Nav.Link
-                className="text-center font-16 font-vcr font-blue nav-item"
-                href="/"
+              <NavLink
+                className="p-3 text-center p-3 font-16 font-vcr font-blue nav-item"
+                exact
+                to="/"
               >
                 HOME
-              </Nav.Link>
+              </NavLink>
             </NavLink>
             <NavLink
               to="/events"
               activeClassName="active-nav-item"
               className="mx-5"
             >
-              <Nav.Link
-                className="text-center nav-item font-blue font-16 font-vcr"
-                href="/events"
+              <NavLink
+                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                exact
+                to="/events"
               >
                 EVENTS
-              </Nav.Link>
+              </NavLink>
             </NavLink>
             <NavLink
               to="/profile"
               activeClassName="active-nav-item"
               className="mx-5"
             >
-              <Nav.Link
-                className="text-center nav-item font-blue font-16 font-vcr"
-                href="/profile"
+              <NavLink
+                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                exact
+                to="/profile"
               >
                 PROFILE
-              </Nav.Link>
+              </NavLink>
             </NavLink>
             <NavLink
               to="/signup"
               activeClassName="active-nav-item"
               className="mx-5"
             >
-              <Nav.Link
-                className="text-center nav-item font-blue font-16 font-vcr"
-                href="/signup"
+              <NavLink
+                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                exact
+                to="/signup"
               >
                 SIGNUP
-              </Nav.Link>
+              </NavLink>
             </NavLink>
             <NavLink
               to="/editor"
               activeClassName="active-nav-item"
               className="mx-5"
             >
-              <Nav.Link
-                className="text-center nav-item font-blue font-16 font-vcr"
-                href="/editor"
+              <NavLink
+                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                exact
+                to="/editor"
               >
                 EDITOR
-              </Nav.Link>
+              </NavLink>
             </NavLink>
           </Nav>
           <NavLink
@@ -96,12 +140,13 @@ function navbar() {
             activeClassName="active-nav-item"
             className="mx-3"
           >
-            <Nav.Link
-              className="text-center nav-item font-blue font-16 font-vcr mt-n2"
-              href="/login"
+            <NavLink
+              className="text-center p-3 nav-item font-blue font-16 font-vcr mt-n2"
+              exact
+              to="/login"
             >
               LOGIN
-            </Nav.Link>
+            </NavLink>
           </NavLink>
         </div>
       </nav>
@@ -109,4 +154,4 @@ function navbar() {
   );
 }
 
-export default navbar;
+export default Navbar;

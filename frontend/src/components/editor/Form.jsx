@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Editor.css";
-import IDE from "../../images/editor/IDE.png";
-import download from "../../images/editor/download.png";
+import IDE from "../../images/editor/IDE.svg";
+import download from "../../images/editor/download.svg";
 import Editor from "./Editor";
 
 const Form = () => {
@@ -21,7 +21,7 @@ const Form = () => {
         "https://467ff821670c.in.ngrok.io/languages"
       );
       console.log(lang);
-      setLanguage(new Object(lang.data));
+      // setLanguage(new Object(lang.data));
     }
     abc();
   }, []);
@@ -75,17 +75,20 @@ const Form = () => {
                   input={input}
                   onChange={setValue}
                 ></Editor>
-                <div className="mt-3">
-                  <textarea
-                    className="output w-100 font-vcr"
-                    rows="10"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    id="custom"
-                  />
-                </div>
-                <div className="text-center mt-4">
-                  <button type="submit"></button>
+                <div className="lower-section d-flex w-100 justify-content-between">
+                  <div className="textarea-input mt-3">
+                    <textarea
+                      className="output w-100 font-vcr"
+                      rows="10"
+                      placeholder="Custom Input here..."
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      id="custom"
+                    />
+                  </div>
+                  <div className="text-center mt-4">
+                    <button type="submit"></button>
+                  </div>
                 </div>
               </form>
 

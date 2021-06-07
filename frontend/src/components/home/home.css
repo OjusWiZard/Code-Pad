@@ -1,10 +1,9 @@
-
 .content-background {
-  background: #010A0F;
+  background-image: url("../../images/common/lines.svg"), linear-gradient( 130deg, #010A0F 0, #010A0F 51%, #010A0F 100%);
   background-repeat: no-repeat;
   height: auto;
   background-size: cover;
-  border: 0.5px solid #35A4D3 
+  border: 0.5px solid #35a4d3;
 }
 
 .event-block {
@@ -13,7 +12,7 @@
 }
 
 .event-block:hover {
-  background: url("../../images/home/eventBlockHover.png") transparent !important;
+  background: url("../../images/events/hover_frame.svg") transparent !important;
   background-repeat: no-repeat !important;
   background-size: contain;
 }
@@ -43,14 +42,13 @@
   position: absolute;
   top: 40%;
   left: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background:var(--primaryColor);
+  width: 18px;
+  height: 18px;  
+  background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hline 6.25s linear infinite;
-  animation: hline 10s linear infinite;
+  -webkit-animation: hlineLeft 4s linear infinite;
+  animation: hlineLeft 4s linear infinite;
 }
 .dots .dot-2 {
   position: fixed;
@@ -66,13 +64,12 @@
   top: 15%;
   left: 0;
   width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background:var(--primaryColor);
+  height: 10px;  
+  background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hline 6.25s linear infinite;
-  animation: hline 10s linear infinite;
+  -webkit-animation: hlineLeft 4s linear infinite;
+  animation: hlineLeft 4s linear infinite;
 }
 .dots .dot-3 {
   position: fixed;
@@ -87,14 +84,13 @@
   position: absolute;
   top: 75%;
   left: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 45%;
-  background:var(--primaryColor);
+  width: 15px;
+  height: 15px;  
+  background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hline 6.25s linear infinite;
-  animation: hline 10s linear infinite;
+  -webkit-animation: hlineLeft 4s linear infinite;
+  animation: hlineLeft 4s linear infinite;
 }
 .dots .dot-4 {
   position: fixed;
@@ -110,13 +106,12 @@
   top: 60%;
   left: 0;
   width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background:var(--primaryColor);
+  height: 10px;  
+  background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hline 6.25s linear infinite;
-  animation: hline 10s linear infinite;
+  -webkit-animation: hlineLeft 4s linear infinite;
+  animation: hlineLeft 4s linear infinite;
 }
 .dots .dot-5 {
   position: fixed;
@@ -132,19 +127,18 @@
   top: 90%;
   left: 0;
   width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background:var(--primaryColor);
+  height: 10px;  
+  background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hline 6.25s linear infinite;
-  animation: hline 10s linear infinite;
+  -webkit-animation: hlineLeft 4s linear infinite;
+  animation: hlineLeft 4s linear infinite;
 }
-@keyframes hline {
+@keyframes hlineLeft {
   0% {
-    left: 0;
+    left: inherit;
   }
   to {
-    left: 100%;
+    left: 0;
   }
 }
