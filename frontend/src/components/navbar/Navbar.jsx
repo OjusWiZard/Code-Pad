@@ -17,7 +17,7 @@ function Navbar() {
     }
   };
   const history = useHistory();
-  const user = localStorage.getItem("user");
+  const token = localStorage.getItem("accessToken");
   useEffect(() => {
     setSidebar(false);
     document.getElementById("sidebar").style.display = "none";
@@ -58,17 +58,25 @@ function Navbar() {
             <Link to="/events">
               <div className="mt-3 font-vcr font-blue font-25">EVENTS</div>
             </Link>
-            {user && (
-              <Link to="/profile">
-                <div className="mt-3 font-vcr font-blue font-25">PROFILE</div>
-              </Link>
+            {token ? (
+              <>
+                <Link to="/profile">
+                  <div className="mt-3 font-vcr font-blue font-25">PROFILE</div>
+                </Link>
+                <div onClick={() => signOut(history)}>
+                  <div className="mt-3 font-vcr font-blue font-25">LOGOUT</div>
+                </div>
+              </>
+            ) : (
+              <>
+                <Link to="/signup">
+                  <div className="mt-3 font-vcr font-blue font-25">SIGNUP</div>
+                </Link>
+                <Link to="/login">
+                  <div className="mt-3 font-vcr font-blue font-25">LOGIN</div>
+                </Link>
+              </>
             )}
-            <Link to="/signup">
-              <div className="mt-3 font-vcr font-blue font-25">SIGNUP</div>
-            </Link>
-            <Link to="/login">
-              <div className="mt-3 font-vcr font-blue font-25">LOGIN</div>
-            </Link>
           </div>
         </div>
         <div className="collapse navbar-collapse" id="navbarText">
@@ -100,7 +108,7 @@ function Navbar() {
                 EVENTS
               </NavLink>
             </NavLink>
-            {user ? (
+            {token ? (
               <NavLink
                 to="/profile"
                 activeClassName="active-nav-item"
@@ -144,7 +152,7 @@ function Navbar() {
               </NavLink>
             </NavLink>
           </Nav>
-          {!user ? (
+          {!token ? (
             <NavLink
               to="/login"
               activeClassName="active-nav-item"

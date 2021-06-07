@@ -22,10 +22,9 @@ const config = {
 export const signUp = async (formData, history) => {
     try {
         await API.post('/accounts/users/', formData, config);
-
         history.push('/login');
     } catch (error) {
-        console.log('error: ', error);
+        console.log('error: ', error.response.data);
     }
 
 }
@@ -37,16 +36,16 @@ export const signIn = async (formData, history) => {
         localStorage.setItem('accessToken', data.access);
         localStorage.setItem('refreshToken', data.refresh);
         history.push('/');
+        userInfo();
+
     } catch (error) {
-        console.log("Error: ", error.message)
+        console.log("Error: login", error.response.data)
     }
 }
 
 
 export const signOut = (history) => {
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('user');
+    localStorage.clear();
     history.push('/');
 }
 
@@ -54,23 +53,22 @@ export const signOut = (history) => {
 export const userInfo = async () => {
     try {
         const { data } = await API.get('/accounts/users/me');
-        console.log(data);
+
         localStorage.setItem('user', JSON.stringify(data));
 
     } catch (error) {
-        console.log("error Login: ", error.message);
+        console.log("error Login: ", error.response.data);
     }
 }
 
 
 export const editUserInfo = async (formData, history) => {
     try {
-        console.log('data: ', formData);
+
         const { data } = await API.patch('/accounts/users/me/', formData, config);
-        console.log(data);
         localStorage.setItem('user', JSON.stringify(data));
         history.push('/')
     } catch (error) {
-        console.log("error Login: ", error.message);
+        console.log("error Edit: ", error.response.data);
     }
 }

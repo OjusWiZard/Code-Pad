@@ -10,11 +10,11 @@ import "./signup.css";
 import { signUp } from "../../../api";
 function SignUp() {
   const history = useHistory();
+  const [rePassword, setRePassword] = useState("");
   const [formData, setFormData] = useState({
     username: "",
     admission_no: "",
-    first_name: "",
-    last_name: "",
+    full_name: "",
     email: "",
     avatar: "",
     password: "",
@@ -34,8 +34,11 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    signUp(formData);
-    history.push("/login");
+    console.log(formData);
+    if (formData.password === formData.re_password) {
+      signUp(formData);
+      history.push("/login");
+    }
   };
 
   return (
@@ -91,7 +94,7 @@ function SignUp() {
                             onChange={handleChange}
                             name="email"
                             value={formData.email}
-                            type="text"
+                            type="email"
                             className="font-vcr font-blue"
                             placeholder="EMAIL"
                           />
@@ -106,8 +109,25 @@ function SignUp() {
                         <div className="pixel-input w-100">
                           <input
                             onChange={handleChange}
-                            name="name"
-                            value={formData.name}
+                            name="username"
+                            value={formData.username}
+                            type="text"
+                            className="font-vcr font-blue"
+                            placeholder="Username"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            onChange={handleChange}
+                            name="full_name"
+                            value={formData.full_name}
                             type="text"
                             className="font-vcr font-blue"
                             placeholder="NAME"
