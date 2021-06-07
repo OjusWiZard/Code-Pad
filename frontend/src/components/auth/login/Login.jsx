@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { signIn } from "../../../api/index";
+import { useHistory } from "react-router-dom";
 import login from "../../../images/auth/login.svg";
 import line from "../../../images/home/line.svg";
 
 import "./login.css";
 
 function Login() {
+  const history = useHistory();
+  const [formData, setFormData] = useState({
+    email: null,
+    password: null,
+  });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signIn(formData, history);
+  };
   return (
     <React.Fragment>
       <div className="main-background">
@@ -15,13 +29,16 @@ function Login() {
                 <h4 className="font-vcr font-blue text-center font-weight-bold">
                   **&nbsp;LOGIN&nbsp;**
                 </h4>
-                <form action="" className="mt-5 px-lg-5 mx-lg-5">
+                <form className="mt-5 px-lg-5 mx-lg-5" onSubmit={handleSubmit}>
                   <div className="mt-4">
                     <div className="input-group">
                       <div className="pixel-input-wrapper">
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            onChange={handleChange}
+                            name="email"
+                            value={formData.email}
                             type="email"
                             className="font-vcr font-blue"
                             placeholder="EMAIL"
@@ -36,6 +53,9 @@ function Login() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            onChange={handleChange}
+                            name="password"
+                            value={formData.password}
                             type="password"
                             className="font-vcr font-blue"
                             placeholder="PASSWORD"
@@ -49,7 +69,12 @@ function Login() {
                   </div>
                 </form>
                 <div className="mt-5 text-center button-hover">
-                  <img src={login} alt="signup" className="img-fluid mt-4" />
+                  <img
+                    src={login}
+                    onClick={handleSubmit}
+                    alt="signup"
+                    className="img-fluid mt-4"
+                  />
                 </div>
                 <div className="mt-4 text-center">
                   <img src={line} alt="signup" className="img-fluid mt-4" />
