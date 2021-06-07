@@ -1,12 +1,19 @@
 import React from "react";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
-import activeAvatar from "../../../images/auth/pacman-active.svg";
+import activeAvatar from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
 import update from "../../../images/auth/update.svg";
 import line from "../../../images/home/line.svg";
 
 function EditProfile() {
+  const handleAvatar = (e) => {
+    // setFormData({ ...formData, avatar: e.target.name });
+    document
+      .querySelectorAll(".avatar-container .img-fluid")
+      .forEach((img) => img.classList.remove("active-avatar"));
+    e.target.classList.add("active-avatar");
+  };
   return (
     <React.Fragment>
       <div className="main-background">
@@ -17,11 +24,31 @@ function EditProfile() {
                 <h4 className="font-vcr font-blue text-center font-weight-bold">
                   **&nbsp;EDIT PROFILE&nbsp;**
                 </h4>
-                <div className="d-flex justify-content-center mt-5">
-                  <img src={avatarOne} alt="" className="img-fluid m-2" />
-                  <img src={avatarTwo} alt="" className="img-fluid m-2" />
-                  <img src={activeAvatar} alt="" className="img-fluid mx-2" />
-                  <img src={avatarFour} alt="" className="img-fluid m-2" />
+                <div className="d-flex justify-content-center mt-5 avatar-container">
+                  <img
+                    src={avatarOne}
+                    onClick={handleAvatar}
+                    alt=""
+                    className="img-fluid m-2"
+                  />
+                  <img
+                    src={avatarTwo}
+                    onClick={handleAvatar}
+                    alt=""
+                    className="img-fluid m-2"
+                  />
+                  <img
+                    src={activeAvatar}
+                    onClick={handleAvatar}
+                    alt=""
+                    className="img-fluid mx-2"
+                  />
+                  <img
+                    src={avatarFour}
+                    onClick={handleAvatar}
+                    alt=""
+                    className="img-fluid m-2"
+                  />
                 </div>
                 <form className="mt-5 px-lg-5 mx-lg-5">
                   <div className="mt-4">

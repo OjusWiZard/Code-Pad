@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { signUp } from "../../../actions/auth";
+import { useHistory } from "react-router-dom";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
 import avatarThree from "../../../images/auth/pacman.svg";
@@ -8,8 +7,9 @@ import avatarFour from "../../../images/auth/frog.svg";
 import signup from "../../../images/auth/signup.svg";
 import line from "../../../images/home/line.svg";
 import "./signup.css";
+import { signUp } from "../../../api";
 function SignUp() {
-  const dispatch = useDispatch();
+  const history = useHistory();
   const [formData, setFormData] = useState({
     username: null,
     admission_no: null,
@@ -32,10 +32,10 @@ function SignUp() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // dispatch(signUp(formData));
-    console.log(formData);
+    signUp(formData);
+    history.push("/login");
   };
 
   return (
