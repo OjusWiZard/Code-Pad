@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
@@ -6,20 +6,22 @@ import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
 import signup from "../../../images/auth/signup.svg";
 import line from "../../../images/home/line.svg";
-import "./signup.css";
 import { signUp } from "../../../api";
+import { ModalContext } from "../../../context/context";
+import "./signup.css";
+
 function SignUp() {
+  const { openModal } = useContext(ModalContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
-    username: null,
-    admission_no: null,
-    first_name: null,
-    last_name: null,
-    email: null,
-    avatar: null,
-    password: null,
-    contact: null,
-    re_password: null,
+    username: "",
+    admission_no: "",
+    full_name: "",
+    email: "",
+    avatar: "",
+    password: "",
+    contact_no: "",
+    re_password: "",
   });
   const handleAvatar = (e) => {
     setFormData({ ...formData, avatar: e.target.name });
@@ -34,8 +36,9 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    signUp(formData);
-    history.push("/login");
+    if (formData.password === formData.re_password) {
+      signUp(formData, history, openModal);
+    }
   };
 
   return (
@@ -53,6 +56,8 @@ function SignUp() {
                 </p>
                 <div className="d-flex justify-content-center mt-3 avatar-container">
                   <img
+                    width="40px"
+                    height="40px"
                     name="1"
                     src={avatarOne}
                     alt=""
@@ -60,6 +65,8 @@ function SignUp() {
                     onClick={handleAvatar}
                   />
                   <img
+                    width="40px"
+                    height="40px"
                     name="2"
                     src={avatarTwo}
                     alt=""
@@ -67,6 +74,8 @@ function SignUp() {
                     onClick={handleAvatar}
                   />
                   <img
+                    width="40px"
+                    height="40px"
                     name="3"
                     src={avatarThree}
                     alt=""
@@ -74,6 +83,8 @@ function SignUp() {
                     onClick={handleAvatar}
                   />
                   <img
+                    width="40px"
+                    height="40px"
                     name="4"
                     src={avatarFour}
                     alt=""
@@ -88,10 +99,11 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
                             name="email"
                             value={formData.email}
-                            type="text"
+                            type="email"
                             className="font-vcr font-blue"
                             placeholder="EMAIL"
                           />
@@ -105,9 +117,28 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
-                            name="name"
-                            value={formData.name}
+                            name="username"
+                            value={formData.username}
+                            type="text"
+                            className="font-vcr font-blue"
+                            placeholder="USERNAME"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            required
+                            onChange={handleChange}
+                            name="full_name"
+                            value={formData.full_name}
                             type="text"
                             className="font-vcr font-blue"
                             placeholder="NAME"
@@ -122,6 +153,7 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
                             value={formData.password}
                             name="password"
@@ -139,6 +171,7 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
                             value={formData.re_password}
                             name="re_password"
@@ -156,6 +189,7 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             type="text"
                             onChange={handleChange}
                             value={formData.admission_no}
@@ -173,10 +207,11 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
-                            name="contact"
-                            value={formData.contact}
-                            type="number"
+                            name="contact_no"
+                            value={formData.contact_no}
+                            type="text"
                             className="font-vcr font-blue"
                             placeholder="CONTACT NUMBER"
                           />
@@ -184,14 +219,16 @@ function SignUp() {
                       </div>
                     </div>
                   </div>
+                  <div
+                    className="mt-5 text-center button-hover"
+                    onClick={(e) => {
+                      handleSubmit(e);                     
+                    }}
+                    type="submit"
+                  >
+                    <img src={signup} alt="signup" className="img-fluid mt-4" />
+                  </div>
                 </form>
-                <div
-                  className="mt-5 text-center button-hover"
-                  onClick={handleSubmit}
-                  type="submit"
-                >
-                  <img src={signup} alt="signup" className="img-fluid mt-4" />
-                </div>
                 <div className="mt-4 text-center">
                   <img src={line} alt="signup" className="img-fluid mt-4" />
                 </div>
