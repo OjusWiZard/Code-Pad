@@ -33,16 +33,16 @@ class Submission_Viewset(ReadOnlyModelViewSet):
 
         problem = get_object_or_404(Problem, id=get_submission_data('problem_id'))
         language_id = int(get_submission_data('language_id'))
-        submitted_solution = str(get_submission_data('solution'))
+        submitted_solution = str(get_submission_data('solution')).encode('ascii')
         testcases_input_file = problem.solution_input.open(mode='r')
-        testcases_input = str(testcases_input_file.read())
+        testcases_input = str(testcases_input_file.read()).encode('ascii')
         testcases_input_file.close()
         testcases_output_file = problem.solution_output.open(mode='r')
-        testcases_output = str(testcases_output_file.read())
+        testcases_output = str(testcases_output_file.read()).encode('ascii')
         testcases_output_file.close()
 
         client = Client(environ['JUDGE_HOST'])
-        submission = submit(client=client, source_code=submitted_solution.encode('ascii'), language=language_id, stdin=testcases_input.encode('ascii'), expected_output=testcases_output.encode('ascii'))
+        submission = submit(client=client, source_code=submitted_solution, language=language_id, stdin=testcases_input, expected_output=testcases_output)
         
         if submission.status['id'] == 3:
             current_event = problem.event
