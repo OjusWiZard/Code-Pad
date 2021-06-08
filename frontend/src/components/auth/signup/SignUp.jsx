@@ -34,10 +34,8 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     if (formData.password === formData.re_password) {
-      signUp(formData);
-      history.push("/login");
+      signUp(formData, history);
     }
   };
 
@@ -91,6 +89,7 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
                             name="email"
                             value={formData.email}
@@ -108,12 +107,13 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
                             name="username"
                             value={formData.username}
                             type="text"
                             className="font-vcr font-blue"
-                            placeholder="Username"
+                            placeholder="USERNAME"
                           />
                         </div>
                       </div>
@@ -125,6 +125,7 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
                             name="full_name"
                             value={formData.full_name}
@@ -142,6 +143,7 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
                             value={formData.password}
                             name="password"
@@ -159,6 +161,7 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
                             value={formData.re_password}
                             name="re_password"
@@ -176,6 +179,7 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             type="text"
                             onChange={handleChange}
                             value={formData.admission_no}
@@ -193,10 +197,11 @@ function SignUp() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
+                            required
                             onChange={handleChange}
                             name="contact_no"
                             value={formData.contact_no}
-                            type="number"
+                            type="text"
                             className="font-vcr font-blue"
                             placeholder="CONTACT NUMBER"
                           />
@@ -204,14 +209,14 @@ function SignUp() {
                       </div>
                     </div>
                   </div>
+                  <div
+                    className="mt-5 text-center button-hover"
+                    onClick={handleSubmit}
+                    type="submit"
+                  >
+                    <img src={signup} alt="signup" className="img-fluid mt-4" />
+                  </div>
                 </form>
-                <div
-                  className="mt-5 text-center button-hover"
-                  onClick={handleSubmit}
-                  type="submit"
-                >
-                  <img src={signup} alt="signup" className="img-fluid mt-4" />
-                </div>
                 <div className="mt-4 text-center">
                   <img src={line} alt="signup" className="img-fluid mt-4" />
                 </div>

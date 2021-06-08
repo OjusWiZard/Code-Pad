@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
-import activeAvatar from "../../../images/auth/pacman.svg";
+import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
 import update from "../../../images/auth/update.svg";
 import line from "../../../images/home/line.svg";
@@ -26,8 +26,8 @@ function EditProfile() {
     e.target.classList.add("active-avatar");
   };
   useEffect(() => {
-    let avatars = document.querySelectorAll(".avatar-container .img-fluid");
-    avatars[formData.avatar - 1].classList.add("active-avatar");
+    // let avatars = document.querySelectorAll(".avatar-container .img-fluid");
+    // avatars[formData.avatar - 1].classList.add("active-avatar");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -42,28 +42,40 @@ function EditProfile() {
                 </h4>
                 <div className="d-flex justify-content-center mt-5 avatar-container">
                   <img
+                    name="1"
                     src={avatarOne}
-                    onClick={handleAvatar}
-                    alt=""
-                    className="img-fluid m-2"
-                  />
-                  <img
-                    src={avatarTwo}
-                    onClick={handleAvatar}
-                    alt=""
-                    className="img-fluid m-2"
-                  />
-                  <img
-                    src={activeAvatar}
-                    onClick={handleAvatar}
                     alt=""
                     className="img-fluid mx-2"
+                    onClick={handleAvatar}
+                    width="40px"
+                    height="40px"
                   />
                   <img
-                    src={avatarFour}
-                    onClick={handleAvatar}
+                    name="2"
+                    src={avatarTwo}
                     alt=""
-                    className="img-fluid m-2"
+                    className="img-fluid mx-2"
+                    onClick={handleAvatar}
+                    width="40px"
+                    height="40px"
+                  />
+                  <img
+                    name="3"
+                    src={avatarThree}
+                    alt=""
+                    className="img-fluid mx-2"
+                    onClick={handleAvatar}
+                    width="40px"
+                    height="40px"
+                  />
+                  <img
+                    name="4"
+                    src={avatarFour}
+                    alt=""
+                    onClick={handleAvatar}
+                    width="40px"
+                    height="40px"
+                    className="img-fluid mx-2"
                   />
                 </div>
                 <form className="mt-5 px-lg-5 mx-lg-5">
@@ -112,10 +124,13 @@ function EditProfile() {
                             onChange={handleChange}
                             value={formData.password}
                             className="font-vcr font-blue"
-                            placeholder="Leave blank if you dont want to change"
+                            placeholder="PASSWORD"
                           />
                         </div>
                       </div>
+                    </div>
+                    <div className="font-italic text-muted font-vcr pl-3" style={{fontSize: '12px'}}>
+                      Leave blank if you dont want to change
                     </div>
                   </div>
                   <div className="mt-4">
