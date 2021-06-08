@@ -1,7 +1,18 @@
 import axios from 'axios';
+import Modal from "../components/modal/Modal";
 
 const API = axios.create({
-    baseUrl: 'http://ojuswireturns.pythonanywhere.com'
+    baseUrl: 'https://ojuswireturns.pythonanywhere.com'
+})
+
+
+API.interceptors.request.use(req => {
+    if (localStorage.getItem('accessToken')) {
+      req.headers.Authorization = `Bearer ${localStorage.getItem(
+        "accessToken"
+      )}`;
+    }
+    return req;
 })
 
 const config = {
@@ -11,32 +22,55 @@ const config = {
 }
 
 
-export const signUp = async (formData, history) => {
-    try {
-        const { data } = await API.post('/accounts/users/', formData, config);
-
-        history.push('/login');
-    } catch (error) {
-        console.log('error: ', error);
-    }
-
-}
+export const signUp = async (formData, history, openModal) => {
+  try {
+    await API.post("/accounts/users/", formData, config);
+    history.push("/login");
+  } catch (error) {
+    await openModal(error.response.data);
+  }
+};
 
 
-export const signIn = async (formData, history) => {
-    try {
-        const { data } = await API.post('/accounts/jwt/create', formData, config);
-        localStorage.setItem('accessToken', data.access);
-        localStorage.setItem('refreshToken', data.refresh);
-        history.push('/');
-    } catch (error) {
-        console.log("Error: ", error.message)
-    }
-}
+export const signIn = async (formData, history, openModal) => {
+  try {
+    const { data } = await API.post("/accounts/jwt/create", formData, config);
+    localStorage.setItem("accessToken", data.access);
+    localStorage.setItem("refreshToken", data.refresh);
+    history.push("/");
+    userInfo();
+  } catch (error) {
+    await openModal(error.response.data);
+  }
+};
 
 
 export const signOut = (history) => {
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('accessToken');
+    localStorage.clear();
     history.push('/');
+}
+
+
+export const userInfo = async () => {
+    try {
+        const { data } = await API.get("/accounts/users/me");
+        localStorage.setItem('user', JSON.stringify(data));
+
+    } catch (error) {
+      console.log("error Login: ", error.response.data);      
+      <Modal errorMessage={error.response.data} />;
+    }
+}
+
+
+export const editUserInfo = async (formData, history) => {
+    try {
+
+        const { data } = await API.patch('/accounts/users/me/', formData, config);
+        localStorage.setItem('user', JSON.stringify(data));
+        history.push('/')
+    } catch (error) {
+      console.log("error Edit: ", error.response.data);      
+      <Modal errorMessage={error.response.data} />;
+    }
 }

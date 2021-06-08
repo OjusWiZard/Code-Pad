@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Route, Switch } from 'react-router-dom';
 import Form from "./components/editor/Form";
@@ -12,20 +12,33 @@ import Login from "./components/auth/login/Login";
 import Profile from "./components/auth/editProfile/Profile";
 import Footer from "./components/footer/Footer";
 import EventDetails from "./components/eventDetails/EventDetails";
+import { userInfo } from "./api";
+import Modal from "./components/modal/Modal";
 
 function App() {
-
+  const [user, setUser] = useState(localStorage.getItem('user'));
+  const [modal, setModal] = useState(localStorage.getItem("modal") || false);
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      userInfo();
+    }
+  }, [modal]);
   return (
     <div className="App">
       <div className="scan-lines">
         <div></div>
       </div>
       <div className="dots">
-        <div className="dot-1"></div>
-        <div className="dot-2"></div>
-        <div className="dot-3"></div>
-        <div className="dot-4"></div>
-        <div className="dot-5"></div>'
+        <div className="dot-left-1"></div>
+        <div className="dot-left-2"></div>
+        <div className="dot-left-3"></div>
+        <div className="dot-left-4"></div>
+        <div className="dot-left-5"></div>
+        <div className="dot-right-1"></div>
+        <div className="dot-right-2"></div>
+        <div className="dot-right-3"></div>
+        <div className="dot-right-4"></div>
+        <div className="dot-right-5"></div>
       </div>
       <Navbar />
       <Switch>
@@ -38,6 +51,7 @@ function App() {
         <Route exact path="/profile" component={Profile} />
         <Route component={Default} />
       </Switch>
+      <Modal />
       <Footer />
     </div>
   );

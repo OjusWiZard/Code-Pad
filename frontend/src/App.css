@@ -27,7 +27,7 @@ body {
     background-size: cover;
   }
 }
-@media (max-width: 950px) {
+@media (max-width: 1050px) {
   #root {
     background: url("../src/images/common/background-sm.svg");
     background-repeat: no-repeat;
@@ -189,4 +189,10 @@ body {
 }
 button:focus{
   outline: none !important;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #000 inset !important;
+  -webkit-text-fill-color: var(--primaryColor) !important;
 }

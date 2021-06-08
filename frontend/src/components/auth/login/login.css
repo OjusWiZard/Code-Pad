@@ -149,7 +149,6 @@ input:focus {
   background: transparent;
   font-family: Vcr;
   border: none !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
+  box-shadow: none;
   outline: none !important;
 }
