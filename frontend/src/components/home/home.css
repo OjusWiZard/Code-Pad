@@ -164,7 +164,7 @@
 .dots .dot-right-2 {
   position: fixed;
   top: 0;
-  left: 40%;
+  left: 20%;
   right: 10%;
   height: 100vh;
   pointer-events: none;
@@ -185,7 +185,7 @@
 .dots .dot-right-3 {
   position: fixed;
   top: 0;
-  left: 20%;
+  left: 15%;
   right: 0;
   height: 100vh;
   pointer-events: none;
@@ -206,7 +206,7 @@
 .dots .dot-right-4 {
   position: fixed;
   top: 0;
-  left: 30%;
+  left: 11%;
   right: 0;
   height: 100vh;
   pointer-events: none;
