@@ -5,11 +5,13 @@ const API = axios.create({
     baseUrl: 'https://ojuswireturns.pythonanywhere.com'
 })
 
+
 API.interceptors.request.use(req => {
     if (localStorage.getItem('accessToken')) {
-        req.headers.Authorization = `Bearer ${(localStorage.getItem('accessToken'))}`
+      req.headers.Authorization = `Bearer ${localStorage.getItem(
+        "accessToken"
+      )}`;
     }
-console.log(req);
     return req;
 })
 
@@ -20,17 +22,14 @@ const config = {
 }
 
 
-export const signUp = async (formData, history) => {
-    try {
-        await API.post('/accounts/users/', formData, config);
-        history.push('/login');
-    } catch (error) {
-        console.log('error: ', error.response.data);
-        localStorage.setItem("modal", true);
-        <Modal errorMessage={error.response.data} />;
-    }
-
-}
+export const signUp = async (formData, history, openModal) => {
+  try {
+    await API.post("/accounts/users/", formData, config);
+    history.push("/login");
+  } catch (error) {
+    await openModal(error.response.data);
+  }
+};
 
 
 export const signIn = async (formData, history) => {
@@ -42,9 +41,8 @@ export const signIn = async (formData, history) => {
         userInfo();
 
     } catch (error) {
-        console.log("Error: login", error.response.data);
-        localStorage.setItem("modal", true);
-        <Modal errorMessage={error.response.data} />;
+      console.log("Error: login", error.response.data);      
+      <Modal errorMessage={error.response.data} />;
     }
 }
 
@@ -61,9 +59,8 @@ export const userInfo = async () => {
         localStorage.setItem('user', JSON.stringify(data));
 
     } catch (error) {
-        console.log("error Login: ", error.response.data);
-        localStorage.setItem("modal", true);
-        <Modal errorMessage={error.response.data} />;
+      console.log("error Login: ", error.response.data);      
+      <Modal errorMessage={error.response.data} />;
     }
 }
 
@@ -75,8 +72,7 @@ export const editUserInfo = async (formData, history) => {
         localStorage.setItem('user', JSON.stringify(data));
         history.push('/')
     } catch (error) {
-        console.log("error Edit: ", error.response.data);
-        localStorage.setItem("modal", true);
-        <Modal errorMessage={error.response.data} />;
+      console.log("error Edit: ", error.response.data);      
+      <Modal errorMessage={error.response.data} />;
     }
 }

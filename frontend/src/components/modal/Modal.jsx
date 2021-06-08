@@ -1,26 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ModalContext } from "../../context/context";
 import okay from "../../images/common/okay.svg";
 import "./modal.css";
 
-function Modal({ errorMessage }) {
-  const modalState = localStorage.getItem("modal") || false;
-  const closeModal = () => {
-    localStorage.setItem("modal", false);
-  };
-  if (!modalState) {
+function Modal() {
+  const { modalOpen, closeModal, errorMessage } = useContext(ModalContext);
+  if (!modalOpen) {
     return null;
   } else {
     return (
-      <div>
+      <>                
         <div className="modal-container">
           <div className="container">
             <div className="row">
               <div
                 id="modal"
-                className="col-8 mx-auto col-md-6 col-lg-4 text-center p-5"
+                className="col-8 mx-auto col-md-6 col-lg-4 text-center py-5 Spx-3"
               >
+                <h4 className="font-vcr font-blue mb-4 text-center font-weight-bold">
+                  &lt;&lt;&nbsp;&nbsp;ERROR&nbsp;&nbsp;&gt;&gt;
+                </h4>
                 <p className="font-blue font-vcr" style={{ fontSize: "20px" }}>
-                  {errorMessage}Error Bla bla bla bla bla bla
+                  {errorMessage}
                 </p>
 
                 <div
@@ -34,7 +35,7 @@ function Modal({ errorMessage }) {
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
