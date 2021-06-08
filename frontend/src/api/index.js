@@ -32,19 +32,17 @@ export const signUp = async (formData, history, openModal) => {
 };
 
 
-export const signIn = async (formData, history) => {
-    try {
-        const { data } = await API.post('/accounts/jwt/create', formData, config);
-        localStorage.setItem('accessToken', data.access);
-        localStorage.setItem('refreshToken', data.refresh);
-        history.push('/');
-        userInfo();
-
-    } catch (error) {
-      console.log("Error: login", error.response.data);      
-      <Modal errorMessage={error.response.data} />;
-    }
-}
+export const signIn = async (formData, history, openModal) => {
+  try {
+    const { data } = await API.post("/accounts/jwt/create", formData, config);
+    localStorage.setItem("accessToken", data.access);
+    localStorage.setItem("refreshToken", data.refresh);
+    history.push("/");
+    userInfo();
+  } catch (error) {
+    await openModal(error.response.data);
+  }
+};
 
 
 export const signOut = (history) => {

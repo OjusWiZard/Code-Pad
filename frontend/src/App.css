@@ -27,7 +27,7 @@ body {
     background-size: cover;
   }
 }
-@media (max-width: 950px) {
+@media (max-width: 1050px) {
   #root {
     background: url("../src/images/common/background-sm.svg");
     background-repeat: no-repeat;
