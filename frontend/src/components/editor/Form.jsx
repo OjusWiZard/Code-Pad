@@ -48,7 +48,7 @@ const Form = () => {
       <div className="main-background">
         <div className="container pt-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-lg-8 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-5">
+            <div className="col-lg-8 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-3">
               <div className="d-flex justify-content-center pt-5">
                 <img id="logo" src={IDE} alt="IDE" className="img-fluid" />
               </div>
@@ -78,7 +78,7 @@ const Form = () => {
                 <div className="lower-section d-flex w-100 justify-content-between">
                   <div className="textarea-input mt-3">
                     <textarea
-                      className="output w-100 font-vcr"
+                      className="output w-100 font-vcr px-2 py-2"
                       rows="10"
                       placeholder="Custom Input here..."
                       value={input}
