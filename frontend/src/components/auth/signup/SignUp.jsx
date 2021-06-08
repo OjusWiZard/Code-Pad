@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
@@ -6,11 +6,13 @@ import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
 import signup from "../../../images/auth/signup.svg";
 import line from "../../../images/home/line.svg";
-import "./signup.css";
 import { signUp } from "../../../api";
-function SignUp() {
-  const history = useHistory();
+import { ModalContext } from "../../../context/context";
+import "./signup.css";
 
+function SignUp() {
+  const { openModal } = useContext(ModalContext);
+  const history = useHistory();
   const [formData, setFormData] = useState({
     username: "",
     admission_no: "",
@@ -35,7 +37,7 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password === formData.re_password) {
-      signUp(formData, history);
+      signUp(formData, history, openModal);
     }
   };
 
@@ -54,6 +56,8 @@ function SignUp() {
                 </p>
                 <div className="d-flex justify-content-center mt-3 avatar-container">
                   <img
+                    width="40px"
+                    height="40px"
                     name="1"
                     src={avatarOne}
                     alt=""
@@ -61,6 +65,8 @@ function SignUp() {
                     onClick={handleAvatar}
                   />
                   <img
+                    width="40px"
+                    height="40px"
                     name="2"
                     src={avatarTwo}
                     alt=""
@@ -68,6 +74,8 @@ function SignUp() {
                     onClick={handleAvatar}
                   />
                   <img
+                    width="40px"
+                    height="40px"
                     name="3"
                     src={avatarThree}
                     alt=""
@@ -75,6 +83,8 @@ function SignUp() {
                     onClick={handleAvatar}
                   />
                   <img
+                    width="40px"
+                    height="40px"
                     name="4"
                     src={avatarFour}
                     alt=""
@@ -211,7 +221,9 @@ function SignUp() {
                   </div>
                   <div
                     className="mt-5 text-center button-hover"
-                    onClick={handleSubmit}
+                    onClick={(e) => {
+                      handleSubmit(e);                     
+                    }}
                     type="submit"
                   >
                     <img src={signup} alt="signup" className="img-fluid mt-4" />

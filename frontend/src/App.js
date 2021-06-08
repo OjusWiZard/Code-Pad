@@ -19,10 +19,10 @@ function App() {
   const [user, setUser] = useState(localStorage.getItem('user'));
   const [modal, setModal] = useState(localStorage.getItem("modal") || false);
   useEffect(() => {
-    if (localStorage.getItem('accessToken')) {
+    if (localStorage.getItem("accessToken")) {
       userInfo();
     }
-  }, [])
+  }, [modal]);
   return (
     <div className="App">
       <div className="scan-lines">
