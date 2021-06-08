@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Modal from "../components/modal/Modal";
 
 const API = axios.create({
     baseUrl: 'https://ojuswireturns.pythonanywhere.com'
@@ -8,7 +9,7 @@ API.interceptors.request.use(req => {
     if (localStorage.getItem('accessToken')) {
         req.headers.Authorization = `Bearer ${(localStorage.getItem('accessToken'))}`
     }
-
+console.log(req);
     return req;
 })
 
@@ -25,6 +26,8 @@ export const signUp = async (formData, history) => {
         history.push('/login');
     } catch (error) {
         console.log('error: ', error.response.data);
+        localStorage.setItem("modal", true);
+        <Modal errorMessage={error.response.data} />;
     }
 
 }
@@ -39,7 +42,9 @@ export const signIn = async (formData, history) => {
         userInfo();
 
     } catch (error) {
-        console.log("Error: login", error.response.data)
+        console.log("Error: login", error.response.data);
+        localStorage.setItem("modal", true);
+        <Modal errorMessage={error.response.data} />;
     }
 }
 
@@ -52,12 +57,13 @@ export const signOut = (history) => {
 
 export const userInfo = async () => {
     try {
-        const { data } = await API.get('/accounts/users/me');
-
+        const { data } = await API.get("/accounts/users/me");
         localStorage.setItem('user', JSON.stringify(data));
 
     } catch (error) {
         console.log("error Login: ", error.response.data);
+        localStorage.setItem("modal", true);
+        <Modal errorMessage={error.response.data} />;
     }
 }
 
@@ -70,5 +76,7 @@ export const editUserInfo = async (formData, history) => {
         history.push('/')
     } catch (error) {
         console.log("error Edit: ", error.response.data);
+        localStorage.setItem("modal", true);
+        <Modal errorMessage={error.response.data} />;
     }
 }
