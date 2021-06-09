@@ -31,3 +31,4 @@ social-auth-core==4.1.0
 sqlparse==0.4.1
 uritemplate==3.0.1
 urllib3==1.26.5
+whitenoise==5.2.0
