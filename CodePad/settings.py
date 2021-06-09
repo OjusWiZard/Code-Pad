@@ -83,7 +83,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'CodePad.urls'
 
 AUTH_USER_MODEL = 'account.User'
-DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
 TEMPLATES = [
     {
@@ -109,17 +108,15 @@ WSGI_APPLICATION = 'CodePad.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DB_NAME'],
-        'HOST': os.environ['DB_HOST'],
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PASSWORD'],
-        'PORT': os.environ['DB_PORT']
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+# If DATABASE_URL is present in the environment
 db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+if db_from_env:
+    DATABASES['default'].update(db_from_env)
 
 
 # Password validation
