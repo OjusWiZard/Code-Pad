@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import pointerLeft from "../../images/eventDetails/pointer-left.svg";
 import dash from "../../images/eventDetails/dash.svg";
 import "./eventDetails.css";
 import line from "../../images/eventDetails/line.svg";
 import avatarOne from "../../images/auth/mario.svg";
 import folder from "../../images/eventDetails/folder.svg";
-
+import { getEvent } from "../../api/index";
+import { useParams } from "react-router-dom";
 function EventDetails() {
+  const params = useParams();
+  const [event, setEvent] = useState({});
+  useEffect(() => {
+    getEvent(params.slug).then((data) => {
+      setEvent(data);
+    });
+  }, [params.slug]);
+  
   return (
     <React.Fragment>
       <div className="main-background">
@@ -32,9 +41,9 @@ function EventDetails() {
                             CODEWARS
                           </span>
                         </div>
-                        <li># A</li>
-                        <li># B</li>
-                        <li># C</li>
+                        <li># about</li>
+                        <li># rules</li>
+                        <li># leaderboard</li>
                       </div>
                     </div>
                   </div>
@@ -44,15 +53,15 @@ function EventDetails() {
                       <div className="font-blue font-vcr font-18 mt-3">
                         #LEADERBOARD
                       </div>
-                      {/* <li>
-                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                      </li>
                       <li>
                         Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
                       </li>
                       <li>
                         Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                      </li> */}
+                      </li>
+                      <li>
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                      </li>
                       <div
                         className=" d-flex mt-3"
                         style={{ flexDirection: "column" }}
