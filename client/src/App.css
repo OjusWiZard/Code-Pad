@@ -37,7 +37,10 @@ body {
 }
 @media (max-width: 760px) {
   #root {
-    background: transparent;
+    background: url("../src/images/home/phonebg.svg");
+    background-repeat: no-repeat;
+    height: auto;
+    background-size: cover;
   }
 }
 
@@ -97,12 +100,11 @@ body {
 .font-16 {
   font-size: 16px !important;
 }
-.font-25{
+.font-25 {
   font-size: 25px;
 }
 
-
-.bg-grey{
+.bg-grey {
   background: var(--grey);
 }
 
@@ -187,7 +189,7 @@ body {
   color: inherit !important;
   outline: none !important;
 }
-button:focus{
+button:focus {
   outline: none !important;
 }
 input:-webkit-autofill,
@@ -198,8 +200,8 @@ select:-webkit-autofill {
   -webkit-text-fill-color: var(--primaryColor) !important;
 }
 
-@media(max-width: 768px){
-  .content-background{
+@media (max-width: 768px) {
+  .content-background {
     background: #000000 !important;
     border: none !important;
   }

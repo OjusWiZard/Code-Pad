@@ -2,20 +2,23 @@ import React, { useEffect, useState } from "react";
 import pointerLeft from "../../images/eventDetails/pointer-left.svg";
 import dash from "../../images/eventDetails/dash.svg";
 import "./eventDetails.css";
+import avatarOne from "../../images/auth/frog.svg";
 import line from "../../images/eventDetails/line.svg";
-import avatarOne from "../../images/auth/mario.svg";
+import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
 import { getEvent } from "../../api/index";
+import frame from "../../images/eventDetails/frame-details.svg";
 import { useParams } from "react-router-dom";
 function EventDetails() {
   const params = useParams();
+  const [active, setActive] = useState("rules");
   const [event, setEvent] = useState({});
   useEffect(() => {
     getEvent(params.slug).then((data) => {
       setEvent(data);
     });
   }, [params.slug]);
-  
+  console.log(active);
   return (
     <React.Fragment>
       <div className="main-background">
@@ -41,97 +44,164 @@ function EventDetails() {
                             CODEWARS
                           </span>
                         </div>
-                        <li># about</li>
-                        <li># rules</li>
-                        <li># leaderboard</li>
+                        <li
+                          onClick={(e) => {
+                            setActive("about");
+                          }}
+                        >
+                          # about
+                        </li>
+                        <li
+                          name="rules"
+                          onClick={(e) => {
+                            setActive("rules");
+                          }}
+                        >
+                          # rules
+                        </li>
+                        <li
+                          name="leaderboard"
+                          onClick={(e) => {
+                            setActive("leaderboard");
+                          }}
+                        >
+                          # leaderboard
+                        </li>
                       </div>
                     </div>
                   </div>
                   <div style={{ flex: 0.95 }}>
                     *&nbsp;Dashboard&nbsp;*
-                    <div className="rules mt-5 pt-2 pb-5 px-2">
-                      <div className="font-blue font-vcr font-18 mt-3">
-                        #LEADERBOARD
-                      </div>
-                      <li>
-                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                      </li>
-                      <li>
-                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                      </li>
-                      <li>
-                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                      </li>
-                      <div
-                        className=" d-flex mt-3"
-                        style={{ flexDirection: "column" }}
-                      >
-                        <div
-                          className=" d-flex leadeboard-leads justify-content-around"
-                          style={{ textAlign: "center" }}
-                        >
-                          <span style={{ flex: 0.2 }}>Rank</span>
-                          <span style={{ flex: 0.6 }}> Name</span>
-                          <span style={{ flex: 0.2 }}>Score</span>
-                        </div>
-                        <div className="user-data d-flex justify-content-around leaderboard-bg">
-                          <span className="user-rank" style={{ flex: 0.2 }}>
-                            1
-                          </span>
-                          <div
-                            style={{ flex: 0.6 }}
-                            className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
-                          >
-                            <img
-                              src={avatarOne}
-                              className="user-image"
-                              alt="avatar"
-                            />
-                            <span className="user-name">Mr Mooh</span>
+                    <div className="rules mt-5 pt-2 pb-5 py-2 px-2">
+                      {active === "about" && (
+                        <div className="about__section m-2">
+                          <div className="about__header d-flex align-items-center">
+                            <img src={frame} alt="frame" />
+                            <div className="about__header__content">
+                              <div className="mx-3">
+                                <span className="font-blue font-vcr font-18">
+                                  CODEWARS{" "}
+                                </span>
+                                <br />
+                                <img src={heart} alt="heart" />{" "}
+                                <img src={heart} alt="heart" /> <br />
+                                END ON 10 JAN 00
+                              </div>
+                            </div>
                           </div>
-                          <span className="user-score" style={{ flex: 0.2 }}>
-                            69
-                          </span>
-                        </div>{" "}
-                        <div className="user-data d-flex justify-content-around leaderboard-bg">
-                          <span className="user-rank" style={{ flex: 0.2 }}>
-                            2
-                          </span>
-                          <div
-                            style={{ flex: 0.6 }}
-                            className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
-                          >
-                            <img
-                              src={avatarOne}
-                              className="user-image"
-                              alt="avatar"
-                            />
-                            <span className="user-name">Mr Rollercoaster</span>
+                          <div className="about__content mt-3">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Quod id natus amet et ipsa eos dolor provident
+                            quam adipisci voluptates?
                           </div>
-                          <span className="user-score" style={{ flex: 0.2 }}>
-                            69
-                          </span>
                         </div>
-                        <div className="user-data d-flex justify-content-around leaderboard-bg">
-                          <span className="user-rank" style={{ flex: 0.2 }}>
-                            3
-                          </span>
-                          <div
-                            style={{ flex: 0.6 }}
-                            className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
-                          >
-                            <img
-                              src={avatarOne}
-                              className="user-image"
-                              alt="avatar"
-                            />
-                            <span className="user-name">Mr Rollercoaster</span>
+                      )}
+                      {active === "leaderboard" && (
+                        <>
+                          <div className="font-blue font-vcr font-18 mt-3">
+                            #LEADERBOARD
                           </div>
-                          <span className="user-score" style={{ flex: 0.2 }}>
-                            69
-                          </span>
-                        </div>
-                      </div>
+                          <div
+                            className=" d-flex mt-3"
+                            style={{ flexDirection: "column" }}
+                          >
+                            <div
+                              className=" d-flex leadeboard-leads justify-content-around"
+                              style={{ textAlign: "center" }}
+                            >
+                              <span style={{ flex: 0.2 }}>Rank</span>
+                              <span style={{ flex: 0.6 }}> Name</span>
+                              <span style={{ flex: 0.2 }}>Score</span>
+                            </div>
+                            <div className="user-data d-flex justify-content-around leaderboard-bg">
+                              <span className="user-rank" style={{ flex: 0.2 }}>
+                                1
+                              </span>
+                              <div
+                                style={{ flex: 0.6 }}
+                                className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                              >
+                                <img
+                                  src={avatarOne}
+                                  className="user-image"
+                                  alt="avatar"
+                                />
+                                <span className="user-name">Mr Mooh</span>
+                              </div>
+                              <span
+                                className="user-score"
+                                style={{ flex: 0.2 }}
+                              >
+                                69
+                              </span>
+                            </div>{" "}
+                            <div className="user-data d-flex justify-content-around leaderboard-bg">
+                              <span className="user-rank" style={{ flex: 0.2 }}>
+                                2
+                              </span>
+                              <div
+                                style={{ flex: 0.6 }}
+                                className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                              >
+                                <img
+                                  src={avatarOne}
+                                  className="user-image"
+                                  alt="avatar"
+                                />
+                                <span className="user-name">
+                                  Mr Rollercoaster
+                                </span>
+                              </div>
+                              <span
+                                className="user-score"
+                                style={{ flex: 0.2 }}
+                              >
+                                69
+                              </span>
+                            </div>
+                            <div className="user-data d-flex justify-content-around leaderboard-bg">
+                              <span className="user-rank" style={{ flex: 0.2 }}>
+                                3
+                              </span>
+                              <div
+                                style={{ flex: 0.6 }}
+                                className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                              >
+                                <img
+                                  src={avatarOne}
+                                  className="user-image"
+                                  alt="avatar"
+                                />
+                                <span className="user-name">
+                                  Mr Rollercoaster
+                                </span>
+                              </div>
+                              <span
+                                className="user-score"
+                                style={{ flex: 0.2 }}
+                              >
+                                69
+                              </span>
+                            </div>
+                          </div>
+                        </>
+                      )}
+                      {active === "rules" && (
+                        <>
+                          <li>
+                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+                            amet.
+                          </li>
+                          <li>
+                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+                            amet.
+                          </li>
+                          <li>
+                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+                            amet.
+                          </li>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
