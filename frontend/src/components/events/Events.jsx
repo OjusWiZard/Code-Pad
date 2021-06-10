@@ -12,6 +12,9 @@ function Events() {
     getAllEvents().then((data) => {
       setallEvents(data);
     });
+    return () => {
+      setallEvents([]);
+    };
   }, []);
   let onGoingEvents = allEvents?.filter((event) => event.status === "Ongoing");
   let upcomingEvents = allEvents?.filter(
@@ -42,7 +45,7 @@ function Events() {
                   >
                     {console.log(event)}
                     <div className="text-center">
-                      <img src={frame} alt="" className="img-fluid frame" />
+                      <img src={event.icon} alt="" className="img-fluid frame" />
                       <div className="text-center pt-3">
                         <span className="font-vcr font-blue">
                           {event.title}
@@ -73,7 +76,7 @@ function Events() {
                   >
                     {console.log(event)}
                     <div className="text-center">
-                      <img src={frame} alt="" className="img-fluid frame" />
+                      <img src={event.icon} alt="" className="img-fluid frame" />
                       <div className="text-center pt-3">
                         <span className="font-vcr font-blue">
                           {event.title}
@@ -104,7 +107,7 @@ function Events() {
                   >
                     {console.log(event)}
                     <div className="text-center">
-                      <img src={frame} alt="" className="img-fluid frame" />
+                      <img src={event.icon} alt="" className="img-fluid frame" />
                       <div className="text-center pt-3">
                         <span className="font-vcr font-blue">
                           {event.title}

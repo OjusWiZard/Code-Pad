@@ -46,8 +46,8 @@
   height: 18px;  
   background: var(--primaryColor);  
   opacity: 0.2;
-  -webkit-animation: hlineLeft 6.25s linear infinite;
-  animation: hlineLeft 6.25s linear infinite;
+  -webkit-animation: hlineLeft 10s linear infinite;
+  animation: hlineLeft 10s linear infinite;
 }
 .dots .dot-left-2 {
   position: fixed;
@@ -66,8 +66,8 @@
   height: 10px;  
   background: var(--primaryColor);  
   opacity: 0.2;
-  -webkit-animation: hlineLeft 6.25s linear infinite;
-  animation: hlineLeft 6.25s linear infinite;
+  -webkit-animation: hlineLeft 10s linear infinite;
+  animation: hlineLeft 10s linear infinite;
 }
 .dots .dot-left-3 {
   position: fixed;
@@ -86,8 +86,8 @@
   height: 15px;  
   background: var(--primaryColor);  
   opacity: 0.2;
-  -webkit-animation: hlineLeft 6.25s linear infinite;
-  animation: hlineLeft 6.25s linear infinite;
+  -webkit-animation: hlineLeft 10s linear infinite;
+  animation: hlineLeft 10s linear infinite;
 }
 .dots .dot-left-4 {
   position: fixed;
@@ -106,8 +106,8 @@
   height: 10px;  
   background: var(--primaryColor);  
   opacity: 0.2;
-  -webkit-animation: hlineLeft 6.25s linear infinite;
-  animation: hlineLeft 6.25s linear infinite;
+  -webkit-animation: hlineLeft 10s linear infinite;
+  animation: hlineLeft 10s linear infinite;
 }
 .dots .dot-left-5 {
   position: fixed;
@@ -126,8 +126,8 @@
   height: 10px;  
   background: var(--primaryColor);  
   opacity: 0.2;
-  -webkit-animation: hlineLeft 6.25s linear infinite;
-  animation: hlineLeft 6.25s linear infinite;
+  -webkit-animation: hlineLeft 10s linear infinite;
+  animation: hlineLeft 10s linear infinite;
 }
 @keyframes hlineLeft {
   0% {
@@ -158,8 +158,8 @@
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hlineRight 6.25s linear infinite;
-  animation: hlineRight 6.25s linear infinite;
+  -webkit-animation: hlineRight 10s linear infinite;
+  animation: hlineRight 10s linear infinite;
 }
 .dots .dot-right-2 {
   position: fixed;
@@ -179,8 +179,8 @@
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hlineRight 6.25s linear infinite;
-  animation: hlineRight 6.25s linear infinite;
+  -webkit-animation: hlineRight 10s linear infinite;
+  animation: hlineRight 10s linear infinite;
 }
 .dots .dot-right-3 {
   position: fixed;
@@ -200,8 +200,8 @@
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hlineRight 6.25s linear infinite;
-  animation: hlineRight 6.25s linear infinite;
+  -webkit-animation: hlineRight 10s linear infinite;
+  animation: hlineRight 10s linear infinite;
 }
 .dots .dot-right-4 {
   position: fixed;
@@ -221,8 +221,8 @@
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hlineRight 6.25s linear infinite;
-  animation: hlineRight 6.25s linear infinite;
+  -webkit-animation: hlineRight 10s linear infinite;
+  animation: hlineRight 10s linear infinite;
 }
 .dots .dot-right-5 {
   position: fixed;
@@ -242,8 +242,8 @@
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
-  -webkit-animation: hlineRight 6.25s linear infinite;
-  animation: hlineRight 6.25s linear infinite;
+  -webkit-animation: hlineRight 10s linear infinite;
+  animation: hlineRight 10s linear infinite;
 }
 @keyframes hlineRight {
   0% {
