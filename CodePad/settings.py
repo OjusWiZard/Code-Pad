@@ -83,6 +83,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'CodePad.urls'
 
 AUTH_USER_MODEL = 'account.User'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 TEMPLATES = [
     {
