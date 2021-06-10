@@ -18,9 +18,9 @@ function Home() {
   return (
     <React.Fragment>
       <div className="main-background">
-        <div className="container pt-5">
+        <div className="container pt-lg-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-lg-8 col-md-10 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-3">
+            <div className="col-lg-8 col-md-10 col-sm-11 col-11 mx-auto my-lg-5 my-2 content-background px-lg-5 py-3">
               <div>
                 <div className="d-flex justify-content-center pt-5">
                   <img src={logo} alt="" className="img-fluid" />
