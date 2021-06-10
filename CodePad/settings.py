@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'event',
 
     'rest_framework',
-    'djoser'
+    'djoser',
+    'corsheaders'
 ]
 
 REST_FRAMEWORK = {
@@ -70,6 +71,7 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -85,6 +87,7 @@ ROOT_URLCONF = 'CodePad.urls'
 
 AUTH_USER_MODEL = 'account.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
