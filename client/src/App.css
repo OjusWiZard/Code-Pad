@@ -198,3 +198,9 @@ select:-webkit-autofill {
   -webkit-text-fill-color: var(--primaryColor) !important;
 }
 
+@media(max-width: 768px){
+  .content-background{
+    background: #000000 !important;
+    border: none !important;
+  }
+}
