@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../images/home/logo.svg";
 import line from "../../images/home/line.svg";
 import frame from "../../images/events/Frame.svg";
 import button from "../../images/home/button.svg";
 import { Link } from "react-router-dom";
 import "./home.css";
+import { getAllEvents } from "../../api/index";
 
 function Home() {
+  const [allEvents, setallEvents] = useState([]);
+  useEffect(() => {
+    getAllEvents().then((data) => {
+      setallEvents(data);
+    });
+  }, []);
+  let onGoingEvents = allEvents?.filter((event) => event.status === "Ongoing");
   return (
     <React.Fragment>
       <div className="main-background">
@@ -37,42 +45,26 @@ function Home() {
                   &lt;&lt;&nbsp;&nbsp;ONGOING EVENTS&nbsp;&nbsp;&gt;&gt;
                 </h4>
                 <div className="row d-flex justify-content-center mt-3">
-                  <Link
-                    to="/events/1"
-                    className="button-hover link col-lg-4 col-md-4 col-sm-12 col-12 mt-3"
-                  >
-                    <div className="text-center">
-                      <img src={frame} alt="" className="img-fluid frame" />
-                      <div className="text-center pt-3">
-                        <span className="font-vcr font-blue">CODEWARS</span>
-                        <p className="date pt-1 font-robot">
-                          ENDS ON 10-JAN-2018
-                        </p>
+                  {onGoingEvents?.map((event, index) => (                    
+                    <Link
+                      key={event.url}
+                      to={`/events/${event.slug}`}
+                      className="button-hover link col-lg-4 col-md-4 col-sm-12 col-12 mt-3"
+                    >
+                      {console.log(event)}
+                      <div className="text-center">                        
+                        <img src={frame} alt="" className="img-fluid frame" />
+                        <div className="text-center pt-3">
+                          <span className="font-vcr font-blue">
+                            {event.title}
+                          </span>
+                          <p className="date pt-1 pb-4 font-robot">
+                            {event.datetime}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                  <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
-                    <div className="text-center">
-                      <img src={frame} alt="" className="img-fluid frame" />
-                      <div className="text-center pt-3">
-                        <span className="font-vcr font-blue">CODEWARS</span>
-                        <p className="date pt-1 font-robot">
-                          ENDS ON 10-JAN-2018
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
-                    <div className="text-center">
-                      <img src={frame} alt="" className="img-fluid frame" />
-                      <div className="text-center pt-3">
-                        <span className="font-vcr font-blue">CODEWARS</span>
-                        <p className="date pt-1 font-robot">
-                          ENDS ON 10-JAN-2018
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                    </Link>
+                  ))}                  
                 </div>
                 <div className="my-5">
                   <Link to="/events">
