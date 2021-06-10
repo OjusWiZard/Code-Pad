@@ -9,7 +9,7 @@ class Event(models.Model):
     title       = models.CharField(max_length=32)
     description = models.TextField(max_length=1024)
     is_contest  = models.BooleanField(default=True)
-    icon        = models.ImageField(upload_to='event_icons/', blank=True)
+    icon        = models.ImageField(upload_to='event_icons/')
     datetime    = models.DateTimeField(auto_now=False)
     duration    = models.DurationField(default=timedelta(hours=2))
     
