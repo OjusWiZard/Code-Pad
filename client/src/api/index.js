@@ -3,7 +3,7 @@ import Modal from "../components/modal/Modal";
 
 
 const API = axios.create({
-  baseUrl: "https://codepad-ncs.herokuapp.com",
+  baseURL: "https://codepad-ncs.herokuapp.com",
 });
 
 API.interceptors.request.use((req) => {
