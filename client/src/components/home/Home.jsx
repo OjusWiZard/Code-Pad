@@ -20,12 +20,12 @@ function Home() {
       <div className="main-background">
         <div className="container pt-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-lg-8 col-md-10 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-3">
+            <div className="col-lg-12 col-md-10 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-3">
               <div>
                 <div className="d-flex justify-content-center pt-5">
                   <img src={logo} alt="" className="img-fluid" />
                 </div>
-                <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14 font-weight-bold">
+                <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14 font-weight-bold px-lg-5">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. amet
                   qui! Sed, distinctio maiores consequatur velit, voluptatibus
                   deleniti voluptate suscipit corrupti odio amet inventore sunt,
@@ -56,7 +56,7 @@ function Home() {
                         <img
                           src={event.icon}
                           alt=""
-                          className="img-fluid frame"
+                          className="img-fluid frame p-3"
                         />
                         <div className="text-center pt-3">
                           <span className="font-vcr font-blue">
@@ -70,7 +70,7 @@ function Home() {
                     </Link>
                   ))}
                 </div>
-                <div className="my-5">
+                <div className="my-5 text-center">
                   <Link to="/events">
                     <img src={button} alt="" className="img-fluid" />
                   </Link>

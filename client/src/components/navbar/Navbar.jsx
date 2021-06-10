@@ -53,27 +53,35 @@ function Navbar() {
               <i className="fas fa-times-circle fa-2x text-white float-right mb-4"></i>
             </div>
             <Link to="/">
-              <div className="mt-3 font-vcr font-blue font-25">HOME</div>
+              <div className="mt-3 font-vcr font-blue font-25 px-3">HOME</div>
             </Link>
             <Link to="/events">
-              <div className="mt-3 font-vcr font-blue font-25">EVENTS</div>
+              <div className="mt-3 font-vcr font-blue font-25 px-3">EVENTS</div>
             </Link>
             {token ? (
               <>
                 <Link to="/profile">
-                  <div className="mt-3 font-vcr font-blue font-25">PROFILE</div>
+                  <div className="mt-3 font-vcr font-blue font-25 px-3">
+                    PROFILE
+                  </div>
                 </Link>
                 <div onClick={() => signOut(history)}>
-                  <div className="mt-3 font-vcr font-blue font-25">LOGOUT</div>
+                  <div className="mt-3 font-vcr font-blue font-25 px-3">
+                    LOGOUT
+                  </div>
                 </div>
               </>
             ) : (
               <>
                 <Link to="/signup">
-                  <div className="mt-3 font-vcr font-blue font-25">SIGNUP</div>
+                  <div className="mt-3 font-vcr font-blue font-25 px-3">
+                    SIGNUP
+                  </div>
                 </Link>
                 <Link to="/login">
-                  <div className="mt-3 font-vcr font-blue font-25">LOGIN</div>
+                  <div className="mt-3 font-vcr font-blue font-25 px-3">
+                    LOGIN
+                  </div>
                 </Link>
               </>
             )}

@@ -13,8 +13,8 @@
 
 .event-block:hover {
   background: url("../../images/events/hover_frame.svg") transparent !important;
-  background-repeat: no-repeat !important;
-  background-size: contain;
+  background-repeat: no-repeat ;
+  background-size: cover;
 }
 
 .dots {
