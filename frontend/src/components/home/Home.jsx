@@ -45,15 +45,19 @@ function Home() {
                   &lt;&lt;&nbsp;&nbsp;ONGOING EVENTS&nbsp;&nbsp;&gt;&gt;
                 </h4>
                 <div className="row d-flex justify-content-center mt-3">
-                  {onGoingEvents?.map((event, index) => (                    
+                  {onGoingEvents?.map((event) => (
                     <Link
                       key={event.url}
                       to={`/events/${event.slug}`}
                       className="button-hover link col-lg-4 col-md-4 col-sm-12 col-12 mt-3"
                     >
                       {console.log(event)}
-                      <div className="text-center">                        
-                        <img src={frame} alt="" className="img-fluid frame" />
+                      <div className="text-center">
+                        <img
+                          src={event.icon}
+                          alt=""
+                          className="img-fluid frame"
+                        />
                         <div className="text-center pt-3">
                           <span className="font-vcr font-blue">
                             {event.title}
@@ -64,7 +68,7 @@ function Home() {
                         </div>
                       </div>
                     </Link>
-                  ))}                  
+                  ))}
                 </div>
                 <div className="my-5">
                   <Link to="/events">
