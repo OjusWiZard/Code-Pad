@@ -2,8 +2,8 @@ import axios from 'axios';
 import Modal from "../components/modal/Modal";
 
 const API = axios.create({
-    baseUrl: 'https://ojuswireturns.pythonanywhere.com'
-})
+  baseUrl: "https://codepad-ncs.herokuapp.com",
+});
 
 
 API.interceptors.request.use(req => {
@@ -40,7 +40,8 @@ export const signIn = async (formData, history, openModal) => {
     history.push("/");
     userInfo();
   } catch (error) {
-    await openModal(error.response.data);
+    console.log(Object.keys(error.response.data)[0]);
+    await openModal(Object.values(error.response.data)[0]);
   }
 };
 
@@ -74,3 +75,25 @@ export const editUserInfo = async (formData, history) => {
       <Modal errorMessage={error.response.data} />;
     }
 }
+
+
+
+export const getAllEvents = async () => {
+  try {
+    const { data } = await API.get("/events/");
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getEvent = async (slug) => {
+  try {
+    const { data } = await API.get(`/events/${slug}`);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

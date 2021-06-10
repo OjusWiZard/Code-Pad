@@ -5,12 +5,13 @@ export const ModalContext = React.createContext();
 export function ModalProvider({ children }) {
   const [state, setState] = useState({
     modalOpen: false,
-    errorMessage: "",
+    errorMessage: [],
   });
   const openModal = (err) => {
+    console.log(err);
     setState((prevState) => ({
       ...prevState,
-      errorMessage: "Please fill in all the fields",
+      errorMessage: err,
       modalOpen: true,
     }));
   };

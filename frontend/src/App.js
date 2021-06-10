@@ -45,7 +45,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/editor" component={Form} />
         <Route exact path="/events" component={Events} />
-        <Route exact path="/events/:id" component={EventDetails} />
+        <Route exact path="/events/:slug" component={EventDetails} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/profile" component={Profile} />
