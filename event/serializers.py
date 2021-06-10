@@ -84,7 +84,7 @@ class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event
-        fields = ['title', 'description', 'is_contest', 'status', 'datetime', 'duration', 'problem_set', 'leaderboard_of_this_event']
+        fields = ['title', 'description', 'is_contest', 'icon', 'status', 'datetime', 'duration', 'problem_set', 'leaderboard_of_this_event']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
