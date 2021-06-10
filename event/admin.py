@@ -28,7 +28,7 @@ class Submission_Admin(admin.ModelAdmin):
     list_filter = ['problem__event']
     ordering = ['-datetime']
     search_fields = ['user', 'problem', 'problem__event']
-    readonly_fields = ['datetime', 'solution', 'user', 'problem', 'submission_token']
+    readonly_fields = ['datetime', 'solution', 'is_accepted', 'user', 'problem', 'submission_token']
 
 
 admin.site.register(Event, Event_Admin)
