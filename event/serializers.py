@@ -62,7 +62,7 @@ class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event
-        exclude = ['description', 'is_contest', 'leaderboard', 'slug']
+        exclude = ['description', 'is_contest', 'leaderboard']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
