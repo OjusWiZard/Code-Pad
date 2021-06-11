@@ -202,7 +202,9 @@ select:-webkit-autofill {
 
 @media (max-width: 768px) {
   .content-background {
-    background: #000000 !important;
+    padding-top: 5rem !important;
+    height: auto;
+    background: none !important;
     border: none !important;
   }
 }

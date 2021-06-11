@@ -8,17 +8,33 @@ import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
 import { getEvent } from "../../api/index";
 import frame from "../../images/eventDetails/frame-details.svg";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 function EventDetails() {
   const params = useParams();
-  const [active, setActive] = useState("rules");
   const [event, setEvent] = useState({});
+  useEffect(() => {
+    getEvent(params.slug)
+      .then((data) => {
+        setEvent(data);
+      })
+      .catch(() => {
+        <Redirect to="/" />;
+      });
+  }, [params.slug]);
+
+  const [active, setActive] = useState("about");
+
   useEffect(() => {
     getEvent(params.slug).then((data) => {
       setEvent(data);
     });
   }, [params.slug]);
-  console.log(active);
+  const removeClass = (e) => {
+    document
+      .querySelectorAll("li")
+      .forEach((link) => link.classList.remove("active"));
+  };
+  console.log(event);
   return (
     <React.Fragment>
       <div className="main-background">
@@ -45,24 +61,29 @@ function EventDetails() {
                           </span>
                         </div>
                         <li
+                          className="active"
                           onClick={(e) => {
                             setActive("about");
+                            removeClass(e);
+                            e.target.classList.add("active");
                           }}
                         >
                           # about
                         </li>
                         <li
-                          name="rules"
                           onClick={(e) => {
                             setActive("rules");
+                            removeClass(e);
+                            e.target.classList.add("active");
                           }}
                         >
                           # rules
                         </li>
                         <li
-                          name="leaderboard"
                           onClick={(e) => {
                             setActive("leaderboard");
+                            removeClass(e);
+                            e.target.classList.add("active");
                           }}
                         >
                           # leaderboard
@@ -80,7 +101,7 @@ function EventDetails() {
                             <div className="about__header__content">
                               <div className="mx-3">
                                 <span className="font-blue font-vcr font-18">
-                                  CODEWARS{" "}
+                                  {event?.title}{" "}
                                 </span>
                                 <br />
                                 <img src={heart} alt="heart" />{" "}
