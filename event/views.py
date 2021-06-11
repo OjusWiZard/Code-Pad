@@ -43,15 +43,16 @@ class Submission_Viewset(ReadOnlyModelViewSet):
 
         def time_limit(lang_id):
             if lang_id in (70, 71):                 # [Python, Python3]
-                return 5
+                return 5.5
             elif lang_id in (55, 68, 72):           # [Lisp, PHP, Ruby]
-                return 3
+                return 3.5
             elif lang_id in (51, 62, 63, 78, 81):   # [C#, Java, javaScript, Kotlin, Scala]
-                return 2
+                return 2.5
             else:                                   # All other Languages
-                return 1
+                return 1.5
 
-        client = Client(environ['JUDGE_HOST'])
+        # TODO: Handle 422 Error
+        client = Client(environ['JUDGE_HOST'], environ['X_Auth_Token'])
         submission = submit(client=client, source_code=submitted_solution, language=language_id, stdin=testcases_input, expected_output=testcases_output, cpu_time_limit=time_limit(language_id))
         
         if submission.status['id'] == 3:
