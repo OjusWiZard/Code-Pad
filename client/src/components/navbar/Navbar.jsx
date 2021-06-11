@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import Nav from "react-bootstrap/Nav";
 import { Link, NavLink, useLocation, useHistory } from "react-router-dom";
+import toggle from "../../images/common/toggle.svg";
 import logo from "../../images/home/logo.svg";
 import { signOut } from "../../api";
 
@@ -40,7 +41,7 @@ function Navbar() {
           onClick={handleClick}
         >
           <span className="navbar-toggler-icon">
-            <i className="fas fa-2x fa-bars font-blue"></i>
+            <img src={toggle} alt="toggle" />
           </span>
         </button>
         <div className="search-overlay" id="sidebar">
