@@ -8,6 +8,7 @@
 li {
   list-style-image: url("../../images/eventDetails/pointer.svg");
   padding: 1rem 0 0 0;
+  cursor: pointer;
 }
 
 .exit {
@@ -70,4 +71,8 @@ li {
     padding-left: 0;
     flex-direction: column;
   }
+}
+.active {
+  color: var(--primaryColor);
+  font-weight: bold;
 }
