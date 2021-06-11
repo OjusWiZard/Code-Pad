@@ -40,7 +40,7 @@ function Navbar() {
           onClick={handleClick}
         >
           <span className="navbar-toggler-icon">
-            <i className="fas fa-2x fa-grip-lines font-blue"></i>
+            <i className="fas fa-2x fa-bars font-blue"></i>
           </span>
         </button>
         <div className="search-overlay" id="sidebar">
