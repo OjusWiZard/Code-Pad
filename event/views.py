@@ -51,22 +51,23 @@ class Submission_Viewset(ReadOnlyModelViewSet):
             else:                                   # All other Languages
                 return 1.5
 
-        # TODO: Handle 422 Error
         client = Client(environ['JUDGE_HOST'], environ['X_Auth_Token'])
         submission = submit(client=client, source_code=submitted_solution, language=language_id, stdin=testcases_input, expected_output=testcases_output, cpu_time_limit=time_limit(language_id))
         
-        if submission.status['id'] == 3:
-            current_event = problem.event
-            if current_event.datetime <= timezone.now() <= (current_event.datetime+current_event.duration) and current_event.is_contest:
+        current_event = problem.event
+        current_time = timezone.now()
+        if current_event.datetime <= current_time <= (current_event.datetime+current_event.duration) and current_event.is_contest:
+            submissions = Submission.objects.filter(user=request.user, problem=problem)
+            correct_submissions = submissions.filter(is_accepted=True)
+            if not correct_submissions and submission.status['id'] == 3:
+                incorrect_submissions = submissions.filter(is_accepted=False)
                 current_leaderboard_field = Leaderboard.objects.get_or_create(user=request.user, event=current_event)[0]
-                accepted_submissions = Submission.objects.filter(user=request.user, is_accepted=True, problem=problem)
-                if not accepted_submissions:
-                    current_leaderboard_field.score += 1
-                    current_leaderboard_field.save()
-            accepted = True
-        else:
-            accepted = False
-        
+                current_leaderboard_field.score += problem.points
+                current_leaderboard_field.score -= problem.penalty * incorrect_submissions.count()
+                current_leaderboard_field.score -= problem.point_loss * (current_time.minute - current_event.datetime.minute)
+                current_leaderboard_field.save()
+
+        accepted = submission.status['id'] == 3
         Submission.objects.create(user=request.user, problem=problem, submission_token=submission.token, solution=submitted_solution, is_accepted=accepted)
 
         custom_response = {
