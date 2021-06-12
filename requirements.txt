@@ -2,12 +2,14 @@ asgiref==3.3.4
 certifi==2021.5.30
 cffi==1.14.5
 chardet==4.0.0
+cloudinary==1.25.0
 coreapi==2.3.3
 coreschema==0.0.4
 cryptography==3.4.7
 defusedxml==0.7.1
 dj-database-url==0.5.0
 Django==3.2.4
+django-cloudinary-storage==0.3.0
 django-cors-headers==3.7.0
 django-mathfield==0.1.0
 django-templated-mail==1.1.1
