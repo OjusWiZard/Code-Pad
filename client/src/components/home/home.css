@@ -12,8 +12,8 @@
 }
 
 .event-block:hover {
-  background: url("../../images/events/hover_frame.svg") transparent !important;
-  background-repeat: no-repeat ;
+  border-image: url("../../images/events/hover_frame.svg");
+  border-image-repeat: no-repeat !important;
   background-size: cover;
 }
 
