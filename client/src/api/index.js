@@ -39,9 +39,8 @@ export const signIn = async (formData, history, openModal) => {
     localStorage.setItem("refreshToken", data.refresh);
     history.push("/");
     userInfo();
-  } catch (error) {
-   
-    await openModal(Object.values(error.response.data)[0]);
+  } catch (error) {   
+    await openModal(error.response.data);
   }
 };
 
@@ -56,7 +55,8 @@ export const userInfo = async () => {
     localStorage.setItem("user", JSON.stringify(data));
   } catch (error) {
     console.log("error Login: ", error.response.data);
-    <Modal errorMessage={error.response.data} />;
+    <Modal errorMessage="You are Logged out!!" />;
+    localStorage.clear();
   }
 };
 

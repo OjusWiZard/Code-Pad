@@ -24,14 +24,14 @@ function Home() {
         <Spinner />
       ) : (
         <div className="main-background">
-          <div className="container pt-lg-5">
+          <div className="container pt-sm-5">
             <div className="row d-flex justify-content-center">
-              <div className="col-lg-8 col-md-10 col-sm-11 col-11 mx-auto my-lg-5 my-2 content-background px-lg-5 py-3">
+              <div className="col-lg-8 col-md-10 col-sm-11 col-11 mx-auto my-md-5 my-2 content-background px-lg-5 py-sm-3">
                 <div>
-                  <div className="d-flex justify-content-center pt-5">
+                  <div className="d-flex justify-content-center pt-md-5">
                     <img src={logo} alt="Codepad" className="img-fluid" />
                   </div>
-                  <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14 font-weight-bold px-lg-5">
+                  <p className="font-robot font-lightGrey text-justify mt-5 font-14 font-weight-bold px-lg-5">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     amet qui! Sed, distinctio maiores consequatur velit,
                     voluptatibus deleniti voluptate suscipit corrupti odio amet
@@ -54,10 +54,7 @@ function Home() {
                       </h4>
                       <div className="row d-flex justify-content-center mt-3">
                         {onGoingEvents?.map(
-                          (event, index) =>
-                            index < 3 && (
-                              <Event event={event}/>
-                            )
+                          (event, index) => index < 3 && <Event event={event} />
                         )}
                       </div>
                     </div>

@@ -1,7 +1,6 @@
 html,
 body {
   font-size: 100%;
-  overflow-x: hidden !important;
   scroll-behavior: smooth;
   background: #000000 !important;
 }
@@ -204,7 +203,7 @@ select:-webkit-autofill {
   .content-background {
     padding-top: 5rem !important;
     height: auto;
-    background: none !important;
+    background: url("../src/images/common/lines.svg"), linear-gradient( 130deg, transparent 0, transparent 100%) !important;
     border: none !important;
   }
 }

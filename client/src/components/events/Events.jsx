@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import logo from "../../images/events/event_logo.svg";
 import line from "../../images/home/line.png";
-import { Link } from "react-router-dom";
 import "./events.css";
 import { getAllEvents } from "../../api/index";
 import Spinner from "../utils/Spinner";
@@ -30,10 +29,10 @@ function Events() {
         <Spinner />
       ) : (
         <div className="main-background">
-          <div className="container pt-5">
+          <div className="container pt-lg-5">
             <div className="row d-flex justify-content-center">
-              <div className="col-lg-8 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background  px-lg-5 py-3">
-                <div className="d-flex justify-content-center pt-5">
+              <div className="col-lg-8 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background  px-lg-5 py-lg-3">
+                <div className="d-flex justify-content-center pt-lg-5">
                   <img src={logo} alt="" className="img-fluid" />
                 </div>
                 {onGoingEvents && (
