@@ -10,9 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
+import dj_database_url
+import cloudinary
+import cloudinary_storage
 from pathlib import Path
 from datetime import timedelta
-import os
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,8 +31,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['localhost',os.environ['SERVER_HOST']]
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost',os.environ['SERVER_HOST']]
 
 
 # Application definition
@@ -47,7 +49,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'djoser',
-    'corsheaders'
+    'corsheaders',
+    'cloudinary',
+    'cloudinary_storage'
 ]
 
 REST_FRAMEWORK = {
@@ -164,7 +168,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 
 
-# Media files
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# If Cloudinary credentials are present in the environment
+envvars = os.environ.keys()
+if 'MEDIA_CLOUD_NAME' in envvars and 'MEDIA_API_KEY' in envvars and 'MEDIA_API_SECRET' in envvars:
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.environ['MEDIA_CLOUD_NAME'],
+        'API_KEY': os.environ['MEDIA_API_KEY'],
+        'API_SECRET': os.environ['MEDIA_API_SECRET']
+    }
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
