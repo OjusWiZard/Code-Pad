@@ -20,15 +20,11 @@ function EventDetails() {
       .catch(() => {
         <Redirect to="/" />;
       });
+    return null;
   }, [params.slug]);
 
   const [active, setActive] = useState("about");
 
-  useEffect(() => {
-    getEvent(params.slug).then((data) => {
-      setEvent(data);
-    });
-  }, [params.slug]);
   const removeClass = (e) => {
     document
       .querySelectorAll("li")
@@ -38,11 +34,11 @@ function EventDetails() {
   return (
     <React.Fragment>
       <div className="main-background">
-        <div className="container py-5">
+        <div className="container py-lg-5">
           <div className="row">
-            <div className="col-xl-10 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
-              <div className="my-5 py-3 px-lg-3">
-                <div className="d-flex mainContainer font-vcr font-lightGrey text-center justify-content-between mt-5">
+            <div className="col-xl-10 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-lg-5 content-background px-lg-5">
+              <div className="my-lg-5 py-lg-3 px-lg-3">
+                <div className="d-flex mainContainer font-vcr font-lightGrey text-center justify-content-between mt-lg-5">
                   <div style={{ textAlign: "left" }}>
                     <img src={pointerLeft} alt="left-pointer" /> Exit
                     <div className="d-flex codewars mt-5 pt-2 pb-5">

@@ -46,10 +46,10 @@ const Form = () => {
   return (
     <React.Fragment>
       <div className="main-background">
-        <div className="container pt-5">
+        <div className="container pt-lg-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-lg-8 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-3">
-              <div className="d-flex justify-content-center pt-5">
+            <div className="col-lg-8 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-lg-3">
+              <div className="d-flex justify-content-center pt-lg-5">
                 <img id="logo" src={IDE} alt="IDE" className="img-fluid" />
               </div>
               <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14 font-weight-bold">

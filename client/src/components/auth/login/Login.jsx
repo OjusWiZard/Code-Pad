@@ -23,10 +23,10 @@ function Login() {
   return (
     <React.Fragment>
       <div className="main-background">
-        <div className="container py-5">
+        <div className="container py-sm-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-xl-7 col-lg-7 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
-              <div className="my-5 py-3 px-lg-3">
+            <div className="col-xl-7 col-lg-7 col-md-10 col-sm-11 col-11 mx-auto my-md-5 content-background px-sm-5">
+              <div className="my-md-5 py-md-3 px-lg-3">
                 <h4 className="font-vcr font-blue text-center font-weight-bold">
                   **&nbsp;LOGIN&nbsp;**
                 </h4>
@@ -69,14 +69,14 @@ function Login() {
                     FORGOT PASSWORD?
                   </div>
                   <div className="mt-5 text-center button-hover">
-                  <img
-                    src={login}
-                    onClick={handleSubmit}
-                    alt="signup"
-                    className="img-fluid mt-4"
-                  />
-                </div>
-                </form>                
+                    <img
+                      src={login}
+                      onClick={handleSubmit}
+                      alt="signup"
+                      className="img-fluid mt-4"
+                    />
+                  </div>
+                </form>
                 <div className="mt-4 text-center">
                   <img src={line} alt="signup" className="img-fluid mt-4" />
                 </div>

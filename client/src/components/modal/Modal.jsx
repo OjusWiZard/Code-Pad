@@ -9,8 +9,9 @@ function Modal() {
     return null;
   } else {
     return (
-      <>                
+      <>
         <div className="modal-container">
+          {console.log(errorMessage)}
           <div className="container">
             <div className="row">
               <div
@@ -20,8 +21,10 @@ function Modal() {
                 <h4 className="font-vcr font-blue mb-4 text-center font-weight-bold">
                   &lt;&lt;&nbsp;&nbsp;ERROR&nbsp;&nbsp;&gt;&gt;
                 </h4>
-                <p className="font-blue font-vcr" style={{ fontSize: "20px" }}>
-                  {errorMessage}
+                <p className="font-blue font-robot">
+                   {errorMessage.map((err) => (                    
+                    <div>{err}</div>
+                  ))}
                 </p>
 
                 <div
