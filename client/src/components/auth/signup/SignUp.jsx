@@ -12,7 +12,19 @@ import "./signup.css";
 
 function SignUp() {
   const { openModal, errorMessage } = useContext(ModalContext);
+  // const [a, seta] = useState(0);
+  let a = 0;
   const history = useHistory();
+  const arrFields = [
+    "username",
+    "admission_no",
+    "full_name",
+    "email",
+    "avatar",
+    "password",
+    "contact_no",
+    "re_password",
+  ];
   const initialState = {
     username: "",
     admission_no: "",
@@ -55,7 +67,6 @@ function SignUp() {
                 <p className="font-vcr font-lightGrey text-center mt-5">
                   SELECT YOUR AVATAR
                 </p>
-                {console.log(errorMessage)}
                 <div className="d-flex justify-content-center mt-3 avatar-container">
                   <img
                     width="40px"
@@ -95,7 +106,7 @@ function SignUp() {
                   />
                 </div>
                 <form action="" className="mt-5 px-lg-5 mx-lg-5 px-3">
-                  {errorMessage.map((err) => (
+                  {arrFields.map((field) => (
                     <div className="mt-3">
                       <div className="input-group">
                         <div className="pixel-input-wrapper">
@@ -104,146 +115,23 @@ function SignUp() {
                             <input
                               required
                               onChange={handleChange}
-                              name="email"
-                              value={formData.email}
-                              type="email"
+                              name={field}
+                              value={formData.field}
+                              type="text"
                               className="font-vcr font-blue"
-                              placeholder="EMAIL"
+                              placeholder={field}
                             />
                           </div>
                         </div>
                       </div>
-                      <div className="text-muted font-vcr font-14 pl-3">
-                        {err}
-                      </div>
+                      {Object.keys(errorMessage)[a++] === field && (
+                        <div className="font-vcr font-14 pl-3 text-muted">
+                          {Object.values(errorMessage)[a++]}
+                          {/* {seta((prevState) => prevState + 1)} */}
+                        </div>
+                      )}
                     </div>
                   ))}
-                  <div className="mt-4">
-                    <div className="input-group">
-                      <div className="pixel-input-wrapper">
-                        <span></span>
-                        <div className="pixel-input w-100">
-                          <input
-                            required
-                            onChange={handleChange}
-                            name="email"
-                            value={formData.email}
-                            type="email"
-                            className="font-vcr font-blue"
-                            placeholder="EMAIL"
-                          />
-                        </div>
-                      </div>
-                    </div>                    
-                  </div>
-                  <div className="mt-4">
-                    <div className="input-group">
-                      <div className="pixel-input-wrapper">
-                        <span></span>
-                        <div className="pixel-input w-100">
-                          <input
-                            required
-                            onChange={handleChange}
-                            name="username"
-                            value={formData.username}
-                            type="text"
-                            className="font-vcr font-blue"
-                            placeholder="USERNAME"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <div className="input-group">
-                      <div className="pixel-input-wrapper">
-                        <span></span>
-                        <div className="pixel-input w-100">
-                          <input
-                            required
-                            onChange={handleChange}
-                            name="full_name"
-                            value={formData.full_name}
-                            type="text"
-                            className="font-vcr font-blue"
-                            placeholder="NAME"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <div className="input-group">
-                      <div className="pixel-input-wrapper">
-                        <span></span>
-                        <div className="pixel-input w-100">
-                          <input
-                            required
-                            onChange={handleChange}
-                            value={formData.password}
-                            name="password"
-                            type="password"
-                            className="font-vcr font-blue"
-                            placeholder="PASSWORD"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <div className="input-group">
-                      <div className="pixel-input-wrapper">
-                        <span></span>
-                        <div className="pixel-input w-100">
-                          <input
-                            required
-                            onChange={handleChange}
-                            value={formData.re_password}
-                            name="re_password"
-                            type="password"
-                            className="font-vcr font-blue"
-                            placeholder="CONFIRM PASSWORD"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <div className="input-group">
-                      <div className="pixel-input-wrapper">
-                        <span></span>
-                        <div className="pixel-input w-100">
-                          <input
-                            required
-                            type="text"
-                            onChange={handleChange}
-                            value={formData.admission_no}
-                            name="admission_no"
-                            className="font-vcr font-blue"
-                            placeholder="ADMISSION NUMBER"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <div className="input-group">
-                      <div className="pixel-input-wrapper">
-                        <span></span>
-                        <div className="pixel-input w-100">
-                          <input
-                            required
-                            onChange={handleChange}
-                            name="contact_no"
-                            value={formData.contact_no}
-                            type="text"
-                            className="font-vcr font-blue"
-                            placeholder="CONTACT NUMBER"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   <div
                     className="mt-5 text-center button-hover"
                     onClick={(e) => {
