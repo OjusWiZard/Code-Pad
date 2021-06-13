@@ -5,15 +5,13 @@ export const ModalContext = React.createContext();
 export function ModalProvider({ children }) {
   const [state, setState] = useState({
     modalOpen: false,
-    errorMessage: [],
+    errorMessage: {},
   });
-  const openModal = (err) => {
-    console.log(err);
-    const errVal = Object.values(err);
-    const errKey = Object.keys(err);    
+  const openModal = (e) => {
+    console.log(e);
     setState((prevState) => ({
       ...prevState,
-      errorMessage: [...errVal, ...errKey],
+      errorMessage:Object.assign({}, e),
     }));
   };
   const closeModal = () => {

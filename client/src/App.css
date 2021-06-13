@@ -59,6 +59,7 @@ body {
 /* Placeholder */
 ::placeholder {
   color: var(--primaryColor);
+  text-transform: uppercase;
 }
 
 /* Font Family */
