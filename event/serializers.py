@@ -7,7 +7,7 @@ from account.serializers import User_Serializer
 class Problem_List_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Problem
-        fields = ['title', 'url', 'points']
+        fields = ['slug', 'title', 'url', 'points']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
@@ -34,7 +34,7 @@ class Problem_Detail_Serializer(serializers.HyperlinkedModelSerializer):
     submissions = Submission_List_Serializer(many=True, read_only=True)
     class Meta:
         model = Problem
-        fields = ['id', 'title', 'points', 'penalty', 'point_loss', 'problem_statement', 'input_statement', 'output_statement', 'contraints', 'example_input', 'example_output', 'example_explanation', 'submissions']
+        fields = ['id', 'slug', 'title', 'points', 'penalty', 'point_loss', 'problem_statement', 'input_statement', 'output_statement', 'contraints', 'example_input', 'example_output', 'example_explanation', 'submissions']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
