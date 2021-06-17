@@ -19,7 +19,7 @@ class Submission_List_Serializer(serializers.HyperlinkedModelSerializer):
     problem = Problem_List_Serializer()
     class Meta:
         model = Submission
-        fields = ['url', 'user', 'problem', 'datetime']
+        fields = ['url', 'user', 'is_accepted', 'problem', 'datetime']
 
 
 class Submission_Detail_Serializer(serializers.HyperlinkedModelSerializer):
