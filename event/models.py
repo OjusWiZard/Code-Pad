@@ -9,6 +9,7 @@ class Event(models.Model):
     slug        = models.SlugField(max_length=8, unique=True)
     title       = models.CharField(max_length=32)
     description = models.TextField(max_length=1024)
+    rules       = models.TextField(max_length=1024)
     is_contest  = models.BooleanField(default=True, help_text='True if you want Scores and Leaderboard.')
     icon        = models.ImageField(upload_to='event_icons/')
     datetime    = models.DateTimeField(auto_now=False)
