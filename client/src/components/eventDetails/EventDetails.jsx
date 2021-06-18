@@ -9,6 +9,7 @@ import folder from "../../images/eventDetails/folder.svg";
 import { getEvent } from "../../api/index";
 import frame from "../../images/eventDetails/frame-details.svg";
 import { useParams, Redirect, Link } from "react-router-dom";
+import moment from "moment";
 function EventDetails() {
   const params = useParams();
   const [event, setEvent] = useState({});
@@ -116,7 +117,7 @@ function EventDetails() {
                                 <br />
                                 <img src={heart} alt="heart" />{" "}
                                 <img src={heart} alt="heart" /> <br />
-                                END ON 10 JAN 00
+                                {moment(event?.datetime).format("MMMM Do YYYY")}
                               </div>
                             </div>
                           </div>
