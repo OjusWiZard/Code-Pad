@@ -62,7 +62,7 @@ class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event
-        exclude = ['description', 'is_contest', 'leaderboard']
+        exclude = ['description', 'rules', 'is_contest', 'leaderboard']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
@@ -84,7 +84,7 @@ class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event
-        fields = ['title', 'description', 'is_contest', 'icon', 'status', 'datetime', 'duration', 'problem_set', 'leaderboard_of_this_event']
+        fields = ['title', 'description', 'rules', 'is_contest', 'icon', 'status', 'datetime', 'duration', 'problem_set', 'leaderboard_of_this_event']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
