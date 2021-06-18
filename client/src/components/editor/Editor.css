@@ -39,6 +39,7 @@ button[type="submit"] {
 div.react-codemirror2.code-mirror-wrapper > div {
   border: 1px solid #405c6b;
   background: #000000;
+  /* height: 500px; */
 }
 div.CodeMirror-gutters > div {
   background: #000000;

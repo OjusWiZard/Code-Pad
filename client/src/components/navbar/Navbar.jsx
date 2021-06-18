@@ -5,6 +5,7 @@ import { Link, NavLink, useLocation, useHistory } from "react-router-dom";
 import toggle from "../../images/common/toggle.svg";
 import logo from "../../images/home/logo.svg";
 import { signOut } from "../../api";
+import navItem from "../../images/common/nav-item.svg";
 
 function Navbar() {
   const location = useLocation();

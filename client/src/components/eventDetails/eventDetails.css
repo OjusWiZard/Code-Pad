@@ -63,6 +63,10 @@ li {
 .user-data {
   border: 1px solid #405c6b;
 }
+.event-icon{
+  height: 60px;
+  width: 60px;
+}
 @media (max-width: 768px) {
   .mainContainer {
     flex-direction: column;
