@@ -204,7 +204,34 @@ select:-webkit-autofill {
   .content-background {
     padding-top: 5rem !important;
     height: auto;
-    background: url("../src/images/common/lines.svg"), linear-gradient( 130deg, transparent 0, transparent 100%) !important;
+    background: url("../src/images/common/lines.svg"),
+      linear-gradient(130deg, transparent 0, transparent 100%) !important;
     border: none !important;
   }
+}
+
+.problem-wrapper {
+  width: 85%;
+  margin: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none !important;
+}
+a.text-center.p-3.nav-item.font-blue.font-16.font-vcr {
+  position: relative;
+}
+
+a.text-center.p-3.nav-item.font-blue.font-16.font-vcr::before {
+  content: "";
+  width: 100%;
+  z-index: 0;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  background: inherit;
+  transform: translateX(95%);
+  top: 50%;
 }
