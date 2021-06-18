@@ -11,6 +11,8 @@
     "bootstrap": "^4.5.3",
     "codemirror": "^5.59.0",
     "cors": "^2.8.5",
+    "moment": "^2.29.1",
+    "re-resizable": "^6.9.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-codemirror2": "^7.2.1",

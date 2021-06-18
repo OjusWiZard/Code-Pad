@@ -11,7 +11,7 @@ export function ModalProvider({ children }) {
     console.log(e);
     setState((prevState) => ({
       ...prevState,
-      errorMessage:Object.assign({}, e),
+      errorMessage: Object.assign({}, e),
     }));
   };
   const closeModal = () => {

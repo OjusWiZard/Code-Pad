@@ -26,7 +26,7 @@ function Home() {
         <div className="main-background">
           <div className="container pt-sm-5">
             <div className="row d-flex justify-content-center">
-              <div className="col-lg-8 col-md-10 col-sm-11 col-11 mx-auto my-md-5 my-2 content-background px-lg-5 py-sm-3">
+              <div className="col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-md-5 my-2 content-background px-lg-5 py-sm-3">
                 <div>
                   <div className="d-flex justify-content-center pt-md-5">
                     <img src={logo} alt="Codepad" className="img-fluid" />

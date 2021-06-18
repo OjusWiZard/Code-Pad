@@ -7,10 +7,10 @@
 
 .nav-item {
   margin-top: 1rem;
-  padding: 10px 30px !important;
-  background: #131c20;
-  border-right: #405c6b 2px solid;
-  border-left: #405c6b 2px solid;
+  padding: 7px 30px !important;
+  background: url(../../images/common/nav-item.svg);
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
 }
 .nav-item:hover {
   color: #131c20;
