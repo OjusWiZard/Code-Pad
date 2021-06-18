@@ -94,3 +94,14 @@ export const getEvent = async (slug) => {
     console.log(error);
   }
 };
+
+
+export const getProblem = async (slug) => {
+  try {
+    const { data } = await API.get(`/problems/${slug}`);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

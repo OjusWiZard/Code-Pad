@@ -12,19 +12,26 @@ import "./signup.css";
 
 function SignUp() {
   const { openModal, errorMessage } = useContext(ModalContext);
-  // const [a, seta] = useState(0);
+  const [arrFields, setarrFields] = useState({
+    username: "abc",
+    admission_no: "abc",
+    full_name: "abc",
+    contact_no: "abc",
+    avatar: "abc",
+    email: "abc",
+    password: "abc",
+    re_password: "abc",
+  });
   let a = 0;
   const history = useHistory();
-  const arrFields = [
-    "username",
-    "admission_no",
-    "full_name",
-    "email",
-    "avatar",
-    "password",
-    "contact_no",
-    "re_password",
-  ];
+  
+  for (const property in errorMessage) {
+    console.log(`${property}: ${errorMessage[property]}`);
+    setarrFields({ ...arrFields, property: errorMessage[property][0] });
+
+    // console.log(arrFields);
+  }
+  console.log(arrFields);
   const initialState = {
     username: "",
     admission_no: "",
@@ -106,32 +113,34 @@ function SignUp() {
                   />
                 </div>
                 <form action="" className="mt-5 px-lg-5 mx-lg-5 px-3">
-                  {arrFields.map((field) => (
-                    <div className="mt-3">
-                      <div className="input-group">
-                        <div className="pixel-input-wrapper">
-                          <span></span>
-                          <div className="pixel-input w-100">
-                            <input
-                              required
-                              onChange={handleChange}
-                              name={field}
-                              value={formData.field}
-                              type="text"
-                              className="font-vcr font-blue"
-                              placeholder={field}
-                            />
+                  {/* {Object.keys(arrFields).map(
+                    (field) =>
+                      field != "avatar" && (
+                        <div className="mt-3">
+                          <div className="input-group">
+                            <div className="pixel-input-wrapper">
+                              <span></span>
+                              <div className="pixel-input w-100">
+                                <input
+                                  required
+                                  onChange={handleChange}
+                                  name={field}
+                                  value={formData.field}
+                                  type="text"
+                                  className="font-vcr font-blue"
+                                  placeholder={field}
+                                />
+                              </div>
+                            </div>
                           </div>
+                          <div
+                            id="error"
+                            className="font-vcr font-14 pl-3 text-muted"
+                          ></div>
                         </div>
-                      </div>
-                      {Object.keys(errorMessage)[a++] === field && (
-                        <div className="font-vcr font-14 pl-3 text-muted">
-                          {Object.values(errorMessage)[a++]}
-                          {/* {seta((prevState) => prevState + 1)} */}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                      )
+                  )} */}
+
                   <div
                     className="mt-5 text-center button-hover"
                     onClick={(e) => {
