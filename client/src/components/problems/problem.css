@@ -6,3 +6,36 @@
   background: url("../../images/problems/timerBG.svg") no-repeat;
   background-size: cover;
 }
+.leadeboard-leads {
+  color: #7a8589;
+  padding: 18px 28px;
+  background-color: #000000;
+}
+
+.leaderboard-bg {
+  text-align: center;
+  align-items: center;
+  background-color: #000a0f;
+  padding: 22px 32px;
+}
+.user-image {
+  text-align: center;
+  height: 30px;
+  width: 30px;
+  flex: 0.1;
+}
+.user-name {
+  color: #7a8589;
+  flex: 0.9;
+}
+.user-info {
+  color: #7a8589;
+  max-width: 50%;
+}
+.user-data {
+  color: #7a8589;
+}
+.event-icon {
+  height: 60px;
+  width: 60px;
+}

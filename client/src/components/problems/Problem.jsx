@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../../images/home/logo.svg";
 import line from "../../images/home/line.svg";
 import button from "../../images/home/button.svg";
+import avatar1 from "../../images/auth/frog.svg";
 import runCode from "../../images/problems/runCode.svg";
 import submitCode from "../../images/problems/submitCode.svg";
 import { Link } from "react-router-dom";
@@ -46,8 +47,8 @@ function Problem() {
           <div className="problem-wrapper pt-sm-5">
             <div className="row d-flex justify-content-center">
               <div className="col-xl-12 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-md-5 my-2 content-background">
-                <div className="row">
-                  <div className="col-lg-5 col-md-12 col-sm-12 col-12 pt-md-5">
+                <div className="row pt-3">
+                  <div className="col-lg-5 col-md-12 col-sm-12 col-12 pt-md-5 py-2">
                     {/* <Resizable
                       defaultSize={{
                         width: 500,
@@ -67,6 +68,7 @@ function Problem() {
                       sint occaecat cupidatat non proident, sunt in culpa qui
                       officia deserunt mollit anim id est laborum.
                     </p>
+                    <hr color="blue" />
                     <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -87,6 +89,87 @@ function Problem() {
                       sint occaecat cupidatat non proident, sunt in culpa qui
                       officia deserunt mollit anim id est laborum.
                     </p>
+
+                    <div
+                      className=" font-vcr font-18 mt-3"
+                      style={{ color: "#7a8589" }}
+                    >
+                      Recent Submissions
+                    </div>
+                    <div
+                      className=" d-flex mt-3"
+                      style={{
+                        flexDirection: "column",
+                        border: "1px solid #405C6B",
+                      }}
+                    >
+                      <div
+                        className=" d-flex leadeboard-leads justify-content-around"
+                        style={{
+                          textAlign: "center",
+                          border: "1px solid #405C6B",
+                        }}
+                      >
+                        <span style={{ flex: 0.2 }}></span>
+                        <span style={{ flex: 0.4 }}>Name</span>
+                        <span style={{ flex: 0.4 }}>Score</span>
+                      </div>
+                      <div className="user-data d-flex justify-content-around leaderboard-bg">
+                        <span style={{ flex: 0.2 }}>
+                          <img
+                            src={avatar1}
+                            className="user-image"
+                            alt="avatar"
+                          />
+                        </span>
+                        <div
+                          style={{ flex: 0.4 }}
+                          className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                        >
+                          <span className="user-name">Test User</span>
+                        </div>
+                        <span className="user-score" style={{ flex: 0.4 }}>
+                          69
+                        </span>
+                      </div>
+                      <div className="user-data d-flex justify-content-around leaderboard-bg">
+                        <span style={{ flex: 0.2 }}>
+                          <img
+                            src={avatar1}
+                            className="user-image"
+                            alt="avatar"
+                          />
+                        </span>
+                        <div
+                          style={{ flex: 0.4 }}
+                          className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                        >
+                          <span className="user-name">Test User</span>
+                        </div>
+                        <span className="user-score" style={{ flex: 0.4 }}>
+                          69
+                        </span>
+                      </div>{" "}
+                      <div className="user-data d-flex justify-content-around leaderboard-bg">
+                        <span style={{ flex: 0.2 }}>
+                          <img
+                            src={avatar1}
+                            className="user-image"
+                            alt="avatar"
+                          />
+                        </span>
+                        <div
+                          style={{ flex: 0.4 }}
+                          className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                        >
+                          <span className="user-name">Test User</span>
+                        </div>
+                        <span className="user-score" style={{ flex: 0.4 }}>
+                          69
+                        </span>
+                      </div>
+                    </div>
+
                     {/* </Resizable> */}
                   </div>
                   <div className="col-lg-7 col-md-12 col-sm-12 col-12 pt-md-5">
