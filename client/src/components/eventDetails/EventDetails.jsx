@@ -7,7 +7,6 @@ import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
 import { getEvent } from "../../api/index";
-import frame from "../../images/eventDetails/frame-details.svg";
 import { useParams, Redirect, Link } from "react-router-dom";
 import moment from "moment";
 function EventDetails() {

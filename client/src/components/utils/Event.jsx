@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 function Event({ event }) {
   return (
@@ -14,7 +15,9 @@ function Event({ event }) {
           <img src={event.icon} alt="" className="img-fluid frame p-3" />
           <div className="text-center pt-3">
             <span className="font-vcr font-blue">{event.title}</span>
-            <p className="date pt-1 pb-4 font-robot">{event.datetime}</p>
+            <p className="date pt-1 pb-4 font-robot">
+              {moment(event?.datetime).format("MMMM Do YYYY")}
+            </p>
           </div>
         </div>
       </Link>

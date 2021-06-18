@@ -24,7 +24,7 @@ function SignUp() {
   });
   let a = 0;
   const history = useHistory();
-  
+
   for (const property in errorMessage) {
     console.log(`${property}: ${errorMessage[property]}`);
     setarrFields({ ...arrFields, property: errorMessage[property][0] });
@@ -113,7 +113,7 @@ function SignUp() {
                   />
                 </div>
                 <form action="" className="mt-5 px-lg-5 mx-lg-5 px-3">
-                  {/* {Object.keys(arrFields).map(
+                  {Object.keys(arrFields).map(
                     (field) =>
                       field != "avatar" && (
                         <div className="mt-3">
@@ -139,7 +139,7 @@ function SignUp() {
                           ></div>
                         </div>
                       )
-                  )} */}
+                  )}
 
                   <div
                     className="mt-5 text-center button-hover"

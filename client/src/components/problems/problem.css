@@ -1,0 +1,8 @@
+.lower-section {
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.timer {
+  background: url("../../images/problems/timerBG.svg") no-repeat;
+  background-size: cover;
+}
