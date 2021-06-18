@@ -8,7 +8,7 @@ import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
 import { getEvent } from "../../api/index";
 import frame from "../../images/eventDetails/frame-details.svg";
-import { useParams, Redirect, Link} from "react-router-dom";
+import { useParams, Redirect, Link } from "react-router-dom";
 function EventDetails() {
   const params = useParams();
   const [event, setEvent] = useState({});
@@ -82,7 +82,8 @@ function EventDetails() {
                             removeClass(e);
                             e.target.classList.add("active");
                           }}
-                        ># leaderboard
+                        >
+                          # leaderboard
                         </li>
                         <li
                           onClick={(e) => {
@@ -102,7 +103,11 @@ function EventDetails() {
                       {active === "about" && (
                         <div className="about__section m-2">
                           <div className="about__header d-flex align-items-center">
-                            <img src={event?.icon} alt="frame" className="event-icon" />
+                            <img
+                              src={event?.icon}
+                              alt="frame"
+                              className="event-icon"
+                            />
                             <div className="about__header__content">
                               <div className="mx-3">
                                 <span className="font-blue font-vcr font-18">
@@ -116,7 +121,7 @@ function EventDetails() {
                             </div>
                           </div>
                           <div className="about__content mt-3">
-                           {event?.description}
+                            {event?.description}
                           </div>
                         </div>
                       )}
@@ -129,30 +134,37 @@ function EventDetails() {
                             className=" d-flex mt-3"
                             style={{ flexDirection: "column" }}
                           >
-                            <div
-                              className=" d-flex leadeboard-leads justify-content-between"
-                              
-                            >
+                            <div className=" d-flex leadeboard-leads justify-content-between">
                               <span>Name</span>
                               <span>Q.Code</span>
                               <span>Points</span>
                             </div>
-                            {event?.problem_set.map(problem => (
-                      <Link to={`/problems/${problem.slug}`}>
-<div className="user-data d-flex justify-content-between leaderboard-bg">
- 
-                              <div className="user-rank font-blue font-vcr" style={{flex: 0.4, textAlign:'left'}}>
-                              {problem.title} 
-                              </div>
-                              <div className="user-info px-lg-3 mx-auto">
-                                <span className="user-name" style={{flex:0.4}}>{problem.slug}</span>
-                              </div>
-                              <div className="user-score" style={{flex: 0.2}}>{problem.points}</div>
-                             
-                            </div>
-                             </Link>
+                            {event?.problem_set?.map((problem) => (
+                              <Link to={`/problems/${problem.slug}`}>
+                                <div className="user-data d-flex justify-content-between leaderboard-bg">
+                                  <div
+                                    className="user-rank font-blue font-vcr"
+                                    style={{ flex: 0.4, textAlign: "left" }}
+                                  >
+                                    {problem.title}
+                                  </div>
+                                  <div className="user-info px-lg-3 mx-auto">
+                                    <span
+                                      className="user-name"
+                                      style={{ flex: 0.4 }}
+                                    >
+                                      {problem.slug}
+                                    </span>
+                                  </div>
+                                  <div
+                                    className="user-score"
+                                    style={{ flex: 0.2 }}
+                                  >
+                                    {problem.points}
+                                  </div>
+                                </div>
+                              </Link>
                             ))}
-                            
                           </div>
                         </>
                       )}
@@ -173,31 +185,37 @@ function EventDetails() {
                               <span style={{ flex: 0.6 }}>Name</span>
                               <span style={{ flex: 0.2 }}>Score</span>
                             </div>
-                            {event?.leaderboard_of_this_event.map((person,index) => (
+                            {event?.leaderboard_of_this_event?.map(
+                              (person, index) => (
                                 <div className="user-data d-flex justify-content-around leaderboard-bg">
-                              <span className="user-rank" style={{ flex: 0.2 }}>
-                                {index+1}
-                              </span>
-                              <div
-                                style={{ flex: 0.6 }}
-                                className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
-                              >
-                                <img
-                                  src={avatar1}
-                                  className="user-image"
-                                  alt="avatar"
-                                />
-                                <span className="user-name">{person?.user?.username}</span>
-                              </div>
-                              <span
-                                className="user-score"
-                                style={{ flex: 0.2 }}
-                              >
-                               {person?.score}
-                              </span>
-                            </div>
-                            ))}
-                            
+                                  <span
+                                    className="user-rank"
+                                    style={{ flex: 0.2 }}
+                                  >
+                                    {index + 1}
+                                  </span>
+                                  <div
+                                    style={{ flex: 0.6 }}
+                                    className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                                  >
+                                    <img
+                                      src={avatar1}
+                                      className="user-image"
+                                      alt="avatar"
+                                    />
+                                    <span className="user-name">
+                                      {person?.user?.username}
+                                    </span>
+                                  </div>
+                                  <span
+                                    className="user-score"
+                                    style={{ flex: 0.2 }}
+                                  >
+                                    {person?.score}
+                                  </span>
+                                </div>
+                              )
+                            )}
                           </div>
                         </>
                       )}
