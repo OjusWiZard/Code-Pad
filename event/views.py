@@ -2,19 +2,21 @@ from os import environ
 from django.db.models import F
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
-from .models import Event, Problem, Submission, Leaderboard
-from .serializers import Event_List_Serializer, Event_Details_Serializer, Problem_List_Serializer, Problem_Detail_Serializer, Submission_Detail_Serializer, Submission_List_Serializer
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from judge0api.client import Client
 from judge0api.submission import submit
+from .paginations import Pagination_Size10
+from .models import Event, Problem, Submission, Leaderboard
+from .serializers import Event_List_Serializer, Event_Details_Serializer, Problem_List_Serializer, Problem_Detail_Serializer, Submission_Detail_Serializer, Submission_List_Serializer
 
 
 class Submission_Viewset(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Submission.objects.all().order_by('-datetime')
+    pagination_class = Pagination_Size10
     
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -90,6 +92,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
 class Problem_Viewset(ReadOnlyModelViewSet):
     queryset = Problem.objects.filter(event__datetime__lt=timezone.now()).order_by('-event__datetime')
     lookup_field = 'slug'
+    pagination_class = Pagination_Size10
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
