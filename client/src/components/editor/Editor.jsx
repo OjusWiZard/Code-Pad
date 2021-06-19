@@ -1,4 +1,3 @@
-import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/lib/codemirror.css";
 import Editor1 from "@monaco-editor/react";
 import React from "react";
@@ -9,7 +8,6 @@ const Editor = ({ language, value, onChange, inputChange, input }) => {
   // };
   return (
     <React.Fragment>
-      <hr />
       <Editor1
         className="code-mirror-wrapper"
         defaultLanguage="c"
@@ -19,16 +17,12 @@ const Editor = ({ language, value, onChange, inputChange, input }) => {
           acceptSuggestionOnCommitCharacter: "true",
           acceptSuggestionOnEnter: "on",
           accessibilitySupport: "auto",
-          autoIndent: "true",
           automaticLayout: "true",
-          codeLens: "true",
           colorDecorators: "true",
           contextmenu: "true",
           cursorBlinking: "blink",
           cursorSmoothCaretAnimation: "true",
           cursorStyle: "line",
-          disableLayerHinting: "true",
-          disableMonospaceOptimizations: "true",
           dragAndDrop: "true",
           fixedOverflowWidgets: "true",
           folding: "true",
@@ -38,8 +32,6 @@ const Editor = ({ language, value, onChange, inputChange, input }) => {
           formatOnType: "true",
           hideCursorInOverviewRuler: "true",
           highlightActiveIndentGuide: "true",
-          links: "false",
-          mouseWheelZoom: "false",
           multiCursorMergeOverlapping: "true",
           multiCursorModifier: "alt",
           overviewRulerBorder: "true",
