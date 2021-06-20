@@ -33,14 +33,14 @@ class Submission_Viewset(ReadOnlyModelViewSet):
             except:
                 raise ValidationError(key + ' not found in the form data')
 
-        problem = get_object_or_404(Problem, id=get_submission_data('problem_id'))
+        problem = get_object_or_404(Problem, slug=get_submission_data('problem_slug'))
         language_id = int(get_submission_data('language_id'))
         submitted_solution = str(get_submission_data('solution')).encode('ascii')
         testcases_input_file = problem.solution_input.open(mode='r')
-        testcases_input = str(testcases_input_file.read()).encode('ascii')
+        testcases_input = str(testcases_input_file.read().decode()).encode('ascii')
         testcases_input_file.close()
         testcases_output_file = problem.solution_output.open(mode='r')
-        testcases_output = str(testcases_output_file.read()).encode('ascii')
+        testcases_output = str(testcases_output_file.read().decode()).encode('ascii')
         testcases_output_file.close()
 
         def time_limit(lang_id):
