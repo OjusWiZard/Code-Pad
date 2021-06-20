@@ -34,6 +34,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',os.environ['SERVER_HOST']]
 
+DOMAIN = os.environ['FRONTEND_HOST']
+
+SITE_NAME = 'CodePad'
+
 
 # Application definition
 
@@ -62,11 +66,13 @@ REST_FRAMEWORK = {
 }
 
 DJOSER = {
-    'LOGIN_FIELD': 'email',
-    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': 'i/have/bad/memory/username/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': 'i/have/bad/memory/password/{uid}/{token}',
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
     'USER_CREATE_PASSWORD_RETYPE': True,
     'SET_PASSWORD_RETYPE': True,
+    'LOGIN_FIELD': 'email',
     'TOKEN_MODEL': None
 }
 
@@ -170,6 +176,7 @@ STATIC_URL = '/static/'
 
 
 # If Cloudinary credentials are present in the environment
+
 envvars = os.environ.keys()
 if 'MEDIA_CLOUD_NAME' in envvars and 'MEDIA_API_KEY' in envvars and 'MEDIA_API_SECRET' in envvars:
     CLOUDINARY_STORAGE = {
@@ -181,3 +188,13 @@ if 'MEDIA_CLOUD_NAME' in envvars and 'MEDIA_API_KEY' in envvars and 'MEDIA_API_S
 else:
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
+
+
+# Email Settings
+
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
