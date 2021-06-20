@@ -7,7 +7,7 @@ import { ModalContext } from "../../../context/context";
 import "./login.css";
 
 function Login() {
-  const { openModal } = useContext(ModalContext);
+  const { openModal, formMessage } = useContext(ModalContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
     email: "",
@@ -18,7 +18,7 @@ function Login() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signIn(formData, history, openModal);
+    await signIn(formData, history, formMessage, openModal);
   };
   return (
     <React.Fragment>
