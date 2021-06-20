@@ -36,7 +36,7 @@ button[type="submit"] {
 .output {
   background-color: black;
 }
-div.react-codemirror2.code-mirror-wrapper > div {
+.code-mirror-wrapper > div {
   border: 1px solid #405c6b;
   background: #000000;
   /* height: 500px; */
