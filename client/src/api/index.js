@@ -19,16 +19,18 @@ const config = {
   },
 };
 
-export const signUp = async (formData, history, openModal) => {
+export const signUp = async (formData, history, formMessage, openModal) => {
   try {
     await API.post(`/accounts/users/`, formData, config);
+    openModal("You are signed in");
+    <Modal />
     history.push("/login");
   } catch (error) {
-    await openModal(error.response.data);
+    await formMessage(error?.response?.data);
   }
 };
 
-export const signIn = async (formData, history, openModal) => {
+export const signIn = async (formData, history, formMessage, openModal) => {
   try {
     const { data } = await API.post(
       `/accounts/jwt/create`,
@@ -37,10 +39,12 @@ export const signIn = async (formData, history, openModal) => {
     );
     localStorage.setItem("accessToken", data.access);
     localStorage.setItem("refreshToken", data.refresh);
+    openModal("You are logged in");
+    <Modal />
     history.push("/");
     userInfo();
   } catch (error) {
-    await openModal(error.response.data);
+    await formMessage(error.response.data);
   }
 };
 

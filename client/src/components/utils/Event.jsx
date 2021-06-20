@@ -4,7 +4,7 @@ import moment from "moment";
 
 function Event({ event }) {
   return (
-    <div className="col-lg-4 col-md-4 col-sm-12 col-12 ">
+    <div className="col-lg-4 col-md-3 col-sm-12 col-12 ">
       <Link
         key={event.url}
         to={`/events/${event.slug}`}
@@ -12,7 +12,7 @@ function Event({ event }) {
       >
         {console.log(event)}
         <div className="text-center">
-          <img src={event.icon} alt="" className="img-fluid frame p-3" />
+          <img src={event.icon} alt="" className="img-fluid frame p-2" />
           <div className="text-center pt-3">
             <span className="font-vcr font-blue">{event.title}</span>
             <p className="date pt-1 pb-4 font-robot">
