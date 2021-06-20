@@ -29,7 +29,7 @@ function EventDetails() {
   const removeClass = (e) => {
     document
       .querySelectorAll("li")
-      .forEach((link) => link.classList.remove("active"));
+      .forEach((link) => link.classList.remove("active-event"));
   };
   console.log(event);
   return (
@@ -58,11 +58,11 @@ function EventDetails() {
                           </span>
                         </div>
                         <li
-                          className="active"
+                          className="active-event"
                           onClick={(e) => {
                             setActive("about");
                             removeClass(e);
-                            e.target.classList.add("active");
+                            e.target.classList.add("active-event");
                           }}
                         >
                           # about
@@ -71,7 +71,7 @@ function EventDetails() {
                           onClick={(e) => {
                             setActive("rules");
                             removeClass(e);
-                            e.target.classList.add("active");
+                            e.target.classList.add("active-event");
                           }}
                         >
                           # rules
@@ -80,7 +80,7 @@ function EventDetails() {
                           onClick={(e) => {
                             setActive("leaderboard");
                             removeClass(e);
-                            e.target.classList.add("active");
+                            e.target.classList.add("active-event");
                           }}
                         >
                           # leaderboard
@@ -89,7 +89,7 @@ function EventDetails() {
                           onClick={(e) => {
                             setActive("problems");
                             removeClass(e);
-                            e.target.classList.add("active");
+                            e.target.classList.add("active-event");
                           }}
                         >
                           # problems

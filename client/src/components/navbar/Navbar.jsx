@@ -27,14 +27,14 @@ function Navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-xl">
-        <NavLink className="navbar-brand" exact to="/">
+        <Link to="/" className="navbar-brand">
           <img
             src={logo}
             alt="Code-pad"
             className="img-fluid mx-0 px-0"
             width="120px"
           />
-        </NavLink>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -55,10 +55,14 @@ function Navbar() {
               <i className="fas fa-times-circle fa-2x text-white float-right mb-4"></i>
             </div>
             <Link to="/">
-              <div className="mt-3 font-vcr font-blue font-25 px-3">HOME</div>
+              <div className="mt-3 font-vcr font-blue font-25 px-3 line">
+                HOME
+              </div>
             </Link>
             <Link to="/events">
-              <div className="mt-3 font-vcr font-blue font-25 px-3">EVENTS</div>
+              <div className="mt-3 font-vcr font-blue font-25 px-3 line">
+                EVENTS
+              </div>
             </Link>
             {token ? (
               <>
@@ -98,7 +102,7 @@ function Navbar() {
               className="mr-5"
             >
               <NavLink
-                className="p-3 text-center p-3 font-16 font-vcr font-blue nav-item"
+                className="p-3 text-center p-3 font-16 font-vcr font-blue line nav-item"
                 exact
                 to="/"
               >
@@ -111,7 +115,7 @@ function Navbar() {
               className="mx-5"
             >
               <NavLink
-                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                className="text-center p-3 nav-item font-blue font-16 font-vcr line"
                 exact
                 to="/events"
               >
@@ -125,7 +129,7 @@ function Navbar() {
                 className="mx-5"
               >
                 <NavLink
-                  className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                  className="text-center p-3 nav-item font-blue font-16 font-vcr line"
                   exact
                   to="/profile"
                 >
@@ -139,7 +143,7 @@ function Navbar() {
                 className="mx-5"
               >
                 <NavLink
-                  className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                  className="text-center p-3 nav-item font-blue font-16 font-vcr line"
                   exact
                   to="/signup"
                 >
