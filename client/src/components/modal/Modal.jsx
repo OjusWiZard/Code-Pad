@@ -1,10 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ModalContext } from "../../context/context";
 import okay from "../../images/common/okay.svg";
 import "./modal.css";
 
 function Modal() {
-  const { modalOpen, closeModal, message } = useContext(ModalContext);
+  const [heading, setHeading] = useState("Error");
+  const { modalOpen, closeModal, message, modalHeading } =
+    useContext(ModalContext);
+  const messages = [
+    "Hello, sunshine!",
+    "Howdy, partner!",
+    "Hey, howdy, hi!",
+    "What’s kickin’, little chicken?",
+    "Peek-a-boo!",
+    "Howdy-doody!",
+    "Hey there, freshman!",
+    "Hi, mister!",
+    "I come in peace!",
+    "Put that cookie down!",
+    "Ahoy, matey!",
+    "Hiya!",
+    "‘Ello, gov'nor!",
+    "Top of the mornin’ to ya!",
+    "What’s crackin’?",
+    "‘Sup, homeslice?",
+    "This call may be recorded for training purposes.",
+    "Howdy, howdy ,howdy!",
+    "I'm Batman.",
+    "Here's Johnny!",
+    "Yo!",
+    "Whaddup.",
+    "Greetings and salutations!",
+  ];
+  useEffect(() => {
+    if (modalHeading) {
+      const random = Math.floor(Math.random() * 22);
+      console.log(random);
+      setHeading(messages[random]);
+    } else {
+      setHeading("Error");
+    }
+  }, [modalOpen]);
   if (!modalOpen) {
     return null;
   } else {
@@ -15,10 +51,10 @@ function Modal() {
             <div className="row">
               <div
                 id="modal"
-                className="col-8 mx-auto col-md-6 col-lg-4 text-center py-5 px-5"
+                className="col-8 mx-auto col-md-6 col-lg-4 text-center py-5 px-xl-5"
               >
                 <h4 className="font-vcr font-blue mb-4 text-center font-weight-bold">
-                  &lt;&lt;&nbsp;&nbsp;Welcome wizard!&nbsp;&nbsp;&gt;&gt;
+                  &lt;&lt;&nbsp;{heading}&nbsp;&gt;&gt;
                 </h4>
                 <p className="font-blue font-vcr">{message}</p>
 
