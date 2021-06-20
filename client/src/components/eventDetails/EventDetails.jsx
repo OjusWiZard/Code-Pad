@@ -3,6 +3,9 @@ import pointerLeft from "../../images/eventDetails/pointer-left.svg";
 import dash from "../../images/eventDetails/dash.svg";
 import "./eventDetails.css";
 import avatar1 from "../../images/auth/frog.svg";
+import avatar2 from "../../images/auth/mario.svg";
+import avatar3 from "../../images/auth/peach.svg";
+import avatar4 from "../../images/auth/pacman.svg";
 import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
@@ -12,6 +15,12 @@ import moment from "moment";
 function EventDetails() {
   const params = useParams();
   const [event, setEvent] = useState({});
+  const avatarData = {
+    1: avatar1,
+    2: avatar2,
+    3: avatar3,
+    4: avatar4,
+  };
   useEffect(() => {
     getEvent(params.slug)
       .then((data) => {
@@ -139,8 +148,11 @@ function EventDetails() {
                               <span>Q.Code</span>
                               <span>Points</span>
                             </div>
-                            {event?.problem_set?.map((problem) => (
-                              <Link to={`/problems/${problem.slug}`}>
+                            {event?.problem_set?.map((problem, index) => (
+                              <Link
+                                key={index}
+                                to={`/problems/${problem.slug}`}
+                              >
                                 <div className="user-data d-flex justify-content-between leaderboard-bg">
                                   <div
                                     className="user-rank font-blue font-vcr"
@@ -187,7 +199,10 @@ function EventDetails() {
                             </div>
                             {event?.leaderboard_of_this_event?.map(
                               (person, index) => (
-                                <div className="user-data d-flex justify-content-around leaderboard-bg">
+                                <div
+                                  key={index}
+                                  className="user-data d-flex justify-content-around leaderboard-bg"
+                                >
                                   <span
                                     className="user-rank"
                                     style={{ flex: 0.2 }}
@@ -199,7 +214,7 @@ function EventDetails() {
                                     className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
                                   >
                                     <img
-                                      src={avatar1}
+                                      src={avatarData[person.user.avatar]}
                                       className="user-image"
                                       alt="avatar"
                                     />

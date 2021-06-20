@@ -4,28 +4,23 @@ import okay from "../../images/common/okay.svg";
 import "./modal.css";
 
 function Modal() {
-  const { modalOpen, closeModal, errorMessage } = useContext(ModalContext);
+  const { modalOpen, closeModal, message } = useContext(ModalContext);
   if (!modalOpen) {
     return null;
   } else {
     return (
       <>
         <div className="modal-container">
-          {console.log(errorMessage)}
           <div className="container">
             <div className="row">
               <div
                 id="modal"
-                className="col-8 mx-auto col-md-6 col-lg-4 text-center py-5 Spx-3"
+                className="col-8 mx-auto col-md-6 col-lg-4 text-center py-5 px-5"
               >
                 <h4 className="font-vcr font-blue mb-4 text-center font-weight-bold">
-                  &lt;&lt;&nbsp;&nbsp;ERROR&nbsp;&nbsp;&gt;&gt;
+                  &lt;&lt;&nbsp;&nbsp;Welcome wizard!&nbsp;&nbsp;&gt;&gt;
                 </h4>
-                <p className="font-blue font-robot">
-                   {errorMessage.map((err) => (                    
-                    <div>{err}</div>
-                  ))}
-                </p>
+                <p className="font-blue font-vcr">{message}</p>
 
                 <div
                   onClick={() => closeModal()}

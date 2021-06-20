@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import button from "../../images/home/button.svg";
 import avatar1 from "../../images/auth/frog.svg";
+import avatar2 from "../../images/auth/mario.svg";
+import avatar3 from "../../images/auth/peach.svg";
+import avatar4 from "../../images/auth/pacman.svg";
 import runCode from "../../images/problems/runCode.svg";
 import submitCode from "../../images/problems/submitCode.svg";
 import { Link } from "react-router-dom";
@@ -19,6 +22,12 @@ function Problem() {
   const [output, setOutput] = useState("");
   const [language, setLanguage] = useState("cpp");
   const [languageId, setLanguageId] = useState(54);
+  const avatarData = {
+    1: avatar1,
+    2: avatar2,
+    3: avatar3,
+    4: avatar4,
+  };
   const langData = [
     { id: 54, name: "CPP" },
     { id: 50, name: "C" },
@@ -85,10 +94,11 @@ function Problem() {
       .then((data) => {
         setProblem(data);
         setLoading(false);
+        console.log(data);
       })
       .catch((error) => console.log(error.message));
   }, []);
-
+  const submissionArray = problem?.submissions?.splice(0, 5);
   return (
     <React.Fragment>
       {loading ? (
@@ -122,7 +132,7 @@ function Problem() {
                       Duis aute irure dolor in reprehenderit in voluptate velit
                       esse cillum dolore eu fugiat nulla pariatur. Excepteur
                       sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
+                      officia deavatarserunt mollit anim id est laborum.
                     </p>
                     <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -159,60 +169,31 @@ function Problem() {
                         <span style={{ flex: 0.4 }}>Name</span>
                         <span style={{ flex: 0.4 }}>Score</span>
                       </div>
-                      <div className="user-data d-flex justify-content-around leaderboard-bg">
-                        <span style={{ flex: 0.2 }}>
-                          <img
-                            src={avatar1}
-                            className="user-image"
-                            alt="avatar"
-                          />
-                        </span>
+                      {submissionArray?.map((submission, index) => (
                         <div
-                          style={{ flex: 0.4 }}
-                          className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                          key={index}
+                          className="user-data d-flex justify-content-around leaderboard-bg"
                         >
-                          <span className="user-name">Test User</span>
+                          <span style={{ flex: 0.2 }}>
+                            <img
+                              src={avatarData[submission.user.avatar]}
+                              className="user-image"
+                              alt="avatar"
+                            />
+                          </span>
+                          <div
+                            style={{ flex: 0.4 }}
+                            className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                          >
+                            <span className="user-name">
+                              {submission.user.username}
+                            </span>
+                          </div>
+                          <span className="user-score" style={{ flex: 0.4 }}>
+                            {submission.problem.points}
+                          </span>
                         </div>
-                        <span className="user-score" style={{ flex: 0.4 }}>
-                          69
-                        </span>
-                      </div>
-                      <div className="user-data d-flex justify-content-around leaderboard-bg">
-                        <span style={{ flex: 0.2 }}>
-                          <img
-                            src={avatar1}
-                            className="user-image"
-                            alt="avatar"
-                          />
-                        </span>
-                        <div
-                          style={{ flex: 0.4 }}
-                          className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
-                        >
-                          <span className="user-name">Test User</span>
-                        </div>
-                        <span className="user-score" style={{ flex: 0.4 }}>
-                          69
-                        </span>
-                      </div>{" "}
-                      <div className="user-data d-flex justify-content-around leaderboard-bg">
-                        <span style={{ flex: 0.2 }}>
-                          <img
-                            src={avatar1}
-                            className="user-image"
-                            alt="avatar"
-                          />
-                        </span>
-                        <div
-                          style={{ flex: 0.4 }}
-                          className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
-                        >
-                          <span className="user-name">Test User</span>
-                        </div>
-                        <span className="user-score" style={{ flex: 0.4 }}>
-                          69
-                        </span>
-                      </div>
+                      ))}
                     </div>
                   </div>
                   <div className="col-lg-7 col-md-12 col-sm-12 col-12 pt-md-5">
