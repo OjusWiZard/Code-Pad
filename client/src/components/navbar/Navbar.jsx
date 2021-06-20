@@ -5,7 +5,7 @@ import { Link, NavLink, useLocation, useHistory } from "react-router-dom";
 import toggle from "../../images/common/toggle.svg";
 import logo from "../../images/home/logo.svg";
 import { signOut } from "../../api";
-import navItem from "../../images/common/nav-item.svg";
+import close from "../../images/common/close.svg";
 
 function Navbar() {
   const location = useLocation();
@@ -42,51 +42,51 @@ function Navbar() {
           onClick={handleClick}
         >
           <span className="navbar-toggler-icon">
-            <img src={toggle} alt="toggle" />
+            <img src={toggle} alt="toggle"  width="35px" height="35px" />
           </span>
         </button>
-        <div className="search-overlay" id="sidebar">
-          <div className="search-content">
+        <div className="sidebar" id="sidebar">
+          <div className="sidebar-content">
             <div
               className="clearfix"
               onClick={handleClick}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", textAlign: 'right'}}
             >
-              <i className="fas fa-times-circle fa-2x text-white float-right mb-4"></i>
+              <img src={close} alt="close" width="30px" height="30px" />
             </div>
             <Link to="/">
-              <div className="mt-3 font-vcr font-blue font-25 px-3 line">
-                HOME
+              <div className="mt-3 font-vcr font-25 px-3 line home">
+                Home
               </div>
             </Link>
             <Link to="/events">
-              <div className="mt-3 font-vcr font-blue font-25 px-3 line">
-                EVENTS
+              <div className="mt-3 font-vcr font-25 px-3 line">
+                Events
               </div>
             </Link>
             {token ? (
               <>
                 <Link to="/profile">
-                  <div className="mt-3 font-vcr font-blue font-25 px-3">
-                    PROFILE
+                  <div className="mt-3 font-vcr font-25 px-3">
+                    Profile
                   </div>
                 </Link>
                 <div onClick={() => signOut(history)}>
-                  <div className="mt-3 font-vcr font-blue font-25 px-3">
-                    LOGOUT
+                  <div className="mt-3 font-vcr font-25 px-3">
+                    Logout
                   </div>
                 </div>
               </>
             ) : (
               <>
                 <Link to="/signup">
-                  <div className="mt-3 font-vcr font-blue font-25 px-3">
-                    SIGNUP
+                  <div className="mt-3 font-vcr font-25 px-3">
+                    Signup
                   </div>
                 </Link>
                 <Link to="/login">
-                  <div className="mt-3 font-vcr font-blue font-25 px-3">
-                    LOGIN
+                  <div className="mt-3 font-vcr font-25 px-3">
+                    Login
                   </div>
                 </Link>
               </>
@@ -155,10 +155,10 @@ function Navbar() {
             <NavLink
               to="/editor"
               activeClassName="active-nav-item"
-              className="mx-5"
+              className="ml-5"
             >
               <NavLink
-                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                className="text-center p-3 nav-item font-blue font-16 font-vcr editor"
                 exact
                 to="/editor"
               >
@@ -173,7 +173,7 @@ function Navbar() {
               className="mx-3"
             >
               <NavLink
-                className="text-center p-3 nav-item font-blue font-16 font-vcr mt-n2"
+                className="text-center p-3 nav-item font-blue font-16 font-vcr mt-n2 login"
                 exact
                 to="/login"
               >
@@ -183,7 +183,7 @@ function Navbar() {
           ) : (
             <div className="mx-3" style={{ cursor: "pointer" }}>
               <span
-                className="text-center p-3 nav-item font-blue font-16 font-vcr mt-n2"
+                className="text-center p-3 nav-item font-blue font-16 font-vcr mt-n2 login"
                 onClick={() => signOut(history)}
               >
                 LOGOUT

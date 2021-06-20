@@ -1,5 +1,5 @@
 .navbar {
-  background: url("../../images/common/navbar.svg");
+  background-image: url("../../images/common/lines.svg"), linear-gradient( 180deg, #010A0F 60%, transparent 100%);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -22,7 +22,7 @@
   background: var(--primaryColor);
 }
 
-.search-overlay {
+.sidebar {
   display: none;
   position: fixed;
   top: 0px;
@@ -30,20 +30,22 @@
   width: 25vw;
   height: 100%;
   z-index: 1;
-  background-color: #131c20;
+  background-color: #131C20;
+  color: #405C6B;
+  border-left: 2px solid #405C6B;
   animation: all 1s ease;
   display: block;
   padding: 20px;
 }
 
 @media (max-width: 900px) {
-  .search-overlay {
+  .sidebar {
     min-width: 35vw;
   }
 }
 @media (max-width: 500px) {
-  .search-overlay {
-    min-width: 100vw;
+  .sidebar {
+    min-width: 70vw;
     text-align: center;
   }
 }
