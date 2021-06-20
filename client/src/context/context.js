@@ -6,7 +6,7 @@ export function ModalProvider({ children }) {
   const [state, setState] = useState({
     modalOpen: false,
     errorMessage: {},
-    message: ""
+    message: "",
   });
   const formMessage = (e) => {
     setState((prevState) => ({
@@ -33,7 +33,7 @@ export function ModalProvider({ children }) {
         ...state,
         openModal,
         closeModal,
-        formMessage
+        formMessage,
       }}
     >
       {children}

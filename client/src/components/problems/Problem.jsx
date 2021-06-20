@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import button from "../../images/home/button.svg";
 import avatar1 from "../../images/auth/frog.svg";
 import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/peach.svg";
 import avatar4 from "../../images/auth/pacman.svg";
 import runCode from "../../images/problems/runCode.svg";
 import submitCode from "../../images/problems/submitCode.svg";
-import { Link } from "react-router-dom";
-import { codeSubmission, getAllEvents } from "../../api/index";
+import { codeSubmission } from "../../api/index";
 import Spinner from "../utils/Spinner";
-import Event from "../utils/Event";
 import { useParams } from "react-router-dom";
 import Editor from "../editor/Editor";
 import { getProblem } from "../../api/index";
 import "./problem.css";
+
 function Problem() {
   const params = useParams();
   const [value, setValue] = useState("");
@@ -94,7 +92,6 @@ function Problem() {
       .then((data) => {
         setProblem(data);
         setLoading(false);
-        console.log(data);
       })
       .catch((error) => console.log(error.message));
   }, []);

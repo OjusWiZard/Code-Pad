@@ -10,7 +10,6 @@ function Event({ event }) {
         to={`/events/${event.slug}`}
         className="button-hover link mt-3"
       >
-        {console.log(event)}
         <div className="text-center">
           <img src={event.icon} alt="" className="img-fluid frame p-2" />
           <div className="text-center pt-3">

@@ -16,7 +16,6 @@ function EditProfile() {
   });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
   };
   const handleAvatar = (e) => {
     setFormData({ ...formData, avatar: e.target.name });
@@ -129,7 +128,10 @@ function EditProfile() {
                         </div>
                       </div>
                     </div>
-                    <div className="font-italic text-muted font-vcr pl-3" style={{fontSize: '12px'}}>
+                    <div
+                      className="font-italic text-muted font-vcr pl-3"
+                      style={{ fontSize: "12px" }}
+                    >
                       Leave blank if you dont want to change
                     </div>
                   </div>
