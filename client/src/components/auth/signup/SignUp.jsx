@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
@@ -13,31 +14,48 @@ import "./signup.css";
 function SignUp() {
   const { openModal, errorMessage } = useContext(ModalContext);
   const [arrFields, setarrFields] = useState({
-    username: "abc",
-    admission_no: "abc",
-    full_name: "abc",
-    contact_no: "abc",
-    avatar: "abc",
-    email: "abc",
-    password: "abc",
-    re_password: "abc",
+    username: "",
+    admission_no: "",
+    full_name: "",
+    contact_no: "",
+    email: "",
+    password: "",
+    re_password: "",
   });
-  let a = 0;
   const history = useHistory();
 
-  for (const property in errorMessage) {
-    console.log(`${property}: ${errorMessage[property]}`);
-    setarrFields({ ...arrFields, property: errorMessage[property][0] });
+  // useEffect(() => {
+  //   for (const property in errorMessage) {
+  //     for (const arrProperty in arrFields) {
+  //       if (property === arrProperty) {
+  //         setarrFields({
+  //           ...arrFields,
+  //           property: errorMessage[property][0],
+  //         });
+  //         console.log(`${arrProperty}: ${errorMessage[property]}`);
+  //       }
+  //     }
+  //   }
+  // }, [errorMessage]);
 
-    // console.log(arrFields);
-  }
-  console.log(arrFields);
+  // console.log(arrFields);
+  console.log(errorMessage[0]);
+  console.log(arrFields[0]);
+  // for (let i = 0; i < errorMessage.length; i++) {
+  //   for (let j = 0; j < arrFields.length; i++) {
+  //     if (Object.keys(errorMessage).find(key => ) === arrFields[j]) {
+  //       arrFields[j] = errorMessage[j];
+  //     }
+  //   }
+  // }
+
+  // admission_no: ["This field may not be blank."]
+  // Object.keys(object).find((key) => object[key] === value);
   const initialState = {
     username: "",
     admission_no: "",
     full_name: "",
     email: "",
-    avatar: "",
     password: "",
     contact_no: "",
     re_password: "",
@@ -115,7 +133,7 @@ function SignUp() {
                 <form action="" className="mt-5 px-lg-5 mx-lg-5 px-3">
                   {Object.keys(arrFields).map(
                     (field) =>
-                      field != "avatar" && (
+                      field !== "avatar" && (
                         <div className="mt-3">
                           <div className="input-group">
                             <div className="pixel-input-wrapper">
@@ -136,11 +154,12 @@ function SignUp() {
                           <div
                             id="error"
                             className="font-vcr font-14 pl-3 text-muted"
-                          ></div>
+                          >
+                            err
+                          </div>
                         </div>
                       )
                   )}
-
                   <div
                     className="mt-5 text-center button-hover"
                     onClick={(e) => {

@@ -10,57 +10,25 @@ const Editor = ({ language, value, onChange, inputChange, input }) => {
     <React.Fragment>
       <Editor1
         className="code-mirror-wrapper"
-        defaultLanguage="c"
+        language={language}
         theme="vs-dark"
+        value={value}
         height="50vh"
+        onChange={onChange}
         options={{
-          acceptSuggestionOnCommitCharacter: "true",
-          acceptSuggestionOnEnter: "on",
-          accessibilitySupport: "auto",
-          automaticLayout: "true",
+          acceptSuggestionOnEnter: "smart",
+          autoIndent: "advanced",
           colorDecorators: "true",
-          contextmenu: "true",
-          cursorBlinking: "blink",
+          cursorBlinking: "smooth",
           cursorSmoothCaretAnimation: "true",
-          cursorStyle: "line",
           dragAndDrop: "true",
-          fixedOverflowWidgets: "true",
           folding: "true",
-          foldingStrategy: "auto",
-          fontLigatures: "true",
           formatOnPaste: "true",
           formatOnType: "true",
-          hideCursorInOverviewRuler: "true",
-          highlightActiveIndentGuide: "true",
-          multiCursorMergeOverlapping: "true",
-          multiCursorModifier: "alt",
-          overviewRulerBorder: "true",
-          overviewRulerLanes: 2,
-          quickSuggestions: "true",
-          quickSuggestionsDelay: 100,
-          renderControlCharacters: true,
-          renderFinalNewline: "true",
-          renderIndentGuides: "true",
-          renderLineHighlight: "all",
-          renderWhitespace: "none",
-          revealHorizontalRightPadding: 30,
-          roundedSelection: "true",
-          scrollBeyondLastColumn: 5,
-          scrollBeyondLastLine: "true",
-          selectOnLineNumbers: "true",
-          selectionClipboard: "true",
-          selectionHighlight: "true",
-          showFoldingControls: "mouseover",
+          links: "true",
+          renderControlCharacters: "true",
           smoothScrolling: true,
-          suggestOnTriggerCharacters: "true",
-          wordBasedSuggestions: "true",
-          wordWrap: "off",
-          wordWrapBreakAfterCharacters: "\t})]?|&,;",
-          wordWrapBreakBeforeCharacters: "{([+",
-          wordWrapBreakObtrusiveCharacters: ".",
-          wordWrapColumn: 80,
-          wordWrapMinified: "true",
-          wrappingIndent: "none",
+          wrappingIndent: "same",
         }}
       />
     </React.Fragment>

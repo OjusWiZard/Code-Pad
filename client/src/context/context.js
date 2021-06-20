@@ -8,7 +8,6 @@ export function ModalProvider({ children }) {
     errorMessage: {},
   });
   const openModal = (e) => {
-    console.log(e);
     setState((prevState) => ({
       ...prevState,
       errorMessage: Object.assign({}, e),
