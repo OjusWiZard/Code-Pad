@@ -21,7 +21,7 @@ const config = {
 export const signUp = async (formData, history, formMessage, openModal) => {
   try {
     await API.post(`/accounts/users/`, formData, config);
-    openModal("You are signed in");
+    openModal("You are signed in", "Okay");
     <Modal />;
     history.push("/login");
   } catch (error) {
@@ -34,12 +34,13 @@ export const signIn = async (formData, history, formMessage, openModal) => {
     const { data } = await API.post(`/accounts/jwt/create`, formData, config);
     localStorage.setItem("accessToken", data.access);
     localStorage.setItem("refreshToken", data.refresh);
-    openModal("You are logged in");
+    openModal("You are logged in", null);
     <Modal />;
     history.push("/");
     userInfo();
   } catch (error) {
-    await formMessage(error.response.data);
+    await openModal("Enter the valid credentials", null);
+    <Modal />;
   }
 };
 

@@ -7,6 +7,7 @@ export function ModalProvider({ children }) {
     modalOpen: false,
     errorMessage: {},
     message: "",
+    modalHeading: "",
   });
   const formMessage = (e) => {
     setState((prevState) => ({
@@ -14,11 +15,12 @@ export function ModalProvider({ children }) {
       errorMessage: Object.assign({}, e),
     }));
   };
-  const openModal = (e) => {
+  const openModal = (e, head) => {
     setState((prevState) => ({
       ...prevState,
       modalOpen: true,
       message: e,
+      modalHeading: head,
     }));
   };
   const closeModal = () => {
