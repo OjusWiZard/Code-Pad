@@ -6,11 +6,19 @@ export function ModalProvider({ children }) {
   const [state, setState] = useState({
     modalOpen: false,
     errorMessage: {},
+    message: "",
   });
-  const openModal = (e) => {
+  const formMessage = (e) => {
     setState((prevState) => ({
       ...prevState,
       errorMessage: Object.assign({}, e),
+    }));
+  };
+  const openModal = (e) => {
+    setState((prevState) => ({
+      ...prevState,
+      modalOpen: true,
+      message: e,
     }));
   };
   const closeModal = () => {
@@ -25,6 +33,7 @@ export function ModalProvider({ children }) {
         ...state,
         openModal,
         closeModal,
+        formMessage,
       }}
     >
       {children}

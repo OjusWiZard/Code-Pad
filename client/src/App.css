@@ -3,7 +3,7 @@ body {
   font-size: 100%;
   scroll-behavior: smooth;
   background: #000000 !important;
-  overflow-x: hidden !important;
+  /* overflow-x: hidden !important; */
 }
 
 /* Root */
@@ -222,16 +222,4 @@ a {
 }
 a.text-center.p-3.nav-item.font-blue.font-16.font-vcr {
   position: relative;
-}
-
-.nav-item.line::before {
-  content: "";
-  z-index: 0;
-  height: 1px;
-  width: 100%;
-  position: absolute;
-  right: 0;
-  background: var(--lightGrey);
-  transform: translateX(99%);
-  top: 50%;
 }
