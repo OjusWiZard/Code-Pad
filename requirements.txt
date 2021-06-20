@@ -20,11 +20,11 @@ gunicorn==20.1.0
 idna==2.10
 itypes==1.2.0
 Jinja2==3.0.1
-judge0api==0.1.19
+judge0api==0.1.20
 MarkupSafe==2.0.1
 oauthlib==3.1.1
-Pillow==8.1.2
-psycopg2==2.8.6
+Pillow==8.2.0
+psycopg2==2.9.1
 pycparser==2.20
 PyJWT==2.1.0
 python-dotenv==0.17.1
