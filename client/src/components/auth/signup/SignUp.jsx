@@ -24,23 +24,25 @@ function SignUp() {
   });
   const history = useHistory();
 
-  // useEffect(() => {
-  //   for (const property in errorMessage) {
-  //     for (const arrProperty in arrFields) {
-  //       if (property === arrProperty) {
-  //         setarrFields({
-  //           ...arrFields,
-  //           property: errorMessage[property][0],
-  //         });
-  //         console.log(`${arrProperty}: ${errorMessage[property]}`);
-  //       }
-  //     }
-  //   }
-  // }, [errorMessage]);
+  let a = false;
+  useEffect(() => {
+    for (const property in errorMessage) {
+      console.log("------------------------------------------");
+      for (const arrProperty in arrFields) {
+        if (arrProperty === property) {
+          console.log(arrProperty);
+          setarrFields({
+            ...arrFields,
+            [property]: errorMessage[property][0],
+          });
+          console.log(arrFields);
+          break;
+        }
+      }
+    }
+  }, [errorMessage]);
 
-  // console.log(arrFields);
-  console.log(errorMessage[0]);
-  console.log(arrFields[0]);
+  console.log(arrFields);
   // for (let i = 0; i < errorMessage.length; i++) {
   //   for (let j = 0; j < arrFields.length; i++) {
   //     if (Object.keys(errorMessage).find(key => ) === arrFields[j]) {
@@ -155,7 +157,7 @@ function SignUp() {
                             id="error"
                             className="font-vcr font-14 pl-3 text-muted"
                           >
-                            err
+                            {field}
                           </div>
                         </div>
                       )
