@@ -35,7 +35,6 @@
   border-left: 2px solid #405C6B;
   animation: all 1s ease;
   display: block;
-  padding: 20px;
 }
 
 @media (max-width: 900px) {
@@ -48,4 +47,9 @@
     min-width: 70vw;
     text-align: center;
   }
+}
+
+.sidebar-item:hover{
+  background-color: #35a4d3;
+  color: #fff;
 }

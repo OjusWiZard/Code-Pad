@@ -52,27 +52,27 @@ function Navbar() {
               onClick={handleClick}
               style={{ cursor: "pointer", textAlign: 'right'}}
             >
-              <img src={close} alt="close" width="30px" height="30px" />
+              <img src={close} alt="close" width="30px" height="30px" className="m-4"/>
             </div>
             <Link to="/">
-              <div className="mt-3 font-vcr font-25 px-3 line home">
+              <div className="mt-3 font-vcr font-25 px-5 sidebar-item home">
                 Home
               </div>
             </Link>
             <Link to="/events">
-              <div className="mt-3 font-vcr font-25 px-3 line">
+              <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
                 Events
               </div>
             </Link>
             {token ? (
               <>
                 <Link to="/profile">
-                  <div className="mt-3 font-vcr font-25 px-3">
+                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
                     Profile
                   </div>
                 </Link>
                 <div onClick={() => signOut(history)}>
-                  <div className="mt-3 font-vcr font-25 px-3">
+                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
                     Logout
                   </div>
                 </div>
@@ -80,12 +80,12 @@ function Navbar() {
             ) : (
               <>
                 <Link to="/signup">
-                  <div className="mt-3 font-vcr font-25 px-3">
+                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
                     Signup
                   </div>
                 </Link>
                 <Link to="/login">
-                  <div className="mt-3 font-vcr font-25 px-3">
+                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
                     Login
                   </div>
                 </Link>
