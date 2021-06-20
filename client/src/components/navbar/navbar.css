@@ -73,23 +73,22 @@
   content: "";
   z-index: 10;
   height: 1px;
-  width: 58%;
+  width: 125%;
   position: absolute;
-  right: -62px;
+  right: -135px;
   background: var(--lightGrey);
-  transform: translateX(99%);
   transform: rotate(150deg);
-  top: -7%;
+  top: -74%;
 }
 
-.nav-item.login::after {
+.nav-item.home::after {
   content: "";
   z-index: 10;
   height: 1px;
-  width: calc(100% - 6px);
+  width: 141%;
   position: absolute;
-  right: calc(100% - 100px);
+  right: 89px;
   background: var(--lightGrey);
-  transform: translateX(-99%);
-  top: 50%;
+  transform: rotate(30deg);
+  top: -71%;
 }
