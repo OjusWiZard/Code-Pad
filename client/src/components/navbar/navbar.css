@@ -80,3 +80,15 @@
   transform: rotate(150deg);
   top: -74%;
 }
+
+.nav-item.home::after {
+  content: "";
+  z-index: 10;
+  height: 1px;
+  width: 141%;
+  position: absolute;
+  right: 89px;
+  background: var(--lightGrey);
+  transform: rotate(30deg);
+  top: -71%;
+}

@@ -108,7 +108,7 @@ function Navbar() {
               className="mr-5"
             >
               <NavLink
-                className="p-3 text-center p-3 font-16 font-vcr font-blue line nav-item"
+                className="p-3 text-center p-3 font-16 font-vcr font-blue line nav-item home"
                 exact
                 to="/"
               >
