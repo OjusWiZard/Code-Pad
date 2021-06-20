@@ -42,7 +42,7 @@ function Navbar() {
           onClick={handleClick}
         >
           <span className="navbar-toggler-icon">
-            <img src={toggle} alt="toggle"  width="35px" height="35px" />
+            <img src={toggle} alt="toggle" width="35px" height="35px" />
           </span>
         </button>
         <div className="sidebar" id="sidebar">
@@ -50,9 +50,15 @@ function Navbar() {
             <div
               className="clearfix"
               onClick={handleClick}
-              style={{ cursor: "pointer", textAlign: 'right'}}
+              style={{ cursor: "pointer", textAlign: "right" }}
             >
-              <img src={close} alt="close" width="30px" height="30px" className="m-4"/>
+              <img
+                src={close}
+                alt="close"
+                width="30px"
+                height="30px"
+                className="m-4"
+              />
             </div>
             <Link to="/">
               <div className="mt-3 font-vcr font-25 px-5 sidebar-item home">

@@ -25,7 +25,6 @@ function EventDetails() {
     getEvent(params.slug)
       .then((data) => {
         setEvent(data);
-        console.log(data);
       })
       .catch(() => {
         <Redirect to="/" />;
@@ -40,7 +39,6 @@ function EventDetails() {
       .querySelectorAll("li")
       .forEach((link) => link.classList.remove("active-event"));
   };
-  console.log(event);
   return (
     <React.Fragment>
       <div className="main-background">

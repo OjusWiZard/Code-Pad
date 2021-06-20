@@ -29,7 +29,6 @@ const Form = () => {
         "https://judge.hackncs.com/languages",
         config
       );
-      console.log(lang);
     }
     getLanguages();
   }, []);
@@ -37,7 +36,6 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setOutput("");
-    console.log(language);
     let data;
     let l = Number(languageId);
 
@@ -53,16 +51,13 @@ const Form = () => {
         language_id: parseInt(l),
       };
     }
-    console.log(data);
     try {
       const res = await axios.post(
         "https://judge.hackncs.com/submissions/?wait=true&base64_encoded=true",
         data,
         config
       );
-      console.log(res);
       let out = res.data.stdout !== null ? atob(res.data.stdout) : null;
-      console.log(out);
       setOutput(out || res.data.status.description);
     } catch (error) {
       alert(error);

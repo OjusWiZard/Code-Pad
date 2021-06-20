@@ -1,5 +1,6 @@
 .content-background {
-  background-image: url("../../images/common/lines.svg"), linear-gradient( 130deg, #010A0F 0, #010A0F 51%, #010A0F 100%);
+  background-image: url("../../images/common/lines.svg"),
+    linear-gradient(130deg, #010a0f 0, #010a0f 51%, #010a0f 100%);
   background-repeat: no-repeat;
   height: auto;
   background-size: cover;
@@ -7,7 +8,6 @@
 }
 
 .event-block {
-  /* border: 1px solid #35a4d3 !important; */
   background: transparent !important;
 }
 
@@ -43,8 +43,8 @@
   top: 40%;
   left: 0;
   width: 18px;
-  height: 18px;  
-  background: var(--primaryColor);  
+  height: 18px;
+  background: var(--primaryColor);
   opacity: 0.2;
   -webkit-animation: hlineLeft 10s linear infinite;
   animation: hlineLeft 10s linear infinite;
@@ -63,8 +63,8 @@
   top: 13%;
   left: 0;
   width: 10px;
-  height: 10px;  
-  background: var(--primaryColor);  
+  height: 10px;
+  background: var(--primaryColor);
   opacity: 0.2;
   -webkit-animation: hlineLeft 10s linear infinite;
   animation: hlineLeft 10s linear infinite;
@@ -83,8 +83,8 @@
   top: 75%;
   left: 0;
   width: 15px;
-  height: 15px;  
-  background: var(--primaryColor);  
+  height: 15px;
+  background: var(--primaryColor);
   opacity: 0.2;
   -webkit-animation: hlineLeft 10s linear infinite;
   animation: hlineLeft 10s linear infinite;
@@ -103,8 +103,8 @@
   top: 60%;
   left: 0;
   width: 10px;
-  height: 10px;  
-  background: var(--primaryColor);  
+  height: 10px;
+  background: var(--primaryColor);
   opacity: 0.2;
   -webkit-animation: hlineLeft 10s linear infinite;
   animation: hlineLeft 10s linear infinite;
@@ -123,8 +123,8 @@
   top: 90%;
   left: 0;
   width: 10px;
-  height: 10px;  
-  background: var(--primaryColor);  
+  height: 10px;
+  background: var(--primaryColor);
   opacity: 0.2;
   -webkit-animation: hlineLeft 10s linear infinite;
   animation: hlineLeft 10s linear infinite;
@@ -137,8 +137,6 @@
     left: 100%;
   }
 }
-
-
 
 .dots .dot-right-1 {
   position: fixed;
@@ -154,7 +152,7 @@
   top: 40%;
   left: 0;
   width: 18px;
-  height: 18px;  
+  height: 18px;
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
@@ -175,7 +173,7 @@
   top: 15%;
   left: 0;
   width: 10px;
-  height: 10px;  
+  height: 10px;
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
@@ -196,7 +194,7 @@
   top: 75%;
   left: 0;
   width: 15px;
-  height: 15px;  
+  height: 15px;
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
@@ -217,7 +215,7 @@
   top: 60%;
   left: 0;
   width: 10px;
-  height: 10px;  
+  height: 10px;
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
@@ -238,7 +236,7 @@
   top: 90%;
   left: 0;
   width: 10px;
-  height: 10px;  
+  height: 10px;
   background: var(--primaryColor);
   background: var(--primaryColor);
   opacity: 0.2;
