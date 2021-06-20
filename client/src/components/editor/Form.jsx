@@ -24,14 +24,14 @@ const Form = () => {
     },
   };
   useEffect(() => {
-    async function abc() {
+    async function getLanguages() {
       const lang = await axios.get(
-        "http://judge.hackncs.com/languages",
+        "https://judge.hackncs.com/languages",
         config
       );
       console.log(lang);
     }
-    abc();
+    getLanguages();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -40,7 +40,7 @@ const Form = () => {
     console.log(language);
     let data;
     let l = Number(languageId);
-    console.log("ID: ", l);
+
     if (input) {
       data = {
         source_code: btoa(value),
@@ -56,14 +56,14 @@ const Form = () => {
     console.log(data);
     try {
       const res = await axios.post(
-        "http://judge.hackncs.com/submissions/?wait=true&base64_encoded=true",
+        "https://judge.hackncs.com/submissions/?wait=true&base64_encoded=true",
         data,
         config
       );
       console.log(res);
       let out = res.data.stdout !== null ? atob(res.data.stdout) : null;
       console.log(out);
-      setOutput(out || atob(res.data.stderr));
+      setOutput(out || res.data.status.description);
     } catch (error) {
       alert(error);
     }
@@ -135,7 +135,7 @@ const Form = () => {
                 &lt;&lt;&nbsp;&nbsp;HELLO OUTPUT&nbsp;&nbsp;&gt;&gt;
               </p>
               <textarea
-                className="output w-100"
+                className="output w-100 font-vcr"
                 rows="5"
                 value={output}
               ></textarea>

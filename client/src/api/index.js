@@ -39,7 +39,7 @@ export const signIn = async (formData, history, openModal) => {
     localStorage.setItem("refreshToken", data.refresh);
     history.push("/");
     userInfo();
-  } catch (error) {   
+  } catch (error) {
     await openModal(error.response.data);
   }
 };
@@ -105,3 +105,13 @@ export const getProblem = async (slug) => {
     console.log(error);
   }
 };
+
+
+export const codeSubmission = async (formData) => {
+  try {
+    const { data } = await API.post(`/submissions/`, formData, config);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
