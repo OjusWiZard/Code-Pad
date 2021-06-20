@@ -33,7 +33,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
             except:
                 raise ValidationError(key + ' not found in the form data')
 
-        problem = get_object_or_404(Problem, id=get_submission_data('problem_id'))
+        problem = get_object_or_404(Problem, slug=get_submission_data('problem_id'))
         language_id = int(get_submission_data('language_id'))
         submitted_solution = str(get_submission_data('solution')).encode('ascii')
         testcases_input_file = problem.solution_input.open(mode='r')
