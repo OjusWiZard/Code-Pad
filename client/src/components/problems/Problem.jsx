@@ -12,7 +12,6 @@ import Event from "../utils/Event";
 import { useParams } from "react-router-dom";
 import Editor from "../editor/Editor";
 import { getProblem } from "../../api/index";
-import { Resizable } from "re-resizable";
 import "./problem.css";
 function Problem() {
   const params = useParams();
@@ -68,7 +67,7 @@ function Problem() {
                       sint occaecat cupidatat non proident, sunt in culpa qui
                       officia deserunt mollit anim id est laborum.
                     </p>
-                    <hr color="blue" />
+
                     <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
