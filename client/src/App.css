@@ -63,6 +63,12 @@ body {
   text-transform: uppercase;
 }
 
+/* Selection */
+::selection {
+  color: var(--primaryColor);
+  background: #000;
+}
+
 /* Font Family */
 @font-face {
   font-family: Vcr;

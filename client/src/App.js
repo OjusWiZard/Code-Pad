@@ -7,6 +7,9 @@ function App() {
     if (localStorage.getItem("accessToken")) {
       userInfo();
     }
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
   }, []);
   return (
     <div className="App">

@@ -41,8 +41,8 @@ function Events() {
                       &lt;&lt;&nbsp;ONGOING EVENTS&nbsp;&gt;&gt;
                     </h4>
                     <div className="row d-flex justify-content-center mt-3">
-                      {onGoingEvents?.map((event) => (
-                        <Event event={event} />
+                      {onGoingEvents?.map((event, index) => (
+                        <Event event={event} key={index}/>
                       ))}
                     </div>
                   </div>
@@ -56,8 +56,8 @@ function Events() {
                       &lt;&lt;&nbsp;UPCOMING EVENTS&nbsp;&gt;&gt;
                     </h4>
                     <div className="row d-flex justify-content-center mt-3">
-                      {upcomingEvents?.map((event) => (
-                        <Event event={event} />
+                      {upcomingEvents?.map((event, index) => (
+                        <Event event={event} key={index} />
                       ))}
                     </div>
                   </div>
@@ -71,8 +71,8 @@ function Events() {
                       &lt;&lt;&nbsp;PAST EVENTS&nbsp;&gt;&gt;
                     </h4>
                     <div className="row d-flex justify-content-center mt-3">
-                      {pastEvents?.map((event) => (
-                        <Event event={event} />
+                      {pastEvents?.map((event, index) => (
+                        <Event event={event} key={index}  />
                       ))}
                     </div>
                   </div>
