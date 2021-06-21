@@ -74,7 +74,7 @@ export const getAllEvents = async () => {
     const { data } = await API.get("/events/");
 
     return data;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const getEvent = async (slug) => {
@@ -82,7 +82,7 @@ export const getEvent = async (slug) => {
     const { data } = await API.get(`/events/${slug}`, config);
 
     return data;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const getProblem = async (slug) => {
@@ -90,12 +90,33 @@ export const getProblem = async (slug) => {
     const { data } = await API.get(`/problems/${slug}`);
 
     return data;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const codeSubmission = async (formData) => {
   try {
     const { data } = await API.post(`/submissions/`, formData, config);
     return data;
-  } catch (error) {}
+  } catch (error) { }
 };
+
+export const getLeaderboard = async (slug) => {
+  try {
+    const { data } = await API.get(`/leaderboard/${slug}`);
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getLeaderboardUser = async (slug, username) => {
+  try {
+    console.log("username= ", username)
+    const { data } = await API.get(`/leaderboard/${slug}?username=${username}`)
+    console.log("USERDATA", data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
