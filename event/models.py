@@ -31,7 +31,7 @@ class Leaderboard(models.Model):
         return self.user.username + " in " + self.event.title
     
     class Meta:
-        ordering = ['-score']
+        ordering = ['-event__datetime', '-score']
 
 
 class Problem(models.Model):
