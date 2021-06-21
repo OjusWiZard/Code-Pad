@@ -2,15 +2,16 @@ from os import environ
 from django.db.models import F
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
-from rest_framework.viewsets import ReadOnlyModelViewSet
-from rest_framework.permissions import IsAuthenticated
+from django.http.response import HttpResponseBadRequest
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ReadOnlyModelViewSet
 from judge0api.client import Client
 from judge0api.submission import submit
 from .paginations import Pagination_Size10
 from .models import Event, Problem, Submission, Leaderboard
-from .serializers import Event_List_Serializer, Event_Details_Serializer, Problem_List_Serializer, Problem_Detail_Serializer, Submission_Detail_Serializer, Submission_List_Serializer
+from .serializers import Event_List_Serializer, Event_Details_Serializer, Leaderboard_Serializer, Problem_List_Serializer, Problem_Detail_Serializer, Submission_Detail_Serializer, Submission_List_Serializer
 
 
 class Submission_Viewset(ReadOnlyModelViewSet):
@@ -110,3 +111,34 @@ class Event_Viewset(ReadOnlyModelViewSet):
             if timezone.localtime(event.datetime) < timezone.now():
                 return Event_Details_Serializer
         return Event_List_Serializer
+
+
+class Leaderboard_Viewset(ReadOnlyModelViewSet):
+    queryset = Leaderboard.objects.all()
+    serializer_class = Leaderboard_Serializer
+    pagination_class = Pagination_Size10
+    lookup_field = 'event__slug'
+
+    def for_a_user(self):
+        return 'username' in self.request.query_params
+
+    def get_queryset(self):
+        queryset = Leaderboard.objects.filter(event__slug=self.kwargs[self.lookup_field])
+        if self.for_a_user():
+            return get_object_or_404(queryset, user__username=self.request.query_params['username'])
+        return queryset
+
+    def retrieve(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+
+        if not self.for_a_user():
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many= not self.for_a_user())
+        return Response(serializer.data)
+
+    def list(self, request, *args, **kwargs):
+        return HttpResponseBadRequest()
