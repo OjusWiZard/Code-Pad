@@ -54,7 +54,8 @@ function Home() {
                       </h4>
                       <div className="row d-flex justify-content-center mt-3">
                         {onGoingEvents?.map(
-                          (event, index) => index < 3 && <Event event={event} />
+                          (event, index) =>
+                            index < 3 && <Event event={event} key={index} />
                         )}
                       </div>
                     </div>

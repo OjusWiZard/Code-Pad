@@ -13,6 +13,7 @@ function Login() {
     email: "",
     password: "",
   });
+  const [passwordType, setPasswordType] = useState("password");
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -57,10 +58,29 @@ function Login() {
                             onChange={handleChange}
                             name="password"
                             value={formData.password}
-                            type="password"
+                            type={passwordType}
                             className="font-vcr font-blue"
                             placeholder="PASSWORD"
                           />
+                          <div
+                            onClick={() => {
+                              passwordType === "password"
+                                ? setPasswordType("text")
+                                : setPasswordType("password");
+                            }}
+                          >
+                            {passwordType === "password" ? (
+                              <i
+                                className="fas fa-eye font-blue"
+                                style={{ marginTop: "0.6rem" }}
+                              />
+                            ) : (
+                              <i
+                                className="fas fa-eye-slash font-blue"
+                                style={{ marginTop: "0.6rem" }}
+                              />
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>

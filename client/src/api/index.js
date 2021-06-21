@@ -34,7 +34,7 @@ export const signIn = async (formData, history, formMessage, openModal) => {
     const { data } = await API.post(`/accounts/jwt/create`, formData, config);
     localStorage.setItem("accessToken", data.access);
     localStorage.setItem("refreshToken", data.refresh);
-    openModal("You are logged in", null);
+    openModal("You are logged in", "Okay");
     <Modal />;
     history.push("/");
     userInfo();
