@@ -8,37 +8,49 @@ import Editor from "./Editor";
 const Form = () => {
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
-  const [language, setLanguage] = useState([]);
-  const [languageId, setLanguageId] = useState("");
+  const [output, setOutput] = useState("");
+  const [languages, setLanguages] = useState([]);
+  const [language, setLanguage] = useState("cpp");
+  const [languageId, setLanguageId] = useState(54);
+
   const config = {
     headers: {
       "Content-Type": "application/json",
+      "X-Auth-Token": "LetUsCodeHackNCS",
     },
   };
   useEffect(() => {
-    async function abc() {
-      const lang = await axios.get(
-        "https://467ff821670c.in.ngrok.io/languages"
-      );
-      console.log(lang);
-      // setLanguage(new Object(lang.data));
-    }
-    abc();
+    axios.get("https://judge.hackncs.com/languages", config).then((data) => {
+      setLanguages(data.data);
+    });
   }, []);
-
+  console.log(languages);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let data = {
-      source_code: value,
-      language_id: languageId,
-    };
+    setOutput("");
+    let data;
+    let l = Number(languageId);
+
+    if (input) {
+      data = {
+        source_code: btoa(value),
+        language_id: parseInt(l),
+        stdin: btoa(input),
+      };
+    } else {
+      data = {
+        source_code: btoa(value),
+        language_id: parseInt(l),
+      };
+    }
     try {
       const res = await axios.post(
-        "https://467ff821670c.in.ngrok.io/submissions/?wait=true",
-        JSON.stringify(data),
+        "https://judge.hackncs.com/submissions/?wait=true&base64_encoded=true",
+        data,
         config
       );
-      setInput(res.data.status.description);
+      let out = res.data.stdout !== null ? atob(res.data.stdout) : null;
+      setOutput(out || res.data.status.description);
     } catch (error) {
       alert(error);
     }
@@ -48,8 +60,8 @@ const Form = () => {
       <div className="main-background">
         <div className="container pt-lg-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-lg-8 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-lg-3">
-              <div className="d-flex justify-content-center pt-lg-5">
+            <div className="col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-lg-3">
+              <div className="d-flex justify-content-center pt-sm-5">
                 <img id="logo" src={IDE} alt="IDE" className="img-fluid" />
               </div>
               <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14 font-weight-bold">
@@ -60,16 +72,25 @@ const Form = () => {
                 impedit.
               </p>
               <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="d-flex font-vcr justify-content-between align-items-center py-3">
-                  <select onChange={(e) => setLanguageId(e.target.value)}>
-                    {language.map((lan) => (
-                      <option value={lan.id}>{lan.name}</option>
+                <div className="d-flex font-vcr justify-content-between align-items-center py-3 font-lightGrey">
+                  <select
+                    onChange={(e) => {
+                      setLanguageId(e.target.value);
+                      setInput("");
+                      setOutput("");
+                      setValue("");
+                    }}
+                  >
+                    {languages.map((lan) => (
+                      <option value={lan.id} className="font-lightGrey">
+                        {lan.name}
+                      </option>
                     ))}
                   </select>
                   <img src={download} alt="Download" />
                 </div>
                 <Editor
-                  language={language}
+                  languageId={languageId}
                   displayName="Code"
                   value={value}
                   input={input}
@@ -95,7 +116,11 @@ const Form = () => {
               <p className="font-vcr font-blue font-weight-bold mt-5 text-center mb-3">
                 &lt;&lt;&nbsp;&nbsp;HELLO OUTPUT&nbsp;&nbsp;&gt;&gt;
               </p>
-              <textarea className="output w-100" rows="5"></textarea>
+              <textarea
+                className="output w-100 font-vcr"
+                rows="5"
+                value={output}
+              ></textarea>
             </div>
           </div>
         </div>

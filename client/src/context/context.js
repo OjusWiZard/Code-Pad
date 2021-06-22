@@ -6,12 +6,21 @@ export function ModalProvider({ children }) {
   const [state, setState] = useState({
     modalOpen: false,
     errorMessage: {},
+    message: "",
+    modalHeading: "",
   });
-  const openModal = (e) => {
-    console.log(e);
+  const formMessage = (e) => {
     setState((prevState) => ({
       ...prevState,
-      errorMessage:Object.assign({}, e),
+      errorMessage: Object.assign({}, e),
+    }));
+  };
+  const openModal = (e, head) => {
+    setState((prevState) => ({
+      ...prevState,
+      modalOpen: true,
+      message: e,
+      modalHeading: head,
     }));
   };
   const closeModal = () => {
@@ -26,6 +35,7 @@ export function ModalProvider({ children }) {
         ...state,
         openModal,
         closeModal,
+        formMessage,
       }}
     >
       {children}

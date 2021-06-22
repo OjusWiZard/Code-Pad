@@ -1,5 +1,6 @@
 .navbar {
-  background: url("../../images/common/navbar.svg");
+  background-image: url("../../images/common/lines.svg"),
+    linear-gradient(180deg, #010a0f 60%, transparent 100%);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -7,22 +8,24 @@
 
 .nav-item {
   margin-top: 1rem;
-  padding: 10px 30px !important;
-  background: #131c20;
-  border-right: #405c6b 2px solid;
-  border-left: #405c6b 2px solid;
-}
-.nav-item:hover {
-  color: #131c20;
-  /* background: #35A4D3; */
-}
-.active-nav-item {
-  background: #35a4d3 !important;
-  color: #131c20 !important;
-  font-weight: 900;
+  padding: 7px 30px !important;
+  background: url(../../images/common/nav-item.svg);
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
 }
 
-.search-overlay {
+.nav-item:hover {
+  color: #131c20;
+}
+
+.active {
+  color: var(--grey) !important;
+  font-weight: bold;
+  background: var(--primaryColor);
+}
+
+/****************************************** Sidebar ******************************************/
+.sidebar {
   display: none;
   position: fixed;
   top: 0px;
@@ -30,20 +33,62 @@
   width: 25vw;
   height: 100%;
   z-index: 1;
-  background-color: #131C20;
+  background-color: #131c20;
+  color: #7a8589;
+  border-left: 2px solid #405c6b;
   animation: all 1s ease;
   display: block;
-  padding: 20px;
 }
 
-@media(max-width: 900px){
-  .search-overlay {    
+@media (max-width: 900px) {
+  .sidebar {
     min-width: 35vw;
   }
 }
-@media(max-width: 500px){
-  .search-overlay {    
-    min-width: 100vw;    
-    text-align: center;
+@media (max-width: 500px) {
+  .sidebar {
+    min-width: 70vw;
   }
+}
+
+.sidebar-item:hover {
+  background-color: #35a4d3;
+  color: #fff;
+}
+
+/****************************************** Navbar Lines ******************************************/
+.nav-item.line::before {
+  content: "";
+  z-index: 0;
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  background: var(--lightGrey);
+  transform: translateX(99%);
+  top: 50%;
+}
+
+.nav-item.editor::before {
+  content: "";
+  z-index: 10;
+  height: 1px;
+  width: 125%;
+  position: absolute;
+  right: -135px;
+  background: var(--lightGrey);
+  transform: rotate(150deg);
+  top: -74%;
+}
+
+.nav-item.home::after {
+  content: "";
+  z-index: 10;
+  height: 1px;
+  width: 141%;
+  position: absolute;
+  right: 89px;
+  background: var(--lightGrey);
+  transform: rotate(30deg);
+  top: -71%;
 }

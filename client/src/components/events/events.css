@@ -39,4 +39,5 @@
 
 .frame:hover {
   background: url("../../images/events/hover_frame.svg");
+  background-size: cover;
 }
