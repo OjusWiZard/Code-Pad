@@ -18,7 +18,7 @@ function Problem() {
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [language, setLanguage] = useState("cpp");
+  const [languages, setLanguages] = useState("");
   const [languageId, setLanguageId] = useState(54);
   const avatarData = {
     1: avatar1,
@@ -26,12 +26,17 @@ function Problem() {
     3: avatar3,
     4: avatar4,
   };
-  const langData = [
-    { id: 54, name: "CPP" },
-    { id: 50, name: "C" },
-    { id: 62, name: "java" },
-    { id: 71, name: "python" },
-  ];
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      "X-Auth-Token": "LetUsCodeHackNCS",
+    },
+  };
+  useEffect(() => {
+    axios.get("https://judge.hackncs.com/languages", config).then((data) => {
+      setLanguages(data.data);
+    });
+  }, []);
   const [loading, setLoading] = useState(true);
   const [problem, setProblem] = useState();
   const handleRunCode = async (e, value, languageId, input) => {
@@ -199,17 +204,12 @@ function Problem() {
                       <select
                         onChange={(e) => {
                           setLanguageId(e.target.value);
-                          setLanguage(
-                            e.target.options[
-                              e.target.selectedIndex
-                            ].text.toLowerCase()
-                          );
                           setInput("");
                           setOutput("");
                           setValue("");
                         }}
                       >
-                        {langData.map((lan) => (
+                        {languages.map((lan) => (
                           <option value={lan.id} className="font-lightGrey">
                             {lan.name}
                           </option>
@@ -220,7 +220,7 @@ function Problem() {
                       </div>
                     </div>
                     <Editor
-                      language={language}
+                      languageId={languageId}
                       displayName="Code"
                       value={value}
                       input={input}
