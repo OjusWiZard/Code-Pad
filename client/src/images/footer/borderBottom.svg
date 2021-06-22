@@ -1,18 +1,1 @@
-<svg width="1363" height="51" viewBox="0 0 1363 51" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="-3" y="0" width="1366" height="86">
-<path d="M1306 8H47.5H-3V86H1363V0H1312.5L1306 8Z" fill="#000A0F"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M1309 8H50.5H0V86H1366V0H1315.5L1309 8Z" fill="#000A0F"/>
-<line x1="50" y1="8.5" x2="1316" y2="8.50011" stroke="#405C6B"/>
-<g opacity="0.015">
-<line y1="2" x2="1366" y2="2" stroke="white" stroke-width="2"/>
-<line y1="10" x2="1366" y2="10" stroke="white" stroke-width="2"/>
-<line y1="18" x2="1366" y2="18" stroke="white" stroke-width="2"/>
-<line y1="26" x2="1366" y2="26" stroke="white" stroke-width="2"/>
-<line y1="34" x2="1366" y2="34" stroke="white" stroke-width="2"/>
-<line y1="42" x2="1366" y2="42" stroke="white" stroke-width="2"/>
-<line y1="50" x2="1366" y2="50" stroke="white" stroke-width="2"/>
-</g>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1363" height="51" fill="none" viewBox="0 0 1363 51"><mask id="mask0" width="1366" height="86" x="-3" y="0" mask-type="alpha" maskUnits="userSpaceOnUse"><path fill="#000A0F" d="M1306 8H47.5H-3V86H1363V0H1312.5L1306 8Z"/></mask><g mask="url(#mask0)"><path fill="#000A0F" d="M1309 8H50.5H0V86H1366V0H1315.5L1309 8Z"/><line x1="50" x2="1316" y1="8.5" y2="8.5" stroke="#405C6B"/><g opacity=".015"><line x2="1366" y1="2" y2="2" stroke="#fff" stroke-width="2"/><line x2="1366" y1="10" y2="10" stroke="#fff" stroke-width="2"/><line x2="1366" y1="18" y2="18" stroke="#fff" stroke-width="2"/><line x2="1366" y1="26" y2="26" stroke="#fff" stroke-width="2"/><line x2="1366" y1="34" y2="34" stroke="#fff" stroke-width="2"/><line x2="1366" y1="42" y2="42" stroke="#fff" stroke-width="2"/><line x2="1366" y1="50" y2="50" stroke="#fff" stroke-width="2"/></g></g></svg>
