@@ -120,3 +120,25 @@ export const getLeaderboardUser = async (slug, username) => {
     console.log(error);
   }
 }
+
+
+export const forgotPassword = async (formData, history, openModal) => {
+  try {
+    const { data } = await API.post(`/accounts/users/reset_password/`, formData, config);
+    openModal("Check your email", "Okay");
+    <Modal />;
+    history.push('/')
+  } catch (error) {
+
+  }
+}
+
+export const resetPassword = async (formData, uid, token, history) => {
+  try {
+    const { data } = await API.post(`/i/have/bad/memory/password/${uid}/${token}`, formData, config);
+    console.log(data);
+    history.push("/")
+  } catch (error) {
+
+  }
+}

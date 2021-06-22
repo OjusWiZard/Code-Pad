@@ -15,6 +15,7 @@ import Footer from "./components/footer/Footer";
 import Modal from "./components/modal/Modal";
 import ForgotPassword from './components/auth/forgotPassword/forgotPassword';
 import Problem from "./components/problems/Problem";
+import ResetPassword from "./components/auth/resetPassword/ResetPassword";
 
 function Router() {
   return (
@@ -31,6 +32,7 @@ function Router() {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/problems" component={Problem} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
+        <Route exact path="/i/have/bad/memory/password/:uid/:token" component={ResetPassword} />
         <Route component={Default} />
       </Switch>
       <Modal />
