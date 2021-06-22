@@ -59,10 +59,12 @@ export const userInfo = async () => {
   }
 };
 
-export const editUserInfo = async (formData, history) => {
+export const editUserInfo = async (formData, history, openModal) => {
   try {
     const { data } = await API.patch(`/accounts/users/me/`, formData, config);
     localStorage.setItem("user", JSON.stringify(data));
+    openModal("Information updated", "Okay");
+    <Modal />;
     history.push("/");
   } catch (error) {
     <Modal errorMessage={error.response.data} />;
