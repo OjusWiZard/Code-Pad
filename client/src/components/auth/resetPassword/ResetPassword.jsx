@@ -1,26 +1,33 @@
 import React, { useState, useContext } from "react";
-import { signIn } from "../../../api/index";
-import { useHistory, Link } from "react-router-dom";
+import { resetPassword, signIn } from "../../../api/index";
+import { useHistory, useParams } from "react-router-dom";
 import login from "../../../images/auth/login.svg";
 import line from "../../../images/home/line.svg";
+import Modal from "../../modal/Modal";
 import { ModalContext } from "../../../context/context";
-import "./login.css";
+import "../login/login.css";
 
-function Login() {
-  const { openModal, formMessage } = useContext(ModalContext);
+const ResetPassword = () => {
+  const { openModal } = useContext(ModalContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    new_password: "",
+    re_new_password: "",
   });
-  const [passwordType, setPasswordType] = useState("password");
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await signIn(formData, history, formMessage, openModal);
+    if (formData.new_password === formData.re_new_password) {
+      resetPassword(formData, uid, token, history);
+    } else {
+      openModal("Passwords do not match", "Okay");
+      <Modal />;
+    }
   };
+  const params = useParams();
+  const { uid, token } = params;
   return (
     <React.Fragment>
       <div className="main-background">
@@ -29,7 +36,7 @@ function Login() {
             <div className="col-xl-7 col-lg-7 col-md-10 col-sm-11 col-11 mx-auto my-md-5 content-background px-sm-5">
               <div className="my-md-5 py-md-3 px-lg-3">
                 <h4 className="font-vcr font-blue text-center font-weight-bold">
-                  **&nbsp;LOGIN&nbsp;**
+                  **&nbsp;-_- Forgot Password? &nbsp;**
                 </h4>
                 <form className="mt-5 px-lg-5 mx-lg-5" onSubmit={handleSubmit}>
                   <div className="mt-4">
@@ -39,11 +46,12 @@ function Login() {
                         <div className="pixel-input w-100">
                           <input
                             onChange={handleChange}
-                            name="email"
-                            value={formData.email}
-                            type="email"
+                            name="new_password"
+                            value={formData.new_password}
+                            type="password"
                             className="font-vcr font-blue"
-                            placeholder="EMAIL"
+                            placeholder="Password"
+                            required
                           />
                         </div>
                       </div>
@@ -56,41 +64,17 @@ function Login() {
                         <div className="pixel-input w-100">
                           <input
                             onChange={handleChange}
-                            name="password"
-                            value={formData.password}
-                            type={passwordType}
+                            name="re_new_password"
+                            value={formData.re_new_password}
+                            type="text"
                             className="font-vcr font-blue"
-                            placeholder="PASSWORD"
+                            placeholder="Re-Password"
+                            required
                           />
-                          <div
-                            onClick={() => {
-                              passwordType === "password"
-                                ? setPasswordType("text")
-                                : setPasswordType("password");
-                            }}
-                          >
-                            {passwordType === "password" ? (
-                              <i
-                                className="fas fa-eye font-blue"
-                                style={{ marginTop: "0.6rem" }}
-                              />
-                            ) : (
-                              <i
-                                className="fas fa-eye-slash font-blue"
-                                style={{ marginTop: "0.6rem" }}
-                              />
-                            )}
-                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <Link
-                    to="/forgot-password"
-                    className="d-flex justify-content-end font-vcr font-lightGrey mt-3"
-                  >
-                    FORGOT PASSWORD?
-                  </Link>
                   <div className="mt-5 text-center button-hover">
                     <img
                       src={login}
@@ -110,6 +94,6 @@ function Login() {
       </div>
     </React.Fragment>
   );
-}
+};
 
-export default Login;
+export default ResetPassword;

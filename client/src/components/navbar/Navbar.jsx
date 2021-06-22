@@ -5,6 +5,7 @@ import { Link, NavLink, useLocation, useHistory } from "react-router-dom";
 import toggle from "../../images/common/toggle.svg";
 import logo from "../../images/home/logo.svg";
 import { signOut } from "../../api";
+import close from "../../images/common/close.svg";
 
 function Navbar() {
   const location = useLocation();
@@ -26,14 +27,14 @@ function Navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-xl">
-        <NavLink className="navbar-brand" exact to="/">
+        <Link to="/" className="navbar-brand">
           <img
             src={logo}
             alt="Code-pad"
             className="img-fluid mx-0 px-0"
             width="120px"
           />
-        </NavLink>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -41,47 +42,57 @@ function Navbar() {
           onClick={handleClick}
         >
           <span className="navbar-toggler-icon">
-            <img src={toggle} alt="toggle" />
+            <img src={toggle} alt="toggle" width="35px" height="35px" />
           </span>
         </button>
-        <div className="search-overlay" id="sidebar">
-          <div className="search-content">
+        <div className="sidebar" id="sidebar">
+          <div className="sidebar-content">
             <div
               className="clearfix"
               onClick={handleClick}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", textAlign: "right" }}
             >
-              <i className="fas fa-times-circle fa-2x text-white float-right mb-4"></i>
+              <img
+                src={close}
+                alt="close"
+                width="30px"
+                height="30px"
+                className="m-4"
+              />
             </div>
             <Link to="/">
-              <div className="mt-3 font-vcr font-blue font-25 px-3">HOME</div>
+              <div className="mt-3 font-vcr font-25 px-5 sidebar-item home">
+                Home
+              </div>
             </Link>
             <Link to="/events">
-              <div className="mt-3 font-vcr font-blue font-25 px-3">EVENTS</div>
+              <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
+                Events
+              </div>
             </Link>
             {token ? (
               <>
                 <Link to="/profile">
-                  <div className="mt-3 font-vcr font-blue font-25 px-3">
-                    PROFILE
+                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
+                    Profile
                   </div>
                 </Link>
                 <div onClick={() => signOut(history)}>
-                  <div className="mt-3 font-vcr font-blue font-25 px-3">
-                    LOGOUT
+                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
+                    Logout
                   </div>
                 </div>
               </>
             ) : (
               <>
                 <Link to="/signup">
-                  <div className="mt-3 font-vcr font-blue font-25 px-3">
-                    SIGNUP
+                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
+                    Signup
                   </div>
                 </Link>
                 <Link to="/login">
-                  <div className="mt-3 font-vcr font-blue font-25 px-3">
-                    LOGIN
+                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
+                    Login
                   </div>
                 </Link>
               </>
@@ -97,7 +108,7 @@ function Navbar() {
               className="mr-5"
             >
               <NavLink
-                className="p-3 text-center p-3 font-16 font-vcr font-blue nav-item"
+                className="p-3 text-center p-3 font-16 font-vcr font-blue line nav-item home"
                 exact
                 to="/"
               >
@@ -110,7 +121,7 @@ function Navbar() {
               className="mx-5"
             >
               <NavLink
-                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                className="text-center p-3 nav-item font-blue font-16 font-vcr line"
                 exact
                 to="/events"
               >
@@ -124,7 +135,7 @@ function Navbar() {
                 className="mx-5"
               >
                 <NavLink
-                  className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                  className="text-center p-3 nav-item font-blue font-16 font-vcr line"
                   exact
                   to="/profile"
                 >
@@ -138,7 +149,7 @@ function Navbar() {
                 className="mx-5"
               >
                 <NavLink
-                  className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                  className="text-center p-3 nav-item font-blue font-16 font-vcr line"
                   exact
                   to="/signup"
                 >
@@ -150,10 +161,10 @@ function Navbar() {
             <NavLink
               to="/editor"
               activeClassName="active-nav-item"
-              className="mx-5"
+              className="ml-5"
             >
               <NavLink
-                className="text-center p-3 nav-item font-blue font-16 font-vcr"
+                className="text-center p-3 nav-item font-blue font-16 font-vcr editor"
                 exact
                 to="/editor"
               >
@@ -168,7 +179,7 @@ function Navbar() {
               className="mx-3"
             >
               <NavLink
-                className="text-center p-3 nav-item font-blue font-16 font-vcr mt-n2"
+                className="text-center p-3 nav-item font-blue font-16 font-vcr mt-n2 login"
                 exact
                 to="/login"
               >
@@ -178,7 +189,7 @@ function Navbar() {
           ) : (
             <div className="mx-3" style={{ cursor: "pointer" }}>
               <span
-                className="text-center p-3 nav-item font-blue font-16 font-vcr mt-n2"
+                className="text-center p-3 nav-item font-blue font-16 font-vcr mt-n2 login"
                 onClick={() => signOut(history)}
               >
                 LOGOUT
