@@ -11,15 +11,15 @@ const ResetPassword = () => {
   const { openModal } = useContext(ModalContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
-    password: "",
-    re_password: "",
+    new_password: "",
+    re_new_password: "",
   });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.password === formData.re_password) {
+    if (formData.new_password === formData.re_new_password) {
       resetPassword(formData, uid, token, history);
     } else {
       openModal("Passwords do not match", "Okay");
@@ -47,7 +47,7 @@ const ResetPassword = () => {
                           <input
                             onChange={handleChange}
                             name="password"
-                            value={formData.password}
+                            value={formData.new_password}
                             type="password"
                             className="font-vcr font-blue"
                             placeholder="Password"
@@ -65,7 +65,7 @@ const ResetPassword = () => {
                           <input
                             onChange={handleChange}
                             name="re_password"
-                            value={formData.re_password}
+                            value={formData.re_new_password}
                             type="text"
                             className="font-vcr font-blue"
                             placeholder="Re-Password"
