@@ -30,7 +30,7 @@ function EventDetails() {
         setLeaderboard(data);
         getLeaderboardUser(
           params.slug,
-          JSON.parse(localStorage.getItem("user")).username
+          JSON.parse(localStorage.getItem("user"))?.username
         ).then((data) => {
           console.log(data);
           setUser(data);
@@ -47,7 +47,7 @@ function EventDetails() {
     if (localStorage.getItem("user")) {
       getLeaderboardUser(
         params.slug,
-        JSON.parse(localStorage.getItem("user")).username
+        JSON.parse(localStorage.getItem("user"))?.username
       )
         .then((data) => {
           setUser(data);
@@ -68,7 +68,7 @@ function EventDetails() {
   console.log(
     user,
     leaderboard,
-    JSON.parse(localStorage.getItem("user")).username
+    JSON.parse(localStorage.getItem("user"))?.username
   );
   return (
     <React.Fragment>
@@ -252,7 +252,7 @@ function EventDetails() {
                                     alt="avatar"
                                   />
                                   <span className="user-name">
-                                    {user?.user.username}
+                                    {user?.user?.username}
                                   </span>
                                 </div>
                                 <span

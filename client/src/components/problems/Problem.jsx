@@ -95,6 +95,7 @@ function Problem() {
       })
       .catch((error) => console.log(error.message));
   }, []);
+  console.log(problem);
   const submissionArray = problem?.submissions?.splice(0, 5);
   return (
     <React.Fragment>
