@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
@@ -6,13 +6,17 @@ import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
 import update from "../../../images/auth/update.svg";
 import line from "../../../images/home/line.svg";
+import Modal from "../../modal/Modal";
 import { editUserInfo } from "../../../api";
-
+import { ModalContext } from "../../../context/context";
+import "../editProfile/editProfile.css";
 function EditProfile() {
+  const { openModal } = useContext(ModalContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
     ...JSON.parse(localStorage.getItem("user")),
     password: "",
+    re_password: "",
   });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,11 +27,23 @@ function EditProfile() {
       .querySelectorAll(".avatar-container .img-fluid")
       .forEach((img) => img.classList.remove("active-avatar"));
     e.target.classList.add("active-avatar");
+    console.log(formData);
   };
+
+  const handleSubmit = (e, formData, history) => {
+    e.preventDefault();
+    console.log(formData);
+    if (formData.re_password === formData.password) {
+      editUserInfo(formData, history);
+    } else {
+      openModal("Passwords do not match", "Okay");
+      <Modal />;
+    }
+  };
+
   useEffect(() => {
-    // let avatars = document.querySelectorAll(".avatar-container .img-fluid");
-    // avatars[formData.avatar - 1].classList.add("active-avatar");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    let avatars = document.querySelectorAll(".avatar-container .img-fluid");
+    avatars[formData.avatar - 1].classList.add("active-avatar");
   }, []);
   return (
     <React.Fragment>
@@ -141,12 +157,12 @@ function EditProfile() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
-                            type="text"
-                            name="contact_no"
+                            type="password"
+                            name="re_password"
                             onChange={handleChange}
-                            value={formData.contact_no}
+                            value={formData.re_password}
                             className="font-vcr font-blue"
-                            placeholder="CONTACT NUMBER"
+                            placeholder="Re-Password"
                           />
                         </div>
                       </div>
@@ -156,7 +172,7 @@ function EditProfile() {
                 <div className="mt-5 text-center button-hover">
                   <img
                     src={update}
-                    onClick={() => editUserInfo(formData, history)}
+                    onClick={(e) => handleSubmit(e, formData, history)}
                     alt="update"
                     className="img-fluid mt-4"
                   />
