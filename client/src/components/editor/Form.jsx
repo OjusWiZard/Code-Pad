@@ -9,39 +9,10 @@ const Form = () => {
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [languages, setLanguages] = useState([]);
   const [language, setLanguage] = useState("cpp");
   const [languageId, setLanguageId] = useState(54);
-  const langData = [
-    { id: 46, name: "shell" },
-    { id: 50, name: "c" },
-    { id: 51, name: "csharp" },
-    { id: 54, name: "cpp" },
-    { id: 55, name: "clojure" },
-    { id: 58, name: "kotlin" },
-    { id: 60, name: "go" },
-    { id: 62, name: "java" },
-    { id: 63, name: "javascript" },
-    { id: 64, name: "lua" },
-    { id: 67, name: "pascal" },
-    { id: 68, name: "php" },
-    { id: 70, name: "python" },
-    { id: 71, name: "python" },
-    { id: 72, name: "ruby" },
-    { id: 73, name: "rust" },
-    { id: 74, name: "typescript" },
-    { id: 75, name: "c" },
-    { id: 76, name: "cpp" },
-    { id: 78, name: "kotlin" },
-    { id: 79, name: "objective-c" },
-    { id: 80, name: "r" },
-    { id: 81, name: "scala" },
-    { id: 82, name: "sql" },
-    { id: 83, name: "swift" },
-    { id: 84, name: "vb" },
-    { id: 85, name: "perl" },
-    { id: 86, name: "clojure" },
-    { id: 87, name: "fsharp" },
-  ];
+
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -49,15 +20,11 @@ const Form = () => {
     },
   };
   useEffect(() => {
-    async function getLanguages() {
-      const lang = await axios.get(
-        "https://judge.hackncs.com/languages",
-        config
-      );
-    }
-    getLanguages();
+    axios.get("https://judge.hackncs.com/languages", config).then((data) => {
+      setLanguages(data.data);
+    });
   }, []);
-
+  console.log(languages);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setOutput("");
@@ -109,17 +76,12 @@ const Form = () => {
                   <select
                     onChange={(e) => {
                       setLanguageId(e.target.value);
-                      setLanguage(
-                        e.target.options[
-                          e.target.selectedIndex
-                        ].text.toLowerCase()
-                      );
                       setInput("");
                       setOutput("");
                       setValue("");
                     }}
                   >
-                    {langData.map((lan) => (
+                    {languages.map((lan) => (
                       <option value={lan.id} className="font-lightGrey">
                         {lan.name}
                       </option>
@@ -128,7 +90,7 @@ const Form = () => {
                   <img src={download} alt="Download" />
                 </div>
                 <Editor
-                  language={language}
+                  languageId={languageId}
                   displayName="Code"
                   value={value}
                   input={input}
