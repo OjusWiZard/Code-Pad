@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { signIn } from "../../../api/index";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import login from "../../../images/auth/login.svg";
 import line from "../../../images/home/line.svg";
 import { ModalContext } from "../../../context/context";
@@ -85,9 +85,12 @@ function Login() {
                       </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-end font-vcr font-lightGrey mt-3">
+                  <Link
+                    to="/forgot-password"
+                    className="d-flex justify-content-end font-vcr font-lightGrey mt-3"
+                  >
                     FORGOT PASSWORD?
-                  </div>
+                  </Link>
                   <div className="mt-5 text-center button-hover">
                     <img
                       src={login}

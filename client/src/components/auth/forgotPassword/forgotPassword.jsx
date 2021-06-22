@@ -1,14 +1,21 @@
 import React, { useState, useContext } from "react";
-import { signIn } from "../../../api/index";
+import { forgotPassword, signIn } from "../../../api/index";
 import { useHistory } from "react-router-dom";
 import login from "../../../images/auth/login.svg";
 import line from "../../../images/home/line.svg";
 import { ModalContext } from "../../../context/context";
 import "../login/login.css";
 const ForgotPassword = () => {
-  const [formData, setFormData] = useState();
-  const handleChange = () => {};
-  const handleSubmit = () => {};
+  const history = useHistory();
+  const { openModal } = useContext(ModalContext);
+  const [formData, setFormData] = useState({ email: "" });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    forgotPassword(formData, history, openModal);
+  };
   return (
     <React.Fragment>
       <div className="main-background">
@@ -28,7 +35,7 @@ const ForgotPassword = () => {
                           <input
                             onChange={handleChange}
                             name="email"
-                            value={formData}
+                            value={formData.email}
                             type="email"
                             className="font-vcr font-blue"
                             placeholder="Email -_-"
@@ -42,8 +49,8 @@ const ForgotPassword = () => {
                   <div className="mt-5 text-center button-hover">
                     <img
                       src={login}
-                      onClick={handleSubmit}
-                      alt="signup"
+                      onClick={(e) => handleSubmit(e)}
+                      alt="sendemail"
                       className="img-fluid mt-4"
                     />
                   </div>

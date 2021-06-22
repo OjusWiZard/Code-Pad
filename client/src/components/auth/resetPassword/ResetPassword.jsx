@@ -1,14 +1,33 @@
 import React, { useState, useContext } from "react";
-import { signIn } from "../../../api/index";
-import { useHistory } from "react-router-dom";
+import { resetPassword, signIn } from "../../../api/index";
+import { useHistory, useParams } from "react-router-dom";
 import login from "../../../images/auth/login.svg";
 import line from "../../../images/home/line.svg";
+import Modal from "../../modal/Modal";
 import { ModalContext } from "../../../context/context";
 import "../login/login.css";
+
 const ResetPassword = () => {
-  const [formData, setFormData] = useState();
-  const handleChange = () => {};
-  const handleSubmit = () => {};
+  const { openModal } = useContext(ModalContext);
+  const history = useHistory();
+  const [formData, setFormData] = useState({
+    password: "",
+    re_password: "",
+  });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.password === formData.re_password) {
+      resetPassword(formData, uid, token, history);
+    } else {
+      openModal("Passwords do not match", "Okay");
+      <Modal />;
+    }
+  };
+  const params = useParams();
+  const { uid, token } = params;
   return (
     <React.Fragment>
       <div className="main-background">
@@ -27,18 +46,35 @@ const ResetPassword = () => {
                         <div className="pixel-input w-100">
                           <input
                             onChange={handleChange}
-                            name="email"
-                            value={formData}
-                            type="email"
+                            name="password"
+                            value={formData.password}
+                            type="password"
                             className="font-vcr font-blue"
-                            placeholder="Email -_-"
+                            placeholder="Password"
                             required
                           />
                         </div>
                       </div>
                     </div>
                   </div>
-
+                  <div className="mt-4">
+                    <div className="input-group">
+                      <div className="pixel-input-wrapper">
+                        <span></span>
+                        <div className="pixel-input w-100">
+                          <input
+                            onChange={handleChange}
+                            name="re_password"
+                            value={formData.re_password}
+                            type="text"
+                            className="font-vcr font-blue"
+                            placeholder="Re-Password"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div className="mt-5 text-center button-hover">
                     <img
                       src={login}
