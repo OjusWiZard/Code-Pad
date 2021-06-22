@@ -135,7 +135,7 @@ export const forgotPassword = async (formData, history, openModal) => {
 
 export const resetPassword = async (formData, uid, token, history) => {
   try {
-    const { data } = await API.post(`/i/have/bad/memory/password/${uid}/${token}`, formData, config);
+    const { data } = await API.post(`/accounts/users/reset_password_confirm/`, { ...formData, uid, token }, config);
     console.log(data);
     history.push("/")
   } catch (error) {
