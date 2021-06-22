@@ -8,7 +8,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from judge0api.client import Client
-from judge0api.submission import submit
+from .judge import SingleSubmission
 from .paginations import Pagination_Size10
 from .models import Event, Problem, Submission, Leaderboard
 from .serializers import Event_List_Serializer, Event_Details_Serializer, Leaderboard_Serializer, Problem_List_Serializer, Problem_Detail_Serializer, Submission_Detail_Serializer, Submission_List_Serializer
@@ -36,12 +36,12 @@ class Submission_Viewset(ReadOnlyModelViewSet):
 
         problem = get_object_or_404(Problem, slug=get_submission_data('problem_slug'))
         language_id = int(get_submission_data('language_id'))
-        submitted_solution = str(get_submission_data('solution')).encode('ascii')
+        submitted_solution = str(get_submission_data('solution'))
         testcases_input_file = problem.solution_input.open(mode='r')
-        testcases_input = str(testcases_input_file.read().decode()).encode('ascii')
+        testcases_input = str(testcases_input_file.read())
         testcases_input_file.close()
         testcases_output_file = problem.solution_output.open(mode='r')
-        testcases_output = str(testcases_output_file.read().decode()).encode('ascii')
+        testcases_output = str(testcases_output_file.read())
         testcases_output_file.close()
 
         def time_limit(lang_id):
@@ -55,7 +55,8 @@ class Submission_Viewset(ReadOnlyModelViewSet):
                 return 1.5
 
         client = Client(environ['JUDGE_HOST'], environ['X_Auth_Token'])
-        submission = submit(client=client, source_code=submitted_solution, language=language_id, stdin=testcases_input, expected_output=testcases_output, cpu_time_limit=time_limit(language_id))
+        submission = SingleSubmission(source_code=submitted_solution, language_id=language_id, stdin=testcases_input, expected_output=testcases_output, cpu_time_limit=time_limit(language_id))
+        submission = submission.submit(client)
         
         current_event = problem.event
         current_time = timezone.now()
@@ -74,7 +75,6 @@ class Submission_Viewset(ReadOnlyModelViewSet):
         Submission.objects.create(user=request.user, problem=problem, submission_token=submission.token, solution=submitted_solution, is_accepted=accepted)
 
         custom_response = {
-            "stdout": submission.stdout,
             "time": submission.time,
             "memory": submission.memory,
             "stderr": submission.stderr,
