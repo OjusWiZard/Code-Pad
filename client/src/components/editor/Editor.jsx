@@ -49,7 +49,7 @@ const Editor = ({ language, value, onChange, inputChange, input }) => {
       <Editor1
         className="code-mirror-wrapper"
         language={language}
-        defaultLanguage="plaintext"
+        defaultLanguage="cpp"
         theme="vs-dark"
         value={value}
         height="50vh"
