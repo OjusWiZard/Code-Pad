@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
@@ -7,12 +7,13 @@ import avatarFour from "../../../images/auth/frog.svg";
 import update from "../../../images/auth/update.svg";
 import line from "../../../images/home/line.svg";
 import { editUserInfo } from "../../../api";
-
+import { ModalContext } from "../../../context/context";
+import "../editProfile/editProfile.css";
 function EditProfile() {
+  const { openModal } = useContext(ModalContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
     ...JSON.parse(localStorage.getItem("user")),
-    password: "",
   });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,11 +24,18 @@ function EditProfile() {
       .querySelectorAll(".avatar-container .img-fluid")
       .forEach((img) => img.classList.remove("active-avatar"));
     e.target.classList.add("active-avatar");
+    console.log(formData);
   };
+
+  const handleSubmit = (e, formData, history) => {
+    e.preventDefault();
+    console.log(formData);
+    editUserInfo(formData, history, openModal);
+  };
+
   useEffect(() => {
-    // let avatars = document.querySelectorAll(".avatar-container .img-fluid");
-    // avatars[formData.avatar - 1].classList.add("active-avatar");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    let avatars = document.querySelectorAll(".avatar-container .img-fluid");
+    avatars[formData.avatar - 1].classList.add("active-avatar");
   }, []);
   return (
     <React.Fragment>
@@ -84,23 +92,6 @@ function EditProfile() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
-                            value={formData.email}
-                            type="email"
-                            name="email"
-                            onChange={handleChange}
-                            className="font-vcr font-blue"
-                            placeholder="EMAIL"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <div className="input-group">
-                      <div className="pixel-input-wrapper">
-                        <span></span>
-                        <div className="pixel-input w-100">
-                          <input
                             type="name"
                             name="username"
                             onChange={handleChange}
@@ -118,21 +109,15 @@ function EditProfile() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
-                            type="password"
-                            name="password"
+                            type="text"
+                            name="full_name"
                             onChange={handleChange}
-                            value={formData.password}
+                            value={formData.full_name}
                             className="font-vcr font-blue"
                             placeholder="PASSWORD"
                           />
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="font-italic text-muted font-vcr pl-3"
-                      style={{ fontSize: "12px" }}
-                    >
-                      Leave blank if you dont want to change
                     </div>
                   </div>
                   <div className="mt-4">
@@ -141,12 +126,12 @@ function EditProfile() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
-                            type="text"
+                            type="number"
                             name="contact_no"
                             onChange={handleChange}
                             value={formData.contact_no}
                             className="font-vcr font-blue"
-                            placeholder="CONTACT NUMBER"
+                            placeholder="Re-Password"
                           />
                         </div>
                       </div>
@@ -156,7 +141,7 @@ function EditProfile() {
                 <div className="mt-5 text-center button-hover">
                   <img
                     src={update}
-                    onClick={() => editUserInfo(formData, history)}
+                    onClick={(e) => handleSubmit(e, formData, history)}
                     alt="update"
                     className="img-fluid mt-4"
                   />

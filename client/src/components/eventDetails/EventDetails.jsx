@@ -9,11 +9,13 @@ import avatar4 from "../../images/auth/pacman.svg";
 import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
-import { getEvent } from "../../api/index";
+import { getEvent, getLeaderboard, getLeaderboardUser } from "../../api/index";
 import { useParams, Redirect, Link } from "react-router-dom";
 import moment from "moment";
 function EventDetails() {
   const params = useParams();
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [user, setUser] = useState({});
   const [event, setEvent] = useState({});
   const avatarData = {
     1: avatar1,
@@ -22,23 +24,52 @@ function EventDetails() {
     4: avatar4,
   };
   useEffect(() => {
-    getEvent(params.slug)
-      .then((data) => {
-        setEvent(data);
-      })
-      .catch(() => {
-        <Redirect to="/" />;
+    getEvent(params.slug).then((data) => {
+      setEvent(data);
+      getLeaderboard(params.slug).then((data) => {
+        setLeaderboard(data);
+        getLeaderboardUser(
+          params.slug,
+          JSON.parse(localStorage.getItem("user"))?.username
+        ).then((data) => {
+          console.log(data);
+          setUser(data);
+        });
       });
-    return null;
+    });
+    getLeaderboard(params.slug)
+      .then((data) => {
+        setLeaderboard(data);
+      })
+      .catch((err) => {
+        console.log("Leaderboard Error: ", err);
+      });
+    if (localStorage.getItem("user")) {
+      getLeaderboardUser(
+        params.slug,
+        JSON.parse(localStorage.getItem("user"))?.username
+      )
+        .then((data) => {
+          setUser(data);
+        })
+        .catch(() => {
+          <Redirect to="/" />;
+        });
+    }
   }, [params.slug]);
 
   const [active, setActive] = useState("about");
-
+  console.log(params.slug);
   const removeClass = (e) => {
     document
       .querySelectorAll("li")
       .forEach((link) => link.classList.remove("active-event"));
   };
+  console.log(
+    user,
+    leaderboard,
+    JSON.parse(localStorage.getItem("user"))?.username
+  );
   return (
     <React.Fragment>
       <div className="main-background">
@@ -105,7 +136,12 @@ function EventDetails() {
                     </div>
                   </div>
                   <div style={{ flex: 0.95 }}>
-                    *&nbsp;Dashboard&nbsp;*
+                    <div className="dashboard-header">
+                      <div className="dashboard">*&nbsp;Dashboard&nbsp;*</div>
+                      <div className="score">
+                        {user ? `${user?.score}` : `0`}
+                      </div>
+                    </div>
                     <div className="rules mt-5 pt-2 pb-5 py-2 px-2">
                       {active === "about" && (
                         <div className="about__section m-2">
@@ -195,40 +231,38 @@ function EventDetails() {
                               <span style={{ flex: 0.6 }}>Name</span>
                               <span style={{ flex: 0.2 }}>Score</span>
                             </div>
-                            {event?.leaderboard_of_this_event?.map(
-                              (person, index) => (
-                                <div
-                                  key={index}
-                                  className="user-data d-flex justify-content-around leaderboard-bg"
+                            {leaderboard?.results?.map((user, index) => (
+                              <div
+                                key={index}
+                                className="user-data d-flex justify-content-around leaderboard-bg"
+                              >
+                                <span
+                                  className="user-rank"
+                                  style={{ flex: 0.2 }}
                                 >
-                                  <span
-                                    className="user-rank"
-                                    style={{ flex: 0.2 }}
-                                  >
-                                    {index + 1}
-                                  </span>
-                                  <div
-                                    style={{ flex: 0.6 }}
-                                    className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
-                                  >
-                                    <img
-                                      src={avatarData[person.user.avatar]}
-                                      className="user-image"
-                                      alt="avatar"
-                                    />
-                                    <span className="user-name">
-                                      {person?.user?.username}
-                                    </span>
-                                  </div>
-                                  <span
-                                    className="user-score"
-                                    style={{ flex: 0.2 }}
-                                  >
-                                    {person?.score}
+                                  {index + 1}
+                                </span>
+                                <div
+                                  style={{ flex: 0.6 }}
+                                  className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                                >
+                                  <img
+                                    src={avatarData[user?.user.avatar]}
+                                    className="user-image"
+                                    alt="avatar"
+                                  />
+                                  <span className="user-name">
+                                    {user?.user?.username}
                                   </span>
                                 </div>
-                              )
-                            )}
+                                <span
+                                  className="user-score"
+                                  style={{ flex: 0.2 }}
+                                >
+                                  {user.score}
+                                </span>
+                              </div>
+                            ))}
                           </div>
                         </>
                       )}
