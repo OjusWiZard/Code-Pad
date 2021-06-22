@@ -124,6 +124,9 @@ class BatchSubmission:
         for submission in self.submissions_data:
             data = {}
 
+            assert self.submission_data.source_code, '"source_code" not found'
+            assert self.submission_data.language_id, '"language_id" not found'
+
             data['source_code'] = base64.b64encode(submission.source_code.encode('ascii')).decode('ascii')
             data['language_id'] = submission.language_id
 
@@ -148,7 +151,7 @@ class BatchSubmission:
         return self.submissions_data
 
 
-class Submission:
+class SingleSubmission:
 
     submission_data = SubmissionData()
 
@@ -165,6 +168,9 @@ class Submission:
         params = {"base64_encoded": "true", "wait": str(client.wait).lower()}
 
         data = {}
+
+        assert self.submission_data.source_code, '"source_code" not found'
+        assert self.submission_data.language_id, '"language_id" not found'
 
         data['source_code'] = base64.b64encode(self.submission_data.source_code.encode('ascii')).decode('ascii')
         data['language_id'] = self.submission_data.language_id
