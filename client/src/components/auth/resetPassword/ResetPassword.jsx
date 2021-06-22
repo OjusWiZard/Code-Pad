@@ -46,7 +46,7 @@ const ResetPassword = () => {
                         <div className="pixel-input w-100">
                           <input
                             onChange={handleChange}
-                            name="password"
+                            name="new_password"
                             value={formData.new_password}
                             type="password"
                             className="font-vcr font-blue"
@@ -64,7 +64,7 @@ const ResetPassword = () => {
                         <div className="pixel-input w-100">
                           <input
                             onChange={handleChange}
-                            name="re_password"
+                            name="re_new_password"
                             value={formData.re_new_password}
                             type="text"
                             className="font-vcr font-blue"
