@@ -6,7 +6,6 @@ import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
 import update from "../../../images/auth/update.svg";
 import line from "../../../images/home/line.svg";
-import Modal from "../../modal/Modal";
 import { editUserInfo } from "../../../api";
 import { ModalContext } from "../../../context/context";
 import "../editProfile/editProfile.css";
@@ -15,8 +14,6 @@ function EditProfile() {
   const history = useHistory();
   const [formData, setFormData] = useState({
     ...JSON.parse(localStorage.getItem("user")),
-    password: "",
-    re_password: "",
   });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,12 +30,7 @@ function EditProfile() {
   const handleSubmit = (e, formData, history) => {
     e.preventDefault();
     console.log(formData);
-    if (formData.re_password === formData.password) {
-      editUserInfo(formData, history);
-    } else {
-      openModal("Passwords do not match", "Okay");
-      <Modal />;
-    }
+    editUserInfo(formData, history, openModal);
   };
 
   useEffect(() => {
@@ -100,23 +92,6 @@ function EditProfile() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
-                            value={formData.email}
-                            type="email"
-                            name="email"
-                            onChange={handleChange}
-                            className="font-vcr font-blue"
-                            placeholder="EMAIL"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <div className="input-group">
-                      <div className="pixel-input-wrapper">
-                        <span></span>
-                        <div className="pixel-input w-100">
-                          <input
                             type="name"
                             name="username"
                             onChange={handleChange}
@@ -134,21 +109,15 @@ function EditProfile() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
-                            type="password"
-                            name="password"
+                            type="text"
+                            name="full_name"
                             onChange={handleChange}
-                            value={formData.password}
+                            value={formData.full_name}
                             className="font-vcr font-blue"
                             placeholder="PASSWORD"
                           />
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="font-italic text-muted font-vcr pl-3"
-                      style={{ fontSize: "12px" }}
-                    >
-                      Leave blank if you dont want to change
                     </div>
                   </div>
                   <div className="mt-4">
@@ -157,10 +126,10 @@ function EditProfile() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
-                            type="password"
-                            name="re_password"
+                            type="number"
+                            name="contact_no"
                             onChange={handleChange}
-                            value={formData.re_password}
+                            value={formData.contact_no}
                             className="font-vcr font-blue"
                             placeholder="Re-Password"
                           />
