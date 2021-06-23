@@ -42,13 +42,13 @@ class Submission_Viewset(ReadOnlyModelViewSet):
 
         def time_limit(lang_id):
             if lang_id in (70, 71):                 # [Python, Python3]
-                return 5.5
+                return 10
             elif lang_id in (55, 68, 72):           # [Lisp, PHP, Ruby]
-                return 3.5
+                return 6
             elif lang_id in (51, 62, 63, 78, 81):   # [C#, Java, javaScript, Kotlin, Scala]
-                return 2.5
+                return 4
             else:                                   # All other Languages
-                return 1.5
+                return 2
 
         client = Client(environ['JUDGE_HOST'], environ['X_Auth_Token'])
         results = []
