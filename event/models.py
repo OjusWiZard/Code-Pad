@@ -72,8 +72,8 @@ class Testcase(models.Model):
         return 'testcases/{0}/output.txt'.format(instance.problem.title)
 
     problem             = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name='testcases')
-    tc_input      = models.FileField(upload_to=get_input_testcase_path, validators=[validate_text_file])
-    tc_output     = models.FileField(upload_to=get_output_testcase_path, validators=[validate_text_file])
+    tc_input            = models.FileField(upload_to=get_input_testcase_path, validators=[validate_text_file])
+    tc_output           = models.FileField(upload_to=get_output_testcase_path, validators=[validate_text_file])
 
     def __str__(self):
         return self.problem.title +"'s testcase"
