@@ -40,8 +40,6 @@ class Migration(migrations.Migration):
                 ('example_input', models.TextField(max_length=512)),
                 ('example_output', models.TextField(max_length=512)),
                 ('example_explanation', models.TextField(max_length=1024)),
-                ('solution_input', models.FileField(upload_to=event.models.Problem.get_input_testcase_path, validators=[event.validators.validate_text_file])),
-                ('solution_output', models.FileField(upload_to=event.models.Problem.get_output_testcase_path, validators=[event.validators.validate_text_file])),
                 ('event', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='event.event')),
             ],
         ),
