@@ -1,4 +1,5 @@
 from os import environ
+from copy import deepcopy
 from django.db.models import F
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
@@ -10,7 +11,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 from judge0api.client import Client
 from .judge import SingleSubmission
 from .paginations import Pagination_Size10
-from .models import Event, Problem, Submission, Leaderboard
+from .models import Event, Problem, Testcase, Submission, Leaderboard
 from .serializers import Event_List_Serializer, Event_Details_Serializer, Leaderboard_Serializer, Problem_List_Serializer, Problem_Detail_Serializer, Submission_Detail_Serializer, Submission_List_Serializer
 
 
@@ -37,12 +38,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
         problem = get_object_or_404(Problem, slug=get_submission_data('problem_slug'))
         language_id = int(get_submission_data('language_id'))
         submitted_solution = str(get_submission_data('solution'))
-        testcases_input_file = problem.solution_input.open(mode='r')
-        testcases_input = str(testcases_input_file.read())
-        testcases_input_file.close()
-        testcases_output_file = problem.solution_output.open(mode='r')
-        testcases_output = str(testcases_output_file.read())
-        testcases_output_file.close()
+        testcases = Testcase.objects.filter(problem=problem)
 
         def time_limit(lang_id):
             if lang_id in (70, 71):                 # [Python, Python3]
@@ -55,15 +51,30 @@ class Submission_Viewset(ReadOnlyModelViewSet):
                 return 1.5
 
         client = Client(environ['JUDGE_HOST'], environ['X_Auth_Token'])
-        submission = SingleSubmission(source_code=submitted_solution, language_id=language_id, stdin=testcases_input, expected_output=testcases_output, cpu_time_limit=time_limit(language_id))
-        submission = submission.submit(client)
-        
+        results = []
+        passed = True
+        for testcase in testcases:
+            tc_inp_file = testcase.tc_input.open(mode='r')
+            tc_out_file = testcase.tc_output.open(mode='r')
+            tc_out = str(tc_out_file.read().decode())
+            tc_inp = str(tc_inp_file.read().decode())
+            tc_inp_file.close()
+            tc_out_file.close()
+
+            submission = SingleSubmission(source_code=submitted_solution, language_id=language_id, stdin=tc_inp, expected_output=tc_out, cpu_time_limit=time_limit(language_id))
+            result = submission.submit(client)
+            results.append(deepcopy(result))
+
+            if result.status['id'] != 3:
+                passed = False
+                break
+
         current_event = problem.event
         current_time = timezone.now()
         if current_event.datetime <= current_time <= (current_event.datetime+current_event.duration) and current_event.is_contest:
             submissions = Submission.objects.filter(user=request.user, problem=problem)
             correct_submissions = submissions.filter(is_accepted=True)
-            if not correct_submissions and submission.status['id'] == 3:
+            if not correct_submissions and passed:
                 incorrect_submissions = submissions.filter(is_accepted=False)
                 current_leaderboard_field = Leaderboard.objects.get_or_create(user=request.user, event=current_event)[0]
                 current_leaderboard_field.score += problem.points
@@ -71,20 +82,37 @@ class Submission_Viewset(ReadOnlyModelViewSet):
                 current_leaderboard_field.score -= problem.point_loss * (current_time.minute - current_event.datetime.minute)
                 current_leaderboard_field.save()
 
-        accepted = submission.status['id'] == 3
-        Submission.objects.create(user=request.user, problem=problem, submission_token=submission.token, solution=submitted_solution, is_accepted=accepted)
+        Submission.objects.create(user=request.user, problem=problem, solution=submitted_solution, is_accepted=passed)
+
+        avg_time = 0
+        avg_memory = 0
+        testcases = []
+        status = ['failed', 'passed']
+
+        for result in results:
+            avg_time += float(result.time)
+            avg_memory += float(result.memory)
+            testcase = {
+                "time": float(result.time),
+                "memory": float(result.memory),
+                "stderr": result.stderr,
+                "token": result.token,
+                "compile_output": result.compile_output,
+                "message": result.message,
+                "status": {
+                    "id": result.status['id'],
+                    "description": result.status['description']
+                }
+            }
+            testcases.append(testcase)
+        avg_time /= len(testcases)
+        avg_memory /= len(testcases)
 
         custom_response = {
-            "time": submission.time,
-            "memory": submission.memory,
-            "stderr": submission.stderr,
-            "token": submission.token,
-            "compile_output": submission.compile_output,
-            "message": submission.message,
-            "status": {
-                "id": submission.status['id'],
-                "description": submission.status['description']
-            }
+            'complete_status': status[passed],
+            'avg_time': avg_time,
+            'avg_memory': avg_memory,
+            'testcases': testcases
         }
 
         return Response(data=custom_response)

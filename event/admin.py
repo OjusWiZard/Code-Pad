@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Leaderboard, Problem, Submission
+from .models import Event, Leaderboard, Problem, Testcase, Submission
 
 
 class Event_Admin(admin.ModelAdmin):
@@ -23,15 +23,21 @@ class Problem_Admin(admin.ModelAdmin):
     search_fields = ['title']
 
 
+class Testcase_Admin(admin.ModelAdmin):
+    list_filter = ['problem__title']
+    search_fields = ['problem__title']
+
+
 class Submission_Admin(admin.ModelAdmin):
-    list_display = ['user', 'problem', 'datetime', 'submission_token']
+    list_display = ['user', 'is_accepted', 'problem', 'datetime']
     list_filter = ['problem__event']
     ordering = ['-datetime']
     search_fields = ['user', 'problem', 'problem__event']
-    readonly_fields = ['datetime', 'solution', 'is_accepted', 'user', 'problem', 'submission_token']
+    readonly_fields = ['datetime', 'solution', 'is_accepted', 'user', 'problem']
 
 
 admin.site.register(Event, Event_Admin)
 admin.site.register(Leaderboard, Leaderboard_Admin)
 admin.site.register(Problem, Problem_Admin)
+admin.site.register(Testcase, Testcase_Admin)
 admin.site.register(Submission, Submission_Admin)
