@@ -19,6 +19,7 @@ class Leaderboard_Admin(admin.ModelAdmin):
 
 class Problem_Admin(admin.ModelAdmin):
     list_display = ['title', 'event']
+    list_filter = ['event']
     ordering = ['-event__datetime']
     search_fields = ['title']
 
