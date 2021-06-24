@@ -19,13 +19,32 @@ class Submission_Viewset(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Submission.objects.all().order_by('-datetime')
     pagination_class = Pagination_Size10
-    
+    lookup_field = 'problem__slug'
+
+    def for_a_user(self):
+        return 'username' in self.request.query_params
+
     def get_serializer_class(self):
-        if self.action == 'retrieve':
+        if self.for_a_user():
             live_events = Event.objects.filter(datetime__lt=timezone.now()).filter(datetime__gt=timezone.now() - F('duration'))
             if not live_events:
                 return Submission_Detail_Serializer
         return Submission_List_Serializer
+
+    def get_queryset(self):
+        queryset = Submission.objects.filter(problem__slug=self.kwargs[self.lookup_field])
+        if self.for_a_user():
+            return queryset.filter(user__username=self.request.query_params['username']).order_by('-datetime')
+        return queryset.order_by('-datetime')
+
+    def retrieve(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        page = self.paginate_queryset(queryset)
+        serializer = self.get_serializer(page, many=True)
+        return self.get_paginated_response(serializer.data)
+
+    def list(self, request, *args, **kwargs):
+        return HttpResponseBadRequest()
 
     def create(self, request):
 
@@ -154,7 +173,7 @@ class Leaderboard_Viewset(ReadOnlyModelViewSet):
         queryset = Leaderboard.objects.filter(event__slug=self.kwargs[self.lookup_field])
         if self.for_a_user():
             return get_object_or_404(queryset, user__username=self.request.query_params['username'])
-        return queryset
+        return queryset.order_by('-score')
 
     def retrieve(self, request, *args, **kwargs):
         queryset = self.get_queryset()
