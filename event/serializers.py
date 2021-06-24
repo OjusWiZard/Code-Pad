@@ -70,7 +70,6 @@ class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
 
 class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
     problem_set = Problem_List_Serializer(many=True)
-    leaderboard_of_this_event = Leaderboard_Serializer(many=True)
     status = serializers.SerializerMethodField('event_status')
 
     def event_status(self, event):
@@ -83,7 +82,7 @@ class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event
-        fields = ['title', 'description', 'rules', 'is_contest', 'icon', 'status', 'datetime', 'duration', 'problem_set', 'leaderboard_of_this_event']
+        fields = ['title', 'description', 'rules', 'is_contest', 'icon', 'status', 'datetime', 'duration', 'problem_set']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
