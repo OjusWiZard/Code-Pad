@@ -16,7 +16,11 @@ class Event(models.Model):
     duration    = models.DurationField(default=timedelta(hours=2))
     
     leaderboard = models.ManyToManyField(User, through='Leaderboard', related_name='event_of_this_leaderboard')
-    
+
+    def save(self, *args, **kwargs):
+        self.slug = self.slug.upper()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.title
 
@@ -58,6 +62,7 @@ class Problem(models.Model):
         super().clean(*args, **kwargs)
 
     def save(self, *args, **kwargs):
+        self.slug = self.slug.upper()
         self.full_clean()
         super().save(*args, **kwargs)
     
