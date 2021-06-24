@@ -138,7 +138,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
 
 
 class Problem_Viewset(ReadOnlyModelViewSet):
-    queryset = Problem.objects.filter(event__datetime__lt=timezone.now()).order_by('-event__datetime')
+    queryset = Problem.objects.filter(event__datetime__lt=timezone.now(), testcases__isnull=False).distinct().order_by('-event__datetime')
     lookup_field = 'slug'
     pagination_class = Pagination_Size10
 
