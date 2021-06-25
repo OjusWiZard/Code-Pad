@@ -41,3 +41,6 @@
   background: url("../../images/events/hover_frame.svg");
   background-size: cover;
 }
+.bg-black {
+  background: black;
+}
