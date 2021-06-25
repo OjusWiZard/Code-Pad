@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
@@ -9,6 +9,7 @@ import line from "../../../images/home/line.svg";
 import { editUserInfo } from "../../../api";
 import { ModalContext } from "../../../context/context";
 import "../editProfile/editProfile.css";
+
 function EditProfile() {
   const { openModal } = useContext(ModalContext);
   const history = useHistory();
@@ -22,8 +23,8 @@ function EditProfile() {
     setFormData({ ...formData, avatar: e.target.name });
     document
       .querySelectorAll(".avatar-container .img-fluid")
-      .forEach((img) => img.classList.remove("active-avatar"));
-    e.target.classList.add("active-avatar");
+      .forEach((img) => img.classList.add("active-avatar"));
+    e.target.classList.remove("active-avatar");
     console.log(formData);
   };
 
@@ -32,11 +33,6 @@ function EditProfile() {
     console.log(formData);
     editUserInfo(formData, history, openModal);
   };
-
-  useEffect(() => {
-    let avatars = document.querySelectorAll(".avatar-container .img-fluid");
-    avatars[formData.avatar - 1].classList.add("active-avatar");
-  }, []);
   return (
     <React.Fragment>
       <div className="main-background">
@@ -54,8 +50,8 @@ function EditProfile() {
                     alt=""
                     className="img-fluid mx-2"
                     onClick={handleAvatar}
-                    width="40px"
-                    height="40px"
+                    width="60px"
+                    height="60px"
                   />
                   <img
                     name="2"
@@ -63,8 +59,8 @@ function EditProfile() {
                     alt=""
                     className="img-fluid mx-2"
                     onClick={handleAvatar}
-                    width="40px"
-                    height="40px"
+                    width="60px"
+                    height="60px"
                   />
                   <img
                     name="3"
@@ -72,16 +68,16 @@ function EditProfile() {
                     alt=""
                     className="img-fluid mx-2"
                     onClick={handleAvatar}
-                    width="40px"
-                    height="40px"
+                    width="60px"
+                    height="60px"
                   />
                   <img
                     name="4"
                     src={avatarFour}
                     alt=""
                     onClick={handleAvatar}
-                    width="40px"
-                    height="40px"
+                    width="60px"
+                    height="60px"
                     className="img-fluid mx-2"
                   />
                 </div>
@@ -97,7 +93,7 @@ function EditProfile() {
                             onChange={handleChange}
                             value={formData.username}
                             className="font-vcr font-blue"
-                            placeholder="NAME"
+                            placeholder="username"
                           />
                         </div>
                       </div>
@@ -114,7 +110,7 @@ function EditProfile() {
                             onChange={handleChange}
                             value={formData.full_name}
                             className="font-vcr font-blue"
-                            placeholder="PASSWORD"
+                            placeholder="Full name"
                           />
                         </div>
                       </div>
@@ -131,7 +127,7 @@ function EditProfile() {
                             onChange={handleChange}
                             value={formData.contact_no}
                             className="font-vcr font-blue"
-                            placeholder="Re-Password"
+                            placeholder="contact_no"
                           />
                         </div>
                       </div>

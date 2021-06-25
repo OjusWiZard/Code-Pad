@@ -3,14 +3,6 @@ import Router from "./Router";
 import { userInfo } from "./api";
 
 function App() {
-  useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      userInfo();
-    }
-    document.addEventListener("contextmenu", function (e) {
-      e.preventDefault();
-    });
-  }, []);
   return (
     <div className="App">
       <div className="scan-lines">

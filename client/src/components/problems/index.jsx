@@ -6,11 +6,10 @@ import avatar3 from "../../images/auth/peach.svg";
 import avatar4 from "../../images/auth/pacman.svg";
 import runCode from "../../images/problems/runCode.svg";
 import submitCode from "../../images/problems/submitCode.svg";
-import { codeSubmission } from "../../api/index";
 import Spinner from "../utils/Spinner";
 import { useParams } from "react-router-dom";
 import Editor from "../editor/Editor";
-import { getProblem } from "../../api/index";
+import { getSubmissions, getProblem, codeSubmission } from "../../api/index";
 import "./problem.css";
 
 function Problem() {
@@ -18,6 +17,9 @@ function Problem() {
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [submissions, setSubmissions] = useState([]);
+  const [problem, setProblem] = useState();
   const [languages, setLanguages] = useState("");
   const [languageId, setLanguageId] = useState(54);
   const avatarData = {
@@ -32,13 +34,22 @@ function Problem() {
       "X-Auth-Token": "LetUsCodeHackNCS",
     },
   };
+
+  // Fetching Languages
   useEffect(() => {
     axios.get("https://judge.hackncs.com/languages", config).then((data) => {
       setLanguages(data.data);
     });
+    getProblem(params.slug.toString().toUpperCase()).then((data) => {
+      setProblem(data);
+      setLoading(false);
+    });
+    getSubmissions(params.slug.toString().toUpperCase()).then((data) => {
+      setSubmissions(data);
+    });
   }, []);
-  const [loading, setLoading] = useState(true);
-  const [problem, setProblem] = useState();
+  console.log("Sub", submissions);
+  // Run Code
   const handleRunCode = async (e, value, languageId, input) => {
     e.preventDefault();
     setOutput("");
@@ -78,6 +89,7 @@ function Problem() {
       alert(error);
     }
   };
+
   const handleSubmitCode = async (e, value) => {
     e.preventDefault();
     let l = Number(languageId);
@@ -92,16 +104,8 @@ function Problem() {
       alert(error);
     }
   };
-  useEffect(() => {
-    getProblem(params.slug)
-      .then((data) => {
-        setProblem(data);
-        setLoading(false);
-      })
-      .catch((error) => console.log(error.message));
-  }, []);
-  console.log(problem);
-  const submissionArray = problem?.submissions?.splice(0, 5);
+
+  // const submissionArray = problem?.submissions?.splice(0, 5);
   return (
     <React.Fragment>
       {loading ? (
@@ -110,7 +114,7 @@ function Problem() {
         <div className="main-background">
           <div className="problem-wrapper pt-sm-5">
             <div className="row d-flex justify-content-center">
-              <div className="col-xl-12 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-md-5 my-2 content-background">
+              <div className="col-xl-12 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-md-5 my-2 content-background pb-5">
                 <div className="row pt-3">
                   <div className="col-lg-5 col-md-12 col-sm-12 col-12 pt-md-5 py-2">
                     <div className="d-flex justify-content-center font-vcr font-blue">
@@ -172,7 +176,7 @@ function Problem() {
                         <span style={{ flex: 0.4 }}>Name</span>
                         <span style={{ flex: 0.4 }}>Score</span>
                       </div>
-                      {submissionArray?.map((submission, index) => (
+                      {submissions?.results?.map((submission, index) => (
                         <div
                           key={index}
                           className="user-data d-flex justify-content-around leaderboard-bg"
@@ -193,14 +197,14 @@ function Problem() {
                             </span>
                           </div>
                           <span className="user-score" style={{ flex: 0.4 }}>
-                            {submission.problem.points}
+                            {submission.problem?.points}
                           </span>
                         </div>
                       ))}
                     </div>
                   </div>
                   <div className="col-lg-7 col-md-12 col-sm-12 col-12 pt-md-5">
-                    <div className="d-flex justify-content-between upper-section mb-2 py-2">
+                    <div className="d-flex justify-content-between upper-section mb-2 py-2 font-vcr">
                       <select
                         onChange={(e) => {
                           setLanguageId(e.target.value);
@@ -210,7 +214,10 @@ function Problem() {
                         }}
                       >
                         {languages.map((lan) => (
-                          <option value={lan.id} className="font-lightGrey">
+                          <option
+                            value={lan.id}
+                            className="font-lightGrey font-vcr"
+                          >
                             {lan.name}
                           </option>
                         ))}
@@ -229,7 +236,7 @@ function Problem() {
                     <div className="d-flex mt-3 py-2 lower-section">
                       <textarea
                         className="output w-50 font-vcr px-2 py-2"
-                        rows="10"
+                        rows="5"
                         placeholder="Custom Input here..."
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
@@ -250,12 +257,21 @@ function Problem() {
                     </div>
                     <div className="output-section">
                       <p className="font-vcr font-blue font-weight-bold mt-5 text-center mb-3">
-                        &lt;&lt;&nbsp;&nbsp;HELLO OUTPUT&nbsp;&nbsp;&gt;&gt;
+                        &lt;&lt;&nbsp;HELLO OUTPUT&nbsp;&gt;&gt;
                       </p>
+                      <div className="d-flex justify-content-between p-3 bg-black">
+                        <div className="font-vcr font-blue">
+                          Status: Successfull
+                        </div>
+                        <div className="font-vcr font-lightGrey">
+                          Time: 0.05sec
+                        </div>
+                        <div className="font-vcr font-lightGrey">Mem: 63kb</div>
+                      </div>
                       <textarea
                         className="output w-100"
                         value={output}
-                        rows="5"
+                        rows="10"
                       ></textarea>
                     </div>
                   </div>

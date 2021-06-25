@@ -10,7 +10,6 @@ const Form = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [languages, setLanguages] = useState([]);
-  const [language, setLanguage] = useState("cpp");
   const [languageId, setLanguageId] = useState(54);
 
   const config = {
@@ -24,7 +23,7 @@ const Form = () => {
       setLanguages(data.data);
     });
   }, []);
-  console.log(languages);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setOutput("");
