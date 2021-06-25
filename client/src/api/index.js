@@ -1,5 +1,5 @@
 import axios from "axios";
-import Modal from "../components/modal/Modal";
+import Modal from "../components/modal";
 
 const API = axios.create({
   baseURL: "https://codepad-ncs.herokuapp.com",
@@ -76,7 +76,7 @@ export const getAllEvents = async () => {
     const { data } = await API.get("/events/");
 
     return data;
-  } catch (error) { }
+  } catch (error) {}
 };
 
 export const getEvent = async (slug) => {
@@ -84,7 +84,7 @@ export const getEvent = async (slug) => {
     const { data } = await API.get(`/events/${slug}`, config);
 
     return data;
-  } catch (error) { }
+  } catch (error) {}
 };
 
 export const getProblem = async (slug) => {
@@ -92,14 +92,14 @@ export const getProblem = async (slug) => {
     const { data } = await API.get(`/problems/${slug}`);
 
     return data;
-  } catch (error) { }
+  } catch (error) {}
 };
 
 export const codeSubmission = async (formData) => {
   try {
     const { data } = await API.post(`/submissions/`, formData, config);
     return data;
-  } catch (error) { }
+  } catch (error) {}
 };
 
 export const getLeaderboard = async (slug) => {
@@ -110,37 +110,49 @@ export const getLeaderboard = async (slug) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const getLeaderboardUser = async (slug, username) => {
   try {
-    console.log("username= ", username)
-    const { data } = await API.get(`/leaderboard/${slug}?username=${username}`)
+    console.log("username= ", username);
+    const { data } = await API.get(`/leaderboard/${slug}?username=${username}`);
     console.log("USERDATA", data);
     return data;
   } catch (error) {
     console.log(error);
   }
-}
-
+};
 
 export const forgotPassword = async (formData, history, openModal) => {
   try {
-    const { data } = await API.post(`/accounts/users/reset_password/`, formData, config);
+    const { data } = await API.post(
+      `/accounts/users/reset_password/`,
+      formData,
+      config
+    );
     openModal("Check your email", "Okay");
     <Modal />;
-    history.push('/')
-  } catch (error) {
-
-  }
-}
+    history.push("/");
+  } catch (error) {}
+};
 
 export const resetPassword = async (formData, uid, token, history) => {
   try {
-    const { data } = await API.post(`/accounts/users/reset_password_confirm/`, { ...formData, uid, token }, config);
+    const { data } = await API.post(
+      `/accounts/users/reset_password_confirm/`,
+      { ...formData, uid, token },
+      config
+    );
     console.log(data);
-    history.push("/")
-  } catch (error) {
+    history.push("/");
+  } catch (error) {}
+};
 
+export const getSubmissions = async (slug) => {
+  try {
+    const { data } = await API.get(`/submissions/${slug}`,  config);
+    return data;
+  } catch (error) {
+    console.log(error);
   }
-}
+};

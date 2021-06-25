@@ -23,7 +23,6 @@ select:active {
 textarea {
   color: #fff !important;
   width: 525px;
-  height: 137px;
   background-color: rgba(0, 0, 0, 0.8);
 }
 button[type="submit"] {
