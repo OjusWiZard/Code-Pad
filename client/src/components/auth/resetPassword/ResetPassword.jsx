@@ -3,7 +3,7 @@ import { resetPassword, signIn } from "../../../api/index";
 import { useHistory, useParams } from "react-router-dom";
 import login from "../../../images/auth/login.svg";
 import line from "../../../images/home/line.svg";
-import Modal from "../../modal/Modal";
+import Modal from "../../modal";
 import { ModalContext } from "../../../context/context";
 import "../login/login.css";
 

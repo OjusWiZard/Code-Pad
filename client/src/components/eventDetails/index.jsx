@@ -206,7 +206,7 @@ function EventDetails() {
                                     className="user-score"
                                     style={{ flex: 0.2 }}
                                   >
-                                    {problem.points}
+                                    {problem?.points}
                                   </div>
                                 </div>
                               </Link>

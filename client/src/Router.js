@@ -2,19 +2,19 @@ import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
-import Navbar from "./components/navbar/Navbar";
-import Home from "./components/home/Home";
-import Form from "./components/editor/Form";
-import Events from "./components/events/Events";
-import EventDetails from "./components/eventDetails/EventDetails";
-import SignUp from "./components/auth/signup/SignUp";
-import Login from "./components/auth/login/Login";
-import Profile from "./components/auth/editProfile/Profile";
-import Default from "./components/default/Default";
-import Footer from "./components/footer/Footer";
-import Modal from "./components/modal/Modal";
-import ForgotPassword from './components/auth/forgotPassword/forgotPassword';
-import Problem from "./components/problems/Problem";
+import Navbar from "./components/navbar/";
+import Home from "./components/home";
+import Form from "./components/editor";
+import Events from "./components/events";
+import EventDetails from "./components/eventDetails";
+import SignUp from "./components/auth/signup";
+import Login from "./components/auth/login";
+import Profile from "./components/auth/editProfile";
+import Default from "./components/default";
+import Footer from "./components/footer";
+import Modal from "./components/modal";
+import ForgotPassword from "./components/auth/forgotPassword/forgotPassword";
+import Problem from "./components/problems";
 import ResetPassword from "./components/auth/resetPassword/ResetPassword";
 
 function Router() {
@@ -32,7 +32,11 @@ function Router() {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/problems" component={Problem} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
-        <Route exact path="/i/have/bad/memory/password/:uid/:token" component={ResetPassword} />
+        <Route
+          exact
+          path="/i/have/bad/memory/password/:uid/:token"
+          component={ResetPassword}
+        />
         <Route component={Default} />
       </Switch>
       <Modal />

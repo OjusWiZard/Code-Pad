@@ -47,7 +47,7 @@ function Home() {
                   <div className="d-flex justify-content-center pt-5">
                     <img src={line} alt="" className="img-fluid" />
                   </div>
-                  {onGoingEvents && (
+                  {onGoingEvents.length > 0 && (
                     <div>
                       <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold">
                         &lt;&lt;&nbsp;ONGOING EVENTS&nbsp;&gt;&gt;
