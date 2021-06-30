@@ -44,9 +44,33 @@ class SubmissionData:
     _encoded_send_fields = {"source_code", "stdin", "expected_output"}
     _encoded_response_fields = {"stderr", "stdout", "compile_output"}
     _encoded_fields = _encoded_send_fields | _encoded_response_fields
-    _extra_send_fields = {"cpu_time_limit", "cpu_extra_time", "wall_time_limit", "memory_limit", "stack_limit", "max_processes_and_or_threads", "enable_per_process_and_thread_time_limit", "enable_per_process_and_thread_memory_limit", "max_file_size", "number_of_runs"}
-    _extra_response_fields = {"time", "memory", "token", "message", "status", "exit_code", "exit_signal", "created_at", "finished_at", "wall_time"}
-    _response_fields = _encoded_response_fields | _extra_response_fields | {"language_id"}
+    _extra_send_fields = {
+        "cpu_time_limit",
+        "cpu_extra_time",
+        "wall_time_limit",
+        "memory_limit",
+        "stack_limit",
+        "max_processes_and_or_threads",
+        "enable_per_process_and_thread_time_limit",
+        "enable_per_process_and_thread_memory_limit",
+        "max_file_size",
+        "number_of_runs",
+    }
+    _extra_response_fields = {
+        "time",
+        "memory",
+        "token",
+        "message",
+        "status",
+        "exit_code",
+        "exit_signal",
+        "created_at",
+        "finished_at",
+        "wall_time",
+    }
+    _response_fields = (
+        _encoded_response_fields | _extra_response_fields | {"language_id"}
+    )
     _send_fields = _encoded_send_fields | _extra_send_fields
     _fields = _response_fields | _send_fields
 
@@ -81,9 +105,13 @@ class SubmissionData:
         params = {
             "base64_encoded": "true",
             # The fields parameter of judge0 expects a comma separated string rather than a HTML spec param list
-            "fields": ",".join(self._response_fields)
+            "fields": ",".join(self._response_fields),
         }
-        r = client.session.get(f"{client.endpoint}/submissions/{self.token}/", headers=headers, params=params)
+        r = client.session.get(
+            f"{client.endpoint}/submissions/{self.token}/",
+            headers=headers,
+            params=params,
+        )
         r.raise_for_status()
 
         json = r.json()
@@ -101,9 +129,9 @@ class SubmissionData:
 
 class BatchSubmission:
 
-    submissions_data = [] 
+    submissions_data = []
 
-    def __init__(self, dataset:list):
+    def __init__(self, dataset: list):
         for data in dataset:
             submission = SubmissionData()
             submission.set_properties(data)
@@ -117,9 +145,7 @@ class BatchSubmission:
         :raises HTTPError if the post request is not able to be completed
         """
         params = {"base64_encoded": "true", "wait": str(client.wait).lower()}
-        dataset = {
-            "submissions": []
-        }
+        dataset = {"submissions": []}
 
         for submission in self.submissions_data:
             data = {}
@@ -127,27 +153,43 @@ class BatchSubmission:
             assert self.submission_data.source_code, '"source_code" not found'
             assert self.submission_data.language_id, '"language_id" not found'
 
-            data['source_code'] = base64.b64encode(submission.source_code.encode('ascii')).decode('ascii')
-            data['language_id'] = submission.language_id
+            data["source_code"] = base64.b64encode(
+                submission.source_code.encode("ascii")
+            ).decode("ascii")
+            data["language_id"] = submission.language_id
 
             if submission.stdin:
-                data.update({"stdin": base64.b64encode(submission.stdin.encode('ascii')).decode('ascii')})
+                data.update(
+                    {
+                        "stdin": base64.b64encode(
+                            submission.stdin.encode("ascii")
+                        ).decode("ascii")
+                    }
+                )
             if submission.expected_output:
-                data.update({"expected_output": base64.b64encode(submission.expected_output.encode('ascii')).decode('ascii')})
+                data.update(
+                    {
+                        "expected_output": base64.b64encode(
+                            submission.expected_output.encode("ascii")
+                        ).decode("ascii")
+                    }
+                )
 
             for field in submission._extra_send_fields:
                 if submission.__getattribute__(field) is not None:
                     data.update({field: submission.__getattribute__(field)})
-            
+
             dataset["submissions"].append(data)
 
-        r = client.session.post(f"{client.endpoint}/submissions/batch/", params=params, data=dataset)
+        r = client.session.post(
+            f"{client.endpoint}/submissions/batch/", params=params, data=dataset
+        )
         r.raise_for_status()
 
         for submission in self.submissions_data:
             json = r.json()
             submission.set_properties(dict(json))
-        
+
         return self.submissions_data
 
 
@@ -172,22 +214,38 @@ class SingleSubmission:
         assert self.submission_data.source_code, '"source_code" not found'
         assert self.submission_data.language_id, '"language_id" not found'
 
-        data['source_code'] = base64.b64encode(self.submission_data.source_code.encode('ascii')).decode('ascii')
-        data['language_id'] = self.submission_data.language_id
+        data["source_code"] = base64.b64encode(
+            self.submission_data.source_code.encode("ascii")
+        ).decode("ascii")
+        data["language_id"] = self.submission_data.language_id
 
         if self.submission_data.stdin:
-            data.update({"stdin": base64.b64encode(self.submission_data.stdin.encode('ascii')).decode('ascii')})
+            data.update(
+                {
+                    "stdin": base64.b64encode(
+                        self.submission_data.stdin.encode("ascii")
+                    ).decode("ascii")
+                }
+            )
         if self.submission_data.expected_output:
-            data.update({"expected_output": base64.b64encode(self.submission_data.expected_output.encode('ascii')).decode('ascii')})
+            data.update(
+                {
+                    "expected_output": base64.b64encode(
+                        self.submission_data.expected_output.encode("ascii")
+                    ).decode("ascii")
+                }
+            )
 
         for field in self.submission_data._extra_send_fields:
             if self.submission_data.__getattribute__(field) is not None:
                 data.update({field: self.submission_data.__getattribute__(field)})
 
-        r = client.session.post(f"{client.endpoint}/submissions/", params=params, data=data)
+        r = client.session.post(
+            f"{client.endpoint}/submissions/", params=params, data=data
+        )
         r.raise_for_status()
 
         json = r.json()
         self.submission_data.set_properties(dict(json))
-        
+
         return self.submission_data
