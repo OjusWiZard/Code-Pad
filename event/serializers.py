@@ -12,21 +12,22 @@ class Problem_List_Serializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {"url": {"lookup_field": "slug"}}
 
 
-class Submission_List_Serializer(serializers.ModelSerializer):
-    user = User_Serializer()
-
-    class Meta:
-        model = Submission
-        fields = ["user", "status", "datetime"]
-
-
-class Submission_Detail_Serializer(serializers.ModelSerializer):
+class Submission_List_Serializer(serializers.HyperlinkedModelSerializer):
     user = User_Serializer()
     problem = Problem_List_Serializer()
 
     class Meta:
         model = Submission
-        fields = ["user", "status", "problem", "datetime", "solution"]
+        fields = ["id", "url", "user", "status", "problem", "datetime"]
+
+
+class Submission_Detail_Serializer(serializers.HyperlinkedModelSerializer):
+    user = User_Serializer()
+    problem = Problem_List_Serializer()
+
+    class Meta:
+        model = Submission
+        fields = ["id", "url", "user", "status", "problem", "datetime", "solution"]
 
 
 class Problem_Detail_Serializer(serializers.HyperlinkedModelSerializer):
