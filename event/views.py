@@ -84,7 +84,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
 
         client = Client(environ["JUDGE_HOST"], environ["X_Auth_Token"])
         results = []
-        passed = True
+        passed = "Accepted"
         for testcase in testcases:
             tc_inp_file = testcase.tc_input.open(mode="r")
             tc_out_file = testcase.tc_output.open(mode="r")
@@ -104,7 +104,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
             results.append(deepcopy(result))
 
             if result.status["id"] != 3:
-                passed = False
+                passed = result.status["description"]
                 break
 
         current_event = problem.event
@@ -116,9 +116,9 @@ class Submission_Viewset(ReadOnlyModelViewSet):
             and current_event.is_contest
         ):
             submissions = Submission.objects.filter(user=request.user, problem=problem)
-            correct_submissions = submissions.filter(is_accepted=True)
-            if not correct_submissions and passed:
-                incorrect_submissions = submissions.filter(is_accepted=False)
+            correct_submissions = submissions.filter(status="Accepted")
+            if not correct_submissions and passed == "Accepted":
+                incorrect_submissions = submissions.difference(correct_submissions)
                 current_leaderboard_field = Leaderboard.objects.get_or_create(
                     user=request.user, event=current_event
                 )[0]
@@ -135,13 +135,12 @@ class Submission_Viewset(ReadOnlyModelViewSet):
             user=request.user,
             problem=problem,
             solution=submitted_solution,
-            is_accepted=passed,
+            status=passed,
         )
 
         avg_time = 0
         avg_memory = 0
         testcases = []
-        status = ["failed", "passed"]
 
         for result in results:
             avg_time += float(result.time)
@@ -163,7 +162,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
         avg_memory /= len(testcases)
 
         custom_response = {
-            "complete_status": status[passed],
+            "complete_status": passed,
             "avg_time": avg_time,
             "avg_memory": avg_memory,
             "testcases": testcases,
