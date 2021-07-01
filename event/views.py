@@ -1,5 +1,6 @@
 from os import environ
 from copy import deepcopy
+from re import S
 from django.db.models import F
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
@@ -24,22 +25,13 @@ from .serializers import (
 
 
 class Submission_Viewset(ReadOnlyModelViewSet):
-    permission_classes = [IsAuthenticated]
+    serializer_class = Submission_List_Serializer
     queryset = Submission.objects.all().order_by("-datetime")
     pagination_class = Pagination_Size10
     lookup_field = "problem__slug"
 
     def for_a_user(self):
         return "username" in self.request.query_params
-
-    def get_serializer_class(self):
-        if self.for_a_user():
-            live_events = Event.objects.filter(datetime__lt=timezone.now()).filter(
-                datetime__gt=timezone.now() - F("duration")
-            )
-            if not live_events:
-                return Submission_Detail_Serializer
-        return Submission_List_Serializer
 
     def get_queryset(self):
         queryset = Submission.objects.filter(
@@ -131,13 +123,6 @@ class Submission_Viewset(ReadOnlyModelViewSet):
                 )
                 current_leaderboard_field.save()
 
-        Submission.objects.create(
-            user=request.user,
-            problem=problem,
-            solution=submitted_solution,
-            status=passed,
-        )
-
         avg_time = 0
         avg_memory = 0
         testcases = []
@@ -168,7 +153,33 @@ class Submission_Viewset(ReadOnlyModelViewSet):
             "testcases": testcases,
         }
 
+        Submission.objects.create(
+            user=request.user,
+            problem=problem,
+            solution=submitted_solution,
+            status=passed,
+        )
+
         return Response(data=custom_response)
+
+
+class View_Submission_Viewset(ReadOnlyModelViewSet):
+    queryset = Submission.objects.all().order_by("-datetime")
+    pagination_class = Pagination_Size10
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            submission = self.get_object()
+            problem = submission.problem
+            event = problem.event
+            live_events = Event.objects.filter(datetime__lt=timezone.now()).filter(
+                datetime__gt=timezone.now() - F("duration")
+            )
+            if not event in live_events:
+                return Submission_Detail_Serializer
+            elif self.request.user == submission.user:
+                return Submission_Detail_Serializer
+        return Submission_List_Serializer
 
 
 class Problem_Viewset(ReadOnlyModelViewSet):
