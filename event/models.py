@@ -107,7 +107,7 @@ class Testcase(models.Model):
 class Submission(models.Model):
     datetime = models.DateTimeField(auto_now_add=True, auto_created=True)
     solution = models.TextField(max_length=4096)
-    is_accepted = models.BooleanField()
+    status = models.CharField(max_length=32)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     problem = models.ForeignKey(

@@ -30,11 +30,11 @@ class Testcase_Admin(admin.ModelAdmin):
 
 
 class Submission_Admin(admin.ModelAdmin):
-    list_display = ["user", "is_accepted", "problem", "datetime"]
+    list_display = ["user", "status", "problem", "datetime"]
     list_filter = ["problem__event"]
     ordering = ["-datetime"]
     search_fields = ["user", "problem", "problem__event"]
-    readonly_fields = ["datetime", "solution", "is_accepted", "user", "problem"]
+    readonly_fields = ["datetime", "solution", "status", "user", "problem"]
 
 
 admin.site.register(Event, Event_Admin)

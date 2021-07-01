@@ -17,7 +17,7 @@ class Submission_List_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Submission
-        fields = ["user", "is_accepted", "datetime"]
+        fields = ["user", "status", "datetime"]
 
 
 class Submission_Detail_Serializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class Submission_Detail_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Submission
-        fields = ["user", "is_accepted", "problem", "datetime", "solution"]
+        fields = ["user", "status", "problem", "datetime", "solution"]
 
 
 class Problem_Detail_Serializer(serializers.HyperlinkedModelSerializer):
