@@ -55,6 +55,7 @@ class Problem(models.Model):
     example_output = models.TextField(max_length=512, blank=True, null=True)
     example_explanation = models.TextField(max_length=1024, blank=True, null=True)
     points = models.PositiveSmallIntegerField(default=150, help_text="Maximum score.")
+    no_of_testcases = models.PositiveSmallIntegerField(default=0)
     penalty = models.PositiveSmallIntegerField(
         default=20, help_text="Points Deduction on Incorrect Attempt."
     )

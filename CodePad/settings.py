@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "account",
-    "event",
+    "event.apps.EventConfig",
     "rest_framework",
     "djoser",
     "corsheaders",
