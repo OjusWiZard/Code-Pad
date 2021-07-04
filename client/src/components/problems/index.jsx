@@ -53,7 +53,6 @@ function Problem() {
       setSubmissions(data);
     });
   }, []);
-  console.log("Sub", submissions);
   // Run Code
   const handleRunCode = async (e, value, languageId, input) => {
     e.preventDefault();
@@ -87,7 +86,6 @@ function Problem() {
         data,
         config
       );
-      console.log(res.data);
       let out = res.data.stdout !== null ? atob(res.data.stdout) : null;
       setOutputData({...outputData, memory: res.data.memory, time: res.data.time, status:res.data.status.description})
       setOutput(out || res.data.status.description);
@@ -99,7 +97,6 @@ function Problem() {
      (getSubmissionsPagination(text)).then(data => {
        setSubmissions(data);
      });
-    console.log(submissions)
   }
   const handleSubmitCode = async (e, value) => {
     e.preventDefault();

@@ -37,7 +37,6 @@ function EventDetails() {
           params.slug,
           JSON.parse(localStorage.getItem("user"))?.username
         ).then((data) => {
-          console.log(data);
           setUser(data);
         });
       });
@@ -47,7 +46,6 @@ function EventDetails() {
         setLeaderboard(data);
       })
       .catch((err) => {
-        console.log("Leaderboard Error: ", err);
       });
     if (localStorage.getItem("user")) {
       getLeaderboardUser(
@@ -64,7 +62,6 @@ function EventDetails() {
   }, [params.slug]);
 
   const [active, setActive] = useState("about");
-  console.log(params.slug);
   const removeClass = (e) => {
     document
       .querySelectorAll("div.events-options")
@@ -77,7 +74,6 @@ function EventDetails() {
     });
   };
 
-  console.log(
     user,
     leaderboard,
     JSON.parse(localStorage.getItem("user"))?.username

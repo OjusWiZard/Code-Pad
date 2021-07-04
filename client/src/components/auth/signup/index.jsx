@@ -16,7 +16,6 @@ function SignUp() {
   const { openModal, formMessage, errorMessage } = useContext(ModalContext);
   const [passwordType, setPasswordType] = useState("password");
   const [rePasswordType, setRePasswordType] = useState("password");
-  console.log(context);
   const [arrFields, setarrFields] = useState({
     username: "",
     admission_no: "",

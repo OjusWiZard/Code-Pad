@@ -50,7 +50,6 @@ const Editor = ({
     86: "clojure",
     87: "fsharp",
   };
-  console.log(judgeIdToMonaco[languageId]);
   return (
     <React.Fragment>
       <Editor1

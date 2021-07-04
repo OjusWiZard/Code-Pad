@@ -105,40 +105,33 @@ export const codeSubmission = async (formData) => {
 export const getLeaderboard = async (slug) => {
   try {
     const { data } = await API.get(`/leaderboard/${slug}`);
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
   }
 };
 
-
 export const getLeaderboardPagination = async (text) => {
-  try{
-    const {data} = await API.get(text);
-    console.log(data);
+  try {
+    const { data } = await API.get(text);
     return data;
-  }catch(error){
-console.log(error);
+  } catch (error) {
+    console.log(error);
   }
-}
+};
 
-
-export const getSubmissionsPagination = async(text) => {
-  try{
-    const {data} = await API.get(text);
-    console.log(data);
-    return data;
-  }catch(error){
-    console.log(error)
+export const getSubmissionsPagination = async (text) => {
+  try {
+    const { data } = await API.get(text);
+    return dat;
+  } catch (error) {
+    console.log(error);
   }
-}
+};
 
 export const getLeaderboardUser = async (slug, username) => {
   try {
-    console.log("username= ", username);
     const { data } = await API.get(`/leaderboard/${slug}?username=${username}`);
-    console.log("USERDATA", data);
     return data;
   } catch (error) {
     console.log(error);
@@ -165,14 +158,13 @@ export const resetPassword = async (formData, uid, token, history) => {
       { ...formData, uid, token },
       config
     );
-    console.log(data);
     history.push("/");
   } catch (error) {}
 };
 
 export const getSubmissions = async (slug) => {
   try {
-    const { data } = await API.get(`/submissions/${slug}`,  config);
+    const { data } = await API.get(`/submissions/${slug}`, config);
     return data;
   } catch (error) {
     console.log(error);
