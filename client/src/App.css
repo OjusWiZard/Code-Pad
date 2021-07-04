@@ -229,3 +229,6 @@ a {
 a.text-center.p-3.nav-item.font-blue.font-16.font-vcr {
   position: relative;
 }
+input{
+  caret-color: #35a4d3 !important;
+}
