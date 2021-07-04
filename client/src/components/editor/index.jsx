@@ -12,7 +12,7 @@ const Form = () => {
     status: "",
     memory: "",
     time: "",
-  })
+  });
   const [output, setOutput] = useState("");
   const [languages, setLanguages] = useState([]);
   const [languageId, setLanguageId] = useState(54);
@@ -53,7 +53,12 @@ const Form = () => {
         data,
         config
       );
-       setOutputData({...outputData, memory: res.data.memory, time: res.data.time, status: res.data.status.description })
+      setOutputData({
+        ...outputData,
+        memory: res.data.memory,
+        time: res.data.time,
+        status: res.data.status.description,
+      });
       let out = res.data.stdout !== null ? atob(res.data.stdout) : null;
       setOutput(out || res.data.status.description);
     } catch (error) {
@@ -121,17 +126,19 @@ const Form = () => {
               <p className="font-vcr font-blue font-weight-bold mt-5 text-center mb-3">
                 &lt;&lt;&nbsp;&nbsp;HELLO OUTPUT&nbsp;&nbsp;&gt;&gt;
               </p>
-               {output && (
-<                         div className="d-flex justify-content-between p-3 bg-black">
-                            <div className="font-vcr font-blue">
-                            Status: {outputData?.status}
-                           </div>
-                          <div className="font-vcr font-lightGrey">
-                          Time: {outputData?.time} sec
-                        </div>
-                        <div className="font-vcr font-lightGrey">Mem: {outputData?.memory} kb</div>
-                      </div>
-                      )}
+              {output && (
+                <div className="d-flex justify-content-between p-3 bg-black">
+                  <div className="font-vcr font-blue">
+                    Status: {outputData?.status}
+                  </div>
+                  <div className="font-vcr font-lightGrey">
+                    Time: {outputData?.time} sec
+                  </div>
+                  <div className="font-vcr font-lightGrey">
+                    Mem: {outputData?.memory} kb
+                  </div>
+                </div>
+              )}
               <textarea
                 className="output w-100 font-vcr"
                 rows="5"
