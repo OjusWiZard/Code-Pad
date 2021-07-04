@@ -46,6 +46,7 @@ function EventDetails() {
         setLeaderboard(data);
       })
       .catch((err) => {
+        console.log("Leaderboard Error: ", err);
       });
     if (localStorage.getItem("user")) {
       getLeaderboardUser(
@@ -74,6 +75,7 @@ function EventDetails() {
     });
   };
 
+  console.log(
     user,
     leaderboard,
     JSON.parse(localStorage.getItem("user"))?.username
