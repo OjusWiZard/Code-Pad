@@ -112,6 +112,28 @@ export const getLeaderboard = async (slug) => {
   }
 };
 
+
+export const getLeaderboardPagination = async (text) => {
+  try{
+    const {data} = await API.get(text);
+    console.log(data);
+    return data;
+  }catch(error){
+console.log(error);
+  }
+}
+
+
+export const getSubmissionsPagination = async(text) => {
+  try{
+    const {data} = await API.get(text);
+    console.log(data);
+    return data;
+  }catch(error){
+    console.log(error)
+  }
+}
+
 export const getLeaderboardUser = async (slug, username) => {
   try {
     console.log("username= ", username);

@@ -21,7 +21,7 @@ li {
   align-items: flex-start;
 }
 .codewars-span {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 .codewar-title {
   flex-direction: column;
@@ -76,6 +76,35 @@ li {
     flex-direction: column;
   }
 }
+.events-options{
+  cursor: pointer;
+}
 .active-event {
   color: var(--primaryColor);
+}
+@media (max-width: 540px) {
+  .flex-mobile {
+    display: flex;
+    justify-content: space-between;
+  }
+  .codewars{
+    justify-content: center;
+  }
+  .main {
+    margin-left: 0px;
+  }
+  .events-options{
+    border-bottom: 2px solid #7a8589 ;
+    padding-bottom: 10px;
+  }
+  .event-detail-option{
+    margin-right: 10px;
+  }
+  .active-event {
+    color: var(--primaryColor);
+    border-bottom: 2px solid var(--primaryColor) ;
+  }
+  .display-hash{
+    display: none;
+  }
 }
