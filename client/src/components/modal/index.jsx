@@ -35,7 +35,6 @@ function Modal() {
   useEffect(() => {
     if (modalHeading) {
       const random = Math.floor(Math.random() * 22);
-      console.log(random);
       setHeading(messages[random]);
     } else {
       setHeading("Error");

@@ -26,10 +26,8 @@ function Home() {
     let pastEvents = allEvents?.filter((event) => event.status === "Past");
     if (onGoingEvents.length > 0) {
       setEvents(onGoingEvents);
-      console.log(events)
     } else if (upcomingEvents.length > 0) {
       setEvents(upcomingEvents);
-      console.log(upcomingEvents);
     } else {
       setEvents(pastEvents);
     }
