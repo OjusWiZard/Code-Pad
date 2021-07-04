@@ -9,7 +9,7 @@ import submitCode from "../../images/problems/submitCode.svg";
 import Spinner from "../utils/Spinner";
 import { useParams } from "react-router-dom";
 import Editor from "../editor/Editor";
-import { getSubmissions, getProblem, codeSubmission } from "../../api/index";
+import { getSubmissionsPagination, getSubmissions, getProblem, codeSubmission } from "../../api/index";
 import "./problem.css";
 
 function Problem() {
@@ -17,6 +17,11 @@ function Problem() {
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [outputData, setOutputData] = useState({
+    status: "",
+    memory:"",
+    time:"",
+  });
   const [loading, setLoading] = useState(true);
   const [submissions, setSubmissions] = useState([]);
   const [problem, setProblem] = useState();
@@ -82,14 +87,20 @@ function Problem() {
         data,
         config
       );
-
+      console.log(res.data);
       let out = res.data.stdout !== null ? atob(res.data.stdout) : null;
+      setOutputData({...outputData, memory: res.data.memory, time: res.data.time, status:res.data.status.description})
       setOutput(out || res.data.status.description);
     } catch (error) {
       alert(error);
     }
   };
-
+  const paginationSubmission =  (text) => {
+     (getSubmissionsPagination(text)).then(data => {
+       setSubmissions(data);
+     });
+    console.log(submissions)
+  }
   const handleSubmitCode = async (e, value) => {
     e.preventDefault();
     let l = Number(languageId);
@@ -120,7 +131,7 @@ function Problem() {
                     <div className="d-flex justify-content-center font-vcr font-blue">
                       {problem?.title}
                     </div>
-                    <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3">
+                    <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -131,7 +142,7 @@ function Problem() {
                       officia deserunt mollit anim id est laborum.
                     </p>
 
-                    <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3">
+                    <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -141,7 +152,7 @@ function Problem() {
                       sint occaecat cupidatat non proident, sunt in culpa qui
                       officia deavatarserunt mollit anim id est laborum.
                     </p>
-                    <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3">
+                    <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -151,7 +162,6 @@ function Problem() {
                       sint occaecat cupidatat non proident, sunt in culpa qui
                       officia deserunt mollit anim id est laborum.
                     </p>
-
                     <div
                       className=" font-vcr font-18 mt-3"
                       style={{ color: "#7a8589" }}
@@ -166,22 +176,22 @@ function Problem() {
                       }}
                     >
                       <div
-                        className=" d-flex leadeboard-leads justify-content-around"
+                        className="d-flex leadeboard-leads justify-content-around"
                         style={{
                           textAlign: "center",
                           border: "1px solid #405C6B",
                         }}
                       >
-                        <span style={{ flex: 0.2 }}></span>
-                        <span style={{ flex: 0.4 }}>Name</span>
-                        <span style={{ flex: 0.4 }}>Score</span>
+                        <span className="font-vcr" style={{ width: "20%" }}></span>
+                        <span className="font-vcr" style={{ width: "40%" }}>Name</span>
+                        <span className="font-vcr" style={{ width: "40%" }}>Score</span>
                       </div>
                       {submissions?.results?.map((submission, index) => (
                         <div
                           key={index}
-                          className="user-data d-flex justify-content-around leaderboard-bg"
+                          className="user-data d-flex justify-content-around leaderboard-bg font-vcr"
                         >
-                          <span style={{ flex: 0.2 }}>
+                          <span style={{ width: "20%" }}>
                             <img
                               src={avatarData[submission.user.avatar]}
                               className="user-image"
@@ -189,18 +199,51 @@ function Problem() {
                             />
                           </span>
                           <div
-                            style={{ flex: 0.4 }}
+                            style={{ width: "40%" }}
                             className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
                           >
                             <span className="user-name">
                               {submission.user.username}
                             </span>
                           </div>
-                          <span className="user-score" style={{ flex: 0.4 }}>
+                          <span className="user-score" style={{ width: "40%"}}>
                             {submission.problem?.points}
                           </span>
                         </div>
                       ))}
+                              <div className="d-flex justify-content-center">
+                                  <nav className="mt-4">
+                                    <ul class="pagination">
+                                      {submissions?.previous && (
+                                        <li
+                                          class="page-item"
+                                          onClick={() =>
+                                            paginationSubmission(
+                                              submissions?.previous
+                                            )
+                                          }
+                                        >
+                                          <span class="page-link">
+                                            Previous
+                                          </span>
+                                        </li>
+                                      )}
+
+                                      {submissions?.next && (
+                                        <li
+                                          class="page-item"
+                                          onClick={() =>
+                                            paginationSubmission(
+                                              submissions?.next
+                                            )
+                                          }
+                                        >
+                                          <span class="page-link">next</span>
+                                        </li>
+                                      )}
+                                    </ul>
+                                  </nav>
+                                </div>
                     </div>
                   </div>
                   <div className="col-lg-7 col-md-12 col-sm-12 col-12 pt-md-5">
@@ -222,9 +265,9 @@ function Problem() {
                           </option>
                         ))}
                       </select>
-                      <div className="timer px-5 py-2 pb-2 font-blue font-vcr">
+                      {/* <div className="timer px-5 py-2 pb-2 font-blue font-vcr">
                         05h : 35m : 42s
-                      </div>
+                      </div> */}
                     </div>
                     <Editor
                       languageId={languageId}
@@ -235,13 +278,14 @@ function Problem() {
                     ></Editor>
                     <div className="d-flex mt-3 py-2 lower-section">
                       <textarea
-                        className="output w-50 font-vcr px-2 py-2"
+                        className="output font-vcr px-2 py-2"
                         rows="5"
                         placeholder="Custom Input here..."
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         id="custom"
                       />
+                      <div className="lower-section-images">
                       <img
                         src={runCode}
                         alt="runCOde"
@@ -254,20 +298,24 @@ function Problem() {
                         alt="submitCOde"
                         onClick={(e) => handleSubmitCode(e, value)}
                       />
+                      </div>
                     </div>
                     <div className="output-section">
                       <p className="font-vcr font-blue font-weight-bold mt-5 text-center mb-3">
                         &lt;&lt;&nbsp;HELLO OUTPUT&nbsp;&gt;&gt;
                       </p>
-                      <div className="d-flex justify-content-between p-3 bg-black">
-                        <div className="font-vcr font-blue">
-                          Status: Successfull
+                      {output && (
+<                         div className="d-flex justify-content-between p-3 bg-black">
+                            <div className="font-vcr font-blue">
+                            Status: {outputData?.status}
+                           </div>
+                          <div className="font-vcr font-lightGrey">
+                          Time: {outputData?.time} sec
                         </div>
-                        <div className="font-vcr font-lightGrey">
-                          Time: 0.05sec
-                        </div>
-                        <div className="font-vcr font-lightGrey">Mem: 63kb</div>
+                        <div className="font-vcr font-lightGrey">Mem: {outputData?.memory} kb</div>
                       </div>
+                      )}
+
                       <textarea
                         className="output w-100"
                         value={output}

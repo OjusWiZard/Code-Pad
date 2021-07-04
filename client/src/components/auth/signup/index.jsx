@@ -12,7 +12,11 @@ import { ModalContext } from "../../../context/context";
 import "./signup.css";
 
 function SignUp() {
+  const context = useContext(ModalContext);
   const { openModal, formMessage, errorMessage } = useContext(ModalContext);
+  const [passwordType, setPasswordType] = useState("password");
+  const [rePasswordType, setRePasswordType] = useState("password");
+  console.log(context);
   const [arrFields, setarrFields] = useState({
     username: "",
     admission_no: "",
@@ -145,10 +149,54 @@ function SignUp() {
                                   onChange={handleChange}
                                   name={field}
                                   value={formData.field}
-                                  type="text"
+                                  type={
+                                    field === "password" ? passwordType : "text"
+                                  }
                                   className="font-vcr font-blue"
                                   placeholder={field}
                                 />
+                                {field === "password" && (
+                                  <div
+                                    onClick={() => {
+                                      passwordType === "password"
+                                        ? setPasswordType("text")
+                                        : setPasswordType("password");
+                                    }}
+                                  >
+                                    {passwordType === "password" ? (
+                                      <i
+                                        className="fas fa-eye font-blue"
+                                        style={{ marginTop: "0.6rem" }}
+                                      />
+                                    ) : (
+                                      <i
+                                        className="fas fa-eye-slash font-blue"
+                                        style={{ marginTop: "0.6rem" }}
+                                      />
+                                    )}
+                                  </div>
+                                )}
+                                {field === "re_password" && (
+                                  <div
+                                    onClick={() => {
+                                      rePasswordType === "password"
+                                        ? setRePasswordType("text")
+                                        : setRePasswordType("password");
+                                    }}
+                                  >
+                                    {rePasswordType === "password" ? (
+                                      <i
+                                        className="fas fa-eye font-blue"
+                                        style={{ marginTop: "0.6rem" }}
+                                      />
+                                    ) : (
+                                      <i
+                                        className="fas fa-eye-slash font-blue"
+                                        style={{ marginTop: "0.6rem" }}
+                                      />
+                                    )}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
