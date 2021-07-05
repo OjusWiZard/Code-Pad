@@ -8,6 +8,11 @@ import Editor from "./Editor";
 const Form = () => {
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
+  const [outputData, setOutputData] = useState({
+    status: "",
+    memory: "",
+    time: "",
+  });
   const [output, setOutput] = useState("");
   const [languages, setLanguages] = useState([]);
   const [languageId, setLanguageId] = useState(54);
@@ -22,6 +27,7 @@ const Form = () => {
     axios.get("https://judge.hackncs.com/languages", config).then((data) => {
       setLanguages(data.data);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = async (e) => {
@@ -48,7 +54,17 @@ const Form = () => {
         data,
         config
       );
-      let out = res.data.stdout !== null ? atob(res.data.stdout) : null;
+      setOutputData({
+        ...outputData,
+        memory: res.data.memory,
+        time: res.data.time,
+        status: res.data.status.description,
+      });
+      console.log(res);
+      let out =
+        res.data.stdout !== null
+          ? atob(res.data.stdout)
+          : atob(res.data.compile_output);
       setOutput(out || res.data.status.description);
     } catch (error) {
       alert(error);
@@ -115,6 +131,23 @@ const Form = () => {
               <p className="font-vcr font-blue font-weight-bold mt-5 text-center mb-3">
                 &lt;&lt;&nbsp;&nbsp;HELLO OUTPUT&nbsp;&nbsp;&gt;&gt;
               </p>
+              {output && (
+                <div className="d-flex justify-content-between p-3 bg-black">
+                  <div className="font-vcr font-blue">
+                    Status: {outputData?.status}
+                  </div>
+                  <div className="font-vcr font-lightGrey">
+                    {outputData?.time && (
+                      <span>Time: {outputData?.time} sec</span>
+                    )}
+                  </div>
+                  <div className="font-vcr font-lightGrey">
+                    {outputData?.time && (
+                      <span>Time: {outputData?.memory} kb</span>
+                    )}
+                  </div>
+                </div>
+              )}
               <textarea
                 className="output w-100 font-vcr"
                 rows="5"

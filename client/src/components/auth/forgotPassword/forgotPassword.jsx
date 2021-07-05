@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { forgotPassword, signIn } from "../../../api/index";
+import { forgotPassword } from "../../../api/index";
 import { useHistory } from "react-router-dom";
 import login from "../../../images/auth/login.svg";
 import line from "../../../images/home/line.svg";

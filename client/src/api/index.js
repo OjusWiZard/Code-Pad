@@ -37,7 +37,7 @@ export const signIn = async (formData, history, formMessage, openModal) => {
     openModal("You are logged in", "Okay");
     <Modal />;
     history.push("/");
-    userInfo();
+    userInfo(history);
   } catch (error) {
     await openModal("Enter the valid credentials", null);
     <Modal />;
@@ -49,11 +49,13 @@ export const signOut = (history) => {
   history.push("/");
 };
 
-export const userInfo = async () => {
+export const userInfo = async (history) => {
   try {
     const { data } = await API.get(`/accounts/users/me`, config);
     localStorage.setItem("user", JSON.stringify(data));
   } catch (error) {
+    localStorage.clear();
+    history.push("/login");
     <Modal errorMessage="You are Logged out!!" />;
     localStorage.clear();
   }
@@ -71,41 +73,68 @@ export const editUserInfo = async (formData, history, openModal) => {
   }
 };
 
-export const getAllEvents = async () => {
+export const getAllEvents = async (history) => {
   try {
+    console.log(history)
     const { data } = await API.get("/events/");
-
     return data;
-  } catch (error) {}
+  } catch (error) {
+    console.log("erro", error)
+    localStorage.clear();
+    history.push("/login")
+  }
 };
 
-export const getEvent = async (slug) => {
+export const getEvent = async (slug, history) => {
   try {
     const { data } = await API.get(`/events/${slug}`, config);
 
     return data;
-  } catch (error) {}
+  } catch (error) {
+    localStorage.clear();
+    history.push("/login")
+  }
 };
 
-export const getProblem = async (slug) => {
+export const getProblem = async (slug, history) => {
   try {
     const { data } = await API.get(`/problems/${slug}`);
 
     return data;
-  } catch (error) {}
+  } catch (error) {
+    localStorage.clear();
+    history.push("/login")
+  }
 };
 
 export const codeSubmission = async (formData) => {
   try {
     const { data } = await API.post(`/submissions/`, formData, config);
     return data;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const getLeaderboard = async (slug) => {
   try {
     const { data } = await API.get(`/leaderboard/${slug}`);
-    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getLeaderboardPagination = async (text) => {
+  try {
+    const { data } = await API.get(text);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSubmissionsPagination = async (text) => {
+  try {
+    const { data } = await API.get(text);
     return data;
   } catch (error) {
     console.log(error);
@@ -114,9 +143,7 @@ export const getLeaderboard = async (slug) => {
 
 export const getLeaderboardUser = async (slug, username) => {
   try {
-    console.log("username= ", username);
     const { data } = await API.get(`/leaderboard/${slug}?username=${username}`);
-    console.log("USERDATA", data);
     return data;
   } catch (error) {
     console.log(error);
@@ -125,7 +152,7 @@ export const getLeaderboardUser = async (slug, username) => {
 
 export const forgotPassword = async (formData, history, openModal) => {
   try {
-    const { data } = await API.post(
+    await API.post(
       `/accounts/users/reset_password/`,
       formData,
       config
@@ -133,24 +160,23 @@ export const forgotPassword = async (formData, history, openModal) => {
     openModal("Check your email", "Okay");
     <Modal />;
     history.push("/");
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const resetPassword = async (formData, uid, token, history) => {
   try {
-    const { data } = await API.post(
+    await API.post(
       `/accounts/users/reset_password_confirm/`,
       { ...formData, uid, token },
       config
     );
-    console.log(data);
     history.push("/");
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const getSubmissions = async (slug) => {
   try {
-    const { data } = await API.get(`/submissions/${slug}`,  config);
+    const { data } = await API.get(`/submissions/${slug}`, config);
     return data;
   } catch (error) {
     console.log(error);
