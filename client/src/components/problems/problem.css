@@ -54,7 +54,11 @@
 .lower-section-images img {
   cursor: pointer;
 }
-
+.left-section {
+  margin-top: 3rem;
+  height: 118vh;
+  overflow-y: scroll;
+}
 .pagination span {
   cursor: pointer;
 }
