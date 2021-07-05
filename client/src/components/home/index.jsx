@@ -2,21 +2,27 @@ import React, { useEffect, useState } from "react";
 import logo from "../../images/home/logo.svg";
 import line from "../../images/home/line.svg";
 import button from "../../images/home/button.svg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getAllEvents } from "../../api/index";
 import Spinner from "../utils/Spinner";
 import Event from "../utils/Event";
 import "./home.css";
 
 function Home() {
+  const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState();
   const [allEvents, setallEvents] = useState([]);
   useEffect(() => {
-    getAllEvents().then((data) => {
-      setallEvents(data);
-      setLoading(false);
-    });
+    getAllEvents()
+      .then((data) => {
+        setallEvents(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        localStorage.clear();
+        history.push("/login");
+      });
     let onGoingEvents = allEvents?.filter(
       (event) => event.status === "Ongoing"
     );

@@ -54,6 +54,7 @@ export const userInfo = async (history) => {
     const { data } = await API.get(`/accounts/users/me`, config);
     localStorage.setItem("user", JSON.stringify(data));
   } catch (error) {
+    localStorage.clear();
     history.push("/login");
     <Modal errorMessage="You are Logged out!!" />;
     localStorage.clear();
@@ -72,12 +73,16 @@ export const editUserInfo = async (formData, history, openModal) => {
   }
 };
 
-export const getAllEvents = async () => {
+export const getAllEvents = async (history) => {
   try {
+    console.log(history)
     const { data } = await API.get("/events/");
-
     return data;
-  } catch (error) { }
+  } catch (error) {
+    console.log("erro", error)
+    localStorage.clear();
+    history.push("/login")
+  }
 };
 
 export const getEvent = async (slug) => {
