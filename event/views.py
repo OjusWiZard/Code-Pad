@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.http.response import HttpResponseBadRequest
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from judge0api.client import Client
 from .judge import SingleSubmission
@@ -25,6 +25,7 @@ from .serializers import (
 
 
 class Submission_Viewset(ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = Submission_List_Serializer
     queryset = Submission.objects.all().order_by("-datetime")
     pagination_class = Pagination_Size10
