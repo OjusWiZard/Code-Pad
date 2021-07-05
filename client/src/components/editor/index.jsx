@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Editor.css";
 import IDE from "../../images/editor/IDE.svg";
-import download from "../../images/editor/download.svg";
+// import download from "../../images/editor/download.svg";
 import Editor from "./Editor";
 
 const Form = () => {
@@ -23,6 +23,18 @@ const Form = () => {
       "X-Auth-Token": "LetUsCodeHackNCS",
     },
   };
+  let fileReader;
+  const handleFileRead = (e) => {
+    const content = fileReader.result;
+    setValue(content);
+  };
+
+  const handleFileChosen = async (file) => {
+    fileReader = new FileReader();
+    fileReader.onloadend = handleFileRead;
+    fileReader.readAsText(file);
+  };
+
   useEffect(() => {
     axios.get("https://judge.hackncs.com/languages", config).then((data) => {
       setLanguages(data.data);
@@ -102,7 +114,16 @@ const Form = () => {
                       </option>
                     ))}
                   </select>
-                  <img src={download} alt="Download" />
+                  {/* <img src={download} alt="Download" /> */}
+                  <div className="file-button font-vcr font-blue">
+                    Choose File
+                    <input
+                      type="file"
+                      value=""
+                      onChange={(e) => handleFileChosen(e.target.files[0])}
+                      className="hide-file"
+                    />
+                  </div>
                 </div>
                 <Editor
                   languageId={languageId}

@@ -66,6 +66,7 @@ function EventDetails() {
           <Redirect to="/" />;
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.slug]);
 
   const [active, setActive] = useState("about");
@@ -80,7 +81,11 @@ function EventDetails() {
       setLeaderboard(data);
     });
   };
-
+  let page = String(leaderboard?.next)?.slice(
+    String(leaderboard?.next)?.length - 1,
+    String(leaderboard?.next)?.length
+  );
+  console.log(page);
   console.log(
     user,
     leaderboard,
@@ -166,8 +171,8 @@ function EventDetails() {
                     <div className="mainContainer font-vcr font-lightGrey text-center w-100">
                       <div>
                         <div className="dashboard-header">
-                          <div className="dashboard">
-                            *&nbsp;Dashboard&nbsp;*
+                          <div className="dashboard font-vcr font-blue">
+                            <h2>*&nbsp;Dashboard&nbsp;*</h2>
                           </div>
                           {user && (
                             <div className="score">
@@ -257,82 +262,92 @@ function EventDetails() {
                               <div className="font-blue font-vcr font-18 mt-3">
                                 #LEADERBOARD
                               </div>
-                              <div
-                                className=" d-flex mt-3"
-                                style={{ flexDirection: "column" }}
-                              >
+                              {leaderboard?.results?.length > 0 ? (
                                 <div
-                                  className=" d-flex leadeboard-leads justify-content-around"
-                                  style={{ textAlign: "center" }}
+                                  className=" d-flex mt-3"
+                                  style={{ flexDirection: "column" }}
                                 >
-                                  <span style={{ width: "20%" }}>Rank</span>
-                                  <span style={{ width: "60%" }}>Name</span>
-                                  <span style={{ width: "20%" }}>Score</span>
-                                </div>
-                                {leaderboard?.results?.map((user, index) => (
                                   <div
-                                    key={index}
-                                    className="user-data d-flex justify-content-around leaderboard-bg"
+                                    className=" d-flex leadeboard-leads justify-content-around"
+                                    style={{ textAlign: "center" }}
                                   >
-                                    <span
-                                      className="user-rank"
-                                      style={{ width: "20%" }}
-                                    >
-                                      {index + 1}
+                                    <span style={{ width: "20%" }}>Rank</span>
+                                    <span style={{ width: "60%" }}>
+                                      Username
                                     </span>
+                                    <span style={{ width: "20%" }}>Score</span>
+                                  </div>
+                                  {leaderboard?.results?.map((user, index) => (
                                     <div
-                                      style={{ width: "60%" }}
-                                      className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                                      key={index}
+                                      className="user-data d-flex justify-content-around leaderboard-bg"
                                     >
-                                      <img
-                                        src={avatarData[user?.user.avatar]}
-                                        className="user-image"
-                                        alt="avatar"
-                                      />
-                                      <span className="user-name">
-                                        {user?.user?.username}
+                                      <span
+                                        className="user-rank"
+                                        style={{ width: "20%" }}
+                                      >
+                                        {String(
+                                          index +
+                                            1 * 10 * (Number(page) - 1) -
+                                            9
+                                        )}
+                                      </span>
+                                      <div
+                                        style={{ width: "60%" }}
+                                        className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                                      >
+                                        <img
+                                          src={avatarData[user?.user.avatar]}
+                                          className="user-image"
+                                          alt="avatar"
+                                        />
+                                        <span className="user-name">
+                                          {user?.user?.username}
+                                        </span>
+                                      </div>
+                                      <span
+                                        className="user-score"
+                                        style={{ width: "20%" }}
+                                      >
+                                        {user.score}
                                       </span>
                                     </div>
-                                    <span
-                                      className="user-score"
-                                      style={{ width: "20%" }}
-                                    >
-                                      {user.score}
-                                    </span>
-                                  </div>
-                                ))}
-                                <div className="d-flex justify-content-center font-vcr font-blue ">
-                                  <nav className="mt-4">
-                                    <div className="pagination">
-                                      {leaderboard?.previous && (
-                                        <span
-                                          className="pagination-previous"
-                                          onClick={() =>
-                                            paginationLeaderboard(
-                                              leaderboard.previous
-                                            )
-                                          }
-                                        >
-                                          <i class="fas fa-arrow-left"></i>
-                                        </span>
-                                      )}
+                                  ))}
+                                  <div className="d-flex justify-content-center font-vcr font-blue ">
+                                    <nav className="mt-4">
+                                      <div className="pagination">
+                                        {leaderboard?.previous && (
+                                          <span
+                                            className="pagination-previous"
+                                            onClick={() =>
+                                              paginationLeaderboard(
+                                                leaderboard.previous
+                                              )
+                                            }
+                                          >
+                                            <i class="fas fa-arrow-left"></i>
+                                          </span>
+                                        )}
 
-                                      {leaderboard?.next && (
-                                        <span
-                                          className="pagination-next ml-3"
-                                          onClick={() =>
-                                            paginationLeaderboard(
-                                              leaderboard.next
-                                            )
-                                          }
-                                        >
-                                          <i class="fas fa-arrow-right"></i>
-                                        </span>
-                                      )}
-                                    </div>
-                                  </nav>
+                                        {leaderboard?.next && (
+                                          <span
+                                            className="pagination-next ml-3"
+                                            onClick={() =>
+                                              paginationLeaderboard(
+                                                leaderboard.next
+                                              )
+                                            }
+                                          >
+                                            <i class="fas fa-arrow-right"></i>
+                                          </span>
+                                        )}
+                                      </div>
+                                    </nav>
+                                  </div>
                                 </div>
-                              </div>
+                              ) : (
+                                <div>Noe leaderboard</div>
+                              )}
                             </>
                           )}
                           {active === "rules" && (

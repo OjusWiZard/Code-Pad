@@ -51,7 +51,7 @@ const ForgotPassword = () => {
                       src={login}
                       onClick={(e) => handleSubmit(e)}
                       alt="sendemail"
-                      className="img-fluid mt-4"
+                      className="img-fluid mt-4 see-all-buttons"
                     />
                   </div>
                 </form>

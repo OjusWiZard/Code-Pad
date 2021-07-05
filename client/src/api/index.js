@@ -102,8 +102,7 @@ export const getProblem = async (slug, history) => {
 
     return data;
   } catch (error) {
-    localStorage.clear();
-    history.push("/login")
+
   }
 };
 

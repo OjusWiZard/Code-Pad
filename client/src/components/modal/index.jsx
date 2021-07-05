@@ -51,7 +51,7 @@ function Modal() {
             <div className="row">
               <div
                 id="modal"
-                className="col-8 mx-auto col-md-6 col-lg-4 text-center py-5 px-xl-3"
+                className="col-8 mx-auto col-md-6 col-lg-6 text-center py-5 px-xl-3"
               >
                 <h4 className="font-vcr font-blue mb-4 text-center font-weight-bold">
                   &lt;&lt;&nbsp;{heading}&nbsp;&gt;&gt;
