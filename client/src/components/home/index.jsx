@@ -86,7 +86,11 @@ function Home() {
 
                   <div className="my-5 text-center">
                     <Link to="/events">
-                      <img src={button} alt="" className="img-fluid" />
+                      <img
+                        src={button}
+                        alt=""
+                        className="img-fluid see-all-button"
+                      />
                     </Link>
                   </div>
                 </div>

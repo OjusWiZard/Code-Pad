@@ -137,7 +137,7 @@ function EditProfile() {
                     src={update}
                     onClick={(e) => handleSubmit(e, formData, history)}
                     alt="update"
-                    className="img-fluid mt-4"
+                    className="img-fluid mt-4 see-all-buttons"
                   />
                 </div>
                 <div className="mt-4 text-center">

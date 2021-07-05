@@ -80,7 +80,7 @@ const ResetPassword = () => {
                       src={login}
                       onClick={handleSubmit}
                       alt="signup"
-                      className="img-fluid mt-4"
+                      className="img-fluid mt-4 see-all-buttons"
                     />
                   </div>
                 </form>

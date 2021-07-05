@@ -16,7 +16,9 @@
   border-image-repeat: no-repeat !important;
   background-size: cover;
 }
-
+.see-all-button:active {
+  opacity: 0.6;
+}
 .dots {
   position: absolute;
   display: -webkit-box;
