@@ -33,11 +33,11 @@ function Router() {
         <Route exact path="/login" component={() => (user ? <Redirect to="/" /> : <Login />)} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/problems" component={Problem} />
-        <Route exact path="/forgot-password" component={ForgotPassword} />
+        <Route exact path="/forgot-password" component={() => (user ? <Redirect to="/" /> : <ForgotPassword />)} />
         <Route
           exact
           path="/i/have/bad/memory/password/:uid/:token"
-          component={ResetPassword}
+          component={() => (user ? <Redirect to="/" /> : <ForgotPassword />)}
         />
         <Route component={Default} />
       </Switch>
