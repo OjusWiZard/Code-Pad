@@ -88,11 +88,7 @@ class SubmissionData:
         :return:
         """
         if item in self._encoded_fields:
-            # If this does not work, then at some point the data has not been set as bytes internally
-            item = getattr(self, item)
-            if item:
-                return item.decode()
-            return None
+            return getattr(self, item)
 
         return getattr(self, item)
 
@@ -123,8 +119,18 @@ class SubmissionData:
         :param r:
         :return:
         """
+
+        def isBase64(s):
+            try:
+                return base64.b64encode(base64.b64decode(s)) == s
+            except Exception:
+                return False
+
         for key, value in r.items():
-            setattr(self, key, value)
+            if isBase64(value):
+                setattr(self, key, base64.b64decode(value) if value else None)
+            else:
+                setattr(self, key, value)
 
 
 class BatchSubmission:
