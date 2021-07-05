@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ["DEBUG"]
 
 ALLOWED_HOSTS = ["localhost", os.environ["SERVER_HOST"]]
 
@@ -199,3 +199,12 @@ EMAIL_HOST = os.environ["EMAIL_HOST"]
 EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]
 EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
 DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL"]
+
+
+# Celery Settings
+
+CELERY_TIMEZONE = "Asia/Kolkata"
+CELERY_TASK_ROUTES = {
+    "event.tasks.submit": {"queue": "submissions"},
+    "event.tasks.check": {"queue": "get-verdict"},
+}

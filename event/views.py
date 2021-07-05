@@ -1,6 +1,4 @@
 from os import environ
-from copy import deepcopy
-from re import S
 from django.db.models import F
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
@@ -9,10 +7,9 @@ from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import ReadOnlyModelViewSet
-from judge0api.client import Client
-from .judge import SingleSubmission
+from .tasks import submit
 from .paginations import Pagination_Size10
-from .models import Event, Problem, Testcase, Submission, Leaderboard
+from .models import Event, Problem, Submission, Leaderboard
 from .serializers import (
     Event_List_Serializer,
     Event_Details_Serializer,
@@ -63,105 +60,27 @@ class Submission_Viewset(ReadOnlyModelViewSet):
         problem = get_object_or_404(Problem, slug=get_submission_data("problem_slug"))
         language_id = int(get_submission_data("language_id"))
         submitted_solution = str(get_submission_data("solution"))
-        testcases = Testcase.objects.filter(problem=problem)
-
-        def time_limit(lang_id):
-            if lang_id in (70, 71):
-                return 10  # [Python, Python3]
-            elif lang_id in (55, 68, 72):
-                return 6  # [Lisp, PHP, Ruby]
-            elif lang_id in (51, 62, 63, 78, 81):
-                return 4  # [C#, Java, javaScript, Kotlin, Scala]
-            else:
-                return 2  # All other Languages
-
-        client = Client(environ["JUDGE_HOST"], environ["X_Auth_Token"])
-        results = []
-        passed = "Accepted"
-        for testcase in testcases:
-            tc_inp_file = testcase.tc_input.open(mode="r")
-            tc_out_file = testcase.tc_output.open(mode="r")
-            tc_out = str(tc_out_file.read().decode())
-            tc_inp = str(tc_inp_file.read().decode())
-            tc_inp_file.close()
-            tc_out_file.close()
-
-            submission = SingleSubmission(
-                source_code=submitted_solution,
-                language_id=language_id,
-                stdin=tc_inp,
-                expected_output=tc_out,
-                cpu_time_limit=time_limit(language_id),
-            )
-            result = submission.submit(client)
-            results.append(deepcopy(result))
-
-            if result.status["id"] != 3:
-                passed = result.status["description"]
-                break
-
-        current_event = problem.event
         current_time = timezone.now()
-        if (
-            current_event.datetime
-            <= current_time
-            <= (current_event.datetime + current_event.duration)
-            and current_event.is_contest
-        ):
-            submissions = Submission.objects.filter(user=request.user, problem=problem)
-            correct_submissions = submissions.filter(status="Accepted")
-            if not correct_submissions and passed == "Accepted":
-                incorrect_submissions = submissions.difference(correct_submissions)
-                current_leaderboard_field = Leaderboard.objects.get_or_create(
-                    user=request.user, event=current_event
-                )[0]
-                current_leaderboard_field.score += problem.points
-                current_leaderboard_field.score -= (
-                    problem.penalty * incorrect_submissions.count()
-                )
-                current_leaderboard_field.score -= problem.point_loss * (
-                    current_time.minute - current_event.datetime.minute
-                )
-                current_leaderboard_field.save()
 
-        avg_time = 0
-        avg_memory = 0
-        testcases = []
-
-        for result in results:
-            avg_time += float(result.time)
-            avg_memory += float(result.memory)
-            testcase = {
-                "time": float(result.time),
-                "memory": float(result.memory),
-                "stderr": result.stderr,
-                "token": result.token,
-                "compile_output": result.compile_output,
-                "message": result.message,
-                "status": {
-                    "id": result.status["id"],
-                    "description": result.status["description"],
-                },
-            }
-            testcases.append(testcase)
-        avg_time /= len(testcases)
-        avg_memory /= len(testcases)
-
-        custom_response = {
-            "complete_status": passed,
-            "avg_time": avg_time,
-            "avg_memory": avg_memory,
-            "testcases": testcases,
-        }
-
-        Submission.objects.create(
+        submission = Submission.objects.create(
             user=request.user,
             problem=problem,
             solution=submitted_solution,
-            status=passed,
+            status="In Queue",
         )
 
-        return Response(data=custom_response)
+        submit.delay(
+            problem_id=problem.id,
+            user_id=request.user.id,
+            submission_id=submission.id,
+            solution=submitted_solution,
+            lang_id=language_id,
+            submitting_time=current_time,
+        )
+
+        return Response(
+            Submission_Detail_Serializer(submission, context={"request": request}).data
+        )
 
 
 class View_Submission_Viewset(ReadOnlyModelViewSet):
