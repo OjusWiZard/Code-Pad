@@ -262,7 +262,7 @@ function EventDetails() {
                               <div className="font-blue font-vcr font-18 mt-3">
                                 #LEADERBOARD
                               </div>
-                              {leaderboard?.length > 0 ? (
+                              {leaderboard?.results?.length > 0 ? (
                                 <div
                                   className=" d-flex mt-3"
                                   style={{ flexDirection: "column" }}
