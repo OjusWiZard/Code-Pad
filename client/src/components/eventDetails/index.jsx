@@ -15,9 +15,10 @@ import {
   getLeaderboardUser,
   getLeaderboardPagination,
 } from "../../api/index";
-import { useParams, Redirect, Link } from "react-router-dom";
+import { useParams, Redirect, Link, useHistory } from "react-router-dom";
 import moment from "moment";
 function EventDetails() {
+  const history = useHistory();
   const params = useParams();
   const [leaderboard, setLeaderboard] = useState([]);
   const [user, setUser] = useState({});
@@ -90,7 +91,9 @@ function EventDetails() {
                 <div className="row">
                   <div className="col-lg-3 col-md-5 col-sm-5 col-12">
                     <div className="font-vcr font-lightGrey">
-                      <img src={pointerLeft} alt="left-pointer" /> Exit
+                      <span className="exit" onClick={() => history.goBack()}>
+                        <img src={pointerLeft} alt="left-pointer" /> Exit
+                      </span>
                       <div className="d-flex codewars mt-5 pt-2 pb-5">
                         <div className="dash">
                           <img src={dash} alt="dash" className="img-fluid" />
@@ -136,7 +139,8 @@ function EventDetails() {
                                 e.target.classList.add("active-event");
                               }}
                             >
-                              <span className="display-hash">#</span> leaderboard
+                              <span className="display-hash">#</span>{" "}
+                              leaderboard
                             </div>
                             <div
                               className="mt-3 events-options"
@@ -160,9 +164,11 @@ function EventDetails() {
                           <div className="dashboard">
                             *&nbsp;Dashboard&nbsp;*
                           </div>
-                          <div className="score">
-                            {user ? `${user?.score}` : `0`}
-                          </div>
+                          {user && (
+                            <div className="score">
+                              {user ? `${user?.score}` : null}
+                            </div>
+                          )}
                         </div>
                         <div className="rules mt-5 pt-2 pb-5 py-2 px-2">
                           {active === "about" && (
