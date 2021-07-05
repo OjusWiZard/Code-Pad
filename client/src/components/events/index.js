@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import logo from "../../images/events/event_logo.svg";
 import line from "../../images/home/line.png";
 
+
+import { useHistory } from "react-router-dom";
 // CSS IMPORTS
 import "./events.css";
 
@@ -15,17 +17,19 @@ import Spinner from "../utils/Spinner";
 import Event from "../utils/Event";
 
 function Events() {
+  const history = useHistory();
   const [allEvents, setallEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllEvents().then((data) => {
+    getAllEvents(history).then((data) => {
       setallEvents(data);
       setLoading(false);
-    });
-    return () => {
-      setallEvents([]);
-    };
+    }).catch(err => {
+      localStorage.clear();
+      history.push("/login")
+    })
+
   }, []);
 
   // ONGOING, UPCOMING, PAST EVENTS
