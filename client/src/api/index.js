@@ -37,7 +37,7 @@ export const signIn = async (formData, history, formMessage, openModal) => {
     openModal("You are logged in", "Okay");
     <Modal />;
     history.push("/");
-    userInfo();
+    userInfo(history);
   } catch (error) {
     await openModal("Enter the valid credentials", null);
     <Modal />;
@@ -49,11 +49,12 @@ export const signOut = (history) => {
   history.push("/");
 };
 
-export const userInfo = async () => {
+export const userInfo = async (history) => {
   try {
     const { data } = await API.get(`/accounts/users/me`, config);
     localStorage.setItem("user", JSON.stringify(data));
   } catch (error) {
+    history.push("/login");
     <Modal errorMessage="You are Logged out!!" />;
     localStorage.clear();
   }
