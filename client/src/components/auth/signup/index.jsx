@@ -142,7 +142,7 @@ function SignUp() {
                   {Object.keys(arrFields).map(
                     (field, index) =>
                       field !== "avatar" && (
-                        <div className="mt-3" key={index}>
+                        <div className="mt-4" key={index}>
                           <div className="input-group">
                             <div className="pixel-input-wrapper">
                               <span></span>

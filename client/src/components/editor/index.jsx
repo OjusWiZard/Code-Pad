@@ -115,10 +115,15 @@ const Form = () => {
                     ))}
                   </select>
                   {/* <img src={download} alt="Download" /> */}
-                  <input
-                    type="file"
-                    onChange={(e) => handleFileChosen(e.target.files[0])}
-                  />
+                  <div className="file-button font-vcr font-blue">
+                    Choose File
+                    <input
+                      type="file"
+                      value=""
+                      onChange={(e) => handleFileChosen(e.target.files[0])}
+                      className="hide-file"
+                    />
+                  </div>
                 </div>
                 <Editor
                   languageId={languageId}

@@ -141,7 +141,7 @@ function Problem() {
             <div className="row d-flex justify-content-center">
               <div className="col-xl-12 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-md-5 my-2 content-background pb-5">
                 <div className="row pt-3">
-                  <div className="col-lg-5 col-md-12 col-sm-12 col-12 pt-md-5 py-2 left-section">
+                  <div className="col-lg-5 col-md-12 col-sm-12 col-12 pt-md-5 py-2">
                     <div className="d-flex justify-content-center font-vcr font-blue">
                       {problem?.title}
                     </div>

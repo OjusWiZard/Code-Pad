@@ -66,8 +66,8 @@ body {
 
 /* Selection */
 ::selection {
-  color: var(--primaryColor);
-  background: #000;
+  color: #000;
+  background: var(--primaryColor);
 }
 
 /* Font Family */
@@ -108,6 +108,10 @@ body {
 .font-16 {
   font-size: 16px !important;
 }
+.font-24 {
+  font-size: 24px;
+}
+
 .font-25 {
   font-size: 25px;
 }
@@ -218,7 +222,7 @@ select:-webkit-autofill {
     padding-top: 5rem !important;
     height: auto;
     background: url("../src/images/common/lines.svg"),
-      linear-gradient(130deg, transparent 0, transparent 100%) !important;
+      linear-gradient(130deg, #000 0, #000 100%) !important;
     border: none !important;
   }
 }
@@ -237,4 +241,11 @@ a.text-center.p-3.nav-item.font-blue.font-16.font-vcr {
 }
 input {
   caret-color: #35a4d3 !important;
+}
+input[type="file"] {
+  background: #000;
+}
+input#file-upload-button {
+  background: #000 !important;
+  color: var(--primaryColor) !important;
 }

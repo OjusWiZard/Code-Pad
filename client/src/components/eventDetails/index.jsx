@@ -171,8 +171,8 @@ function EventDetails() {
                     <div className="mainContainer font-vcr font-lightGrey text-center w-100">
                       <div>
                         <div className="dashboard-header">
-                          <div className="dashboard">
-                            *&nbsp;Dashboard&nbsp;*
+                          <div className="dashboard font-vcr font-blue">
+                            <h2>*&nbsp;Dashboard&nbsp;*</h2>
                           </div>
                           {user && (
                             <div className="score">

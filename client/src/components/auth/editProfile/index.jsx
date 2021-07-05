@@ -120,8 +120,9 @@ function EditProfile() {
                         <span></span>
                         <div className="pixel-input w-100">
                           <input
-                            type="number"
+                            type="tel"
                             name="contact_no"
+                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                             onChange={handleChange}
                             value={formData.contact_no}
                             className="font-vcr font-blue"

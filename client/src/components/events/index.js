@@ -56,10 +56,10 @@ function Events() {
                 {/* ONGOING EVENTS */}
                 {onGoingEvents?.length > 0 && (
                   <div>
-                    <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold">
+                    <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-24 mb-4">
                       &lt;&lt;&nbsp;ONGOING EVENTS&nbsp;&gt;&gt;
                     </h4>
-                    <div className="row d-flex justify-content-center mt-3">
+                    <div className="row d-flex justify-content-center">
                       {onGoingEvents.map((event, index) => (
                         <Event event={event} key={index} />
                       ))}
@@ -73,10 +73,10 @@ function Events() {
                     <div className="d-flex justify-content-center pt-5">
                       <img src={line} alt="" className="img-fluid" />
                     </div>
-                    <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold">
+                    <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-24 mb-4">
                       &lt;&lt;&nbsp;UPCOMING EVENTS&nbsp;&gt;&gt;
                     </h4>
-                    <div className="row d-flex justify-content-center mt-3">
+                    <div className="row d-flex justify-content-center">
                       {upcomingEvents.map((event, index) => (
                         <Event event={event} key={index} />
                       ))}
@@ -90,10 +90,10 @@ function Events() {
                     <div className="d-flex justify-content-center pt-4">
                       <img src={line} alt="" className="img-fluid" />
                     </div>
-                    <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold">
+                    <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-24 mb-4">
                       &lt;&lt;&nbsp;PAST EVENTS&nbsp;&gt;&gt;
                     </h4>
-                    <div className="row d-flex justify-content-center mt-3">
+                    <div className="row d-flex justify-content-center">
                       {pastEvents.map((event, index) => (
                         <Event event={event} key={index} />
                       ))}
