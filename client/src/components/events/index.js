@@ -49,13 +49,13 @@ function Events() {
                 </div>
 
                 {/* ONGOING EVENTS */}
-                {onGoingEvents.length > 0 && (
+                {onGoingEvents?.length > 0 && (
                   <div>
                     <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold">
                       &lt;&lt;&nbsp;ONGOING EVENTS&nbsp;&gt;&gt;
                     </h4>
                     <div className="row d-flex justify-content-center mt-3">
-                      {onGoingEvents?.map((event, index) => (
+                      {onGoingEvents.map((event, index) => (
                         <Event event={event} key={index} />
                       ))}
                     </div>
@@ -63,7 +63,7 @@ function Events() {
                 )}
 
                 {/* UPCOMING EVENTS */}
-                {upcomingEvents.length > 0 && (
+                {upcomingEvents?.length > 0 && (
                   <div>
                     <div className="d-flex justify-content-center pt-5">
                       <img src={line} alt="" className="img-fluid" />
@@ -72,7 +72,7 @@ function Events() {
                       &lt;&lt;&nbsp;UPCOMING EVENTS&nbsp;&gt;&gt;
                     </h4>
                     <div className="row d-flex justify-content-center mt-3">
-                      {upcomingEvents?.map((event, index) => (
+                      {upcomingEvents.map((event, index) => (
                         <Event event={event} key={index} />
                       ))}
                     </div>
@@ -80,7 +80,7 @@ function Events() {
                 )}
 
                 {/* PAST EVENTS */}
-                {pastEvents.length > 0 && (
+                {pastEvents?.length > 0 && (
                   <div>
                     <div className="d-flex justify-content-center pt-4">
                       <img src={line} alt="" className="img-fluid" />
@@ -89,7 +89,7 @@ function Events() {
                       &lt;&lt;&nbsp;PAST EVENTS&nbsp;&gt;&gt;
                     </h4>
                     <div className="row d-flex justify-content-center mt-3">
-                      {pastEvents?.map((event, index) => (
+                      {pastEvents.map((event, index) => (
                         <Event event={event} key={index} />
                       ))}
                     </div>
