@@ -108,6 +108,9 @@ class Submission(models.Model):
     datetime = models.DateTimeField(auto_now_add=True, auto_created=True)
     solution = models.TextField(max_length=4096)
     status = models.CharField(max_length=32)
+    avg_time = models.FloatField(default=0)
+    avg_memory = models.FloatField(default=0)
+    testcases_passed = models.SmallIntegerField(default=0)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     problem = models.ForeignKey(
