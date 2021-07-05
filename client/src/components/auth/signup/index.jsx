@@ -12,7 +12,6 @@ import { ModalContext } from "../../../context/context";
 import "./signup.css";
 
 function SignUp() {
-  const context = useContext(ModalContext);
   const { openModal, formMessage, errorMessage } = useContext(ModalContext);
   const [passwordType, setPasswordType] = useState("password");
   const [rePasswordType, setRePasswordType] = useState("password");

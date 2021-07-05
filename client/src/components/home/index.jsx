@@ -31,6 +31,7 @@ function Home() {
     } else {
       setEvents(pastEvents);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -66,7 +67,8 @@ function Home() {
                   {events && (
                     <div>
                       <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold">
-                        &lt;&lt;&nbsp;{events[0]?.status.toUpperCase()} EVENTS&nbsp;&gt;&gt;
+                        &lt;&lt;&nbsp;{events[0]?.status.toUpperCase()}{" "}
+                        EVENTS&nbsp;&gt;&gt;
                       </h4>
                       <div className="row d-flex justify-content-center mt-3">
                         {events?.map((event, index) => (
