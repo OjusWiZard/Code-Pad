@@ -23,9 +23,6 @@ function Events() {
       setallEvents(data);
       setLoading(false);
     });
-    return () => {
-      setallEvents([]);
-    };
   }, []);
 
   // ONGOING, UPCOMING, PAST EVENTS
