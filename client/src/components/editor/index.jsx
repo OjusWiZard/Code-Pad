@@ -60,7 +60,11 @@ const Form = () => {
         time: res.data.time,
         status: res.data.status.description,
       });
-      let out = res.data.stdout !== null ? atob(res.data.stdout) : null;
+      console.log(res);
+      let out =
+        res.data.stdout !== null
+          ? atob(res.data.stdout)
+          : atob(res.data.compile_output);
       setOutput(out || res.data.status.description);
     } catch (error) {
       alert(error);
@@ -133,10 +137,14 @@ const Form = () => {
                     Status: {outputData?.status}
                   </div>
                   <div className="font-vcr font-lightGrey">
-                    Time: {outputData?.time} sec
+                    {outputData?.time && (
+                      <span>Time: {outputData?.time} sec</span>
+                    )}
                   </div>
                   <div className="font-vcr font-lightGrey">
-                    Mem: {outputData?.memory} kb
+                    {outputData?.time && (
+                      <span>Time: {outputData?.memory} kb</span>
+                    )}
                   </div>
                 </div>
               )}
