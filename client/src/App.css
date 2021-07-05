@@ -60,6 +60,7 @@ body {
 /* Placeholder */
 ::placeholder {
   color: var(--primaryColor);
+  opacity: 0.6;
   text-transform: uppercase;
 }
 
@@ -180,6 +181,11 @@ body {
   -webkit-animation: vline 6.25s linear infinite;
   animation: vline 6.25s linear infinite;
 }
+
+.see-all-buttons:active {
+  opacity: 0.6;
+}
+
 @keyframes vline {
   0% {
     top: 0;
@@ -229,6 +235,6 @@ a {
 a.text-center.p-3.nav-item.font-blue.font-16.font-vcr {
   position: relative;
 }
-input{
+input {
   caret-color: #35a4d3 !important;
 }

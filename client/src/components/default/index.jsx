@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { ModalContext } from "../../context/context";
-import Modal from "../../components/modal/index";
+import React from "react";
+
 function Default() {
   // const { modalOpen, closeModal, message, modalHeading } =
   //   useContext(ModalContext);

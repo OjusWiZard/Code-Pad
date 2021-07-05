@@ -63,6 +63,11 @@ function SignUp() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleSubmitOnEnter = async (e) => {
+    if (e.which === 13 && e.target.name === "re_password") {
+      await signUp(formData, history, formMessage, openModal);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -147,6 +152,7 @@ function SignUp() {
                                   onChange={handleChange}
                                   name={field}
                                   value={formData.field}
+                                  onKeyPress={handleSubmitOnEnter}
                                   type={
                                     field === "password" ? passwordType : "text"
                                   }
@@ -214,7 +220,11 @@ function SignUp() {
                     }}
                     type="submit"
                   >
-                    <img src={signup} alt="signup" className="img-fluid mt-4" />
+                    <img
+                      src={signup}
+                      alt="signup"
+                      className="img-fluid mt-4 see-all-buttons"
+                    />
                   </div>
                 </form>
                 <div className="mt-3 text-center">

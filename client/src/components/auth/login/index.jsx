@@ -14,6 +14,14 @@ function Login() {
     password: "",
   });
   const [passwordType, setPasswordType] = useState("password");
+
+  const handleSubmitOnEnter = async (e) => {
+    console.log(e);
+    if (e.which === 13) {
+      await signIn(formData, history, formMessage, openModal);
+    }
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -53,13 +61,14 @@ function Login() {
                     <div className="input-group">
                       <div className="pixel-input-wrapper">
                         <span></span>
-                        <div className="pixel-input w-100">
+                        <div className="pixel-input w-100 ">
                           <input
                             onChange={handleChange}
                             name="password"
+                            onKeyPress={handleSubmitOnEnter}
                             value={formData.password}
                             type={passwordType}
-                            className="font-vcr font-blue"
+                            className="font-vcr font-blue "
                             placeholder="PASSWORD"
                           />
                           <div
@@ -96,7 +105,7 @@ function Login() {
                       src={login}
                       onClick={handleSubmit}
                       alt="signup"
-                      className="img-fluid mt-4"
+                      className="img-fluid mt-4 see-all-buttons"
                     />
                   </div>
                 </form>

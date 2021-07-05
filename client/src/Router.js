@@ -37,7 +37,7 @@ function Router() {
         <Route
           exact
           path="/i/have/bad/memory/password/:uid/:token"
-          component={() => (user ? <Redirect to="/" /> : <ForgotPassword />)}
+          component={() => (user ? <Redirect to="/" /> : <ResetPassword />)}
         />
         <Route component={Default} />
       </Switch>
