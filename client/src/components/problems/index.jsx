@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import avatar1 from "../../images/auth/frog.svg";
@@ -9,7 +10,12 @@ import submitCode from "../../images/problems/submitCode.svg";
 import Spinner from "../utils/Spinner";
 import { useParams } from "react-router-dom";
 import Editor from "../editor/Editor";
-import { getSubmissionsPagination, getSubmissions, getProblem, codeSubmission } from "../../api/index";
+import {
+  getSubmissionsPagination,
+  getSubmissions,
+  getProblem,
+  codeSubmission,
+} from "../../api/index";
 import "./problem.css";
 
 function Problem() {
@@ -19,8 +25,8 @@ function Problem() {
   const [output, setOutput] = useState("");
   const [outputData, setOutputData] = useState({
     status: "",
-    memory:"",
-    time:"",
+    memory: "",
+    time: "",
   });
   const [loading, setLoading] = useState(true);
   const [submissions, setSubmissions] = useState([]);
@@ -52,7 +58,7 @@ function Problem() {
     getSubmissions(params.slug.toString().toUpperCase()).then((data) => {
       setSubmissions(data);
     });
-  }, []);
+  }, [params.slug]);
   // Run Code
   const handleRunCode = async (e, value, languageId, input) => {
     e.preventDefault();
@@ -87,17 +93,22 @@ function Problem() {
         config
       );
       let out = res.data.stdout !== null ? atob(res.data.stdout) : null;
-      setOutputData({...outputData, memory: res.data.memory, time: res.data.time, status:res.data.status.description})
+      setOutputData({
+        ...outputData,
+        memory: res.data.memory,
+        time: res.data.time,
+        status: res.data.status.description,
+      });
       setOutput(out || res.data.status.description);
     } catch (error) {
       alert(error);
     }
   };
-  const paginationSubmission =  (text) => {
-     (getSubmissionsPagination(text)).then(data => {
-       setSubmissions(data);
-     });
-  }
+  const paginationSubmission = (text) => {
+    getSubmissionsPagination(text).then((data) => {
+      setSubmissions(data);
+    });
+  };
   const handleSubmitCode = async (e, value) => {
     e.preventDefault();
     let l = Number(languageId);
@@ -179,9 +190,16 @@ function Problem() {
                           border: "1px solid #405C6B",
                         }}
                       >
-                        <span className="font-vcr" style={{ width: "20%" }}></span>
-                        <span className="font-vcr" style={{ width: "40%" }}>Name</span>
-                        <span className="font-vcr" style={{ width: "40%" }}>Score</span>
+                        <span
+                          className="font-vcr"
+                          style={{ width: "20%" }}
+                        ></span>
+                        <span className="font-vcr" style={{ width: "40%" }}>
+                          Name
+                        </span>
+                        <span className="font-vcr" style={{ width: "40%" }}>
+                          Score
+                        </span>
                       </div>
                       {submissions?.results?.map((submission, index) => (
                         <div
@@ -203,44 +221,38 @@ function Problem() {
                               {submission.user.username}
                             </span>
                           </div>
-                          <span className="user-score" style={{ width: "40%"}}>
+                          <span className="user-score" style={{ width: "40%" }}>
                             {submission.problem?.points}
                           </span>
                         </div>
                       ))}
-                              <div className="d-flex justify-content-center">
-                                  <nav className="mt-4">
-                                    <ul class="pagination">
-                                      {submissions?.previous && (
-                                        <li
-                                          class="page-item"
-                                          onClick={() =>
-                                            paginationSubmission(
-                                              submissions?.previous
-                                            )
-                                          }
-                                        >
-                                          <span class="page-link">
-                                            Previous
-                                          </span>
-                                        </li>
-                                      )}
+                      <div className="d-flex justify-content-center">
+                        <nav className="mt-4">
+                          <ul class="pagination">
+                            {submissions?.previous && (
+                              <li
+                                class="page-item"
+                                onClick={() =>
+                                  paginationSubmission(submissions?.previous)
+                                }
+                              >
+                                <span class="page-link">Previous</span>
+                              </li>
+                            )}
 
-                                      {submissions?.next && (
-                                        <li
-                                          class="page-item"
-                                          onClick={() =>
-                                            paginationSubmission(
-                                              submissions?.next
-                                            )
-                                          }
-                                        >
-                                          <span class="page-link">next</span>
-                                        </li>
-                                      )}
-                                    </ul>
-                                  </nav>
-                                </div>
+                            {submissions?.next && (
+                              <li
+                                class="page-item"
+                                onClick={() =>
+                                  paginationSubmission(submissions?.next)
+                                }
+                              >
+                                <span class="page-link">next</span>
+                              </li>
+                            )}
+                          </ul>
+                        </nav>
+                      </div>
                     </div>
                   </div>
                   <div className="col-lg-7 col-md-12 col-sm-12 col-12 pt-md-5">
@@ -253,7 +265,7 @@ function Problem() {
                           setValue("");
                         }}
                       >
-                        {languages.map((lan) => (
+                        {languages?.map((lan) => (
                           <option
                             value={lan.id}
                             className="font-lightGrey font-vcr"
@@ -283,18 +295,18 @@ function Problem() {
                         id="custom"
                       />
                       <div className="lower-section-images">
-                      <img
-                        src={runCode}
-                        alt="runCOde"
-                        onClick={(e) =>
-                          handleRunCode(e, value, languageId, input)
-                        }
-                      />
-                      <img
-                        src={submitCode}
-                        alt="submitCOde"
-                        onClick={(e) => handleSubmitCode(e, value)}
-                      />
+                        <img
+                          src={runCode}
+                          alt="runCOde"
+                          onClick={(e) =>
+                            handleRunCode(e, value, languageId, input)
+                          }
+                        />
+                        <img
+                          src={submitCode}
+                          alt="submitCOde"
+                          onClick={(e) => handleSubmitCode(e, value)}
+                        />
                       </div>
                     </div>
                     <div className="output-section">
@@ -302,15 +314,17 @@ function Problem() {
                         &lt;&lt;&nbsp;HELLO OUTPUT&nbsp;&gt;&gt;
                       </p>
                       {output && (
-<                         div className="d-flex justify-content-between p-3 bg-black">
-                            <div className="font-vcr font-blue">
+                        <div className="d-flex justify-content-between p-3 bg-black">
+                          <div className="font-vcr font-blue">
                             Status: {outputData?.status}
-                           </div>
+                          </div>
                           <div className="font-vcr font-lightGrey">
-                          Time: {outputData?.time} sec
+                            Time: {outputData?.time} sec
+                          </div>
+                          <div className="font-vcr font-lightGrey">
+                            Mem: {outputData?.memory} kb
+                          </div>
                         </div>
-                        <div className="font-vcr font-lightGrey">Mem: {outputData?.memory} kb</div>
-                      </div>
                       )}
 
                       <textarea

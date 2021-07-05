@@ -76,7 +76,7 @@ export const getAllEvents = async () => {
     const { data } = await API.get("/events/");
 
     return data;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const getEvent = async (slug) => {
@@ -84,7 +84,7 @@ export const getEvent = async (slug) => {
     const { data } = await API.get(`/events/${slug}`, config);
 
     return data;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const getProblem = async (slug) => {
@@ -92,14 +92,14 @@ export const getProblem = async (slug) => {
     const { data } = await API.get(`/problems/${slug}`);
 
     return data;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const codeSubmission = async (formData) => {
   try {
     const { data } = await API.post(`/submissions/`, formData, config);
     return data;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const getLeaderboard = async (slug) => {
@@ -123,7 +123,7 @@ export const getLeaderboardPagination = async (text) => {
 export const getSubmissionsPagination = async (text) => {
   try {
     const { data } = await API.get(text);
-    return dat;
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -140,7 +140,7 @@ export const getLeaderboardUser = async (slug, username) => {
 
 export const forgotPassword = async (formData, history, openModal) => {
   try {
-    const { data } = await API.post(
+    await API.post(
       `/accounts/users/reset_password/`,
       formData,
       config
@@ -148,18 +148,18 @@ export const forgotPassword = async (formData, history, openModal) => {
     openModal("Check your email", "Okay");
     <Modal />;
     history.push("/");
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const resetPassword = async (formData, uid, token, history) => {
   try {
-    const { data } = await API.post(
+    await API.post(
       `/accounts/users/reset_password_confirm/`,
       { ...formData, uid, token },
       config
     );
     history.push("/");
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const getSubmissions = async (slug) => {
