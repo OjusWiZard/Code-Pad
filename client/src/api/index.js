@@ -85,20 +85,26 @@ export const getAllEvents = async (history) => {
   }
 };
 
-export const getEvent = async (slug) => {
+export const getEvent = async (slug, history) => {
   try {
     const { data } = await API.get(`/events/${slug}`, config);
 
     return data;
-  } catch (error) { }
+  } catch (error) {
+    localStorage.clear();
+    history.push("/login")
+  }
 };
 
-export const getProblem = async (slug) => {
+export const getProblem = async (slug, history) => {
   try {
     const { data } = await API.get(`/problems/${slug}`);
 
     return data;
-  } catch (error) { }
+  } catch (error) {
+    localStorage.clear();
+    history.push("/login")
+  }
 };
 
 export const codeSubmission = async (formData) => {

@@ -8,7 +8,7 @@ import avatar4 from "../../images/auth/pacman.svg";
 import runCode from "../../images/problems/runCode.svg";
 import submitCode from "../../images/problems/submitCode.svg";
 import Spinner from "../utils/Spinner";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Editor from "../editor/Editor";
 import {
   getSubmissionsPagination,
@@ -19,6 +19,7 @@ import {
 import "./problem.css";
 
 function Problem() {
+  const history = useHistory();
   const params = useParams();
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
@@ -51,10 +52,15 @@ function Problem() {
     axios.get("https://judge.hackncs.com/languages", config).then((data) => {
       setLanguages(data.data);
     });
-    getProblem(params.slug.toString().toUpperCase()).then((data) => {
-      setProblem(data);
-      setLoading(false);
-    });
+    getProblem(params.slug.toString().toUpperCase(), history)
+      .then((data) => {
+        setProblem(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        localStorage.clear();
+        history.push("/login");
+      });
     getSubmissions(params.slug.toString().toUpperCase()).then((data) => {
       setSubmissions(data);
     });

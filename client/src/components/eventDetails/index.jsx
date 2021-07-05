@@ -30,18 +30,23 @@ function EventDetails() {
     4: avatar4,
   };
   useEffect(() => {
-    getEvent(params.slug).then((data) => {
-      setEvent(data);
-      getLeaderboard(params.slug).then((data) => {
-        setLeaderboard(data);
-        getLeaderboardUser(
-          params.slug,
-          JSON.parse(localStorage.getItem("user"))?.username
-        ).then((data) => {
-          setUser(data);
+    getEvent(params.slug, history)
+      .then((data) => {
+        setEvent(data);
+        getLeaderboard(params.slug).then((data) => {
+          setLeaderboard(data);
+          getLeaderboardUser(
+            params.slug,
+            JSON.parse(localStorage.getItem("user"))?.username
+          ).then((data) => {
+            setUser(data);
+          });
         });
+      })
+      .catch((err) => {
+        localStorage.clear();
+        history.push("/login");
       });
-    });
     getLeaderboard(params.slug)
       .then((data) => {
         setLeaderboard(data);
