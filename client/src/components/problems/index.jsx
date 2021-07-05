@@ -123,7 +123,7 @@ function Problem() {
       alert(error);
     }
   };
-
+  console.log(problem);
   // const submissionArray = problem?.submissions?.splice(0, 5);
   return (
     <React.Fragment>
@@ -139,37 +139,75 @@ function Problem() {
                     <div className="d-flex justify-content-center font-vcr font-blue">
                       {problem?.title}
                     </div>
-                    <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
+                    <div className="mt-2 font-vcr d-flex justify-content-between">
+                      <span style={{ color: "green" }}>
+                        Points; {problem?.points}
+                      </span>
+                      <span style={{ color: "red" }}>
+                        Penalty: {problem?.penalty}
+                      </span>
+                    </div>
+                    {problem?.problem_statement && (
+                      <>
+                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                          QUESTION: <br />
+                          <span>{problem.problem_statement}</span>
+                        </p>
+                        <hr />
+                      </>
+                    )}
+                    {problem?.input_statement && (
+                      <>
+                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                          INPUT STATMENT: <br />
+                          <span>{problem.input_statement}</span>
+                        </p>
+                        <hr />
+                      </>
+                    )}
+                    {problem?.example_input && (
+                      <>
+                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                          EXAMPLE INPUT: <br />
+                          <span>{problem.example_input}</span>
+                        </p>
+                        <hr />
+                      </>
+                    )}
+                    {problem?.output_statement && (
+                      <>
+                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                          OUTPUT STATEMENT: <br />
+                          <span>{problem.output_statement}</span>
+                        </p>
+                        <hr />
+                      </>
+                    )}
+                    {problem?.example_output && (
+                      <>
+                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                          EXAMPLE OUTPUT: <br />
+                          <span>{problem.example_output}</span>
+                        </p>
+                        <hr />
+                      </>
+                    )}
+                    {problem?.example_explanation && (
+                      <>
+                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                          EXAMPLE EXPLANATION: <br />
+                          <span>{problem.example_explanation}</span>
+                        </p>
+                        <hr />
+                      </>
+                    )}
+                    {problem?.contraints && (
+                      <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                        CONSTRAINTS: <br />
+                        <span>{problem.contraints}</span>
+                      </p>
+                    )}
 
-                    <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deavatarserunt mollit anim id est laborum.
-                    </p>
-                    <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
                     <div
                       className=" font-vcr font-18 mt-3"
                       style={{ color: "#7a8589" }}
@@ -226,31 +264,31 @@ function Problem() {
                           </span>
                         </div>
                       ))}
-                      <div className="d-flex justify-content-center">
+                      <div className="d-flex justify-content-center font-vcr font-blue ">
                         <nav className="mt-4">
-                          <ul className="pagination">
+                          <div className="pagination">
                             {submissions?.previous && (
-                              <li
-                                className="page-item"
+                              <span
+                                className="pagination-previous"
                                 onClick={() =>
-                                  paginationSubmission(submissions?.previous)
+                                  paginationSubmission(submissions.previous)
                                 }
                               >
-                                <span class="page-link">Previous</span>
-                              </li>
+                                <i className="fas fa-arrow-left"></i>
+                              </span>
                             )}
 
                             {submissions?.next && (
-                              <li
-                                className="page-item"
+                              <span
+                                className="pagination-next ml-3"
                                 onClick={() =>
-                                  paginationSubmission(submissions?.next)
+                                  paginationSubmission(submissions.next)
                                 }
                               >
-                                <span className="page-link">next</span>
-                              </li>
+                                <i className="fas fa-arrow-right"></i>
+                              </span>
                             )}
-                          </ul>
+                          </div>
                         </nav>
                       </div>
                     </div>
@@ -265,8 +303,9 @@ function Problem() {
                           setValue("");
                         }}
                       >
-                        {languages?.map((lan) => (
+                        {languages?.map((lan, index) => (
                           <option
+                            key={index}
                             value={lan.id}
                             className="font-lightGrey font-vcr"
                           >
@@ -331,6 +370,7 @@ function Problem() {
                         className="output w-100"
                         value={output}
                         rows="10"
+                        readOnly
                       ></textarea>
                     </div>
                   </div>

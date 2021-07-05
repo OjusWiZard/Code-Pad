@@ -296,39 +296,35 @@ function EventDetails() {
                                     </span>
                                   </div>
                                 ))}
-                                <div className="d-flex justify-content-center">
+                                <div className="d-flex justify-content-center font-vcr font-blue ">
                                   <nav className="mt-4">
-                                    <ul className="pagination">
+                                    <div className="pagination">
                                       {leaderboard?.previous && (
-                                        <li
-                                          class="page-item"
+                                        <span
+                                          className="pagination-previous"
                                           onClick={() =>
                                             paginationLeaderboard(
-                                              leaderboard?.previous
+                                              leaderboard.previous
                                             )
                                           }
                                         >
-                                          <span className="page-link">
-                                            Previous
-                                          </span>
-                                        </li>
+                                          <i class="fas fa-arrow-left"></i>
+                                        </span>
                                       )}
 
                                       {leaderboard?.next && (
-                                        <li
-                                          class="page-item"
+                                        <span
+                                          className="pagination-next ml-3"
                                           onClick={() =>
                                             paginationLeaderboard(
-                                              leaderboard?.next
+                                              leaderboard.next
                                             )
                                           }
                                         >
-                                          <span className="page-link">
-                                            next
-                                          </span>
-                                        </li>
+                                          <i class="fas fa-arrow-right"></i>
+                                        </span>
                                       )}
-                                    </ul>
+                                    </div>
                                   </nav>
                                 </div>
                               </div>

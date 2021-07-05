@@ -55,7 +55,7 @@ function Events() {
                       &lt;&lt;&nbsp;ONGOING EVENTS&nbsp;&gt;&gt;
                     </h4>
                     <div className="row d-flex justify-content-center mt-3">
-                      {onGoingEvents??.map((event, index) => (
+                      {onGoingEvents?.map((event, index) => (
                         <Event event={event} key={index} />
                       ))}
                     </div>
