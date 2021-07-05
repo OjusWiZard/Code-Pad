@@ -1,10 +1,1 @@
-<svg width="252" height="1" viewBox="0 0 252 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-<line opacity="0.6" x1="127" y1="0.5" y2="0.5" stroke="#35A4D3"/>
-<line y1="0.5" x2="14" y2="0.5" stroke="#35A4D3"/>
-<line x1="16" y1="0.5" x2="51" y2="0.5" stroke="#35A4D3"/>
-<line x1="55" y1="0.5" x2="127" y2="0.5" stroke="#35A4D3"/>
-<line opacity="0.6" y1="-0.5" x2="127" y2="-0.5" transform="matrix(1 0 0 -1 125 0)" stroke="#35A4D3"/>
-<line y1="-0.5" x2="14" y2="-0.5" transform="matrix(-1 0 0 1 252 1)" stroke="#35A4D3"/>
-<line y1="-0.5" x2="35" y2="-0.5" transform="matrix(-1 0 0 1 236 1)" stroke="#35A4D3"/>
-<line y1="-0.5" x2="72" y2="-0.5" transform="matrix(-1 0 0 1 197 1)" stroke="#35A4D3"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="252" height="1" fill="none" viewBox="0 0 252 1"><line x1="127" y1=".5" y2=".5" stroke="#35A4D3" opacity=".6"/><line x2="14" y1=".5" y2=".5" stroke="#35A4D3"/><line x1="16" x2="51" y1=".5" y2=".5" stroke="#35A4D3"/><line x1="55" x2="127" y1=".5" y2=".5" stroke="#35A4D3"/><line x2="127" y1="-.5" y2="-.5" stroke="#35A4D3" opacity=".6" transform="matrix(1 0 0 -1 125 0)"/><line x2="14" y1="-.5" y2="-.5" stroke="#35A4D3" transform="matrix(-1 0 0 1 252 1)"/><line x2="35" y1="-.5" y2="-.5" stroke="#35A4D3" transform="matrix(-1 0 0 1 236 1)"/><line x2="72" y1="-.5" y2="-.5" stroke="#35A4D3" transform="matrix(-1 0 0 1 197 1)"/></svg>
