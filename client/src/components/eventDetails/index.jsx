@@ -298,7 +298,7 @@ function EventDetails() {
                                 ))}
                                 <div className="d-flex justify-content-center">
                                   <nav className="mt-4">
-                                    <ul class="pagination">
+                                    <ul className="pagination">
                                       {leaderboard?.previous && (
                                         <li
                                           class="page-item"
@@ -308,7 +308,7 @@ function EventDetails() {
                                             )
                                           }
                                         >
-                                          <span class="page-link">
+                                          <span className="page-link">
                                             Previous
                                           </span>
                                         </li>
@@ -323,7 +323,9 @@ function EventDetails() {
                                             )
                                           }
                                         >
-                                          <span class="page-link">next</span>
+                                          <span className="page-link">
+                                            next
+                                          </span>
                                         </li>
                                       )}
                                     </ul>

@@ -228,10 +228,10 @@ function Problem() {
                       ))}
                       <div className="d-flex justify-content-center">
                         <nav className="mt-4">
-                          <ul class="pagination">
+                          <ul className="pagination">
                             {submissions?.previous && (
                               <li
-                                class="page-item"
+                                className="page-item"
                                 onClick={() =>
                                   paginationSubmission(submissions?.previous)
                                 }
@@ -242,12 +242,12 @@ function Problem() {
 
                             {submissions?.next && (
                               <li
-                                class="page-item"
+                                className="page-item"
                                 onClick={() =>
                                   paginationSubmission(submissions?.next)
                                 }
                               >
-                                <span class="page-link">next</span>
+                                <span className="page-link">next</span>
                               </li>
                             )}
                           </ul>

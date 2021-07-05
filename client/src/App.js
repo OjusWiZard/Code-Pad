@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Router from "./Router";
-import { userInfo } from "./api";
+
 
 function App() {
   return (

@@ -39,6 +39,7 @@ function Modal() {
     } else {
       setHeading("Error");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalOpen]);
   if (!modalOpen) {
     return null;

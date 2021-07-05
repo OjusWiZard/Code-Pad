@@ -27,6 +27,7 @@ const Form = () => {
     axios.get("https://judge.hackncs.com/languages", config).then((data) => {
       setLanguages(data.data);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = async (e) => {
