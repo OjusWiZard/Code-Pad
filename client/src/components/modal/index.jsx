@@ -35,11 +35,11 @@ function Modal() {
   useEffect(() => {
     if (modalHeading) {
       const random = Math.floor(Math.random() * 22);
-      console.log(random);
       setHeading(messages[random]);
     } else {
       setHeading("Error");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalOpen]);
   if (!modalOpen) {
     return null;
@@ -51,7 +51,7 @@ function Modal() {
             <div className="row">
               <div
                 id="modal"
-                className="col-8 mx-auto col-md-6 col-lg-4 text-center py-5 px-xl-5"
+                className="col-8 mx-auto col-md-6 col-lg-4 text-center py-5 px-xl-3"
               >
                 <h4 className="font-vcr font-blue mb-4 text-center font-weight-bold">
                   &lt;&lt;&nbsp;{heading}&nbsp;&gt;&gt;

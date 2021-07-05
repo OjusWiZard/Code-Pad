@@ -2,22 +2,44 @@ import React, { useEffect, useState } from "react";
 import logo from "../../images/home/logo.svg";
 import line from "../../images/home/line.svg";
 import button from "../../images/home/button.svg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getAllEvents } from "../../api/index";
 import Spinner from "../utils/Spinner";
 import Event from "../utils/Event";
 import "./home.css";
 
 function Home() {
+  const history = useHistory();
   const [loading, setLoading] = useState(true);
+  const [events, setEvents] = useState();
   const [allEvents, setallEvents] = useState([]);
   useEffect(() => {
-    getAllEvents().then((data) => {
-      setallEvents(data);
-      setLoading(false);
-    });
+    getAllEvents()
+      .then((data) => {
+        setallEvents(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        localStorage.clear();
+        history.push("/login");
+      });
+    let onGoingEvents = allEvents?.filter(
+      (event) => event.status === "Ongoing"
+    );
+    let upcomingEvents = allEvents?.filter(
+      (event) => event.status === "Upcoming"
+    );
+    let pastEvents = allEvents?.filter((event) => event.status === "Past");
+    if (onGoingEvents.length > 0) {
+      setEvents(onGoingEvents);
+    } else if (upcomingEvents.length > 0) {
+      setEvents(upcomingEvents);
+    } else {
+      setEvents(pastEvents);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  let onGoingEvents = allEvents?.filter((event) => event.status === "Ongoing");
+
   return (
     <React.Fragment>
       {loading ? (
@@ -47,19 +69,21 @@ function Home() {
                   <div className="d-flex justify-content-center pt-5">
                     <img src={line} alt="" className="img-fluid" />
                   </div>
-                  {onGoingEvents.length > 0 && (
+
+                  {events && (
                     <div>
                       <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-weight-bold">
-                        &lt;&lt;&nbsp;ONGOING EVENTS&nbsp;&gt;&gt;
+                        &lt;&lt;&nbsp;{events[0]?.status.toUpperCase()}{" "}
+                        EVENTS&nbsp;&gt;&gt;
                       </h4>
                       <div className="row d-flex justify-content-center mt-3">
-                        {onGoingEvents?.map(
-                          (event, index) =>
-                            index < 3 && <Event event={event} key={index} />
-                        )}
+                        {events?.map((event, index) => (
+                          <Event event={event} key={index} />
+                        ))}
                       </div>
                     </div>
                   )}
+
                   <div className="my-5 text-center">
                     <Link to="/events">
                       <img src={button} alt="" className="img-fluid" />

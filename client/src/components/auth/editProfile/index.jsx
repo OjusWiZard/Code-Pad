@@ -25,12 +25,10 @@ function EditProfile() {
       .querySelectorAll(".avatar-container .img-fluid")
       .forEach((img) => img.classList.add("active-avatar"));
     e.target.classList.remove("active-avatar");
-    console.log(formData);
   };
 
   const handleSubmit = (e, formData, history) => {
     e.preventDefault();
-    console.log(formData);
     editUserInfo(formData, history, openModal);
   };
   return (

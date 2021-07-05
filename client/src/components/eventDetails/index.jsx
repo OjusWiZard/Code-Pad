@@ -9,10 +9,16 @@ import avatar4 from "../../images/auth/pacman.svg";
 import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
-import { getEvent, getLeaderboard, getLeaderboardUser } from "../../api/index";
-import { useParams, Redirect, Link } from "react-router-dom";
+import {
+  getEvent,
+  getLeaderboard,
+  getLeaderboardUser,
+  getLeaderboardPagination,
+} from "../../api/index";
+import { useParams, Redirect, Link, useHistory } from "react-router-dom";
 import moment from "moment";
 function EventDetails() {
+  const history = useHistory();
   const params = useParams();
   const [leaderboard, setLeaderboard] = useState([]);
   const [user, setUser] = useState({});
@@ -24,19 +30,23 @@ function EventDetails() {
     4: avatar4,
   };
   useEffect(() => {
-    getEvent(params.slug).then((data) => {
-      setEvent(data);
-      getLeaderboard(params.slug).then((data) => {
-        setLeaderboard(data);
-        getLeaderboardUser(
-          params.slug,
-          JSON.parse(localStorage.getItem("user"))?.username
-        ).then((data) => {
-          console.log(data);
-          setUser(data);
+    getEvent(params.slug, history)
+      .then((data) => {
+        setEvent(data);
+        getLeaderboard(params.slug).then((data) => {
+          setLeaderboard(data);
+          getLeaderboardUser(
+            params.slug,
+            JSON.parse(localStorage.getItem("user"))?.username
+          ).then((data) => {
+            setUser(data);
+          });
         });
+      })
+      .catch((err) => {
+        localStorage.clear();
+        history.push("/login");
       });
-    });
     getLeaderboard(params.slug)
       .then((data) => {
         setLeaderboard(data);
@@ -59,12 +69,18 @@ function EventDetails() {
   }, [params.slug]);
 
   const [active, setActive] = useState("about");
-  console.log(params.slug);
   const removeClass = (e) => {
     document
-      .querySelectorAll("li")
+      .querySelectorAll("div.events-options")
       .forEach((link) => link.classList.remove("active-event"));
   };
+
+  const paginationLeaderboard = (text) => {
+    getLeaderboardPagination(text).then((data) => {
+      setLeaderboard(data);
+    });
+  };
+
   console.log(
     user,
     leaderboard,
@@ -73,215 +89,270 @@ function EventDetails() {
   return (
     <React.Fragment>
       <div className="main-background">
-        <div className="container py-lg-5">
+        <div className="container py-md-5">
           <div className="row">
-            <div className="col-xl-10 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-lg-5 content-background px-lg-5">
-              <div className="my-lg-5 py-lg-3 px-lg-3">
-                <div className="d-flex mainContainer font-vcr font-lightGrey text-center justify-content-between mt-lg-5">
-                  <div style={{ textAlign: "left" }}>
-                    <img src={pointerLeft} alt="left-pointer" /> Exit
-                    <div className="d-flex codewars mt-5 pt-2 pb-5">
-                      <div className="dash">
-                        <img src={dash} alt="dash" className="img-fluid mt-3" />
-                      </div>
-                      <div className="codewar-title d-flex">
-                        <div className="main d-flex px-1 justify-content-between">
-                          <img
-                            src={folder}
-                            alt="folder"
-                            className="img-fluid mt-3"
-                          />
-                          <span className="codewars-span font-vcr font-16 mt-3 font-blue">
-                            CODEWARS
-                          </span>
+            <div className="col-xl-12 col-lg-12 col-md-10 col-sm-11 col-11 mx-auto my-md-5 content-background px-md-5">
+              <div className="my-md-5 py-md-3 px-lg-3">
+                <div className="row">
+                  <div className="col-lg-3 col-md-5 col-sm-5 col-12">
+                    <div className="font-vcr font-lightGrey">
+                      <span className="exit" onClick={() => history.goBack()}>
+                        <img src={pointerLeft} alt="left-pointer" /> Exit
+                      </span>
+                      <div className="d-flex codewars mt-5 pt-2 pb-5">
+                        <div className="dash">
+                          <img src={dash} alt="dash" className="img-fluid" />
                         </div>
-                        <li
-                          className="active-event"
-                          onClick={(e) => {
-                            setActive("about");
-                            removeClass(e);
-                            e.target.classList.add("active-event");
-                          }}
-                        >
-                          # about
-                        </li>
-                        <li
-                          onClick={(e) => {
-                            setActive("rules");
-                            removeClass(e);
-                            e.target.classList.add("active-event");
-                          }}
-                        >
-                          # rules
-                        </li>
-                        <li
-                          onClick={(e) => {
-                            setActive("leaderboard");
-                            removeClass(e);
-                            e.target.classList.add("active-event");
-                          }}
-                        >
-                          # leaderboard
-                        </li>
-                        <li
-                          onClick={(e) => {
-                            setActive("problems");
-                            removeClass(e);
-                            e.target.classList.add("active-event");
-                          }}
-                        >
-                          # problems
-                        </li>
+                        <div>
+                          <div className="main mb-3">
+                            <img
+                              src={folder}
+                              alt="folder"
+                              className="img-fluid"
+                            />
+                            <span className="codewars-span font-vcr font-16 mt-3 font-blue">
+                              CODEWARS
+                            </span>
+                          </div>
+                          <div className="flex-mobile">
+                            <div
+                              className="mt-3 active-event events-options event-detail-option"
+                              onClick={(e) => {
+                                setActive("about");
+                                removeClass(e);
+                                e.target.classList.add("active-event");
+                              }}
+                            >
+                              <span className="display-hash">#</span> about
+                            </div>
+                            <div
+                              className="mt-3 events-options event-detail-option"
+                              onClick={(e) => {
+                                setActive("rules");
+                                removeClass(e);
+                                e.target.classList.add("active-event");
+                              }}
+                            >
+                              <span className="display-hash">#</span> rules
+                            </div>
+                            <div
+                              className="mt-3 events-options event-detail-option"
+                              onClick={(e) => {
+                                setActive("leaderboard");
+                                removeClass(e);
+
+                                e.target.classList.add("active-event");
+                              }}
+                            >
+                              <span className="display-hash">#</span>{" "}
+                              leaderboard
+                            </div>
+                            <div
+                              className="mt-3 events-options"
+                              onClick={(e) => {
+                                setActive("problems");
+                                removeClass(e);
+                                e.target.classList.add("active-event");
+                              }}
+                            >
+                              <span className="display-hash">#</span> problems
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div style={{ flex: 0.95 }}>
-                    <div className="dashboard-header">
-                      <div className="dashboard">*&nbsp;Dashboard&nbsp;*</div>
-                      <div className="score">
-                        {user ? `${user?.score}` : `0`}
-                      </div>
-                    </div>
-                    <div className="rules mt-5 pt-2 pb-5 py-2 px-2">
-                      {active === "about" && (
-                        <div className="about__section m-2">
-                          <div className="about__header d-flex align-items-center">
-                            <img
-                              src={event?.icon}
-                              alt="frame"
-                              className="event-icon"
-                            />
-                            <div className="about__header__content">
-                              <div className="mx-3">
-                                <span className="font-blue font-vcr font-18">
-                                  {event?.title}{" "}
-                                </span>
-                                <br />
-                                <img src={heart} alt="heart" />{" "}
-                                <img src={heart} alt="heart" /> <br />
-                                {moment(event?.datetime).format("MMMM Do YYYY")}
+                  <div className="col-lg-9 col-md-7 col-sm-7 col-12">
+                    <div className="mainContainer font-vcr font-lightGrey text-center w-100">
+                      <div>
+                        <div className="dashboard-header">
+                          <div className="dashboard">
+                            *&nbsp;Dashboard&nbsp;*
+                          </div>
+                          {user && (
+                            <div className="score">
+                              {user ? `${user?.score}` : null}
+                            </div>
+                          )}
+                        </div>
+                        <div className="rules mt-5 pt-2 pb-5 py-2 px-2">
+                          {active === "about" && (
+                            <div className="about__section m-2">
+                              <div className="about__header d-flex align-items-center">
+                                <img
+                                  src={event?.icon}
+                                  alt="frame"
+                                  className="event-icon"
+                                />
+                                <div className="about__header__content">
+                                  <div className="mx-3">
+                                    <span className="font-blue font-vcr font-18">
+                                      {event?.title}{" "}
+                                    </span>
+                                    <br />
+                                    <img src={heart} alt="heart" />{" "}
+                                    <img src={heart} alt="heart" /> <br />
+                                    {moment(event?.datetime).format(
+                                      "MMMM Do YYYY"
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="about__content mt-3">
+                                {event?.description}
                               </div>
                             </div>
-                          </div>
-                          <div className="about__content mt-3">
-                            {event?.description}
-                          </div>
-                        </div>
-                      )}
-                      {active === "problems" && (
-                        <>
-                          <div className="font-blue font-vcr font-18 mt-3">
-                            #PROBLEMS
-                          </div>
-                          <div
-                            className=" d-flex mt-3"
-                            style={{ flexDirection: "column" }}
-                          >
-                            <div className=" d-flex leadeboard-leads justify-content-between">
-                              <span>Name</span>
-                              <span>Q.Code</span>
-                              <span>Points</span>
-                            </div>
-                            {event?.problem_set?.map((problem, index) => (
-                              <Link
-                                key={index}
-                                to={`/problems/${problem.slug}`}
+                          )}
+                          {active === "problems" && (
+                            <>
+                              <div className="font-blue font-vcr font-18 mt-3">
+                                #PROBLEMS
+                              </div>
+                              <div
+                                className=" d-flex mt-3"
+                                style={{ flexDirection: "column" }}
                               >
-                                <div className="user-data d-flex justify-content-between leaderboard-bg">
-                                  <div
-                                    className="user-rank font-blue font-vcr"
-                                    style={{ flex: 0.4, textAlign: "left" }}
+                                <div className=" d-flex leadeboard-leads justify-content-between">
+                                  <span>Name</span>
+                                  <span>Q.Code</span>
+                                  <span>Points</span>
+                                </div>
+                                {event?.problem_set?.map((problem, index) => (
+                                  <Link
+                                    key={index}
+                                    to={`/problems/${problem.slug}`}
                                   >
-                                    {problem.title}
-                                  </div>
-                                  <div className="user-info px-lg-3 mx-auto">
+                                    <div className="user-data d-flex justify-content-between leaderboard-bg">
+                                      <div
+                                        className="user-rank font-blue font-vcr"
+                                        style={{
+                                          width: "40%",
+                                          textAlign: "left",
+                                        }}
+                                      >
+                                        {problem.title}
+                                      </div>
+                                      <div className="user-info px-lg-3 mx-auto">
+                                        <span
+                                          className="user-name"
+                                          style={{ width: "40%" }}
+                                        >
+                                          {problem.slug}
+                                        </span>
+                                      </div>
+                                      <div
+                                        className="user-score"
+                                        style={{ width: "20%" }}
+                                      >
+                                        {problem?.points}
+                                      </div>
+                                    </div>
+                                  </Link>
+                                ))}
+                              </div>
+                            </>
+                          )}
+                          {active === "leaderboard" && (
+                            <>
+                              <div className="font-blue font-vcr font-18 mt-3">
+                                #LEADERBOARD
+                              </div>
+                              <div
+                                className=" d-flex mt-3"
+                                style={{ flexDirection: "column" }}
+                              >
+                                <div
+                                  className=" d-flex leadeboard-leads justify-content-around"
+                                  style={{ textAlign: "center" }}
+                                >
+                                  <span style={{ width: "20%" }}>Rank</span>
+                                  <span style={{ width: "60%" }}>Name</span>
+                                  <span style={{ width: "20%" }}>Score</span>
+                                </div>
+                                {leaderboard?.results?.map((user, index) => (
+                                  <div
+                                    key={index}
+                                    className="user-data d-flex justify-content-around leaderboard-bg"
+                                  >
                                     <span
-                                      className="user-name"
-                                      style={{ flex: 0.4 }}
+                                      className="user-rank"
+                                      style={{ width: "20%" }}
                                     >
-                                      {problem.slug}
+                                      {index + 1}
+                                    </span>
+                                    <div
+                                      style={{ width: "60%" }}
+                                      className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                                    >
+                                      <img
+                                        src={avatarData[user?.user.avatar]}
+                                        className="user-image"
+                                        alt="avatar"
+                                      />
+                                      <span className="user-name">
+                                        {user?.user?.username}
+                                      </span>
+                                    </div>
+                                    <span
+                                      className="user-score"
+                                      style={{ width: "20%" }}
+                                    >
+                                      {user.score}
                                     </span>
                                   </div>
-                                  <div
-                                    className="user-score"
-                                    style={{ flex: 0.2 }}
-                                  >
-                                    {problem?.points}
-                                  </div>
+                                ))}
+                                <div className="d-flex justify-content-center font-vcr font-blue ">
+                                  <nav className="mt-4">
+                                    <div className="pagination">
+                                      {leaderboard?.previous && (
+                                        <span
+                                          className="pagination-previous"
+                                          onClick={() =>
+                                            paginationLeaderboard(
+                                              leaderboard.previous
+                                            )
+                                          }
+                                        >
+                                          <i class="fas fa-arrow-left"></i>
+                                        </span>
+                                      )}
+
+                                      {leaderboard?.next && (
+                                        <span
+                                          className="pagination-next ml-3"
+                                          onClick={() =>
+                                            paginationLeaderboard(
+                                              leaderboard.next
+                                            )
+                                          }
+                                        >
+                                          <i class="fas fa-arrow-right"></i>
+                                        </span>
+                                      )}
+                                    </div>
+                                  </nav>
                                 </div>
-                              </Link>
-                            ))}
-                          </div>
-                        </>
-                      )}
-                      {active === "leaderboard" && (
-                        <>
-                          <div className="font-blue font-vcr font-18 mt-3">
-                            #LEADERBOARD
-                          </div>
-                          <div
-                            className=" d-flex mt-3"
-                            style={{ flexDirection: "column" }}
-                          >
-                            <div
-                              className=" d-flex leadeboard-leads justify-content-around"
-                              style={{ textAlign: "center" }}
-                            >
-                              <span style={{ flex: 0.2 }}>Rank</span>
-                              <span style={{ flex: 0.6 }}>Name</span>
-                              <span style={{ flex: 0.2 }}>Score</span>
-                            </div>
-                            {leaderboard?.results?.map((user, index) => (
-                              <div
-                                key={index}
-                                className="user-data d-flex justify-content-around leaderboard-bg"
-                              >
-                                <span
-                                  className="user-rank"
-                                  style={{ flex: 0.2 }}
-                                >
-                                  {index + 1}
-                                </span>
-                                <div
-                                  style={{ flex: 0.6 }}
-                                  className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
-                                >
-                                  <img
-                                    src={avatarData[user?.user.avatar]}
-                                    className="user-image"
-                                    alt="avatar"
-                                  />
-                                  <span className="user-name">
-                                    {user?.user?.username}
-                                  </span>
-                                </div>
-                                <span
-                                  className="user-score"
-                                  style={{ flex: 0.2 }}
-                                >
-                                  {user.score}
-                                </span>
                               </div>
-                            ))}
-                          </div>
-                        </>
-                      )}
-                      {active === "rules" && (
-                        <>
-                          <li>
-                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                            amet.
-                          </li>
-                          <li>
-                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                            amet.
-                          </li>
-                          <li>
-                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                            amet.
-                          </li>
-                        </>
-                      )}
+                            </>
+                          )}
+                          {active === "rules" && (
+                            <>
+                              <li>
+                                Lorem ipsum dolor sit amet. Lorem ipsum dolor
+                                sit amet.
+                              </li>
+                              <li>
+                                Lorem ipsum dolor sit amet. Lorem ipsum dolor
+                                sit amet.
+                              </li>
+                              <li>
+                                Lorem ipsum dolor sit amet. Lorem ipsum dolor
+                                sit amet.
+                              </li>
+                            </>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -292,6 +363,7 @@ function EventDetails() {
               </div>
             </div>
           </div>
+          <div className="d-flex justify-content-center"></div>
         </div>
       </div>
     </React.Fragment>
