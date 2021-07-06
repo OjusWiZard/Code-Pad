@@ -109,6 +109,7 @@ class Testcase(models.Model):
 class Submission(models.Model):
     datetime = models.DateTimeField(auto_now_add=True, auto_created=True)
     solution = models.TextField(max_length=4096)
+    language_id = models.PositiveSmallIntegerField()
     status = models.CharField(max_length=32)
     avg_time = models.FloatField(default=0)
     avg_memory = models.FloatField(default=0)

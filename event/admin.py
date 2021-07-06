@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Event, Leaderboard, Problem, Submission, Testcase
+from .tasks import submit
 
 
 class Event_Admin(admin.ModelAdmin):
@@ -36,6 +37,24 @@ class Submission_Admin(admin.ModelAdmin):
     ordering = ["-datetime"]
     search_fields = ["user", "problem", "problem__event"]
     readonly_fields = ["datetime", "solution", "status", "user", "problem"]
+    actions = ["evaluate"]
+
+    def evaluate(self, request, queryset):
+        for submission in queryset:
+            problem = submission.problem
+            user = submission.user
+            submitted_solution = submission.solution
+            language_id = submission.language_id
+            submission_time = submission.datetime
+
+            submit.delay(
+                problem_id=problem.id,
+                user_id=user.id,
+                submission_id=submission.id,
+                solution=submitted_solution,
+                lang_id=language_id,
+                submitting_time=submission_time,
+            )
 
 
 admin.site.register(Event, Event_Admin)

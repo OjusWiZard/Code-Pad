@@ -64,6 +64,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
             user=request.user,
             problem=problem,
             solution=submitted_solution,
+            language_id=language_id,
             status="In Queue",
         )
 
