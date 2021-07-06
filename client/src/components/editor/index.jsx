@@ -87,7 +87,7 @@ const Form = () => {
       <div className="main-background">
         <div className="container pt-lg-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5 py-lg-3">
+            <div className="col-lg-10 col-md-10 col-sm-10 col-10 mx-auto my-5 content-background px-lg-5 py-lg-3">
               <div className="d-flex justify-content-center pt-sm-5">
                 <img id="logo" src={IDE} alt="IDE" className="img-fluid" />
               </div>
@@ -100,20 +100,29 @@ const Form = () => {
               </p>
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="d-flex font-vcr justify-content-between align-items-center py-3 font-lightGrey">
-                  <select
-                    onChange={(e) => {
-                      setLanguageId(e.target.value);
-                      setInput("");
-                      setOutput("");
-                      setValue("");
-                    }}
-                  >
-                    {languages.map((lan) => (
-                      <option value={lan.id} className="font-lightGrey">
-                        {lan.name}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="input-group w-50">
+                    <div className="pixel-input-wrapper">
+                      <span></span>
+                      <div className="pixel-input my-2">
+                        <select
+                          onChange={(e) => {
+                            setLanguageId(e.target.value);
+                            setInput("");
+                            setOutput("");
+                            setValue("");
+                          }}
+                          className="font-vcr font-blue"
+                        >
+                          {languages.map((lan) => (
+                            <option value={lan.id} className="font-lightGrey">
+                              {lan.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* <img src={download} alt="Download" /> */}
                   <div className="file-button font-vcr font-blue">
                     Choose File

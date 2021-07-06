@@ -69,11 +69,6 @@ div.CodeMirror-gutters > div {
   font-size: 24px;
   width: 100%;
 }
-select {
-  padding: 7px;
-  border-radius: 20px;
-  border: 2px solid rgba(53, 164, 211, 0.6);
-}
 .view-lines, .margin-view-overlays{
   background: #000;
 }

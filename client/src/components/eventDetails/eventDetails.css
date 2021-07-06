@@ -133,3 +133,6 @@ li {
     display: none;
   }
 }
+.min-height-event-details{
+  min-height: 200px;
+}
