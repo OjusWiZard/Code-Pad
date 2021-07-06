@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import Nav from "react-bootstrap/Nav";
+import avatar1 from "../../images/auth/frog.svg";
+import avatar2 from "../../images/auth/mario.svg";
+import avatar3 from "../../images/auth/peach.svg";
+import avatar4 from "../../images/auth/pacman.svg";
 import { Link, NavLink, useLocation, useHistory } from "react-router-dom";
 import toggle from "../../images/common/toggle.svg";
 import logo from "../../images/home/logo.svg";
@@ -10,6 +14,12 @@ import close from "../../images/common/close.svg";
 function Navbar() {
   const location = useLocation();
   const [sidebar, setSidebar] = useState(false);
+  const avatarData = {
+    1: avatar1,
+    2: avatar2,
+    3: avatar3,
+    4: avatar4,
+  };
   const handleClick = () => {
     setSidebar(!sidebar);
     if (sidebar) {
@@ -20,6 +30,8 @@ function Navbar() {
   };
   const history = useHistory();
   const token = localStorage.getItem("accessToken");
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
   useEffect(() => {
     setSidebar(false);
     document.getElementById("sidebar").style.display = "none";
@@ -60,25 +72,39 @@ function Navbar() {
                 className="m-4"
               />
             </div>
+            {token && user && (
+              <Link
+                to="/profile"
+                className=" sidebar-item px-3 d-flex justify-content-between align-items-center font-25"
+              >
+                <img
+                  src={avatarData[user?.avatar]}
+                  alt="a"
+                  className="img-fluid"
+                />
+                <span className="ml-2">{user.username}</span>
+              </Link>
+            )}
+
             <Link to="/">
-              <div className="mt-3 font-vcr font-25 px-5 sidebar-item home">
+              <div className="mt-3 font-vcr font-25 px-3 sidebar-item home">
                 Home
               </div>
             </Link>
             <Link to="/events">
-              <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
+              <div className="mt-3 font-vcr font-25 px-3 sidebar-item">
                 Events
               </div>
             </Link>
             {token ? (
               <>
                 <Link to="/profile">
-                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
+                  <div className="mt-3 font-vcr font-25 px-3 sidebar-item">
                     Profile
                   </div>
                 </Link>
                 <div onClick={() => signOut(history)}>
-                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
+                  <div className="mt-3 font-vcr font-25 px-3 sidebar-item">
                     Logout
                   </div>
                 </div>
@@ -86,12 +112,12 @@ function Navbar() {
             ) : (
               <>
                 <Link to="/signup">
-                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
+                  <div className="mt-3 font-vcr font-25 px-3 sidebar-item">
                     Signup
                   </div>
                 </Link>
                 <Link to="/login">
-                  <div className="mt-3 font-vcr font-25 px-5 sidebar-item">
+                  <div className="mt-3 font-vcr font-25 px-3 sidebar-item">
                     Login
                   </div>
                 </Link>

@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import Modal from "../modal/index";
+import { ModalContext } from "../../context/context";
 import "./Editor.css";
 import IDE from "../../images/editor/IDE.svg";
 // import download from "../../images/editor/download.svg";
 import Editor from "./Editor";
 
 const Form = () => {
+  const { openModal } = useContext(ModalContext);
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
   const [outputData, setOutputData] = useState({
@@ -72,15 +75,15 @@ const Form = () => {
         time: res.data.time,
         status: res.data.status.description,
       });
-      window.scrollTo(0,document.body.scrollHeight);
+      window.scrollTo(0, document.body.scrollHeight);
       let out =
         res.data.stdout !== null
           ? atob(res.data.stdout)
           : atob(res.data.compile_output);
       setOutput(out || res.data.status.description);
-
     } catch (error) {
-      alert(error);
+      openModal("Type something duh");
+      <Modal />;
     }
   };
   return (
