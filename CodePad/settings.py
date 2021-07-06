@@ -205,7 +205,4 @@ DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL"]
 # Celery Settings
 
 CELERY_TIMEZONE = "Asia/Kolkata"
-CELERY_TASK_ROUTES = {
-    "event.tasks.submit": {"queue": "submissions"},
-    "event.tasks.check": {"queue": "get-verdict"},
-}
+CELERY_TASK_ROUTES = {"event.tasks.submit": {"queue": "submissions"}}

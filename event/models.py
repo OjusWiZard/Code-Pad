@@ -101,6 +101,30 @@ class Testcase(models.Model):
     tc_output = models.FileField(
         upload_to=get_output_testcase_path, validators=[validate_text_file]
     )
+    slowest_time_limit = models.FloatField(
+        default=5, help_text="For slowest languages like Python and Python3."
+    )
+    slower_time_limit = models.FloatField(
+        default=3, help_text="For slower languages like Lisp, PHP and Ruby."
+    )
+    slow_time_limit = models.FloatField(
+        default=2,
+        help_text="For slow languages like C#, Java, javaScript, Kotlin and Scala",
+    )
+    std_time_limit = models.FloatField(
+        default=1,
+        help_text="Standard time limit for all other languages including C/C++",
+    )
+
+    def time_limit(self, lang_id):
+        if lang_id in (70, 71):
+            return self.slowest_time_limit  # [Python, Python3]
+        elif lang_id in (55, 68, 72):
+            return self.slower_time_limit  # [Lisp, PHP, Ruby]
+        elif lang_id in (51, 62, 63, 78, 81):
+            return self.slow_time_limit  # [C#, Java, javaScript, Kotlin, Scala]
+        else:
+            return self.std_time_limit  # All other Languages
 
     def __str__(self):
         return self.problem.title + "'s testcase"
