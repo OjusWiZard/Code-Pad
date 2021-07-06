@@ -177,7 +177,7 @@ const Form = () => {
                   </div>
                   <div className="font-vcr font-lightGrey">
                     {outputData?.time && (
-                      <span>Time: {outputData?.memory} kb</span>
+                      <span>Memory: {outputData?.memory} kB</span>
                     )}
                   </div>
                 </div>
