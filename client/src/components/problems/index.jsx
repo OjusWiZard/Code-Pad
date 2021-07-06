@@ -315,9 +315,6 @@ function Problem() {
                       <select
                         onChange={(e) => {
                           setLanguageId(e.target.value);
-                          setInput("");
-                          setOutput("");
-                          setValue("");
                         }}
                       >
                         {languages?.map((lan, index) => (
