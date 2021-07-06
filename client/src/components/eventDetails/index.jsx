@@ -392,7 +392,7 @@ function EventDetails() {
                 </div>
                 <div className="d-flex justify-content-center pt-5"></div>
                 <div className="mt-4 text-center">
-                  <img src={line} alt="signup" className="img-fluid mt-4" />
+                  <img src={line} alt="line" className="img-fluid mt-4" />
                 </div>
               </div>
             </div>

@@ -72,12 +72,13 @@ const Form = () => {
         time: res.data.time,
         status: res.data.status.description,
       });
-      console.log(res);
+      window.scrollTo(0,document.body.scrollHeight);
       let out =
         res.data.stdout !== null
           ? atob(res.data.stdout)
           : atob(res.data.compile_output);
       setOutput(out || res.data.status.description);
+
     } catch (error) {
       alert(error);
     }
