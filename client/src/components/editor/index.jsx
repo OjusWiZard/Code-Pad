@@ -111,9 +111,6 @@ const Form = () => {
                         <select
                           onChange={(e) => {
                             setLanguageId(e.target.value);
-                            setInput("");
-                            setOutput("");
-                            setValue("");
                           }}
                           className="font-vcr font-blue"
                         >
