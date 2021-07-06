@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import Modal from "../modal/index";
+import { ModalContext } from "../../context/context";
 import avatar1 from "../../images/auth/frog.svg";
 import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/peach.svg";
@@ -20,6 +22,7 @@ import "./problem.css";
 
 function Problem() {
   const history = useHistory();
+  const { openModal } = useContext(ModalContext);
   const params = useParams();
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
@@ -29,6 +32,7 @@ function Problem() {
     memory: "",
     time: "",
   });
+
   const [loading, setLoading] = useState(true);
   const [submissions, setSubmissions] = useState([]);
   const [problem, setProblem] = useState();
@@ -107,7 +111,8 @@ function Problem() {
       });
       setOutput(out || res.data.status.description);
     } catch (error) {
-      alert(error);
+      openModal("Type something duh");
+      <Modal />;
     }
   };
   const paginationSubmission = (text) => {
@@ -123,10 +128,16 @@ function Problem() {
       language_id: l,
       problem_slug: params.slug,
     };
+    if (value === "") {
+      openModal("Type something duh");
+      <Modal />;
+      return;
+    }
     try {
       await codeSubmission(data);
     } catch (error) {
-      alert(error);
+      openModal(error);
+      <Modal />;
     }
   };
   console.log(problem);
@@ -369,7 +380,7 @@ function Problem() {
                             Time: {outputData?.time} sec
                           </div>
                           <div className="font-vcr font-lightGrey">
-                            Mem: {outputData?.memory} kb
+                            Mem: {outputData?.memory} KB
                           </div>
                         </div>
                       )}

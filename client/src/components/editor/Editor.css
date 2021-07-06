@@ -69,6 +69,3 @@ div.CodeMirror-gutters > div {
   font-size: 24px;
   width: 100%;
 }
-.view-lines, .margin-view-overlays{
-  background: #000;
-}
