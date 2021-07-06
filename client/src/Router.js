@@ -34,7 +34,7 @@ function Router() {
         <Route exact path="/login" component={Login} />
         <PrivateLayout exact path="/profile" component={Profile} />
         <Route exact path="/problems" component={Problem} />
-        <PrivateLayout exact path="/forgot-password" component={ForgotPassword} />
+        <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route
           exact
           path="/i/have/bad/memory/password/:uid/:token"

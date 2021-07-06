@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { forgotPassword } from "../../../api/index";
 import { useHistory } from "react-router-dom";
 import login from "../../../images/auth/login.svg";
+import Modal from "../../modal/index";
 import line from "../../../images/home/line.svg";
 import { ModalContext } from "../../../context/context";
 import "../login/login.css";
@@ -14,6 +15,11 @@ const ForgotPassword = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.email === "") {
+      openModal("Email? -_-");
+      <Modal />;
+      return;
+    }
     forgotPassword(formData, history, openModal);
   };
   return (
