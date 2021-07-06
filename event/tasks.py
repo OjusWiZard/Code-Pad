@@ -11,17 +11,6 @@ from .judge import SingleSubmission
 from .models import Leaderboard, Problem, Submission, Testcase
 
 
-def time_limit(lang_id):
-    if lang_id in (70, 71):
-        return 10  # [Python, Python3]
-    elif lang_id in (55, 68, 72):
-        return 6  # [Lisp, PHP, Ruby]
-    elif lang_id in (51, 62, 63, 78, 81):
-        return 4  # [C#, Java, javaScript, Kotlin, Scala]
-    else:
-        return 2  # All other Languages
-
-
 @shared_task
 def submit(
     problem_id: int,
@@ -59,7 +48,7 @@ def submit(
             language_id=lang_id,
             stdin=tc_inp,
             expected_output=tc_out,
-            cpu_time_limit=time_limit(lang_id),
+            cpu_time_limit=testcase.time_limit(lang_id),
         )
         result = single_submission.submit(client)
         if result.status["id"] != 3:
