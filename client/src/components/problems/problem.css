@@ -49,6 +49,7 @@
 .lower-section-images {
   width: 40%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 .lower-section-images img {

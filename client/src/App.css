@@ -217,16 +217,6 @@ select:-webkit-autofill {
   -webkit-text-fill-color: var(--primaryColor) !important;
 }
 
-@media (max-width: 768px) {
-  .content-background {
-    padding-top: 5rem !important;
-    height: auto;
-    background: url("../src/images/common/lines.svg"),
-      linear-gradient(130deg, #000 0, #000 100%) !important;
-    border: none !important;
-  }
-}
-
 .problem-wrapper {
   width: 85%;
   margin: auto;
@@ -248,4 +238,16 @@ input[type="file"] {
 input#file-upload-button {
   background: #000 !important;
   color: var(--primaryColor) !important;
+}
+@media (max-width: 768px) {
+  .content-background {
+    padding-top: 5rem !important;
+    height: auto;
+    background: url("../src/images/common/lines.svg"),
+      linear-gradient(130deg, transparent 0, transparent 100%) !important;
+    border: none !important;
+  }
+  .scan-lines{
+    display: none;
+  }
 }

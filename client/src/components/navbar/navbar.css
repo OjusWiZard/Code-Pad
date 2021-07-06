@@ -11,7 +11,7 @@
   padding: 7px 30px !important;
   background: url(../../images/common/nav-item.svg);
   background-repeat: no-repeat;
-  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .nav-item:hover {

@@ -6,6 +6,7 @@ import avatar1 from "../../images/auth/frog.svg";
 import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/peach.svg";
 import avatar4 from "../../images/auth/pacman.svg";
+import noLeaderboard from "../../images/eventDetails/noleaderboard.svg";
 import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
@@ -23,6 +24,11 @@ function EventDetails() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [user, setUser] = useState({});
   const [event, setEvent] = useState({});
+  const [counter, setCounter] = React.useState(60);
+
+  // First Attempts
+  setTimeout(() => setCounter(counter - 1), 1000);
+  const [eventdate, seteventdate] = useState();
   const avatarData = {
     1: avatar1,
     2: avatar2,
@@ -33,6 +39,13 @@ function EventDetails() {
     getEvent(params.slug, history)
       .then((data) => {
         setEvent(data);
+        const today = new Date().getTime();
+        const eventtime = new Date(data.datetime).getTime();
+        const getTime = new Date(today - eventtime);
+        console.log(today);
+        console.log(data.datetime);
+        console.log("GETTTTTTTTTTTTTTTT", getTime);
+        seteventdate(data.datetime);
         getLeaderboard(params.slug).then((data) => {
           setLeaderboard(data);
           getLeaderboardUser(
@@ -85,18 +98,12 @@ function EventDetails() {
     String(leaderboard?.next)?.length - 1,
     String(leaderboard?.next)?.length
   );
-  console.log(page);
-  console.log(
-    user,
-    leaderboard,
-    JSON.parse(localStorage.getItem("user"))?.username
-  );
   return (
     <React.Fragment>
       <div className="main-background">
         <div className="container py-md-5">
           <div className="row">
-            <div className="col-xl-12 col-lg-12 col-md-10 col-sm-11 col-11 mx-auto my-md-5 content-background px-md-5">
+            <div className="col-xl-12 col-lg-12 col-md-10 col-sm-10 col-10 mx-auto my-md-5 content-background px-md-5">
               <div className="my-md-5 py-md-3 px-lg-3">
                 <div className="row">
                   <div className="col-lg-3 col-md-5 col-sm-5 col-12">
@@ -173,6 +180,7 @@ function EventDetails() {
                         <div className="dashboard-header">
                           <div className="dashboard font-vcr font-blue">
                             <h2>*&nbsp;Dashboard&nbsp;*</h2>
+                            <div>Countdown: {counter}</div>
                           </div>
                           {user && (
                             <div className="score">
@@ -182,7 +190,7 @@ function EventDetails() {
                         </div>
                         <div className="rules mt-5 pt-2 pb-5 py-2 px-2">
                           {active === "about" && (
-                            <div className="about__section m-2">
+                            <div className="about__section m-2 min-height-event-details">
                               <div className="about__header d-flex align-items-center">
                                 <img
                                   src={event?.icon}
@@ -209,7 +217,7 @@ function EventDetails() {
                             </div>
                           )}
                           {active === "problems" && (
-                            <>
+                            <div className="min-height-event-details">
                               <div className="font-blue font-vcr font-18 mt-3">
                                 #PROBLEMS
                               </div>
@@ -226,6 +234,7 @@ function EventDetails() {
                                   <Link
                                     key={index}
                                     to={`/problems/${problem.slug}`}
+                                    target="_blank"
                                   >
                                     <div className="user-data d-flex justify-content-between leaderboard-bg">
                                       <div
@@ -255,10 +264,10 @@ function EventDetails() {
                                   </Link>
                                 ))}
                               </div>
-                            </>
+                            </div>
                           )}
                           {active === "leaderboard" && (
-                            <>
+                            <div className="min-height-event-details">
                               <div className="font-blue font-vcr font-18 mt-3">
                                 #LEADERBOARD
                               </div>
@@ -325,7 +334,7 @@ function EventDetails() {
                                               )
                                             }
                                           >
-                                            <i class="fas fa-arrow-left"></i>
+                                            <i className="fas fa-arrow-left"></i>
                                           </span>
                                         )}
 
@@ -338,7 +347,7 @@ function EventDetails() {
                                               )
                                             }
                                           >
-                                            <i class="fas fa-arrow-right"></i>
+                                            <i className="fas fa-arrow-right"></i>
                                           </span>
                                         )}
                                       </div>
@@ -346,12 +355,22 @@ function EventDetails() {
                                   </div>
                                 </div>
                               ) : (
-                                <div>Noe leaderboard</div>
+                                <div className="mt-3 mx-auto text-center">
+                                  <img
+                                    src={noLeaderboard}
+                                    className="img-fluid"
+                                    alt="no leaderboard"
+                                  />{" "}
+                                  <br />
+                                  <div className="mt-2 py-2 font-vcr font-blue">
+                                    No Leadeboard
+                                  </div>
+                                </div>
                               )}
-                            </>
+                            </div>
                           )}
                           {active === "rules" && (
-                            <>
+                            <div className="min-height-event-details">
                               <li>
                                 Lorem ipsum dolor sit amet. Lorem ipsum dolor
                                 sit amet.
@@ -364,7 +383,7 @@ function EventDetails() {
                                 Lorem ipsum dolor sit amet. Lorem ipsum dolor
                                 sit amet.
                               </li>
-                            </>
+                            </div>
                           )}
                         </div>
                       </div>
@@ -373,7 +392,7 @@ function EventDetails() {
                 </div>
                 <div className="d-flex justify-content-center pt-5"></div>
                 <div className="mt-4 text-center">
-                  <img src={line} alt="signup" className="img-fluid mt-4" />
+                  <img src={line} alt="line" className="img-fluid mt-4" />
                 </div>
               </div>
             </div>
