@@ -1,13 +1,14 @@
 from os import environ
-from re import sub
+
 from celery import shared_task
-from time import sleep
-from pytz import UTC
 from django.utils.timezone import datetime
 from judge0api import Client
-from .judge import SingleSubmission
-from .models import Testcase, Problem, Submission, Leaderboard
+from pytz import UTC
+
 from account.models import User
+
+from .judge import SingleSubmission
+from .models import Leaderboard, Problem, Submission, Testcase
 
 
 def time_limit(lang_id):

@@ -1,24 +1,22 @@
 from os import environ
+
 from django.db.models import F
-from django.utils import timezone
-from django.shortcuts import get_object_or_404
 from django.http.response import HttpResponseBadRequest
-from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
-from .tasks import submit
+
+from .models import Event, Leaderboard, Problem, Submission
 from .paginations import Pagination_Size10
-from .models import Event, Problem, Submission, Leaderboard
-from .serializers import (
-    Event_List_Serializer,
-    Event_Details_Serializer,
-    Leaderboard_Serializer,
-    Problem_List_Serializer,
-    Problem_Detail_Serializer,
-    Submission_Detail_Serializer,
-    Submission_List_Serializer,
-)
+from .serializers import (Event_Details_Serializer, Event_List_Serializer,
+                          Leaderboard_Serializer, Problem_Detail_Serializer,
+                          Problem_List_Serializer,
+                          Submission_Detail_Serializer,
+                          Submission_List_Serializer)
+from .tasks import submit
 
 
 class Submission_Viewset(ReadOnlyModelViewSet):

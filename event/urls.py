@@ -1,12 +1,8 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework import routers
-from .views import (
-    Event_Viewset,
-    Problem_Viewset,
-    Submission_Viewset,
-    Leaderboard_Viewset,
-    View_Submission_Viewset,
-)
+
+from .views import (Event_Viewset, Leaderboard_Viewset, Problem_Viewset,
+                    Submission_Viewset, View_Submission_Viewset)
 
 routers = routers.DefaultRouter()
 routers.register(r"events", Event_Viewset)

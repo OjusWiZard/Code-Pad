@@ -1,7 +1,9 @@
 from django.utils import timezone
 from rest_framework import serializers
-from .models import Event, Leaderboard, Problem, Submission
+
 from account.serializers import User_Serializer
+
+from .models import Event, Leaderboard, Problem, Submission
 
 
 class Problem_List_Serializer(serializers.HyperlinkedModelSerializer):

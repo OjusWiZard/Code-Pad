@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Event, Leaderboard, Problem, Testcase, Submission
+
+from .models import Event, Leaderboard, Problem, Submission, Testcase
 
 
 class Event_Admin(admin.ModelAdmin):

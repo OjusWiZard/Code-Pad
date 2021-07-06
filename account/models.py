@@ -1,7 +1,8 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from django.utils.translation import ugettext_lazy as _
+from django.db import models
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
+
 from .validators import validate_admission_number, validate_contact_number
 
 
