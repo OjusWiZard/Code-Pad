@@ -39,12 +39,26 @@ function EventDetails() {
     getEvent(params.slug, history)
       .then((data) => {
         setEvent(data);
-        const today = new Date().getTime();
-        const eventtime = new Date(data.datetime).getTime();
-        const getTime = new Date(today - eventtime);
-        console.log(today);
-        console.log(data.datetime);
-        console.log("GETTTTTTTTTTTTTTTT", getTime);
+        console.log(data);
+        const currentTime = new Date().getTime();
+        const eventStartTime = new Date(data.datetime).getTime();
+        const duration = data.duration;
+        const eventDuration =
+          Number(duration.split(":")[0]) * 60 * 60 +
+          Number(duration.split(":")[1]) * 60 +
+          Number(duration.split(":")[2]);
+        const eventEndTime = eventStartTime + eventDuration * 1000;
+
+        // const getTime = new Date(today - eventtime);
+        // console.log(today);
+        // console.log(data.datetime);
+        // console.log("GETTTTTTTTTTTTTTTT", getTime);
+        console.log("CurrenTime: ", currentTime);
+        console.log("EventStartTime: ", eventStartTime);
+        console.log("eventDuration: ", eventDuration * 1000);
+        console.log("eventEndTime: ", eventEndTime);
+        const timeLeft = eventEndTime - currentTime;
+        console.log("TimeLeft: ", timeLeft);
         seteventdate(data.datetime);
         getLeaderboard(params.slug).then((data) => {
           setLeaderboard(data);
@@ -180,7 +194,9 @@ function EventDetails() {
                         <div className="dashboard-header">
                           <div className="dashboard font-vcr font-blue">
                             <h2>*&nbsp;Dashboard&nbsp;*</h2>
-                            <div>Countdown: {counter}</div>
+                            <div>
+                              {counter > 0 && <span>Countdown: {counter}</span>}
+                            </div>
                           </div>
                           {user && (
                             <div className="score">
