@@ -1,11 +1,11 @@
 from os import environ
+from time import sleep
 
+from account.models import User
 from celery import shared_task
 from django.utils.timezone import datetime
 from judge0api import Client
 from pytz import UTC
-
-from account.models import User
 
 from .judge import SingleSubmission
 from .models import Leaderboard, Problem, Submission, Testcase
@@ -29,6 +29,10 @@ def submit(
     submitting_time = datetime.strptime(submitting_time, "%Y-%m-%dT%H:%M:%S.%fZ")
     submitting_time = UTC.localize(submitting_time)
 
+    if solution == "" or lang_id == 0:
+        submission.status = "Wrong Answer"
+        submission.save()
+        return
     submission.status = "Processing"
     submission.save()
 
@@ -50,7 +54,16 @@ def submit(
             expected_output=tc_out,
             cpu_time_limit=testcase.time_limit(lang_id),
         )
+
         result = single_submission.submit(client)
+        wait_sec = 1
+        while wait_sec < 64:
+            sleep(wait_sec)
+            single_submission.load(client)
+            if single_submission.status["id"] > 2:
+                break
+            wait_sec *= 2
+
         if result.status["id"] != 3:
             verdict = result.status["description"]
             break

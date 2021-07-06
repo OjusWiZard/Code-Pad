@@ -16,7 +16,6 @@ class Leaderboard_Admin(admin.ModelAdmin):
     list_filter = ["event", "user"]
     ordering = ["-event__datetime", "-score"]
     search_fields = ["user", "event"]
-    readonly_fields = ["event", "user", "score"]
 
 
 class Problem_Admin(admin.ModelAdmin):
@@ -36,10 +35,10 @@ class Submission_Admin(admin.ModelAdmin):
     list_filter = ["problem__event"]
     ordering = ["-datetime"]
     search_fields = ["user", "problem", "problem__event"]
-    readonly_fields = ["datetime", "solution", "status", "user", "problem"]
     actions = ["evaluate"]
 
     def evaluate(self, request, queryset):
+        queryset.order_by("datetime")
         for submission in queryset:
             problem = submission.problem
             user = submission.user
