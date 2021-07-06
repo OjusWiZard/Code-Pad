@@ -171,7 +171,7 @@ const Form = () => {
               )}
               <textarea
                 className="output w-100 font-vcr"
-                rows="5"
+                rows="10"
                 value={output}
               ></textarea>
             </div>
