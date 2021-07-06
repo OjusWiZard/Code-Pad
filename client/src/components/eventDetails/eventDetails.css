@@ -52,10 +52,10 @@ li {
   text-align: center;
   height: 30px;
   width: 30px;
-  flex: 0.1;
+  width: 10%;
 }
 .user-name {
-  flex: 0.9;
+  width: 90%;
 }
 .user-info {
   max-width: 50%;

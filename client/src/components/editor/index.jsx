@@ -144,7 +144,7 @@ const Form = () => {
                     />
                   </div>
                   <div className="text-center mt-4">
-                    <button type="submit"></button>
+                    <button type="submit" className="see-all-buttons"></button>
                   </div>
                 </div>
               </form>

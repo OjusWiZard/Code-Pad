@@ -242,7 +242,7 @@ function Problem() {
                           Name
                         </span>
                         <span className="font-vcr" style={{ width: "40%" }}>
-                          Score
+                          Points
                         </span>
                       </div>
                       {submissions?.results?.map((submission, index) => (

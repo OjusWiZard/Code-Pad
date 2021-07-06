@@ -6,6 +6,7 @@ import avatar1 from "../../images/auth/frog.svg";
 import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/peach.svg";
 import avatar4 from "../../images/auth/pacman.svg";
+import noLeaderboard from "../../images/eventDetails/noleaderboard.svg";
 import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
@@ -346,7 +347,17 @@ function EventDetails() {
                                   </div>
                                 </div>
                               ) : (
-                                <div>Noe leaderboard</div>
+                                <div className="mt-3 mx-auto text-center">
+                                  <img
+                                    src={noLeaderboard}
+                                    className="img-fluid"
+                                    alt="no leaderboard"
+                                  />{" "}
+                                  <br />
+                                  <div className="mt-2 py-2 font-vcr font-blue">
+                                    No Leadeboard
+                                  </div>
+                                </div>
                               )}
                             </>
                           )}
