@@ -8,7 +8,7 @@ body {
 
 /* Root */
 :root {
-  --primaryColor: #35a4d3;
+  --primaryColor: #3dbef5;
   --grey: #131c20;
   --lightGrey: #7a8589;
 }
@@ -142,7 +142,7 @@ body {
   background: linear-gradient(#444 50%, #000 50%);
   background-size: 100% 3px;
   background-repeat: repeat-y;
-  opacity: 0.15;
+  opacity: 0.12;
   box-shadow: inset 0px 0px 1px 5px rgba(0, 0, 0, 0.8);
 }
 .scan-lines > div {
@@ -243,7 +243,7 @@ a.text-center.p-3.nav-item.font-blue.font-16.font-vcr {
   position: relative;
 }
 input {
-  caret-color: #35a4d3 !important;
+  caret-color: #3dbef5 !important;
 }
 input[type="file"] {
   background: #000;
