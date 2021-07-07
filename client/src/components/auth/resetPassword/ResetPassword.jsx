@@ -76,12 +76,10 @@ const ResetPassword = () => {
                     </div>
                   </div>
                   <div className="mt-5 text-center button-hover">
-                    <img
-                      src={login}
+                    <div
                       onClick={handleSubmit}
-                      alt="signup"
-                      className="img-fluid mt-4 see-all-buttons"
-                    />
+                      className="img-fluid mt-4 see-all-buttons font-vcr"
+                    >*CHANGE*</div>
                   </div>
                 </form>
                 <div className="mt-4 text-center">

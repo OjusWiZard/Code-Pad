@@ -21,6 +21,16 @@ import {
 import "./problem.css";
 
 function Problem() {
+  function b64DecodeUnicode(str) {
+    return decodeURIComponent(
+      atob(str)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+  }
   const history = useHistory();
   const { openModal } = useContext(ModalContext);
   const params = useParams();
@@ -102,7 +112,8 @@ function Problem() {
         data,
         config
       );
-      let out = res.data.stdout !== null ? atob(res.data.stdout) : null;
+      let out =
+        res.data.stdout !== null ? b64DecodeUnicode(res.data.stdout) : null;
       setOutputData({
         ...outputData,
         memory: res.data.memory,
@@ -253,7 +264,7 @@ function Problem() {
                           Name
                         </span>
                         <span className="font-vcr" style={{ width: "40%" }}>
-                          Points
+                          Time
                         </span>
                       </div>
                       {submissions?.results?.map((submission, index) => (
@@ -312,21 +323,29 @@ function Problem() {
                   </div>
                   <div className="col-lg-7 col-md-12 col-sm-12 col-12 pt-md-5">
                     <div className="d-flex justify-content-between upper-section mb-2 py-2 font-vcr">
-                      <select
-                        onChange={(e) => {
-                          setLanguageId(e.target.value);
-                        }}
-                      >
-                        {languages?.map((lan, index) => (
-                          <option
-                            key={index}
-                            value={lan.id}
-                            className="font-lightGrey font-vcr"
-                          >
-                            {lan.name}
-                          </option>
-                        ))}
-                      </select>
+                      <div className="input-group" style={{ width: "auto" }}>
+                        <div className="pixel-input-wrapper">
+                          <span></span>
+                          <div className="pixel-input my-2">
+                            <select
+                              onChange={(e) => {
+                                setLanguageId(e.target.value);
+                              }}
+                              className="font-vcr font-blue"
+                            >
+                              {languages.map((lan) => (
+                                <option
+                                  value={lan.id}
+                                  className="font-lightGrey"
+                                >
+                                  {lan.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
                       {/* <div className="timer px-5 py-2 pb-2 font-blue font-vcr">
                         05h : 35m : 42s
                       </div> */}
@@ -350,7 +369,7 @@ function Problem() {
                       <div className="lower-section-images">
                         <img
                           src={runCode}
-                          alt="runCOde"
+                          alt="runCode"
                           className="see-all-button"
                           onClick={(e) =>
                             handleRunCode(e, value, languageId, input)
@@ -359,7 +378,7 @@ function Problem() {
                         <img
                           src={submitCode}
                           alt="submitCOde"
-                          className="see-all-button"
+                          className="see-all-button ml-3"
                           onClick={(e) => handleSubmitCode(e, value)}
                         />
                       </div>
@@ -383,10 +402,10 @@ function Problem() {
                       )}
 
                       <textarea
-                        className="output w-100"
+                        className="output w-100 font-robot"
                         value={output}
                         rows="10"
-                        readOnly
+                        disabled
                       ></textarea>
                     </div>
                   </div>

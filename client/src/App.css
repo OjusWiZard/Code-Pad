@@ -186,8 +186,20 @@ body {
   animation: vline 6.25s linear infinite;
 }
 
+.see-all-buttons{
+  background: url("./images/common/button.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .see-all-buttons:active {
-  opacity: 0.6;
+  background: url("./images/common/button-click.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.text-black{
+  color: #131C20;
 }
 
 @keyframes vline {

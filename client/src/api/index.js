@@ -39,8 +39,9 @@ export const signIn = async (formData, history, formMessage, openModal) => {
     history.push("/");
     userInfo(history);
   } catch (error) {
-    await openModal("Enter the valid credentials", null);
-    <Modal />;
+    await formMessage(error?.response?.data);
+    // await openModal("Enter the valid credentials", null);
+    // <Modal />;
   }
 };
 
@@ -61,7 +62,7 @@ export const userInfo = async (history) => {
   }
 };
 
-export const editUserInfo = async (formData, history, openModal) => {
+export const editUserInfo = async (formData, history, openModal, formMessage) => {
   try {
     const { data } = await API.patch(`/accounts/users/me/`, formData, config);
     localStorage.setItem("user", JSON.stringify(data));
@@ -69,17 +70,15 @@ export const editUserInfo = async (formData, history, openModal) => {
     <Modal />;
     history.push("/");
   } catch (error) {
-    <Modal errorMessage={error.response.data} />;
+    await formMessage(error?.response?.data);
   }
 };
 
 export const getAllEvents = async (history) => {
   try {
-    console.log(history)
     const { data } = await API.get("/events/");
     return data;
   } catch (error) {
-    console.log("erro", error)
     localStorage.clear();
     history.push("/login")
   }
@@ -88,7 +87,6 @@ export const getAllEvents = async (history) => {
 export const getEvent = async (slug, history) => {
   try {
     const { data } = await API.get(`/events/${slug}`, config);
-
     return data;
   } catch (error) {
     localStorage.clear();
@@ -99,7 +97,6 @@ export const getEvent = async (slug, history) => {
 export const getProblem = async (slug, history) => {
   try {
     const { data } = await API.get(`/problems/${slug}`);
-
     return data;
   } catch (error) {
 

@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ModalContext } from "../../context/context";
-import okay from "../../images/common/okay.svg";
 import "./modal.css";
 
 function Modal() {
@@ -58,12 +57,13 @@ function Modal() {
                 </h4>
                 <p className="font-blue font-vcr">{message}</p>
 
-                <div
-                  onClick={() => closeModal()}
-                  className="mt-4"
-                  style={{ cursor: "pointer" }}
-                >
-                  <img src={okay} alt="okay" />
+                <div className="mt-5 text-center button-hover">
+                  <div
+                    onClick={() => closeModal()}
+                    className="mt-4 see-all-buttons font-vcr px-5 pt-2 pb-3 text-black"
+                  >
+                    *OKAY*
+                  </div>
                 </div>
               </div>
             </div>

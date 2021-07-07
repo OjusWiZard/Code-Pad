@@ -213,18 +213,13 @@ function SignUp() {
                         </div>
                       )
                   )}
-                  <div
-                    className="mt-3 text-center button-hover"
-                    onClick={(e) => {
-                      handleSubmit(e);
-                    }}
-                    type="submit"
-                  >
-                    <img
-                      src={signup}
-                      alt="signup"
-                      className="img-fluid mt-4 see-all-buttons"
-                    />
+                  <div className="mt-5 text-center button-hover">
+                    <div
+                      onClick={handleSubmit}
+                      className="mt-4 see-all-buttons font-vcr px-5 pt-2 pb-3 text-black"
+                    >
+                      *SIGNUP*
+                    </div>
                   </div>
                 </form>
                 <div className="mt-3 text-center">

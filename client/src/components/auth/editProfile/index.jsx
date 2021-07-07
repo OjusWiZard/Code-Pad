@@ -11,7 +11,7 @@ import { ModalContext } from "../../../context/context";
 import "../editProfile/editProfile.css";
 
 function EditProfile() {
-  const { openModal } = useContext(ModalContext);
+  const { openModal, errorMessage, formMessage } = useContext(ModalContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
     ...JSON.parse(localStorage.getItem("user")),
@@ -26,10 +26,9 @@ function EditProfile() {
       .forEach((img) => img.classList.add("active-avatar"));
     e.target.classList.remove("active-avatar");
   };
-
   const handleSubmit = (e, formData, history) => {
     e.preventDefault();
-    editUserInfo(formData, history, openModal);
+    editUserInfo(formData, history, openModal, formMessage);
   };
   return (
     <React.Fragment>
@@ -96,6 +95,14 @@ function EditProfile() {
                         </div>
                       </div>
                     </div>
+                    {errorMessage?.username && (
+                      <div
+                        id="error"
+                        className="font-vcr font-14 pl-3 text-muted"
+                      >
+                        {errorMessage.username[0]}
+                      </div>
+                    )}
                   </div>
                   <div className="mt-4">
                     <div className="input-group">
@@ -113,6 +120,14 @@ function EditProfile() {
                         </div>
                       </div>
                     </div>
+                    {errorMessage?.full_name && (
+                      <div
+                        id="error"
+                        className="font-vcr font-14 pl-3 text-muted"
+                      >
+                        {errorMessage.full_name[0]}
+                      </div>
+                    )}
                   </div>
                   <div className="mt-4">
                     <div className="input-group">
@@ -131,15 +146,31 @@ function EditProfile() {
                         </div>
                       </div>
                     </div>
+                    {errorMessage?.password && (
+                      <div
+                        id="error"
+                        className="font-vcr font-14 pl-3 text-muted"
+                      >
+                        {errorMessage.password[0]}
+                      </div>
+                    )}
                   </div>
                 </form>
+                {errorMessage?.detail && (
+                  <div
+                    id="error"
+                    className="font-vcr font-14 text-center mt-4 text-muted"
+                  >
+                    {errorMessage.detail}
+                  </div>
+                )}
                 <div className="mt-5 text-center button-hover">
-                  <img
-                    src={update}
-                    onClick={(e) => handleSubmit(e, formData, history)}
-                    alt="update"
-                    className="img-fluid mt-4 see-all-buttons"
-                  />
+                  <div
+                    onClick={handleSubmit}
+                    className="mt-4 see-all-buttons font-vcr px-5 pt-2 pb-3 text-black"
+                  >
+                    *UPDATE*
+                  </div>
                 </div>
                 <div className="mt-4 text-center">
                   <img src={line} alt="signup" className="img-fluid mt-4" />

@@ -51,14 +51,13 @@ const ForgotPassword = () => {
                       </div>
                     </div>
                   </div>
-
                   <div className="mt-5 text-center button-hover">
-                    <img
-                      src={login}
-                      onClick={(e) => handleSubmit(e)}
-                      alt="sendemail"
-                      className="img-fluid mt-4 see-all-buttons"
-                    />
+                    <div
+                      onClick={handleSubmit}
+                      className="mt-4 see-all-buttons font-vcr px-5 pt-2 pb-3 text-black"
+                    >
+                      *CHANGE*
+                    </div>
                   </div>
                 </form>
                 <div className="mt-4 text-center">

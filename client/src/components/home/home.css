@@ -19,6 +19,11 @@
 .see-all-button:active {
   opacity: 0.6;
 }
+.home-events-button-bg{
+  background: url("../../images/home/all-events-button-bg.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .dots {
   position: absolute;
   display: -webkit-box;

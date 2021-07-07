@@ -4,10 +4,19 @@ import Modal from "../modal/index";
 import { ModalContext } from "../../context/context";
 import "./Editor.css";
 import IDE from "../../images/editor/IDE.svg";
-// import download from "../../images/editor/download.svg";
 import Editor from "./Editor";
 
 const Form = () => {
+  function b64DecodeUnicode(str) {
+    return decodeURIComponent(
+      atob(str)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+  }
   const { openModal } = useContext(ModalContext);
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
@@ -78,8 +87,8 @@ const Form = () => {
       window.scrollTo(0, document.body.scrollHeight);
       let out =
         res.data.stdout !== null
-          ? atob(res.data.stdout)
-          : atob(res.data.compile_output);
+          ? b64DecodeUnicode(res.data.stdout)
+          : b64DecodeUnicode(res.data.compile_output);
       setOutput(out || res.data.status.description);
     } catch (error) {
       openModal("Type something duh");
@@ -104,7 +113,7 @@ const Form = () => {
               </p>
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="d-flex font-vcr justify-content-between align-items-center py-3 font-lightGrey">
-                  <div className="input-group w-50">
+                  <div className="input-group" style={{ width: "auto" }}>
                     <div className="pixel-input-wrapper">
                       <span></span>
                       <div className="pixel-input my-2">
@@ -123,8 +132,6 @@ const Form = () => {
                       </div>
                     </div>
                   </div>
-
-                  {/* <img src={download} alt="Download" /> */}
                   <div className="file-button font-vcr font-blue">
                     Choose File
                     <input
@@ -180,9 +187,10 @@ const Form = () => {
                 </div>
               )}
               <textarea
-                className="output w-100 font-vcr"
+                className="output w-100 font-robot"
                 rows="10"
                 value={output}
+                disabled
               ></textarea>
             </div>
           </div>
