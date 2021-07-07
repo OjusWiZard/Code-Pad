@@ -20,26 +20,24 @@ def submit(
     lang_id: int,
     submitting_time: str,
 ):
-    problem = Problem.objects.get(id=problem_id)
-    user = User.objects.get(id=user_id)
     submission = Submission.objects.get(id=submission_id)
-    event = problem.event
-    testcases = Testcase.objects.filter(problem=problem)
-    client = Client(environ["JUDGE_HOST"], environ["X_Auth_Token"])
-    submitting_time = datetime.strptime(submitting_time, "%Y-%m-%dT%H:%M:%S.%fZ")
-    submitting_time = UTC.localize(submitting_time)
-
     if solution == "" or lang_id == 0:
         submission.status = "Wrong Answer"
+        print("Submission " + str(submission.id) + ": Empty Submission")
         submission.save()
         return
     submission.status = "Processing"
+    print("Submission " + str(submission.id) + ": Evaluation Started")
     submission.save()
 
     verdict = "Accepted"
     tc_passed = 0
     avg_time = 0
     avg_memory = 0
+
+    client = Client(environ["JUDGE_HOST"], environ["X_Auth_Token"])
+    problem = Problem.objects.get(id=problem_id)
+    testcases = Testcase.objects.filter(problem=problem)
     for testcase in testcases:
         tc_inp_file = testcase.tc_input.open(mode="r")
         tc_out_file = testcase.tc_output.open(mode="r")
@@ -66,7 +64,22 @@ def submit(
 
         if result.status["id"] != 3:
             verdict = result.status["description"]
+            print(
+                "Submission "
+                + str(submission.id)
+                + ": Testcase id "
+                + str(testcase.id)
+                + " Failed"
+            )
             break
+
+        print(
+            "Submission "
+            + str(submission.id)
+            + ": Testcase id "
+            + str(testcase.id)
+            + " Passed"
+        )
         avg_time += float(result.time)
         avg_memory += float(result.memory)
         tc_passed += 1
@@ -74,10 +87,14 @@ def submit(
     avg_time /= tc_passed
     avg_memory /= tc_passed
 
+    event = problem.event
+    submitting_time = datetime.strptime(submitting_time, "%Y-%m-%dT%H:%M:%S.%fZ")
+    submitting_time = UTC.localize(submitting_time)
     if (
         event.datetime <= submitting_time <= (event.datetime + event.duration)
         and event.is_contest
     ):
+        user = User.objects.get(id=user_id)
         submissions = Submission.objects.filter(user=user, problem=problem)
         correct_submissions = submissions.filter(status="Accepted")
         if not correct_submissions and verdict == "Accepted":
@@ -99,3 +116,4 @@ def submit(
     submission.testcases_passed = tc_passed
     submission.status = verdict
     submission.save()
+    print("Submission " + str(submission.id) + ": " + verdict)
