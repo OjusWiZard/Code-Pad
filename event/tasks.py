@@ -27,18 +27,24 @@ def submit(
         print("Submission " + str(submission.id) + ": Empty Submission")
         submission.save()
         return
-    submission.status = "Processing"
-    print("Submission " + str(submission.id) + ": Evaluation Started")
-    submission.save()
 
     verdict = "Accepted"
     tc_passed = 0
     avg_time = 0
     avg_memory = 0
 
-    client = Client(environ["JUDGE_HOST"], environ["X_Auth_Token"])
+    try:
+        client = Client(environ["JUDGE_HOST"], environ["X_Auth_Token"])
+    except Exception:
+        print("ERROR Connecting the Judge!")
+        return
+
+    print("Submission " + str(submission.id) + ": Evaluation Started")
     problem = Problem.objects.get(id=problem_id)
     testcases = Testcase.objects.filter(problem=problem)
+    submission.status = "Processing"
+    submission.save()
+
     for testcase in testcases:
         tc_inp_file = testcase.tc_input.open(mode="r")
         tc_out_file = testcase.tc_output.open(mode="r")
