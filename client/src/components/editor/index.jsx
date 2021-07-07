@@ -152,7 +152,7 @@ const Form = () => {
                 <div className="lower-section d-flex w-100 justify-content-between">
                   <div className="textarea-input mt-3">
                     <textarea
-                      className="output w-100 font-vcr px-2 py-2"
+                      className="output w-100 font-vcr py-2"
                       rows="10"
                       placeholder="Custom Input here..."
                       value={input}
@@ -187,7 +187,7 @@ const Form = () => {
                 </div>
               )}
               <textarea
-                className="output w-100 font-robot"
+                className="output mb-2 w-100 font-robot px-3 py-2"
                 rows="10"
                 value={output}
                 disabled

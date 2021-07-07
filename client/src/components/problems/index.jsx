@@ -383,7 +383,7 @@ function Problem() {
                       </div>
                     </div>
                     <div className="output-section">
-                      <p className="font-vcr font-blue font-weight-bold mt-5 text-center mb-3">
+                      <p className="font-vcr font-blue font-weight-bold mt-5 text-left mb-3">
                         &lt;&lt;&nbsp;HELLO OUTPUT&nbsp;&gt;&gt;
                       </p>
                       {output && (
