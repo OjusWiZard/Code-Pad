@@ -124,6 +124,7 @@ body {
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
+  z-index: 1;
   display: flex;
   top: 0;
   bottom: 0;
@@ -141,7 +142,7 @@ body {
   background: linear-gradient(#444 50%, #000 50%);
   background-size: 100% 3px;
   background-repeat: repeat-y;
-  opacity: 0.2;
+  opacity: 0.17;
   box-shadow: inset 0px 0px 1px 5px rgba(0, 0, 0, 0.8);
 }
 .scan-lines > div {
