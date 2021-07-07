@@ -42,7 +42,7 @@ function Navbar() {
           <img
             src={logo}
             alt="Code-pad"
-            className="img-fluid mx-0 px-0"
+            className="img-fluid px-0 fixed-top m-4"
             width="120px"
           />
         </Link>
@@ -53,7 +53,7 @@ function Navbar() {
           onClick={handleClick}
         >
           <span className="navbar-toggler-icon">
-            <img src={toggle} alt="toggle" width="35px" height="35px" />
+            <img src={toggle} alt="toggle" width="35px" height="35px" className="fixed-top ml-auto m-3"/>
           </span>
         </button>
         <div className="sidebar" id="sidebar">

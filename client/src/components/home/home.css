@@ -137,7 +137,7 @@
   animation: hlineLeft 10s linear infinite;
 }
 @keyframes hlineLeft {
-  0% {
+  from {
     left: inherit;
   }
   to {
@@ -251,7 +251,7 @@
   animation: hlineRight 10s linear infinite;
 }
 @keyframes hlineRight {
-  0% {
+  from {
     left: inherit;
   }
   to {
