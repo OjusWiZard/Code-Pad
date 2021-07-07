@@ -158,7 +158,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 1.2rem;
+  height: 0.8rem;
   background: #000000;
   background: -webkit-linear-gradient(
     top,
@@ -181,13 +181,25 @@ body {
     rgba(0, 0, 0, 0.98) 51%,
     rgba(0, 255, 255, 0) 100%
   );
-  opacity: 0.04;
+  opacity: 0.09;
   -webkit-animation: vline 6.25s linear infinite;
-  animation: vline 6.25s linear infinite;
+  animation: vline 10s linear infinite;
 }
 
+.see-all-buttons{
+  background: url("./images/common/button.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .see-all-buttons:active {
-  opacity: 0.6;
+  background: url("./images/common/button-click.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.text-black{
+  color: #131C20;
 }
 
 @keyframes vline {

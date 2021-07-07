@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../images/home/logo.svg";
 import line from "../../images/home/line.svg";
-import button from "../../images/home/button.svg";
 import { Link, useHistory } from "react-router-dom";
 import { getAllEvents } from "../../api/index";
 import Spinner from "../utils/Spinner";
@@ -12,11 +11,9 @@ function Home() {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState([]);
-  const [allEvents, setallEvents] = useState([]);
   useEffect(() => {
     getAllEvents()
       .then((data) => {
-        setallEvents(data);
         let onGoingEvents = data?.filter((event) => event.status === "Ongoing");
         let upcomingEvents = data?.filter(
           (event) => event.status === "Upcoming"
@@ -24,13 +21,11 @@ function Home() {
         let pastEvents = data?.filter((event) => event.status === "Past");
         if (onGoingEvents.length > 0) {
           setEvents(onGoingEvents);
-          console.log(events);
         } else if (upcomingEvents.length > 0) {
           setEvents(upcomingEvents);
         } else {
           setEvents(pastEvents);
         }
-        console.log(events);
         setLoading(false);
         return events;
       })
@@ -39,8 +34,6 @@ function Home() {
         history.push("/login");
       });
   }, []);
-
-  console.log(loading);
   if (loading) return <Spinner />;
   else
     return (
@@ -80,18 +73,16 @@ function Home() {
                         <Event event={event} key={index} />
                       ))}
                     </div>
+
+                    <div className="my-5 text-center button-hover px-5 home-events-button-bg">
+                      <Link to="/events">
+                        <div className="mt-4 see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
+                          *ALL EVENTS*
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 )}
-
-                <div className="my-5 text-center">
-                  <Link to="/events">
-                    <img
-                      src={button}
-                      alt=""
-                      className="img-fluid see-all-button"
-                    />
-                  </Link>
-                </div>
               </div>
             </div>
           </div>

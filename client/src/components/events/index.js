@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 // IAMAGE IMPORTS
 import logo from "../../images/events/event_logo.svg";
-import line from "../../images/home/line.png";
+import line from "../../images/home/line.svg";
 
 
 import { useHistory } from "react-router-dom";

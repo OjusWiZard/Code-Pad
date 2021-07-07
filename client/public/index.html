@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Codepad"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -19,6 +19,29 @@
       src="https://kit.fontawesome.com/bd43ee06c8.js"
       crossorigin="anonymous"
     ></script>
+    <style>
+      #preloader {
+        position: fixed;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10000;
+        overflow: hidden !important;
+      }
+      #status {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-image: url("./loader.gif");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+    </style>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -30,7 +53,19 @@
     -->
     <title>Codepad</title>
   </head>
-  <body>
+  <body onload="preloader()">
+    <div id="preloader">
+      <div id="status"></div>
+    </div>
+    <script>
+      var myVar;
+      function preloader() {
+        myVar = setTimeout(showPage, 2000);
+      }
+      function showPage() {
+        document.getElementById("preloader").style.display = "none";
+      }
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

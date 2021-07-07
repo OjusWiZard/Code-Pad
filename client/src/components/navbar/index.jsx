@@ -31,7 +31,6 @@ function Navbar() {
   const history = useHistory();
   const token = localStorage.getItem("accessToken");
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
   useEffect(() => {
     setSidebar(false);
     document.getElementById("sidebar").style.display = "none";
@@ -43,7 +42,7 @@ function Navbar() {
           <img
             src={logo}
             alt="Code-pad"
-            className="img-fluid mx-0 px-0"
+            className="img-fluid px-0 fixed-top m-4"
             width="120px"
           />
         </Link>
@@ -53,8 +52,8 @@ function Navbar() {
           aria-label="Toggle navigation"
           onClick={handleClick}
         >
-          <span className="navbar-toggler-icon">
-            <img src={toggle} alt="toggle" width="35px" height="35px" />
+          <span className="navbar-tog*gler-icon">
+            <img src={toggle} alt="toggle" width="35px" height="35px"/>
           </span>
         </button>
         <div className="sidebar" id="sidebar">
@@ -75,36 +74,36 @@ function Navbar() {
             {token && user && (
               <Link
                 to="/profile"
-                className=" sidebar-item px-3 d-flex justify-content-between align-items-center font-25"
+                className=" sidebar-item px-3 d-flex font-25 mb-4 mt-3"
               >
                 <img
                   src={avatarData[user?.avatar]}
                   alt="a"
                   className="img-fluid"
                 />
-                <span className="ml-2">{user.username}</span>
+                <span className="ml-2 font-vcr">{user.username}</span>
               </Link>
             )}
 
             <Link to="/">
-              <div className="mt-3 font-vcr font-25 px-3 sidebar-item home">
+              <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2 home">
                 Home
               </div>
             </Link>
             <Link to="/events">
-              <div className="mt-3 font-vcr font-25 px-3 sidebar-item">
+              <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
                 Events
               </div>
             </Link>
             {token ? (
               <>
                 <Link to="/profile">
-                  <div className="mt-3 font-vcr font-25 px-3 sidebar-item">
+                  <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
                     Profile
                   </div>
                 </Link>
                 <div onClick={() => signOut(history)}>
-                  <div className="mt-3 font-vcr font-25 px-3 sidebar-item">
+                  <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
                     Logout
                   </div>
                 </div>
@@ -112,12 +111,12 @@ function Navbar() {
             ) : (
               <>
                 <Link to="/signup">
-                  <div className="mt-3 font-vcr font-25 px-3 sidebar-item">
+                  <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
                     Signup
                   </div>
                 </Link>
                 <Link to="/login">
-                  <div className="mt-3 font-vcr font-25 px-3 sidebar-item">
+                  <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
                     Login
                   </div>
                 </Link>

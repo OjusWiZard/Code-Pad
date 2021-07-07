@@ -1,27 +1,23 @@
 import React, { useState, useContext } from "react";
 import { signIn } from "../../../api/index";
 import { useHistory, Link } from "react-router-dom";
-import login from "../../../images/auth/login.svg";
 import line from "../../../images/home/line.svg";
 import { ModalContext } from "../../../context/context";
 import "./login.css";
 
 function Login() {
-  const { openModal, formMessage } = useContext(ModalContext);
+  const { openModal, formMessage, errorMessage } = useContext(ModalContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [passwordType, setPasswordType] = useState("password");
-
   const handleSubmitOnEnter = async (e) => {
-    console.log(e);
     if (e.which === 13) {
       await signIn(formData, history, formMessage, openModal);
     }
   };
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -56,6 +52,14 @@ function Login() {
                         </div>
                       </div>
                     </div>
+                    {errorMessage?.email && (
+                      <div
+                        id="error"
+                        className="font-vcr font-14 pl-3 text-muted"
+                      >
+                        {errorMessage.email[0]}
+                      </div>
+                    )}
                   </div>
                   <div className="mt-4">
                     <div className="input-group">
@@ -93,6 +97,14 @@ function Login() {
                         </div>
                       </div>
                     </div>
+                    {errorMessage?.password && (
+                      <div
+                        id="error"
+                        className="font-vcr font-14 pl-3 text-muted"
+                      >
+                        {errorMessage.password[0]}
+                      </div>
+                    )}
                   </div>
                   <Link
                     to="/forgot-password"
@@ -100,13 +112,21 @@ function Login() {
                   >
                     FORGOT PASSWORD?
                   </Link>
+                  {errorMessage?.detail && (
+                    <div
+                      id="error"
+                      className="font-vcr font-14 text-center mt-4 text-muted"
+                    >
+                      {errorMessage.detail}
+                    </div>
+                  )}
                   <div className="mt-5 text-center button-hover">
-                    <img
-                      src={login}
+                    <div
                       onClick={handleSubmit}
-                      alt="signup"
-                      className="img-fluid mt-4 see-all-buttons"
-                    />
+                      className="mt-4 see-all-buttons font-vcr px-5 pt-2 pb-3 text-black"
+                    >
+                      *LOGIN*
+                    </div>
                   </div>
                 </form>
                 <div className="mt-4 text-center">
