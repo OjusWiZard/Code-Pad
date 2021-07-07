@@ -8,24 +8,24 @@ import account.validators
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('account', '0001_initial'),
+        ("account", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='avatar',
+            model_name="user",
+            name="avatar",
             field=models.SmallIntegerField(default=1),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='user',
-            name='admission_no',
-            field=models.CharField(max_length=8, unique=True, validators=[account.validators.validate_admission_number]),
+            model_name="user",
+            name="admission_no",
+            field=models.CharField(max_length=8, unique=True),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='username',
+            model_name="user",
+            name="username",
             field=models.SlugField(max_length=16, unique=True),
         ),
     ]

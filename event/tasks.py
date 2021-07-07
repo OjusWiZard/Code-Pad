@@ -1,11 +1,12 @@
 from os import environ
 from time import sleep
 
-from account.models import User
 from celery import shared_task
 from django.utils.timezone import datetime
 from judge0api import Client
 from pytz import UTC
+
+from account.models import User
 
 from .judge import SingleSubmission
 from .models import Leaderboard, Problem, Submission, Testcase
