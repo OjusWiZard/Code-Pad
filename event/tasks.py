@@ -59,8 +59,8 @@ def submit(
         wait_sec = 1
         while wait_sec < 64:
             sleep(wait_sec)
-            single_submission.load(client)
-            if single_submission.status["id"] > 2:
+            result.load(client)
+            if result.status["id"] > 2:
                 break
             wait_sec *= 2
 
