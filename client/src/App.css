@@ -133,7 +133,7 @@ body {
   pointer-events: none;
 }
 .scan-lines:before {
-  display: block;
+  display: none;
   content: "";
   height: 100%;
   width: 100%;
