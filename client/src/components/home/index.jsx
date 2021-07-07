@@ -21,13 +21,11 @@ function Home() {
         let pastEvents = data?.filter((event) => event.status === "Past");
         if (onGoingEvents.length > 0) {
           setEvents(onGoingEvents);
-          console.log(events);
         } else if (upcomingEvents.length > 0) {
           setEvents(upcomingEvents);
         } else {
           setEvents(pastEvents);
         }
-        console.log(events);
         setLoading(false);
         return events;
       })
@@ -36,8 +34,6 @@ function Home() {
         history.push("/login");
       });
   }, []);
-
-  console.log(loading);
   if (loading) return <Spinner />;
   else
     return (

@@ -31,7 +31,6 @@ function Navbar() {
   const history = useHistory();
   const token = localStorage.getItem("accessToken");
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
   useEffect(() => {
     setSidebar(false);
     document.getElementById("sidebar").style.display = "none";

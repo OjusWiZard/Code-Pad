@@ -20,7 +20,6 @@ import PrivateLayout from "./components/Guards/PrivateLayout";
 
 function Router() {
   let user = localStorage.getItem("user") || null;
-  console.log(user);
   return (
     <>
       <Navbar />

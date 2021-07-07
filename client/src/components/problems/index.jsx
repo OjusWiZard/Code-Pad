@@ -151,7 +151,6 @@ function Problem() {
       <Modal />;
     }
   };
-  console.log(problem);
   // const submissionArray = problem?.submissions?.splice(0, 5);
   return (
     <React.Fragment>
