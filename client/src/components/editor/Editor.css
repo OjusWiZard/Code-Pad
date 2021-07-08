@@ -69,3 +69,13 @@ div.CodeMirror-gutters > div {
   font-size: 24px;
   width: 100%;
 }
+/* .view-lines{
+  background: #1a1a1a;
+}
+.view-lines::selection{
+  background: black !important;
+  color: aqua !important;
+}
+.monaco-editor .margin {
+  background: #000;
+} */

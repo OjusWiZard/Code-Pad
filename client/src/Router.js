@@ -29,9 +29,9 @@ function Router() {
         <Route exact path="/events" component={Events} />
         <Route exact path="/events/:slug" component={EventDetails} />
         <Route exact path="/problems/:slug" component={Problem} />
-        <Route exact path="/signup" component={() => user ? <Redirect to="/" /> : <SignUp/>} />
-        <Route exact path="/login" component={() => user ? <Redirect to="/" /> : <Login/>} />
-        <Route exact path="/profile" component={() => user ? <Profile /> : <Redirect to="/login" />} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/login" component={Login} />
+        <PrivateLayout exact path="/profile" component={Profile} />
         <Route exact path="/problems" component={Problem} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route

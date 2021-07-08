@@ -1,11 +1,9 @@
 import React, { useState, useContext } from "react";
 import { resetPassword } from "../../../api/index";
 import { useHistory, useParams } from "react-router-dom";
-import login from "../../../images/auth/login.svg";
 import line from "../../../images/home/line.svg";
 import Modal from "../../modal";
 import { ModalContext } from "../../../context/context";
-import "../login/login.css";
 
 const ResetPassword = () => {
   const { openModal } = useContext(ModalContext);
@@ -78,8 +76,10 @@ const ResetPassword = () => {
                   <div className="mt-5 text-center button-hover">
                     <div
                       onClick={handleSubmit}
-                      className="img-fluid mt-4 see-all-buttons font-vcr"
-                    >*CHANGE*</div>
+                      className="mt-4 see-all-buttons font-vcr px-5 pt-2 pb-3 text-black"
+                    >
+                      *CHANGE*
+                    </div>
                   </div>
                 </form>
                 <div className="mt-4 text-center">
