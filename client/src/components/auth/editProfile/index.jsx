@@ -26,7 +26,8 @@ function EditProfile() {
       .forEach((img) => img.classList.add("active-avatar"));
     e.target.classList.remove("active-avatar");
   };
-  const handleSubmit = (e, formData, history) => {
+  console.log(formData);
+  const handleSubmit = (e) => {
     e.preventDefault();
     editUserInfo(formData, history, openModal, formMessage);
   };

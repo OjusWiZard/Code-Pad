@@ -793,38 +793,61 @@ function Navbar() {
               />
             </div>
             {token && user && (
-              <Link
-                to="/profile"
-                className=" sidebar-item px-3 d-flex font-25 mb-4 mt-3"
-              >
+              <Link to="/profile" className="px-5 d-flex mb-4 mt-3">
                 <img
                   src={avatarData[user?.avatar]}
-                  alt="a"
+                  alt="avatar"
                   className="img-fluid"
+                  width="60px"
+                  height="60px"
                 />
-                <span className="ml-2 font-vcr">{user.username}</span>
+                <div className="ml-3">
+                  <div
+                    className="font-vcr mt-1 font-blue"
+                    style={{ fontSize: "22px" }}
+                  >
+                    {user.full_name}
+                  </div>
+                  <span className="font-robot mt-2 font-blue">
+                    {user.username}
+                  </span>
+                </div>
               </Link>
             )}
 
             <Link to="/" onClick={() => setProfileDisplay(false)}>
-              <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2 home">
+              <div
+                className={`mt-2 font-vcr px-5 sidebar-item text-uppercase py-2 ${
+                  location.pathname === "/" && "sidebar-item-active"
+                }`}
+              >
                 Home
               </div>
             </Link>
             <Link to="/events" onClick={() => setProfileDisplay(false)}>
-              <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
+              <div
+                className={`mt-2 font-vcr px-5 sidebar-item text-uppercase py-2 ${
+                  location.pathname === "/events" && "sidebar-item-active"
+                }`}
+              >
                 Events
               </div>
             </Link>
             {token ? (
               <>
                 <Link to="/profile">
-                  <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
-                    Profile
+                  <div
+                    className={`mt-2 font-vcr px-5 sidebar-item text-uppercase py-2 ${
+                      location.pathname === "/profile" && "sidebar-item-active"
+                    }`}
+                  >
+                    Edit Profile
                   </div>
                 </Link>
                 <div onClick={() => signOut(history, openModal)}>
-                  <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
+                  <div
+                    className={`mt-2 font-vcr px-5 sidebar-item text-uppercase py-2`}
+                  >
                     Logout
                   </div>
                 </div>
@@ -832,12 +855,20 @@ function Navbar() {
             ) : (
               <>
                 <Link to="/signup">
-                  <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
+                  <div
+                    className={`mt-2 font-vcr px-5 sidebar-item text-uppercase py-2 ${
+                      location.pathname === "/signup" && "sidebar-item-active"
+                    }`}
+                  >
                     Signup
                   </div>
                 </Link>
                 <Link to="/login">
-                  <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
+                  <div
+                    className={`mt-2 font-vcr px-5 sidebar-item py-2 ${
+                      location.pathname === "/login" && "sidebar-item-active"
+                    }`}
+                  >
                     Login
                   </div>
                 </Link>

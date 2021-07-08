@@ -31,7 +31,7 @@
   top: 0px;
   right: 0px;
   width: 25vw;
-  height: 100%;
+  height: 60%;
   z-index: 1;
   background-color: #131c20;
   color: #7a8589;
@@ -42,16 +42,20 @@
 
 @media (max-width: 900px) {
   .sidebar {
-    min-width: 35vw;
+    min-width: 50vw;
   }
 }
 @media (max-width: 500px) {
   .sidebar {
-    min-width: 70vw;
+    min-width: 100vw;
   }
 }
 
 .sidebar-item:hover {
+  background-color: #3dbef5;
+  color: #fff;
+}
+.sidebar-item-active {
   background-color: #3dbef5;
   color: #fff;
 }

@@ -66,7 +66,9 @@ export const userInfo = async (history) => {
 
 export const editUserInfo = async (formData, history, openModal, formMessage) => {
   try {
+    console.log(formData);
     const { data } = await API.patch(`/accounts/users/me/`, formData, config);
+    console.log("NAYA WALA ", data);
     localStorage.setItem("user", JSON.stringify(data));
     openModal("Information updated", "Okay");
     <Modal />;

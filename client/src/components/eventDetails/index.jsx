@@ -274,7 +274,7 @@ function EventDetails() {
                                         </span>
                                       </div>
                                       <div
-                                        className="user-score"
+                                        className="user-score text-right"
                                         style={{ width: "20%" }}
                                       >
                                         {problem?.points}
