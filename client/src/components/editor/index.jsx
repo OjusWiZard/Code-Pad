@@ -91,7 +91,7 @@ const Form = () => {
           : b64DecodeUnicode(res.data.compile_output);
       setOutput(out || res.data.status.description);
     } catch (error) {
-      openModal("Type something duh");
+      openModal("Write some code");
       <Modal />;
     }
   };

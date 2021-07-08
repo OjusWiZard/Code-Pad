@@ -8,14 +8,20 @@ import { ModalContext } from "../../../context/context";
 const ForgotPassword = () => {
   const history = useHistory();
   const { openModal } = useContext(ModalContext);
+
   const [formData, setFormData] = useState({ email: "" });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleSubmitOnEnter = async (e) => {
+    if (e.which === 13) {
+      await forgotPassword(formData, history, openModal);
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.email === "") {
-      openModal("Email? -_-");
+      openModal("Type your email");
       <Modal />;
       return;
     }
@@ -36,15 +42,15 @@ const ForgotPassword = () => {
                     <div className="input-group">
                       <div className="pixel-input-wrapper">
                         <span></span>
-                        <div className="pixel-input w-100">
+                        <div className="pixel-input w-100 ">
                           <input
                             onChange={handleChange}
                             name="email"
+                            onKeyPress={handleSubmitOnEnter}
                             value={formData.email}
-                            type="email"
-                            className="font-vcr font-blue"
-                            placeholder="Email -_-"
-                            required
+                            type="Email"
+                            className="font-vcr font-blue "
+                            placeholder="Email"
                           />
                         </div>
                       </div>

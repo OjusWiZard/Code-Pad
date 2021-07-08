@@ -7,11 +7,15 @@ import avatar1 from "../../images/auth/frog.svg";
 import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/peach.svg";
 import avatar4 from "../../images/auth/pacman.svg";
+import accepted from "../../images/problems/accepted.svg";
+import processing from "../../images/problems/pending.svg";
+import rejected from "../../images/problems/cross.svg";
 import runCode from "../../images/problems/runCode.svg";
 import submitCode from "../../images/problems/submitCode.svg";
 import Spinner from "../utils/Spinner";
 import { useParams, useHistory } from "react-router-dom";
 import Editor from "../editor/Editor";
+import moment from "moment";
 import {
   getSubmissionsPagination,
   getSubmissions,
@@ -21,6 +25,7 @@ import {
 import "./problem.css";
 
 function Problem() {
+  const user = localStorage.getItem("user");
   function b64DecodeUnicode(str) {
     return decodeURIComponent(
       atob(str)
@@ -31,6 +36,18 @@ function Problem() {
         .join("")
     );
   }
+  let fileReader;
+  const handleFileRead = (e) => {
+    const content = fileReader.result;
+    setValue(content);
+  };
+
+  const handleFileChosen = async (file) => {
+    fileReader = new FileReader();
+    fileReader.onloadend = handleFileRead;
+    fileReader.readAsText(file);
+  };
+
   const history = useHistory();
   const { openModal } = useContext(ModalContext);
   const params = useParams();
@@ -54,6 +71,7 @@ function Problem() {
     3: avatar3,
     4: avatar4,
   };
+
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -80,6 +98,7 @@ function Problem() {
     });
   }, [params.slug]);
   // Run Code
+  console.log(submissions);
   const handleRunCode = async (e, value, languageId, input) => {
     e.preventDefault();
     setOutput("");
@@ -122,7 +141,7 @@ function Problem() {
       });
       setOutput(out || res.data.status.description);
     } catch (error) {
-      openModal("Type something duh");
+      openModal("Write some Code");
       <Modal />;
     }
   };
@@ -140,7 +159,7 @@ function Problem() {
       problem_slug: params.slug,
     };
     if (value === "") {
-      openModal("Type something duh");
+      openModal("Write some code");
       <Modal />;
       return;
     }
@@ -163,21 +182,23 @@ function Problem() {
               <div className="col-xl-12 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-md-5 my-2 content-background pb-5">
                 <div className="row pt-3">
                   <div className="col-lg-5 col-md-12 col-sm-12 col-12 pt-md-5 py-2 left-section">
-                    <div className="d-flex justify-content-center font-robot font-blue ">
+                    <div className="d-flex font-vcr font-blue font-heading font-weight-bold px-xl-3">
                       {problem?.title}
                     </div>
-                    <div className="mt-2 font-robot d-flex justify-content-between">
-                      <span style={{ color: "green" }}>
-                        Points; {problem?.points}
+                    <div className="mt-2 font-robot d-flex px-xl-3 text-uppercase font-weight-bold">
+                      <span className="font-blue">
+                        Points: {problem?.points}
                       </span>
-                      <span style={{ color: "red" }}>
+                    </div>
+                    <div className="mt-2 font-robot d-flex px-xl-3 text-uppercase font-weight-bold">
+                      <span className="font-lightGrey">
                         Penalty: {problem?.penalty}
                       </span>
                     </div>
                     {problem?.problem_statement && (
                       <>
                         <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                          QUESTION: <br />
+                          <div className="font-blue pb-2">QUESTION:</div>
                           <span>{problem.problem_statement}</span>
                         </p>
                         <hr />
@@ -185,8 +206,8 @@ function Problem() {
                     )}
                     {problem?.input_statement && (
                       <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                          INPUT STATMENT: <br />
+                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                          <div className="font-blue pb-2">INPUT STATMENT:</div>{" "}
                           <span>{problem.input_statement}</span>
                         </p>
                         <hr />
@@ -194,9 +215,9 @@ function Problem() {
                     )}
                     {problem?.example_input && (
                       <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                          EXAMPLE INPUT: <br />
-                          <pre className="font-lightGrey mt-3">
+                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                          <div className="font-blue pb-2">EXAMPLE INPUT:</div>
+                          <pre className="font-lightGrey">
                             {problem.example_input}
                           </pre>
                         </p>
@@ -205,8 +226,10 @@ function Problem() {
                     )}
                     {problem?.output_statement && (
                       <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                          OUTPUT STATEMENT: <br />
+                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                          <div className="font-blue pb-2">
+                            OUTPUT STATEMENT:
+                          </div>
                           <span>{problem.output_statement}</span>
                         </p>
                         <hr />
@@ -214,9 +237,9 @@ function Problem() {
                     )}
                     {problem?.example_output && (
                       <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                          EXAMPLE OUTPUT: <br />
-                          <pre className="font-lightGrey mt-3">
+                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                          <div className="font-blue pb-2">EXAMPLE OUTPUT:</div>
+                          <pre className="font-lightGrey">
                             {problem.example_output}
                           </pre>
                         </p>
@@ -225,76 +248,156 @@ function Problem() {
                     )}
                     {problem?.example_explanation && (
                       <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                          EXAMPLE EXPLANATION: <br />
+                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                          <div className="font-blue pb-2">
+                            EXAMPLE EXPLANATION:
+                          </div>
                           <span>{problem.example_explanation}</span>
                         </p>
                         <hr />
                       </>
                     )}
                     {problem?.contraints && (
-                      <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                        CONSTRAINTS: <br />
+                      <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                        <div className="font-blue pb-2">CONSTRAINTS:</div>
                         <span>{problem.contraints}</span>
                       </p>
                     )}
 
-                    <div
-                      className=" font-robot font-18 mt-3"
-                      style={{ color: "#7a8589" }}
-                    >
+                    <div className=" font-robot font-18 mt-5 px-xl-3 font-blue text-uppercase font-weight-blue">
                       Recent Submissions
                     </div>
                     <div
-                      className=" d-flex mt-3"
+                      className=" d-flex mt-3 px-xl-3"
                       style={{
                         flexDirection: "column",
-                        border: "1px solid #405C6B",
                       }}
                     >
                       <div
                         className="d-flex leadeboard-leads justify-content-around"
                         style={{
-                          textAlign: "center",
                           border: "1px solid #405C6B",
                         }}
                       >
                         <span
                           className="font-robot"
-                          style={{ width: "20%" }}
+                          style={{ width: "10%" }}
                         ></span>
-                        <span className="font-vcr" style={{ width: "40%" }}>
+                        <span
+                          className="font-vcr text-center"
+                          style={{ width: "40%" }}
+                        >
                           Name
                         </span>
-                        <span className="font-vcr" style={{ width: "40%" }}>
+                        <span
+                          className="font-vcr text-center"
+                          style={{ width: "40%" }}
+                        >
                           Time
                         </span>
                       </div>
-                      {submissions?.results?.map((submission, index) => (
-                        <div
-                          key={index}
-                          className="user-data d-flex justify-content-around leaderboard-bg font-robot"
-                        >
-                          <span style={{ width: "20%" }}>
-                            <img
-                              src={avatarData[submission.user.avatar]}
-                              className="user-image"
-                              alt="avatar"
-                            />
-                          </span>
-                          <div
-                            style={{ width: "40%" }}
-                            className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
-                          >
-                            <span className="user-name">
-                              {submission.user.username}
-                            </span>
-                          </div>
-                          <span className="user-score" style={{ width: "40%" }}>
-                            {submission.problem?.points}
-                          </span>
-                        </div>
-                      ))}
+                      {submissions?.results?.map((submission, index) => {
+                        if (submission.status === "Accepted") {
+                          return (
+                            <div
+                              key={index}
+                              className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                            >
+                              <span style={{ width: "10%" }}>
+                                <img
+                                  src={avatarData[submission.user.avatar]}
+                                  className="user-image"
+                                  alt="avatar"
+                                />
+                              </span>
+                              <div
+                                style={{ width: "40%" }}
+                                className="font-lightGrey"
+                              >
+                                {submission.user.username}
+                              </div>
+                              <span
+                                className="user-score"
+                                style={{ width: "40%" }}
+                              >
+                                {" "}
+                                {moment(
+                                  submission?.datetime,
+                                  "YYYYMMDD"
+                                ).fromNow()}
+                              </span>
+                              <img src={accepted} alt="12" />
+                            </div>
+                          );
+                        } else if (
+                          submission.status === "Processing" ||
+                          submission.status === "In Queue"
+                        ) {
+                          return (
+                            <div
+                              key={index}
+                              className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                            >
+                              {" "}
+                              <span style={{ width: "10%" }}>
+                                <img
+                                  src={avatarData[submission.user.avatar]}
+                                  className="user-image"
+                                  alt="avatar"
+                                />
+                              </span>
+                              <div
+                                style={{ width: "40%" }}
+                                className="font-lightGrey"
+                              >
+                                {submission.user.username}
+                              </div>
+                              <span
+                                className="user-score"
+                                style={{ width: "40%" }}
+                              >
+                                {moment(
+                                  submission?.datetime,
+                                  "YYYYMMDD"
+                                ).fromNow()}
+                              </span>
+                              <img src={processing} alt="12" />
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div
+                              key={index}
+                              className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                            >
+                              <span style={{ width: "10%" }}>
+                                <img
+                                  src={avatarData[submission.user.avatar]}
+                                  className="user-image"
+                                  alt="avatar"
+                                />
+                              </span>
+                              <div
+                                style={{ width: "40%" }}
+                                className="font-lightGrey"
+                              >
+                                {submission.user.username}
+                              </div>
+                              <span
+                                className="user-score"
+                                style={{ width: "40%" }}
+                              >
+                                {moment(
+                                  submission?.datetime,
+                                  "YYYYMMDD"
+                                ).fromNow()}
+                              </span>
+                              <img src={rejected} alt="12" />
+                            </div>
+                          );
+                        }
+                      })}
+
                       <div className="d-flex justify-content-center font-robot font-blue ">
                         <nav className="mt-4">
                           <div className="pagination">
@@ -325,7 +428,7 @@ function Problem() {
                     </div>
                   </div>
                   <div className="col-lg-7 col-md-12 col-sm-12 col-12 pt-md-5">
-                    <div className="d-flex justify-content-between upper-section mb-2 py-2 font-vcr">
+                    <div className="d-flex font-vcr justify-content-between align-items-center py-3 font-lightGrey">
                       <div className="input-group" style={{ width: "auto" }}>
                         <div className="pixel-input-wrapper">
                           <span></span>
@@ -348,10 +451,18 @@ function Problem() {
                           </div>
                         </div>
                       </div>
-
-                      {/* <div className="timer px-5 py-2 pb-2 font-blue font-vcr">
-                        05h : 35m : 42s
-                      </div> */}
+                      <div className="file-button font-vcr font-blue">
+                        Choose File
+                        <input
+                          type="file"
+                          value=""
+                          onChange={(e) => {
+                            setValue(".");
+                            handleFileChosen(e.target.files[0]);
+                          }}
+                          className="hide-file"
+                        />
+                      </div>
                     </div>
                     <Editor
                       languageId={languageId}
@@ -378,12 +489,14 @@ function Problem() {
                             handleRunCode(e, value, languageId, input)
                           }
                         />
-                        <img
-                          src={submitCode}
-                          alt="submitCOde"
-                          className="see-all-button ml-3"
-                          onClick={(e) => handleSubmitCode(e, value)}
-                        />
+                        {user && (
+                          <img
+                            src={submitCode}
+                            alt="submitCode"
+                            className="see-all-button ml-3"
+                            onClick={(e) => handleSubmitCode(e, value)}
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="output-section">

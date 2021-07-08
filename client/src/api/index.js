@@ -34,10 +34,11 @@ export const signIn = async (formData, history, formMessage, openModal) => {
     const { data } = await API.post(`/accounts/jwt/create`, formData, config);
     localStorage.setItem("accessToken", data.access);
     localStorage.setItem("refreshToken", data.refresh);
+    await userInfo(history);
     openModal("You are logged in", "Okay");
     <Modal />;
     history.push("/");
-    userInfo(history);
+
   } catch (error) {
     await formMessage(error?.response?.data);
     // await openModal("Enter the valid credentials", null);
@@ -45,7 +46,9 @@ export const signIn = async (formData, history, formMessage, openModal) => {
   }
 };
 
-export const signOut = (history) => {
+export const signOut = (history, openModal) => {
+  openModal("See you soon!", "Okay");
+  <Modal />
   localStorage.clear();
   history.push("/");
 };
@@ -55,7 +58,6 @@ export const userInfo = async (history) => {
     const { data } = await API.get(`/accounts/users/me`, config);
     localStorage.setItem("user", JSON.stringify(data));
   } catch (error) {
-    localStorage.clear();
     history.push("/login");
     <Modal errorMessage="You are Logged out!!" />;
     localStorage.clear();
@@ -64,7 +66,9 @@ export const userInfo = async (history) => {
 
 export const editUserInfo = async (formData, history, openModal, formMessage) => {
   try {
+    console.log(formData);
     const { data } = await API.patch(`/accounts/users/me/`, formData, config);
+    console.log("NAYA WALA ", data);
     localStorage.setItem("user", JSON.stringify(data));
     openModal("Information updated", "Okay");
     <Modal />;
