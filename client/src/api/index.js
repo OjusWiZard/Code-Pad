@@ -106,7 +106,7 @@ export const codeSubmission = async (formData, openModal) => {
   try {
     let res = await API.post(`/submissions/`, formData, config);
     let status, id;
-    openModal(`${res.data.status} - Wait for the verdict", "Okay"`);
+    openModal(`Processing - Wait for the verdict", "Okay"`);
     <Modal />;
     id = res.data.id;
     console.log("OUTSIDE: ", res.data);
@@ -123,7 +123,10 @@ export const codeSubmission = async (formData, openModal) => {
         }
       })
     }, 2000)
-  } catch (error) { }
+  } catch (error) {
+    openModal("Please Login to Continue");
+    <Modal />
+  }
 };
 
 export const getLeaderboard = async (slug) => {
