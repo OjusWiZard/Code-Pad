@@ -14,7 +14,6 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-import dj_database_url
 from dotenv import load_dotenv
 
 # Load environment variable from .env
@@ -122,16 +121,14 @@ WSGI_APPLICATION = "CodePad.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ["POSTGRES_DB"],
+        "USER": os.environ["POSTGRES_USER"],
+        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
+        "HOST": os.environ["POSTGRES_HOST"],
+        "PORT": int(os.environ["POSTGRES_PORT"]),
     }
 }
-
-# If DATABASE_URL is present in the environment
-db_from_env = dj_database_url.config()
-if db_from_env:
-    DATABASES["default"].update(db_from_env)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -206,3 +203,10 @@ DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL"]
 
 CELERY_TIMEZONE = "Asia/Kolkata"
 CELERY_TASK_ROUTES = {"event.tasks.submit": {"queue": "submissions"}}
+
+# RabbitMQ settings
+
+RABBITMQ_DEFAULT_VHOST = os.environ["RABBITMQ_DEFAULT_VHOST"]
+RABBITMQ_DEFAULT_USER = os.environ["RABBITMQ_DEFAULT_USER"]
+RABBITMQ_DEFAULT_PASS = os.environ["RABBITMQ_DEFAULT_PASS"]
+RABBITMQ_DEFAULT_HOST = os.environ["RABBITMQ_DEFAULT_HOST"]
