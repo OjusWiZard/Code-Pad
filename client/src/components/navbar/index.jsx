@@ -5,8 +5,6 @@ import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/peach.svg";
 import avatar4 from "../../images/auth/pacman.svg";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import toggle from "../../images/common/toggle.svg";
-import logo from "../../images/home/logo.svg";
 import { ModalContext } from "../../context/context";
 import { signOut } from "../../api";
 import close from "../../images/common/close.svg";
@@ -863,22 +861,46 @@ function Navbar() {
             stroke="#35A4D3"
             stroke-width="3"
             stroke-linecap="square"
+            onClick={handleClick}
           />
           <path
             d="M328.5 22L345 22"
             stroke="#35A4D3"
             stroke-width="3"
             stroke-linecap="square"
+            onClick={handleClick}
           />
           <path
             d="M324 28H345"
             stroke="#35A4D3"
             stroke-width="3"
             stroke-linecap="square"
+            onClick={handleClick}
           />
-          <rect x="325" y="15" width="15" height="1" fill="#BAEAFF" />
-          <rect x="328" y="21" width="6" height="1" fill="#BAEAFF" />
-          <rect x="323" y="27" width="6" height="1" fill="#BAEAFF" />
+          <rect
+            x="325"
+            y="15"
+            width="15"
+            height="1"
+            fill="#BAEAFF"
+            onClick={handleClick}
+          />
+          <rect
+            x="328"
+            y="21"
+            width="6"
+            height="1"
+            fill="#BAEAFF"
+            onClick={handleClick}
+          />
+          <rect
+            x="323"
+            y="27"
+            width="6"
+            height="1"
+            fill="#BAEAFF"
+            onClick={handleClick}
+          />
         </svg>
 
         <div className="sidebar" id="sidebar">

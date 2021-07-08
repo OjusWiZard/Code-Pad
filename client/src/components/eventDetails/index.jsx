@@ -60,7 +60,7 @@ function EventDetails() {
         const timeLeft = eventEndTime - currentTime;
         console.log("TimeLeft: ", timeLeft);
         setCounter(timeLeft);
-        setInterval(() => setCounter(counter - 1), 1000);
+
         seteventdate(data.datetime);
         getLeaderboard(params.slug).then((data) => {
           setLeaderboard(data);
@@ -97,7 +97,7 @@ function EventDetails() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.slug]);
-
+  setInterval(() => setCounter(counter - 1), 1000);
   const [active, setActive] = useState("about");
   const removeClass = (e) => {
     document
