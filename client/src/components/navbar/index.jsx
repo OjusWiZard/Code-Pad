@@ -12,6 +12,7 @@ import close from "../../images/common/close.svg";
 
 function Navbar() {
   const location = useLocation();
+  const [profileDisplay, setProfileDisplay] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const avatarData = {
     1: avatar1,
@@ -459,10 +460,10 @@ function Navbar() {
             />
           </mask>
 
-          {token && user ? (
+          {token ? (
             <Link
-              to="/profile"
               className=" sidebar-item px-3 d-flex font-25 mb-4 mt-3"
+              onClick={() => setProfileDisplay(!profileDisplay)}
             >
               <image
                 href={avatarData[user?.avatar]}
@@ -559,6 +560,7 @@ function Navbar() {
               y="78"
               fontSize="22px"
               className="font-vcr"
+              onClick={() => setProfileDisplay(!profileDisplay)}
             >
               {user?.full_name?.split(" ")[0]}
             </text>
@@ -626,7 +628,7 @@ function Navbar() {
             d="M163.155 80.6971H257.263V82.2484H163.155V80.6971ZM259.213 80.6971H264.098V82.2484H259.213V80.6971ZM273.678 48.4517H292.117V50.8156H273.678V48.4517ZM130.474 48.4517H148.912V50.8156H130.474V48.4517ZM253.262 48.2301H259.854V49.8553H253.262V48.2301ZM227.33 48.2301H240.329V49.8553H227.33V48.2301H227.33ZM183.99 48.2301H195.168V49.8553H183.99V48.2301ZM164.586 47.9345H175.262V49.5598H164.585V47.9338L164.586 47.9345ZM205.725 48.2485H221.333V49.8369H205.725V48.2485H205.725Z"
             fill="#BAEAFF"
           />
-          {token && (
+          {profileDisplay && (
             <svg
               width="3400.42"
               height="116"

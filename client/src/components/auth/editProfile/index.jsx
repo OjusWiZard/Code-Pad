@@ -36,7 +36,7 @@ function EditProfile() {
         <div className="container py-5">
           <div className="row d-flex justify-content-center">
             <div className="col-xl-7 col-lg-7 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
-              <div className="my-5 py-3 px-lg-3">
+              <div className="my-lg-5 py-3 px-lg-3">
                 <h4 className="font-vcr font-blue text-center font-weight-bold">
                   **&nbsp;EDIT PROFILE&nbsp;**
                 </h4>

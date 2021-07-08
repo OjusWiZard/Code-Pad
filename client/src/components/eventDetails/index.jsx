@@ -189,21 +189,19 @@ function EventDetails() {
                     </div>
                   </div>
                   <div className="col-lg-9 col-md-7 col-sm-7 col-12">
-                    <div className="mainContainer font-vcr font-lightGrey text-center w-100">
+                    <div className="mainContainer font-vcr font-lightGrey w-100">
                       <div>
-                        <div className="dashboard-header">
-                          <div className="dashboard font-vcr font-blue">
-                            <h2>*&nbsp;Dashboard&nbsp;*</h2>
-                            <div>
-                              {counter > 0 && <span>Countdown: {counter}</span>}
-                            </div>
+                        <div className="dashboard font-vcr font-lightGrey">
+                          <h5>*&nbsp;Dashboard&nbsp;*</h5>
+                          <div>
+                            {counter > 0 && <span>Countdown: {counter}</span>}
                           </div>
-                          {user && (
-                            <div className="score">
-                              {user ? `${user?.score}` : null}
-                            </div>
-                          )}
                         </div>
+                        {user && (
+                          <div className="score">
+                            {user ? `${user?.score}` : null}
+                          </div>
+                        )}
                         <div className="rules mt-5 pt-2 pb-5 py-2 px-2">
                           {active === "about" && (
                             <div className="about__section m-2 min-height-event-details">
@@ -387,9 +385,10 @@ function EventDetails() {
                           )}
                           {active === "rules" && (
                             <div className="min-height-event-details">
-                              <li>
-                                {event.rules}
-                              </li>
+                              <div className="font-blue font-vcr font-18 mt-3">
+                                #RULES
+                              </div>
+                              <li>{event.rules}</li>
                             </div>
                           )}
                         </div>
