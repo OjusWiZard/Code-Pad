@@ -11,7 +11,7 @@ function Event({ event }) {
         className="button-hover link mt-3"
       >
         <div className="text-center">
-          <img src={event.icon} alt="" className="img-fluid frame p-lg-4 p-md-2 p-4" />
+          <img src={event.icon} alt="" className="img-fluid frame" />
           <div className="text-center pt-3">
             <span className="font-vcr font-blue">{event.title}</span>
             <p className="date pt-1 pb-4 font-robot">
