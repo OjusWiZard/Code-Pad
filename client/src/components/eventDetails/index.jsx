@@ -241,7 +241,12 @@ function EventDetails() {
                               >
                                 <div className=" d-flex leadeboard-leads justify-content-between">
                                   <span>Name</span>
-                                  <span>Q.Code</span>
+                                  <span
+                                    className="text-right"
+                                    style={{ width: "30%" }}
+                                  >
+                                    Q.Code
+                                  </span>
                                   <span>Points</span>
                                 </div>
                                 {event?.problem_set?.map((problem, index) => (

@@ -163,10 +163,10 @@ function Problem() {
               <div className="col-xl-12 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-md-5 my-2 content-background pb-5">
                 <div className="row pt-3">
                   <div className="col-lg-5 col-md-12 col-sm-12 col-12 pt-md-5 py-2 left-section">
-                    <div className="d-flex justify-content-center font-vcr font-blue ">
+                    <div className="d-flex justify-content-center font-robot font-blue ">
                       {problem?.title}
                     </div>
-                    <div className="mt-2 font-vcr d-flex justify-content-between">
+                    <div className="mt-2 font-robot d-flex justify-content-between">
                       <span style={{ color: "green" }}>
                         Points; {problem?.points}
                       </span>
@@ -240,7 +240,7 @@ function Problem() {
                     )}
 
                     <div
-                      className=" font-vcr font-18 mt-3"
+                      className=" font-robot font-18 mt-3"
                       style={{ color: "#7a8589" }}
                     >
                       Recent Submissions
@@ -260,7 +260,7 @@ function Problem() {
                         }}
                       >
                         <span
-                          className="font-vcr"
+                          className="font-robot"
                           style={{ width: "20%" }}
                         ></span>
                         <span className="font-vcr" style={{ width: "40%" }}>
@@ -273,7 +273,7 @@ function Problem() {
                       {submissions?.results?.map((submission, index) => (
                         <div
                           key={index}
-                          className="user-data d-flex justify-content-around leaderboard-bg font-vcr"
+                          className="user-data d-flex justify-content-around leaderboard-bg font-robot"
                         >
                           <span style={{ width: "20%" }}>
                             <img
@@ -295,7 +295,7 @@ function Problem() {
                           </span>
                         </div>
                       ))}
-                      <div className="d-flex justify-content-center font-vcr font-blue ">
+                      <div className="d-flex justify-content-center font-robot font-blue ">
                         <nav className="mt-4">
                           <div className="pagination">
                             {submissions?.previous && (

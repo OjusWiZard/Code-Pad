@@ -137,7 +137,10 @@ const Form = () => {
                     <input
                       type="file"
                       value=""
-                      onChange={(e) => handleFileChosen(e.target.files[0])}
+                      onChange={(e) => {
+                        setValue(".");
+                        handleFileChosen(e.target.files[0]);
+                      }}
                       className="hide-file"
                     />
                   </div>
