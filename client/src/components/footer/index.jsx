@@ -5,7 +5,7 @@ import heart from "../../images/footer/heart.svg";
 function Footer() {
   return (
     <footer>
-      <div className="font-lightGrey font-vcr pt-4 footer">
+      <div className="font-lightGrey font-vcr mt-4">
         <p className="px-3 text-center mb-0">
           MADE WITH <img src={heart} alt="heart" className="img-fluid" /> BY
           NIBBLE COMPUTER SOCIETY
