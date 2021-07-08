@@ -185,12 +185,12 @@ function Problem() {
                     <div className="d-flex font-vcr font-blue font-heading font-weight-bold px-xl-3">
                       {problem?.title}
                     </div>
-                    <div className="mt-2 font-robot d-flex px-xl-3">
+                    <div className="mt-2 font-robot d-flex px-xl-3 text-uppercase font-weight-bold">
                       <span className="font-blue">
                         Points: {problem?.points}
                       </span>
                     </div>
-                    <div className="mt-2 font-robot d-flex px-xl-3">
+                    <div className="mt-2 font-robot d-flex px-xl-3 text-uppercase font-weight-bold">
                       <span className="font-lightGrey">
                         Penalty: {problem?.penalty}
                       </span>
@@ -206,7 +206,7 @@ function Problem() {
                     )}
                     {problem?.input_statement && (
                       <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
                           <div className="font-blue pb-2">INPUT STATMENT:</div>{" "}
                           <span>{problem.input_statement}</span>
                         </p>
@@ -215,7 +215,7 @@ function Problem() {
                     )}
                     {problem?.example_input && (
                       <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
                           <div className="font-blue pb-2">EXAMPLE INPUT:</div>
                           <pre className="font-lightGrey">
                             {problem.example_input}
@@ -226,11 +226,10 @@ function Problem() {
                     )}
                     {problem?.output_statement && (
                       <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
                           <div className="font-blue pb-2">
                             OUTPUT STATEMENT:
                           </div>
-                          <br />
                           <span>{problem.output_statement}</span>
                         </p>
                         <hr />
@@ -238,9 +237,8 @@ function Problem() {
                     )}
                     {problem?.example_output && (
                       <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
                           <div className="font-blue pb-2">EXAMPLE OUTPUT:</div>
-                          <br />
                           <pre className="font-lightGrey">
                             {problem.example_output}
                           </pre>
@@ -250,52 +248,51 @@ function Problem() {
                     )}
                     {problem?.example_explanation && (
                       <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
                           <div className="font-blue pb-2">
                             EXAMPLE EXPLANATION:
                           </div>
-                          <br />
                           <span>{problem.example_explanation}</span>
                         </p>
                         <hr />
                       </>
                     )}
                     {problem?.contraints && (
-                      <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                      <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
                         <div className="font-blue pb-2">CONSTRAINTS:</div>
-                        <br />
                         <span>{problem.contraints}</span>
                       </p>
                     )}
 
-                    <div
-                      className=" font-robot font-18 mt-3"
-                      style={{ color: "#7a8589" }}
-                    >
+                    <div className=" font-robot font-18 mt-5 px-xl-3 font-blue text-uppercase font-weight-blue">
                       Recent Submissions
                     </div>
                     <div
-                      className=" d-flex mt-3"
+                      className=" d-flex mt-3 px-xl-3"
                       style={{
                         flexDirection: "column",
-                        border: "1px solid #405C6B",
                       }}
                     >
                       <div
                         className="d-flex leadeboard-leads justify-content-around"
                         style={{
-                          textAlign: "center",
                           border: "1px solid #405C6B",
                         }}
                       >
                         <span
                           className="font-robot"
-                          style={{ width: "20%" }}
+                          style={{ width: "10%" }}
                         ></span>
-                        <span className="font-vcr" style={{ width: "40%" }}>
+                        <span
+                          className="font-vcr text-center"
+                          style={{ width: "40%" }}
+                        >
                           Name
                         </span>
-                        <span className="font-vcr" style={{ width: "40%" }}>
+                        <span
+                          className="font-vcr text-center"
+                          style={{ width: "40%" }}
+                        >
                           Time
                         </span>
                       </div>
@@ -315,11 +312,9 @@ function Problem() {
                               </span>
                               <div
                                 style={{ width: "40%" }}
-                                className="d-flex user-info justify-content-center align-items-center"
+                                className="font-lightGrey"
                               >
-                                <span className="font-lightGrey">
-                                  {submission.user.username}
-                                </span>
+                                {submission.user.username}
                               </div>
                               <span
                                 className="user-score"
@@ -353,11 +348,9 @@ function Problem() {
                               </span>
                               <div
                                 style={{ width: "40%" }}
-                                className="d-flex user-info justify-content-center align-items-center"
+                                className="font-lightGrey"
                               >
-                                <span className="font-lightGrey">
-                                  {submission.user.username}
-                                </span>
+                                {submission.user.username}
                               </div>
                               <span
                                 className="user-score"
@@ -386,11 +379,9 @@ function Problem() {
                               </span>
                               <div
                                 style={{ width: "40%" }}
-                                className="d-flex user-info justify-content-center align-items-center"
+                                className="font-lightGrey"
                               >
-                                <span className="font-lightGrey">
-                                  {submission.user.username}
-                                </span>
+                                {submission.user.username}
                               </div>
                               <span
                                 className="user-score"
