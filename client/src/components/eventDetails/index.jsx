@@ -24,10 +24,10 @@ function EventDetails() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [user, setUser] = useState({});
   const [event, setEvent] = useState({});
-  const [counter, setCounter] = React.useState(60);
+  const [counter, setCounter] = React.useState(1000);
 
   // First Attempts
-  setTimeout(() => setCounter(counter - 1), 1000);
+
   const [eventdate, seteventdate] = useState();
   const avatarData = {
     1: avatar1,
@@ -59,6 +59,8 @@ function EventDetails() {
         console.log("eventEndTime: ", eventEndTime);
         const timeLeft = eventEndTime - currentTime;
         console.log("TimeLeft: ", timeLeft);
+        setCounter(timeLeft);
+        setInterval(() => setCounter(counter - 1), 1000);
         seteventdate(data.datetime);
         getLeaderboard(params.slug).then((data) => {
           setLeaderboard(data);
@@ -112,6 +114,7 @@ function EventDetails() {
     String(leaderboard?.next)?.length - 1,
     String(leaderboard?.next)?.length
   );
+
   return (
     <React.Fragment>
       <div className="main-background">
