@@ -761,10 +761,11 @@ function Navbar() {
           className="navbar-toggler"
           type="button"
           aria-label="Toggle navigation"
+          style={{marginLeft: "95%"}}
           onClick={handleClick}
         >
-          <span className="navbar-toggler-icon ml-auto">
-            <img src={toggle} alt="toggle" width="35px" height="35px" />
+          <span className="navbar-toggler-icon">
+            <img src={toggle} alt="toggle" width="35px" className="mt-n5" />
           </span>
         </button>
         <div className="sidebar" id="sidebar">
