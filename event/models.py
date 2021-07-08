@@ -4,7 +4,7 @@ from django.utils.timezone import timedelta
 
 from account.models import User
 
-from .validators import validate_text_file
+from .validators import validate_text_file, validate_image_file
 
 
 class Event(models.Model):
@@ -15,7 +15,7 @@ class Event(models.Model):
     is_contest = models.BooleanField(
         default=True, help_text="True if you want Scores and Leaderboard."
     )
-    icon = models.ImageField(upload_to="event_icons/")
+    icon = models.FileField(upload_to="event_icons/", validators=[validate_image_file])
     datetime = models.DateTimeField(auto_now=False)
     duration = models.DurationField(default=timedelta(hours=2))
 

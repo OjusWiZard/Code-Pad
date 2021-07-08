@@ -61,7 +61,7 @@ def submit(
         )
 
         result = single_submission.submit(client)
-        wait_sec = 1
+        wait_sec = 0.0625
         while wait_sec < 64:
             sleep(wait_sec)
             result.load(client)
