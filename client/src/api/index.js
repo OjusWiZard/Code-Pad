@@ -79,8 +79,7 @@ export const getAllEvents = async (history) => {
     const { data } = await API.get("/events/");
     return data;
   } catch (error) {
-    localStorage.clear();
-    history.push("/login")
+
   }
 };
 

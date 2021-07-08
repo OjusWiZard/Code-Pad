@@ -196,7 +196,7 @@ function Problem() {
                       <>
                         <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
                           EXAMPLE INPUT: <br />
-                          <span>{problem.example_input}</span>
+                          <pre className="font-lightGrey mt-3">{problem.example_input}</pre>
                         </p>
                         <hr />
                       </>
@@ -214,7 +214,7 @@ function Problem() {
                       <>
                         <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
                           EXAMPLE OUTPUT: <br />
-                          <span>{problem.example_output}</span>
+                          <pre className="font-lightGrey mt-3">{problem.example_output}</pre>
                         </p>
                         <hr />
                       </>

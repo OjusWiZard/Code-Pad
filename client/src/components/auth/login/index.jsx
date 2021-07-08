@@ -129,6 +129,9 @@ function Login() {
                     </div>
                   </div>
                 </form>
+                <div className="mt-4 text-center font-robot font-lightGrey">
+                  Not yet registered? <Link to="/signup" className="font-blue font-weight-bold">Signup</Link>
+                </div>
                 <div className="mt-4 text-center">
                   <img src={line} alt="signup" className="img-fluid mt-4" />
                 </div>

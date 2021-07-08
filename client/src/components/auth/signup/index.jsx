@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
 import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
-import signup from "../../../images/auth/signup.svg";
 import line from "../../../images/home/line.svg";
 import { signUp } from "../../../api";
 import { ModalContext } from "../../../context/context";
@@ -222,6 +221,9 @@ function SignUp() {
                     </div>
                   </div>
                 </form>
+                <div className="mt-4 text-center font-robot font-lightGrey">
+                  Already have an account? <Link to="/login" className="font-blue font-weight-bold">Login</Link>
+                </div>
                 <div className="mt-3 text-center">
                   <img src={line} alt="signup" className="img-fluid mt-4" />
                 </div>
