@@ -64,15 +64,15 @@ function Events() {
                         <Event event={event} key={index} />
                       ))}
                     </div>
+                    <div className="d-flex justify-content-center pt-5">
+                      <img src={line} alt="" className="img-fluid" />
+                    </div>
                   </div>
                 )}
 
                 {/* UPCOMING EVENTS */}
                 {upcomingEvents?.length > 0 && (
                   <div>
-                    <div className="d-flex justify-content-center pt-5">
-                      <img src={line} alt="" className="img-fluid" />
-                    </div>
                     <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-24 mb-4">
                       &lt;&lt;&nbsp;UPCOMING EVENTS&nbsp;&gt;&gt;
                     </h4>

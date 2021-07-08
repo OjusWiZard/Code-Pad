@@ -7,11 +7,15 @@ import avatar1 from "../../images/auth/frog.svg";
 import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/peach.svg";
 import avatar4 from "../../images/auth/pacman.svg";
+import accepted from "../../images/problems/accepted.svg";
+import processing from "../../images/problems/pending.svg";
+import rejected from "../../images/problems/cross.svg";
 import runCode from "../../images/problems/runCode.svg";
 import submitCode from "../../images/problems/submitCode.svg";
 import Spinner from "../utils/Spinner";
 import { useParams, useHistory } from "react-router-dom";
 import Editor from "../editor/Editor";
+import moment from "moment";
 import {
   getSubmissionsPagination,
   getSubmissions,
@@ -55,6 +59,7 @@ function Problem() {
     3: avatar3,
     4: avatar4,
   };
+
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -81,6 +86,7 @@ function Problem() {
     });
   }, [params.slug]);
   // Run Code
+  console.log(submissions);
   const handleRunCode = async (e, value, languageId, input) => {
     e.preventDefault();
     setOutput("");
@@ -123,7 +129,7 @@ function Problem() {
       });
       setOutput(out || res.data.status.description);
     } catch (error) {
-      openModal("Type something duh");
+      openModal("Write some Code");
       <Modal />;
     }
   };
@@ -271,31 +277,115 @@ function Problem() {
                           Time
                         </span>
                       </div>
-                      {submissions?.results?.map((submission, index) => (
-                        <div
-                          key={index}
-                          className="user-data d-flex justify-content-around leaderboard-bg font-robot"
-                        >
-                          <span style={{ width: "20%" }}>
-                            <img
-                              src={avatarData[submission.user.avatar]}
-                              className="user-image"
-                              alt="avatar"
-                            />
-                          </span>
-                          <div
-                            style={{ width: "40%" }}
-                            className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
-                          >
-                            <span className="user-name">
-                              {submission.user.username}
-                            </span>
-                          </div>
-                          <span className="user-score" style={{ width: "40%" }}>
-                            {submission.problem?.points}
-                          </span>
-                        </div>
-                      ))}
+                      {submissions?.results?.map((submission, index) => {
+                        if (submission.status === "Accepted") {
+                          return (
+                            <div
+                              key={index}
+                              className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                            >
+                              <span style={{ width: "20%" }}>
+                                <img
+                                  src={avatarData[submission.user.avatar]}
+                                  className="user-image"
+                                  alt="avatar"
+                                />
+                              </span>
+
+                              <img src={accepted} alt="12" />
+                              <div
+                                style={{ width: "40%" }}
+                                className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                              >
+                                <span className="font-lightGrey">
+                                  {submission.user.username}
+                                </span>
+                              </div>
+                              <span
+                                className="user-score"
+                                style={{ width: "40%" }}
+                              >
+                                {moment(
+                                  submission?.datetime,
+                                  "YYYYMMDD"
+                                ).fromNow()}
+                              </span>
+                            </div>
+                          );
+                        } else if (
+                          submission.status === "Processing" ||
+                          submission.status === "In Queue"
+                        ) {
+                          return (
+                            <div
+                              key={index}
+                              className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                            >
+                              <span style={{ width: "20%" }}>
+                                <img
+                                  src={avatarData[submission.user.avatar]}
+                                  className="user-image"
+                                  alt="avatar"
+                                />
+                              </span>
+
+                              <img src={processing} alt="12" />
+                              <div
+                                style={{ width: "40%" }}
+                                className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                              >
+                                <span className="user-name">
+                                  {submission.user.username}
+                                </span>
+                              </div>
+                              <span
+                                className="user-score"
+                                style={{ width: "40%" }}
+                              >
+                                {moment(
+                                  submission?.datetime,
+                                  "YYYYMMDD"
+                                ).fromNow()}
+                              </span>
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div
+                              key={index}
+                              className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                            >
+                              <span style={{ width: "20%" }}>
+                                <img
+                                  src={avatarData[submission.user.avatar]}
+                                  className="user-image"
+                                  alt="avatar"
+                                />
+                              </span>
+
+                              <img src={rejected} alt="12" />
+                              <div
+                                style={{ width: "40%" }}
+                                className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
+                              >
+                                <span className="user-name">
+                                  {submission.user.username}
+                                </span>
+                              </div>
+                              <span
+                                className="user-score"
+                                style={{ width: "40%" }}
+                              >
+                                {moment(
+                                  submission?.datetime,
+                                  "YYYYMMDD"
+                                ).fromNow()}
+                              </span>
+                            </div>
+                          );
+                        }
+                      })}
+
                       <div className="d-flex justify-content-center font-robot font-blue ">
                         <nav className="mt-4">
                           <div className="pagination">
@@ -382,7 +472,7 @@ function Problem() {
                         {user && (
                           <img
                             src={submitCode}
-                            alt="submitCOde"
+                            alt="submitCode"
                             className="see-all-button ml-3"
                             onClick={(e) => handleSubmitCode(e, value)}
                           />

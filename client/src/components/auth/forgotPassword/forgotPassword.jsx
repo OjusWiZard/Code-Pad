@@ -21,7 +21,7 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.email === "") {
-      openModal("Email? -_-");
+      openModal("Type your email");
       <Modal />;
       return;
     }
