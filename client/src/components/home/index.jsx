@@ -46,17 +46,20 @@ function Home() {
                   <img src={logo} alt="Codepad" className="img-fluid" />
                 </div>
                 <p className="font-robot font-lightGrey text-justify mt-5 font-14 font-weight-bold px-lg-5">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. amet
-                  qui! Sed, distinctio maiores consequatur velit, voluptatibus
-                  deleniti voluptate suscipit corrupti odio amet inventore sunt,
-                  esse molestiae et iusto tenetur laboriosam ipsam ab nemo harum
-                  impedit. Soluta enim magni eligendi a? Facere corporis
-                  voluptates impedit sit reiciendis deserunt harum doloribus
-                  repudiandae tempora accusantium ipsum esse suscipit,
-                  voluptatem alias assumenda vero consequatur iste odio error
-                  incidunt, iusto quibusdam repellendus. In, eveniet corrupti!
-                  Impedit ipsa at accusamus velit suscipit. Voluptates nihil
-                  omnis, aliquam modi, impedit unde.
+                  Codepad was created as a platform to help programmers make it
+                  big in the world of algorithms, computer programming, and
+                  programming contests. At Codepad, we work hard to revive the
+                  geek in you by hosting a programming contest at the start of
+                  the month and another smaller programming challenge in the
+                  middle of the month.Codepad Long Challenge is a 10-day monthly
+                  coding contest where you can show off your computer
+                  programming skills. The significance being - it gives you
+                  enough time to think about a problem, try different ways of
+                  attacking the problem, read the concepts etc. If you’re
+                  usually slow at solving problems and have ample time at hand,
+                  this is ideal for you. We also put in a lot of efforts in
+                  getting quality problems, which would, in turn, foster your
+                  learning while solving them.
                 </p>
                 <div className="d-flex justify-content-center pt-5">
                   <img src={line} alt="" className="img-fluid" />
