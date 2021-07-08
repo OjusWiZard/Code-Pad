@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  codepad:
+    restart: always
+    build: .
+    env_file: .env
+    ports:
+      - 8000:8000
+    volumes:
+      - codepad-media:/usr/src/media/
+      - codepad-static:/usr/src/static/
+    command: >
+      bash -c "python3 manage.py migrate
+      && python3 manage.py collectstatic
+      && /usr/local/bin/gunicorn CodePad.wsgi:application -w 2 -b :8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  celery:
+    build: .
+    env_file: .env
+    command: celery worker --app CodePad --loglevel info --queue submissions --broker amqp://$RABBITMQ_DEFAULT_USER:$RABBITMQ_DEFAULT_PASS@$RABBITMQ_DEFAULT_HOST/$RABBITMQ_DEFAULT_VHOST
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+
+  rabbitmq:
+    restart: always
+    env_file: .env
+    image: rabbitmq:management
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+  postgres:
+    restart: always
+    env_file: .env
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdbdata:/var/lib/postgresql/data/
+    healthcheck:
+      test: pg_isready -d $POSTGRES_DB -p $POSTGRES_PORT -U $POSTGRES_USER
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+volumes:
+  codepad-static:
+  codepad-media:
+  pgdbdata:
