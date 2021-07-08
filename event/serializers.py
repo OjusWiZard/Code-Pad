@@ -20,7 +20,15 @@ class Submission_List_Serializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Submission
-        fields = ["id", "url", "user", "status", "problem", "datetime"]
+        fields = [
+            "id",
+            "url",
+            "user",
+            "status",
+            "testcases_passed",
+            "problem",
+            "datetime",
+        ]
 
 
 class Submission_Detail_Serializer(serializers.HyperlinkedModelSerializer):
@@ -29,12 +37,19 @@ class Submission_Detail_Serializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Submission
-        fields = ["id", "url", "user", "status", "problem", "datetime", "solution"]
+        fields = [
+            "id",
+            "url",
+            "user",
+            "status",
+            "testcases_passed",
+            "problem",
+            "datetime",
+            "solution",
+        ]
 
 
 class Problem_Detail_Serializer(serializers.HyperlinkedModelSerializer):
-    submissions = Submission_List_Serializer(many=True, read_only=True)
-
     class Meta:
         model = Problem
         fields = [
@@ -51,7 +66,7 @@ class Problem_Detail_Serializer(serializers.HyperlinkedModelSerializer):
             "example_input",
             "example_output",
             "example_explanation",
-            "submissions",
+            "no_of_testcases",
         ]
         lookup_field = "slug"
         extra_kwargs = {"url": {"lookup_field": "slug"}}
