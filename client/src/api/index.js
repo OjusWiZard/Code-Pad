@@ -102,22 +102,27 @@ export const getProblem = async (slug, history) => {
   }
 };
 
-export const codeSubmission = async (formData) => {
+export const codeSubmission = async (formData, openModal) => {
   try {
-    let { data } = await API.post(`/submissions/`, formData, config);
+    let res = await API.post(`/submissions/`, formData, config);
     let status, id;
-    id = data.id;
-    let wait_sec = 0.0625;
-    status = data.status;
-    while(wait_sec < 64){
-      let {data} = await API.get(`/viewsubmission/${id}`);
-      if(data.status !== "In Queue" || data.status !== "Processing"){
-        break;
-      }
-      wait_sec *= 2;
-    }
+    openModal("Processing - Wait for the verdict", "Okay");
+    <Modal />;
+    id = res.data.id;
+    console.log("OUTSIDE: ", res.data);
+    const interval = setInterval(() => {
+      API.get(`/viewsubmission/${id}`).then(res => {
+        console.log("Inside Data: ", res.data);
+        if (res.data.status !== "In Queue" && res.data.status !== "Processing") {
 
-    return data;
+          openModal(`${res.data.status} - ${res.data.testcases_passed} passed`, "okay");
+
+          <Modal />;
+          clearInterval(interval);
+          return res.data;
+        }
+      })
+    }, 2000)
   } catch (error) { }
 };
 

@@ -145,7 +145,7 @@ function Problem() {
       return;
     }
     try {
-      await codeSubmission(data);
+      await codeSubmission(data, openModal);
     } catch (error) {
       openModal(error);
       <Modal />;
@@ -196,7 +196,9 @@ function Problem() {
                       <>
                         <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
                           EXAMPLE INPUT: <br />
-                          <pre className="font-lightGrey mt-3">{problem.example_input}</pre>
+                          <pre className="font-lightGrey mt-3">
+                            {problem.example_input}
+                          </pre>
                         </p>
                         <hr />
                       </>
@@ -214,7 +216,9 @@ function Problem() {
                       <>
                         <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
                           EXAMPLE OUTPUT: <br />
-                          <pre className="font-lightGrey mt-3">{problem.example_output}</pre>
+                          <pre className="font-lightGrey mt-3">
+                            {problem.example_output}
+                          </pre>
                         </p>
                         <hr />
                       </>
