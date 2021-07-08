@@ -60,7 +60,12 @@ def submit(
             cpu_time_limit=testcase.time_limit(lang_id),
         )
 
-        result = single_submission.submit(client)
+        try:
+            result = single_submission.submit(client)
+        except Exception as err:
+            print(err.response.text)
+            return
+
         wait_sec = 0.0625
         while wait_sec < 64:
             sleep(wait_sec)
@@ -91,8 +96,9 @@ def submit(
         avg_memory += float(result.memory)
         tc_passed += 1
 
-    avg_time /= tc_passed
-    avg_memory /= tc_passed
+    if tc_passed > 0:
+        avg_time /= tc_passed
+        avg_memory /= tc_passed
 
     event = problem.event
     submitting_time = datetime.strptime(submitting_time, "%Y-%m-%dT%H:%M:%S.%fZ")
