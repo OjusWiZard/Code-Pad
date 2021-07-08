@@ -8,12 +8,19 @@ import { ModalContext } from "../../../context/context";
 const ResetPassword = () => {
   const { openModal } = useContext(ModalContext);
   const history = useHistory();
+  const [passwordType, setPasswordType] = useState("password");
+  const [re_new_passwordType, setReNewPasswordType] = useState("password");
   const [formData, setFormData] = useState({
     new_password: "",
     re_new_password: "",
   });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleSubmitOnEnter = async (e) => {
+    if (e.which === 13) {
+      await resetPassword(formData, uid, token, history);
+    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,16 +48,34 @@ const ResetPassword = () => {
                     <div className="input-group">
                       <div className="pixel-input-wrapper">
                         <span></span>
-                        <div className="pixel-input w-100">
+                        <div className="pixel-input w-100 ">
                           <input
                             onChange={handleChange}
                             name="new_password"
                             value={formData.new_password}
-                            type="password"
-                            className="font-vcr font-blue"
-                            placeholder="Password"
-                            required
+                            type={passwordType}
+                            className="font-vcr font-blue "
+                            placeholder="PASSWORD"
                           />
+                          <div
+                            onClick={() => {
+                              passwordType === "password"
+                                ? setPasswordType("text")
+                                : setPasswordType("password");
+                            }}
+                          >
+                            {passwordType === "password" ? (
+                              <i
+                                className="fas fa-eye font-blue"
+                                style={{ marginTop: "0.6rem" }}
+                              />
+                            ) : (
+                              <i
+                                className="fas fa-eye-slash font-blue"
+                                style={{ marginTop: "0.6rem" }}
+                              />
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -59,16 +84,35 @@ const ResetPassword = () => {
                     <div className="input-group">
                       <div className="pixel-input-wrapper">
                         <span></span>
-                        <div className="pixel-input w-100">
+                        <div className="pixel-input w-100 ">
                           <input
                             onChange={handleChange}
                             name="re_new_password"
+                            onKeyPress={handleSubmitOnEnter}
                             value={formData.re_new_password}
-                            type="text"
-                            className="font-vcr font-blue"
-                            placeholder="Re-Password"
-                            required
+                            type={re_new_passwordType}
+                            className="font-vcr font-blue "
+                            placeholder="New Password"
                           />
+                          <div
+                            onClick={() => {
+                              re_new_passwordType === "password"
+                                ? setReNewPasswordType("text")
+                                : setReNewPasswordType("password");
+                            }}
+                          >
+                            {re_new_passwordType === "password" ? (
+                              <i
+                                className="fas fa-eye font-blue"
+                                style={{ marginTop: "0.6rem" }}
+                              />
+                            ) : (
+                              <i
+                                className="fas fa-eye-slash font-blue"
+                                style={{ marginTop: "0.6rem" }}
+                              />
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>

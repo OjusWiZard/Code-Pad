@@ -28,6 +28,9 @@ body {
     background-size: cover;
   }
 }
+.App {
+  background: url("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js%22%3E");
+}
 
 /* ScrollBar */
 ::-webkit-scrollbar {

@@ -8,7 +8,7 @@ function App() {
       <div className="scan-lines">
         <div></div>
       </div>
-      <div className="dots">
+      {/* <div className="dots">
         <div className="dot-left-1"></div>
         <div className="dot-left-2"></div>
         <div className="dot-left-3"></div>
@@ -19,7 +19,7 @@ function App() {
         <div className="dot-right-3"></div>
         <div className="dot-right-4"></div>
         <div className="dot-right-5"></div>
-      </div>
+      </div> */}
       <Router />
     </div>
   );

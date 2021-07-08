@@ -21,6 +21,7 @@ import {
 import "./problem.css";
 
 function Problem() {
+  const user = localStorage.getItem("user");
   function b64DecodeUnicode(str) {
     return decodeURIComponent(
       atob(str)
@@ -378,12 +379,14 @@ function Problem() {
                             handleRunCode(e, value, languageId, input)
                           }
                         />
-                        <img
-                          src={submitCode}
-                          alt="submitCOde"
-                          className="see-all-button ml-3"
-                          onClick={(e) => handleSubmitCode(e, value)}
-                        />
+                        {user && (
+                          <img
+                            src={submitCode}
+                            alt="submitCOde"
+                            className="see-all-button ml-3"
+                            onClick={(e) => handleSubmitCode(e, value)}
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="output-section">

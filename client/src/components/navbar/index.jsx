@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./navbar.css";
 import avatar1 from "../../images/auth/frog.svg";
 import avatar2 from "../../images/auth/mario.svg";
@@ -7,10 +7,12 @@ import avatar4 from "../../images/auth/pacman.svg";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import toggle from "../../images/common/toggle.svg";
 import logo from "../../images/home/logo.svg";
+import { ModalContext } from "../../context/context";
 import { signOut } from "../../api";
 import close from "../../images/common/close.svg";
 
 function Navbar() {
+  const { openModal } = useContext(ModalContext);
   const location = useLocation();
   const [profileDisplay, setProfileDisplay] = useState(false);
   const [sidebar, setSidebar] = useState(false);
@@ -247,7 +249,7 @@ function Navbar() {
             y2="68.9202"
             stroke="#405C6B"
           />
-          <Link to="/">
+          <Link to="/" onClick={() => setProfileDisplay(false)}>
             <rect
               x="569.646"
               y="108.656"
@@ -324,6 +326,7 @@ function Navbar() {
             <rect
               x="891.937"
               y="108.656"
+              onClick={() => setProfileDisplay(false)}
               width="140.126"
               height="39.2354"
               fill={`${
@@ -332,7 +335,7 @@ function Navbar() {
             />
           </mask>
           <g mask="url(#mask1)">
-            <Link to="/events">
+            <Link to="/events" onClick={() => setProfileDisplay(false)}>
               <rect
                 x="891.937"
                 y="108.656"
@@ -405,6 +408,7 @@ function Navbar() {
                 fill={`${
                   location.pathname === "/editor" ? "#3dbef5" : "#131C20"
                 }`}
+                onClick={() => setProfileDisplay(false)}
               />
             </Link>
             <g opacity="0.015">
@@ -523,13 +527,13 @@ function Navbar() {
             </Link>
           )}
 
-          <Link to="/">
+          <Link to="/" onClick={() => setProfileDisplay(false)}>
             <path
               d="M619.201 127.82V133.679H617.248V120.007H619.201V125.866H625.061V120.007H627.014V133.679H625.061V127.82H619.201ZM635.803 121.96H631.896V122.937H630.92V130.749H631.896V131.726H635.803V130.749H636.779V122.937H635.803V121.96ZM630.92 120.984V120.007H636.779V120.984H637.756V121.96H638.732V131.726H637.756V132.702H636.779V133.679H630.92V132.702H629.943V131.726H628.967V121.96H629.943V120.984H630.92ZM642.639 133.679H640.686V120.007H642.639V121.96H643.615V122.937H644.592V123.913H646.545V122.937H647.521V121.96H648.498V120.007H650.451V133.679H648.498V124.89H647.521V125.866H646.545V127.82H644.592V125.866H643.615V124.89H642.639V133.679ZM662.17 120.007V121.96H654.357V125.866H660.217V127.82H654.357V131.726H662.17V133.679H652.404V120.007H662.17Z"
               fill={`${location.pathname === "/" ? "#131C20" : "#3dbef5"}`}
             />
           </Link>
-          <Link to="/events">
+          <Link to="/events" onClick={() => setProfileDisplay(false)}>
             <path
               d="M936.885 120.007V121.96H929.073V125.866H934.932V127.82H929.073V131.726H936.885V133.679H927.12V120.007H936.885ZM939.815 129.773H938.838V120.007H940.791V128.796H941.768V129.773H942.745V130.749H944.698V129.773H945.674V128.796H946.651V120.007H948.604V129.773H947.627V130.749H946.651V131.726H945.674V132.702H944.698V133.679H942.745V132.702H941.768V131.726H940.791V130.749H939.815V129.773ZM960.323 120.007V121.96H952.51V125.866H958.37V127.82H952.51V131.726H960.323V133.679H950.557V120.007H960.323ZM964.229 125.866V133.679H962.276V120.007H964.229V122.937H965.206V123.913H966.182V124.89H967.159V125.866H968.135V126.843H969.112V127.82H970.088V120.007H972.041V133.679H970.088V130.749H969.112V129.773H968.135V128.796H967.159V127.82H966.182V126.843H965.206V125.866H964.229ZM977.901 121.96H973.995V120.007H983.76V121.96H979.854V133.679H977.901V121.96ZM994.502 121.96H995.479V123.913H993.526V122.937H992.549V121.96H988.643V122.937H987.666V124.89H988.643V125.866H993.526V126.843H994.502V127.82H995.479V131.726H994.502V132.702H993.526V133.679H987.666V132.702H986.69V131.726H985.713V129.773H987.666V130.749H988.643V131.726H992.549V130.749H993.526V128.796H992.549V127.82H987.666V126.843H986.69V125.866H985.713V121.96H986.69V120.984H987.666V120.007H993.526V120.984H994.502V121.96Z"
               fill={`${
@@ -537,7 +541,7 @@ function Navbar() {
               }`}
             />
           </Link>
-          <Link to="/editor">
+          <Link to="/editor" onClick={() => setProfileDisplay(false)}>
             {/* <text
             x="1230.23"
             y="115.656"
@@ -551,6 +555,7 @@ function Navbar() {
               fill={`${
                 location.pathname === "/editor" ? "#131C20" : "#3dbef5"
               }`}
+              onClick={() => setProfileDisplay(false)}
             />
           </Link>
           {token && user ? (
@@ -649,7 +654,7 @@ function Navbar() {
                 stroke="#405C6B"
                 strokeWidth="1.47518"
               />
-              <Link to="/profile">
+              <Link to="/profile" onClick={() => setProfileDisplay(false)}>
                 <rect
                   y="11.8014"
                   width="206.525"
@@ -676,7 +681,10 @@ function Navbar() {
                 opacity="0.3"
                 d="M194.724 114.326L207.263 101.787V63.4326H0.737793V114.326H194.724Z"
                 fill="#131C20"
-                onClick={() => signOut(history)}
+                onClick={() => {
+                  setProfileDisplay(false);
+                  signOut(history, openModal);
+                }}
               />
               <path
                 d="M28.1379 94.7007V80.5828H30.1547V92.6838H38.2221V94.7007H28.1379ZM47.2979 82.5996H43.2642V83.608H42.2558V91.6754H43.2642V92.6838H47.2979V91.6754H48.3063V83.608H47.2979V82.5996ZM42.2558 81.5912V80.5828H48.3063V81.5912H49.3147V82.5996H50.3232V92.6838H49.3147V93.6923H48.3063V94.7007H42.2558V93.6923H41.2474V92.6838H40.239V82.5996H41.2474V81.5912H42.2558ZM61.4158 82.5996H62.4242V84.6165H60.4074V83.608H59.399V82.5996H55.3653V83.608H54.3569V91.6754H55.3653V92.6838H59.399V91.6754H60.4074V88.6502H57.3821V86.6333H62.4242V92.6838H61.4158V93.6923H60.4074V94.7007H54.3569V93.6923H53.3484V92.6838H52.34V82.5996H53.3484V81.5912H54.3569V80.5828H60.4074V81.5912H61.4158V82.5996ZM71.5 82.5996H67.4663V83.608H66.4579V91.6754H67.4663V92.6838H71.5V91.6754H72.5085V83.608H71.5V82.5996ZM66.4579 81.5912V80.5828H72.5085V81.5912H73.5169V82.5996H74.5253V92.6838H73.5169V93.6923H72.5085V94.7007H66.4579V93.6923H65.4495V92.6838H64.4411V82.5996H65.4495V81.5912H66.4579ZM77.5506 92.6838H76.5421V80.5828H78.559V91.6754H79.5674V92.6838H83.6011V91.6754H84.6095V80.5828H86.6264V92.6838H85.6179V93.6923H84.6095V94.7007H78.559V93.6923H77.5506V92.6838ZM92.6769 82.5996H88.6432V80.5828H98.7274V82.5996H94.6937V94.7007H92.6769V82.5996Z"
@@ -749,7 +757,6 @@ function Navbar() {
           )}
         </svg>
       </div>
-
       <nav className="navbar navbar-expand-xl d-lg-none d-md-block">
         <Link to="/" className="navbar-brand">
           <img
@@ -763,7 +770,7 @@ function Navbar() {
           className="navbar-toggler mt-n3"
           type="button"
           aria-label="Toggle navigation"
-          style={{marginLeft: "88%"}}
+          style={{ marginLeft: "88%" }}
           onClick={handleClick}
         >
           <span className="navbar-toggler-icon">
@@ -799,12 +806,12 @@ function Navbar() {
               </Link>
             )}
 
-            <Link to="/">
+            <Link to="/" onClick={() => setProfileDisplay(false)}>
               <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2 home">
                 Home
               </div>
             </Link>
-            <Link to="/events">
+            <Link to="/events" onClick={() => setProfileDisplay(false)}>
               <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
                 Events
               </div>
@@ -816,7 +823,7 @@ function Navbar() {
                     Profile
                   </div>
                 </Link>
-                <div onClick={() => signOut(history)}>
+                <div onClick={() => signOut(history, openModal)}>
                   <div className="mt-2 font-vcr font-25 px-3 sidebar-item py-2">
                     Logout
                   </div>
