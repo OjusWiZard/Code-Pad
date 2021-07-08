@@ -27,8 +27,8 @@
         overflow: hidden !important;
       }
       #status {
-        width: 30%;
-        height: 30px;
+        width: 20%;
+        height: 20px;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -37,6 +37,12 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
+      }
+      @media(max-width: 540px){
+        #status {
+        width: 60%;
+        height: 20px;
+      }
       }
     </style>
     <title>Codepad</title>

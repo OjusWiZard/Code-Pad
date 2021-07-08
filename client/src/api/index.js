@@ -107,12 +107,14 @@ export const codeSubmission = async (formData) => {
     let { data } = await API.post(`/submissions/`, formData, config);
     let status, id;
     id = data.id;
+    let wait_sec = 0.0625;
     status = data.status;
-    while(true){
+    while(wait_sec < 64){
       let {data} = await API.get(`/viewsubmission/${id}`);
-      if(data.status === "In Queue" || data.status === "Processing"){
+      if(data.status !== "In Queue" || data.status !== "Processing"){
         break;
       }
+      wait_sec *= 2;
     }
 
     return data;

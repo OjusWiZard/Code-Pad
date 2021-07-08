@@ -388,16 +388,7 @@ function EventDetails() {
                           {active === "rules" && (
                             <div className="min-height-event-details">
                               <li>
-                                Lorem ipsum dolor sit amet. Lorem ipsum dolor
-                                sit amet.
-                              </li>
-                              <li>
-                                Lorem ipsum dolor sit amet. Lorem ipsum dolor
-                                sit amet.
-                              </li>
-                              <li>
-                                Lorem ipsum dolor sit amet. Lorem ipsum dolor
-                                sit amet.
+                                {event.rules}
                               </li>
                             </div>
                           )}

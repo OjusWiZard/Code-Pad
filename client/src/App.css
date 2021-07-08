@@ -19,6 +19,15 @@ body {
   height: auto;
   background-size: cover;
 }
+@media (max-width: 540px) {
+  #root {
+    position: relative;
+    background: url("../src/images/common/frame-phone.svg");
+    background-repeat: no-repeat;
+    height: auto;
+    background-size: cover;
+  }
+}
 
 /* ScrollBar */
 ::-webkit-scrollbar {
@@ -163,7 +172,7 @@ body {
   animation: vline 10s linear infinite;
 }
 
-.see-all-buttons{
+.see-all-buttons {
   background: url("./images/common/button.svg");
   background-size: contain;
   background-position: center;
@@ -175,8 +184,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
-.text-black{
-  color: #131C20;
+.text-black {
+  color: #131c20;
 }
 
 @keyframes vline {
@@ -236,10 +245,10 @@ input#file-upload-button {
       linear-gradient(130deg, transparent 0, transparent 100%) !important;
     border: none !important;
   }
-  .scan-lines{
+  .scan-lines {
     display: none;
   }
 }
-#svg-index{
+#svg-index {
   z-index: 1000;
 }

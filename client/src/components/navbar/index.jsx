@@ -758,10 +758,10 @@ function Navbar() {
           />
         </Link>
         <button
-          className="navbar-toggler"
+          className="navbar-toggler mt-n3"
           type="button"
           aria-label="Toggle navigation"
-          style={{marginLeft: "93%"}}
+          style={{marginLeft: "88%"}}
           onClick={handleClick}
         >
           <span className="navbar-toggler-icon">
