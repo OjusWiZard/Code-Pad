@@ -104,7 +104,17 @@ export const getProblem = async (slug, history) => {
 
 export const codeSubmission = async (formData) => {
   try {
-    const { data } = await API.post(`/submissions/`, formData, config);
+    let { data } = await API.post(`/submissions/`, formData, config);
+    let status, id;
+    id = data.id;
+    status = data.status;
+    while(true){
+      let {data} = await API.get(`/viewsubmission/${id}`);
+      if(data.status === "In Queue" || data.status === "Processing"){
+        break;
+      }
+    }
+
     return data;
   } catch (error) { }
 };

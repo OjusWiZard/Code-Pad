@@ -30,7 +30,7 @@ function Login() {
       <div className="main-background">
         <div className="container py-sm-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-xl-7 col-lg-7 col-md-10 col-sm-11 col-11 mx-auto my-md-5 content-background px-sm-5">
+            <div className="col-xl-6 col-lg-6 col-md-10 col-sm-11 col-11 mx-auto my-md-5 content-background px-sm-5">
               <div className="my-md-5 py-md-3 px-lg-3">
                 <h4 className="font-vcr font-blue text-center font-weight-bold">
                   **&nbsp;LOGIN&nbsp;**

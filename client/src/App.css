@@ -14,34 +14,10 @@ body {
 }
 #root {
   position: relative;
-  background: url("../src/images/home/background.png");
+  background: url("../src/images/common/frame.svg");
   background-repeat: no-repeat;
   height: auto;
   background-size: cover;
-}
-@media (max-width: 1350px) {
-  #root {
-    background: url("../src/images/common/background-md.svg");
-    background-repeat: no-repeat;
-    height: auto;
-    background-size: cover;
-  }
-}
-@media (max-width: 1050px) {
-  #root {
-    background: url("../src/images/common/background-sm.svg");
-    background-repeat: no-repeat;
-    height: auto;
-    background-size: cover;
-  }
-}
-@media (max-width: 760px) {
-  #root {
-    background: url("../src/images/home/phonebg.svg");
-    background-repeat: no-repeat;
-    height: auto;
-    background-size: cover;
-  }
 }
 
 /* ScrollBar */

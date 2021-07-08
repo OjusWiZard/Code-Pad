@@ -541,7 +541,7 @@ function Navbar() {
           />
         </Link>
         {token && user ? (
-          <text fill="#3dbef5" x="1695" y="78" fontSize="22px" className="font-vcr">{user.full_name.split(" ")[0]}</text>
+          <text fill="#3dbef5" x="1695" y="78" fontSize="22px" className="font-vcr">{user?.full_name?.split(" ")[0]}</text>
         ) : (
           <Link to="/login">
             <path
