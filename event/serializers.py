@@ -100,8 +100,14 @@ class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
 
 
 class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
-    problem_set = Problem_List_Serializer(many=True)
+    problem_set = serializers.SerializerMethodField("get_problem_set")
     status = serializers.SerializerMethodField("event_status")
+
+    def get_problem_set(self, event):
+        problems = event.problem_set.order_by("points")
+        return Problem_List_Serializer(
+            problems, context={"request": self.context["request"]}, many=True
+        ).data
 
     def event_status(self, event):
         if timezone.now() < event.datetime:
