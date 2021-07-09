@@ -130,9 +130,15 @@ function EventDetails() {
     String(leaderboard?.next)?.length - 1,
     String(leaderboard?.next)?.length
   );
+
   if (isNaN(page)) {
-    page = Math.ceil(leaderboard?.count % 10) + 1;
+    if ((leaderboard?.count % 10) + 1 !== 1) {
+      page = (leaderboard?.count % 10) + 1;
+    } else {
+      page = 0;
+    }
   }
+  console.log(page);
   return (
     <React.Fragment>
       <div className="main-background">
@@ -222,7 +228,7 @@ function EventDetails() {
                           {user && (
                             <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
-                              <span className="ml-3">
+                              <span className="ml-4">
                                 {user.score ? `${user.score}` : "0"}
                               </span>
                             </div>
