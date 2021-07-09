@@ -7,6 +7,7 @@ import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/peach.svg";
 import avatar4 from "../../images/auth/pacman.svg";
 import noLeaderboard from "../../images/eventDetails/noleaderboard.svg";
+import noQuestions from "../../images/eventDetails/noquestions.svg";
 import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
@@ -238,54 +239,63 @@ function EventDetails() {
                               <div className="font-blue font-vcr font-18 mt-3">
                                 #PROBLEMS
                               </div>
-                              <div
-                                className=" d-flex mt-3"
-                                style={{ flexDirection: "column" }}
-                              >
-                                <div className=" d-flex leadeboard-leads justify-content-between">
-                                  <span>Name</span>
-                                  <span
-                                    className="text-right"
-                                    style={{ width: "30%" }}
-                                  >
-                                    Q.Code
-                                  </span>
-                                  <span>Points</span>
+                              {!event?.problem_set ? (
+                                <div className="text-center my-2">
+                                  <img src={noQuestions} alt="No Question" />
+                                  <div className="mt-2 font-blue font-vcr font-16">
+                                    NO PROBLEMS
+                                  </div>
                                 </div>
-                                {event?.problem_set?.map((problem, index) => (
-                                  <Link
-                                    key={index}
-                                    to={`/problems/${problem.slug}`}
-                                    target="_blank"
-                                  >
-                                    <div className="user-data d-flex justify-content-between leaderboard-bg">
-                                      <div
-                                        className="user-rank font-blue font-vcr"
-                                        style={{
-                                          width: "40%",
-                                          textAlign: "left",
-                                        }}
-                                      >
-                                        {problem.title}
-                                      </div>
-                                      <div className="user-info px-lg-3 mx-auto">
-                                        <span
-                                          className="user-name"
-                                          style={{ width: "40%" }}
+                              ) : (
+                                <div
+                                  className=" d-flex mt-3"
+                                  style={{ flexDirection: "column" }}
+                                >
+                                  <div className=" d-flex leadeboard-leads justify-content-between">
+                                    <span>Name</span>
+                                    <span
+                                      className="text-right"
+                                      style={{ width: "30%" }}
+                                    >
+                                      Q.Code
+                                    </span>
+                                    <span>Points</span>
+                                  </div>
+                                  {event?.problem_set?.map((problem, index) => (
+                                    <Link
+                                      key={index}
+                                      to={`/problems/${problem.slug}`}
+                                      target="_blank"
+                                    >
+                                      <div className="user-data d-flex justify-content-between leaderboard-bg">
+                                        <div
+                                          className="user-rank font-blue font-vcr"
+                                          style={{
+                                            width: "40%",
+                                            textAlign: "left",
+                                          }}
                                         >
-                                          {problem.slug}
-                                        </span>
+                                          {problem.title}
+                                        </div>
+                                        <div className="user-info px-lg-3 mx-auto">
+                                          <span
+                                            className="user-name"
+                                            style={{ width: "40%" }}
+                                          >
+                                            {problem.slug}
+                                          </span>
+                                        </div>
+                                        <div
+                                          className="user-score text-right"
+                                          style={{ width: "20%" }}
+                                        >
+                                          {problem?.points}
+                                        </div>
                                       </div>
-                                      <div
-                                        className="user-score text-right"
-                                        style={{ width: "20%" }}
-                                      >
-                                        {problem?.points}
-                                      </div>
-                                    </div>
-                                  </Link>
-                                ))}
-                              </div>
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           )}
                           {active === "leaderboard" && (

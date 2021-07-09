@@ -49,7 +49,11 @@ const Form = () => {
 
   useEffect(() => {
     axios.get("https://judge.hackncs.com/languages", config).then((data) => {
-      setLanguages(data.data.filter((lang) => lang.id !== 54));
+      setLanguages(
+        data.data.filter(
+          (lang) => lang.id !== 54 && lang.id !== 44 && lang.id !== 89
+        )
+      );
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
