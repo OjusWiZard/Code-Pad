@@ -1,6 +1,14 @@
 version: "3"
 
 services:
+  frontend:
+    env_file: client/.env
+    build:
+      context: client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:80
+
   codepad:
     restart: always
     build: .
