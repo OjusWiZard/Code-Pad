@@ -41,6 +41,7 @@ function EventDetails() {
       .then((data) => {
         setEvent(data);
         console.log(data);
+        const abc = new Date(data.datetime);
         const currentTime = new Date().getTime();
         const eventStartTime = new Date(data.datetime).getTime();
         const duration = data.duration;
@@ -50,6 +51,17 @@ function EventDetails() {
           Number(duration.split(":")[2]);
         const eventEndTime = eventStartTime + eventDuration * 1000;
 
+        console.log(Date.parse(data.duration));
+
+        if (abc == new Date()) {
+          const eventStartTime = new Date(data.datetime).getTime();
+          const eventDuration =
+            Number(duration.split(":")[0]) * 60 * 60 +
+            Number(duration.split(":")[1]) * 60 +
+            Number(duration.split(":")[2]);
+          console.log("EventStartTime: ", eventStartTime);
+          console.log("eventDuration: ", eventDuration * 1000);
+        }
         // const getTime = new Date(today - eventtime);
         // console.log(today);
         // console.log(data.datetime);
@@ -80,6 +92,7 @@ function EventDetails() {
     getLeaderboard(params.slug)
       .then((data) => {
         setLeaderboard(data);
+        console.log(data);
       })
       .catch((err) => {
         console.log("Leaderboard Error: ", err);
@@ -98,7 +111,7 @@ function EventDetails() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.slug]);
-  setInterval(() => setCounter(counter - 1), 1000);
+  // setInterval(() => setCounter(counter - 1), 1000);
   const [active, setActive] = useState("about");
   const removeClass = (e) => {
     document
@@ -109,13 +122,16 @@ function EventDetails() {
   const paginationLeaderboard = (text) => {
     getLeaderboardPagination(text).then((data) => {
       setLeaderboard(data);
+      console.log(data);
     });
   };
   let page = String(leaderboard?.next)?.slice(
     String(leaderboard?.next)?.length - 1,
     String(leaderboard?.next)?.length
   );
-
+  if (isNaN(page)) {
+    page = Math.ceil(leaderboard?.count % 10) + 1;
+  }
   return (
     <React.Fragment>
       <div className="main-background">
@@ -329,7 +345,7 @@ function EventDetails() {
                                       >
                                         {String(
                                           index +
-                                            1 * 10 * (Number(page) - 1) -
+                                            1 * 10 * (parseInt(page) - 1) -
                                             9
                                         )}
                                       </span>
