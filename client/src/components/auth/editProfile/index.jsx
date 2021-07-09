@@ -43,7 +43,7 @@ function EditProfile() {
                 </h4>
                 <div className="d-flex justify-content-center mt-5 avatar-container">
                   <img
-                    name="1"
+                    name="0"
                     src={avatarOne}
                     alt=""
                     className="img-fluid mx-2"
@@ -52,7 +52,7 @@ function EditProfile() {
                     height="60px"
                   />
                   <img
-                    name="2"
+                    name="1"
                     src={avatarTwo}
                     alt=""
                     className="img-fluid mx-2"
@@ -61,7 +61,7 @@ function EditProfile() {
                     height="60px"
                   />
                   <img
-                    name="3"
+                    name="2"
                     src={avatarThree}
                     alt=""
                     className="img-fluid mx-2"
@@ -70,7 +70,7 @@ function EditProfile() {
                     height="60px"
                   />
                   <img
-                    name="4"
+                    name="3"
                     src={avatarFour}
                     alt=""
                     onClick={handleAvatar}

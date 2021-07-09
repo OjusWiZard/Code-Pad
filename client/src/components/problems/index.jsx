@@ -335,10 +335,9 @@ function Problem() {
                                 style={{ width: "40%" }}
                               >
                                 {" "}
-                                {moment(
-                                  submission?.datetime,
-                                  "YYYYMMDD"
-                                ).fromNow()}
+                                {moment(submission.datetime)
+                                  .startOf("hour")
+                                  .fromNow()}
                               </span>
                               <img src={accepted} alt="12" />
                             </div>
@@ -370,10 +369,9 @@ function Problem() {
                                 className="user-score"
                                 style={{ width: "40%" }}
                               >
-                                {moment(
-                                  submission?.datetime,
-                                  "YYYYMMDD"
-                                ).fromNow()}
+                                {moment(submission.datetime)
+                                  .startOf("hour")
+                                  .fromNow()}
                               </span>
                               <img src={processing} alt="12" />
                             </div>
@@ -401,10 +399,9 @@ function Problem() {
                                 className="user-score"
                                 style={{ width: "40%" }}
                               >
-                                {moment(
-                                  submission?.datetime,
-                                  "YYYYMMDD"
-                                ).fromNow()}
+                                {moment(submission.datetime)
+                                  .startOf("minutes")
+                                  .fromNow()}
                               </span>
                               <img src={rejected} alt="12" />
                             </div>
