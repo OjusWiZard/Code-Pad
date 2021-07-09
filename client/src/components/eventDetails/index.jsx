@@ -267,7 +267,7 @@ function EventDetails() {
                                 <div className="text-center my-2">
                                   <img src={noQuestions} alt="No Question" />
                                   <div className="mt-2 font-blue font-vcr font-16">
-                                    NO PROBLEMS
+                                   Problems will appear once the contest is live!
                                   </div>
                                 </div>
                               ) : (
