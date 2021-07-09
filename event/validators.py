@@ -2,8 +2,8 @@ import os
 
 from django.core.exceptions import ValidationError
 from django.core.validators import (
-    get_available_image_extensions,
     FileExtensionValidator,
+    get_available_image_extensions,
 )
 
 

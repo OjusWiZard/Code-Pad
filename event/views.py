@@ -11,11 +11,15 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from .models import Event, Leaderboard, Problem, Submission
 from .paginations import Pagination_Size10
-from .serializers import (Event_Details_Serializer, Event_List_Serializer,
-                          Leaderboard_Serializer, Problem_Detail_Serializer,
-                          Problem_List_Serializer,
-                          Submission_Detail_Serializer,
-                          Submission_List_Serializer)
+from .serializers import (
+    Event_Details_Serializer,
+    Event_List_Serializer,
+    Leaderboard_Serializer,
+    Problem_Detail_Serializer,
+    Problem_List_Serializer,
+    Submission_Detail_Serializer,
+    Submission_List_Serializer,
+)
 from .tasks import submit
 
 

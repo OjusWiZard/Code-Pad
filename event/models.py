@@ -4,7 +4,7 @@ from django.utils.timezone import timedelta
 
 from account.models import User
 
-from .validators import validate_text_file, validate_image_file
+from .validators import validate_image_file, validate_text_file
 
 
 class Event(models.Model):
