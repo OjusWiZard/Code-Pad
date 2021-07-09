@@ -116,12 +116,8 @@ const Form = () => {
               <div className="d-flex justify-content-center pt-sm-5">
                 <img id="logo" src={IDE} alt="IDE" className="img-fluid" />
               </div>
-              <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14 font-weight-bold">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. amet
-                qui! Sed, distinctio maiores consequatur velit, voluptatibus
-                deleniti voluptate suscipit corrupti odio amet inventore sunt,
-                esse molestiae et iusto tenetur laboriosam ipsam ab nemo harum
-                impedit.
+              <p className="font-robot font-lightGrey text-justify mt-3 pt-3 font-14 font-weight-bold">
+                Codepad's editor is a code-editor made for all the programmers out there.
               </p>
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="d-flex font-vcr justify-content-between align-items-center py-3 font-lightGrey">
@@ -135,7 +131,7 @@ const Form = () => {
                           }}
                           className="font-vcr font-blue"
                         >
-                          <option selected value={54}>
+                          <option selected value={54} className="font-lightGrey">
                             C++ (GCC 9.2.0)
                           </option>
                           {languages.map((lan) => (

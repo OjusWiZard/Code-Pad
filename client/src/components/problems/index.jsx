@@ -517,7 +517,7 @@ function Problem() {
                         onChange={(e) => setInput(e.target.value)}
                         id="custom"
                       />
-                      <div className="d-flex justify-content-between lower-section-images ml-md-2">
+                      <div className="d-flex justify-content-around lower-section-images ml-md-2">
                         <img
                           src={runCode}
                           alt="runCode"
@@ -535,8 +535,8 @@ function Problem() {
                           />
                         ) : (
                           <Link to="/login">
-                            <div className="mt-5 text-center button-hover">
-                              <div className="mt-4 see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
+                            <div className="text-center button-hover">
+                              <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
                                 *LOGIN*
                               </div>
                             </div>
