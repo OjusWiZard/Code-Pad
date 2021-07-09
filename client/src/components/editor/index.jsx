@@ -49,8 +49,9 @@ const Form = () => {
 
   useEffect(() => {
     axios.get("https://judge.hackncs.com/languages", config).then((data) => {
-      setLanguages(data.data);
+      setLanguages(data.data.filter((lang) => lang.id !== 54));
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -91,10 +92,15 @@ const Form = () => {
           : b64DecodeUnicode(res.data.compile_output);
       setOutput(out || res.data.status.description);
     } catch (error) {
+      if (error.message === "URI malformed") {
+        setOutput("No Output");
+        return;
+      }
       openModal("Write some code");
       <Modal />;
     }
   };
+
   return (
     <React.Fragment>
       <div className="main-background">
@@ -123,6 +129,7 @@ const Form = () => {
                           }}
                           className="font-vcr font-blue"
                         >
+                          <option selected>C++ (GCC 9.2.0)</option>
                           {languages.map((lan) => (
                             <option value={lan.id} className="font-lightGrey">
                               {lan.name}
