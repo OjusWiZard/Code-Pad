@@ -12,9 +12,9 @@
   overflow-y: auto;
   background-size: cover;
 } */
-.main-background {
+/* .main-background {
   min-height: 100vh;
-}
+} */
 .event-block {
   /* border: 1px solid #3dbef5 !important; */
   background: transparent !important;

@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://codepad-ncs.herokuapp.com/",
+ 
   "dependencies": {
     "@monaco-editor/react": "^4.2.0",
     "@testing-library/jest-dom": "^5.11.4",
