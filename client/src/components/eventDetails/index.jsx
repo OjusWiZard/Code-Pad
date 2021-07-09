@@ -196,9 +196,9 @@ function EventDetails() {
                       <div>
                         <div className="dashboard font-vcr font-lightGrey">
                           <h5>*&nbsp;Dashboard&nbsp;*</h5>
-                          <div>
+                          {/* <div>
                             {counter > 0 && <span>Countdown: {counter}</span>}
-                          </div>
+                          </div> */}
                         </div>
                         {user && (
                           <div className="score">
