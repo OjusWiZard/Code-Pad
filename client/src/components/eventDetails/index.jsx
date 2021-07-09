@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import pointerLeft from "../../images/eventDetails/pointer-left.svg";
 import dash from "../../images/eventDetails/dash.svg";
 import "./eventDetails.css";
-import avatar1 from "../../images/auth/frog.svg";
+import avatar1 from "../../images/auth/peach.svg";
 import avatar2 from "../../images/auth/mario.svg";
-import avatar3 from "../../images/auth/peach.svg";
-import avatar4 from "../../images/auth/pacman.svg";
+import avatar3 from "../../images/auth/pacman.svg";
+import avatar4 from "../../images/auth/frog.svg";
 import noLeaderboard from "../../images/eventDetails/noleaderboard.svg";
 import noQuestions from "../../images/eventDetails/noquestions.svg";
 import line from "../../images/eventDetails/line.svg";
@@ -281,7 +281,6 @@ function EventDetails() {
                                     <Link
                                       key={index}
                                       to={`/problems/${problem.slug}`}
-                                      target="_blank"
                                     >
                                       <div className="user-data d-flex justify-content-between leaderboard-bg">
                                         <div

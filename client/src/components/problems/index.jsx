@@ -2,11 +2,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Modal from "../modal/index";
+import loginButton from "../../images/auth/login.svg";
 import { ModalContext } from "../../context/context";
-import avatar1 from "../../images/auth/frog.svg";
+import avatar1 from "../../images/auth/peach.svg";
 import avatar2 from "../../images/auth/mario.svg";
-import avatar3 from "../../images/auth/peach.svg";
-import avatar4 from "../../images/auth/pacman.svg";
+import avatar3 from "../../images/auth/pacman.svg";
+import avatar4 from "../../images/auth/frog.svg";
 import noSubmissions from "../../images/eventDetails/nosubmissions.svg";
 import accepted from "../../images/problems/accepted.svg";
 import processing from "../../images/problems/pending.svg";
@@ -14,7 +15,7 @@ import rejected from "../../images/problems/cross.svg";
 import runCode from "../../images/problems/runCode.svg";
 import submitCode from "../../images/problems/submitCode.svg";
 import Spinner from "../utils/Spinner";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import Editor from "../editor/Editor";
 import moment from "moment";
 import {
@@ -523,13 +524,21 @@ function Problem() {
                             handleRunCode(e, value, languageId, input)
                           }
                         />
-                        {user && (
+                        {user ? (
                           <img
                             src={submitCode}
                             alt="submitCode"
                             className="see-all-button ml-3"
                             onClick={(e) => handleSubmitCode(e, value)}
                           />
+                        ) : (
+                          <Link to="/login">
+                            <img
+                              src={loginButton}
+                              alt="Login Button"
+                              className="see-all-button ml-3"
+                            />
+                          </Link>
                         )}
                       </div>
                     </div>
