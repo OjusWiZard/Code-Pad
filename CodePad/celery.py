@@ -1,13 +1,14 @@
 import os
 
+from django.conf import settings
 from celery import Celery
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CodePad.settings")
 
-broker_vhost = os.environ["RABBITMQ_DEFAULT_VHOST"]
-broker_user = os.environ["RABBITMQ_DEFAULT_USER"]
-broker_pass = os.environ["RABBITMQ_DEFAULT_PASS"]
-broker_host = os.environ["RABBITMQ_DEFAULT_HOST"]
+broker_vhost = settings.RABBITMQ_VHOST
+broker_user = settings.RABBITMQ_USER
+broker_pass = settings.RABBITMQ_PASS
+broker_host = settings.RABBITMQ_HOST
 broker_url = (
     "amqp://" + broker_user + ":" + broker_pass + "@" + broker_host + "/" + broker_vhost
 )
