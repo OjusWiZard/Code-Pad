@@ -59,7 +59,6 @@ export const userInfo = async (history) => {
     localStorage.setItem("user", JSON.stringify(data));
   } catch (error) {
     <Modal errorMessage="You are Logged out!!" />;
-    history.push("/login");
     localStorage.clear();
   }
 };
