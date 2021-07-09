@@ -255,3 +255,6 @@ input#file-upload-button {
 #svg-index {
   z-index: 1000;
 }
+.pagination-icon {
+  font-size: 1.5rem;
+}

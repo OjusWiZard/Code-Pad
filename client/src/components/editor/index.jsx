@@ -145,7 +145,10 @@ const Form = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="file-button font-vcr font-blue">
+                  <div
+                    className="file-button font-vcr font-blue"
+                    style={{ cursor: "pointer" }}
+                  >
                     Choose File
                     <input
                       type="file"
@@ -165,18 +168,18 @@ const Form = () => {
                   input={input}
                   onChange={setValue}
                 ></Editor>
-                <div className="lower-section d-flex w-100 justify-content-between">
-                  <div className="textarea-input mt-3">
+                <div className="lower-section d-flex w-100 justify-content-between align-item-start pt-5">
+                  <div className="textarea-input ">
                     <textarea
-                      className="output w-100 font-vcr py-2"
-                      rows="10"
+                      className="output w-80 font-vcr px-2"
+                      rows="3"
                       placeholder="Custom Input here..."
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       id="custom"
                     />
                   </div>
-                  <div className="text-center mt-4">
+                  <div className="text-center">
                     <button type="submit" className="see-all-buttons"></button>
                   </div>
                 </div>

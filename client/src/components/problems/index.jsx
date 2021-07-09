@@ -435,7 +435,7 @@ function Problem() {
                           <div className="pagination">
                             {submissions?.previous && (
                               <span
-                                className="pagination-previous"
+                                className="pagination-previous pagination-icon"
                                 onClick={() =>
                                   paginationSubmission(submissions.previous)
                                 }
@@ -446,7 +446,7 @@ function Problem() {
 
                             {submissions?.next && (
                               <span
-                                className="pagination-next ml-3"
+                                className="pagination-next pagination-icon ml-3"
                                 onClick={() =>
                                   paginationSubmission(submissions.next)
                                 }
@@ -486,7 +486,10 @@ function Problem() {
                           </div>
                         </div>
                       </div>
-                      <div className="file-button font-vcr font-blue">
+                      <div
+                        className="file-button font-vcr font-blue"
+                        style={{ cursor: "pointer" }}
+                      >
                         Choose File
                         <input
                           type="file"

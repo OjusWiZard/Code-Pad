@@ -7,6 +7,7 @@ import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/pacman.svg";
 import avatar4 from "../../images/auth/frog.svg";
 import noLeaderboard from "../../images/eventDetails/noleaderboard.svg";
+import trophy from "../../images/events/trophy.svg";
 import noQuestions from "../../images/eventDetails/noquestions.svg";
 import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
@@ -211,17 +212,22 @@ function EventDetails() {
                   <div className="col-lg-9 col-md-7 col-sm-7 col-12">
                     <div className="mainContainer font-vcr font-lightGrey w-100">
                       <div>
-                        <div className="dashboard font-vcr font-lightGrey">
-                          <h5>*&nbsp;Dashboard&nbsp;*</h5>
-                          {/* <div>
+                        <div className="top-section d-flex justify-content-between align-items-center">
+                          <div className="dashboard font-vcr font-lightGrey">
+                            <h5>*&nbsp;Dashboard&nbsp;*</h5>
+                            {/* <div>
                             {counter > 0 && <span>Countdown: {counter}</span>}
                           </div> */}
-                        </div>
-                        {user && (
-                          <div className="score">
-                            {user ? `${user?.score}` : null}
                           </div>
-                        )}
+                          {user && (
+                            <div className="score font-blue font-robot font-16">
+                              <img src={trophy} alt="trophy" />
+                              <span className="ml-3">
+                                {user.score ? `${user.score}` : "0"}
+                              </span>
+                            </div>
+                          )}
+                        </div>
                         <div className="rules mt-5 pt-2 pb-5 py-2 px-2">
                           {active === "about" && (
                             <div className="about__section m-2 min-height-event-details">
@@ -374,7 +380,7 @@ function EventDetails() {
                                       <div className="pagination">
                                         {leaderboard?.previous && (
                                           <span
-                                            className="pagination-previous"
+                                            className="pagination-previous pagination-icon"
                                             onClick={() =>
                                               paginationLeaderboard(
                                                 leaderboard.previous
@@ -387,7 +393,7 @@ function EventDetails() {
 
                                         {leaderboard?.next && (
                                           <span
-                                            className="pagination-next ml-3"
+                                            className="pagination-next ml-3 pagination-icon"
                                             onClick={() =>
                                               paginationLeaderboard(
                                                 leaderboard.next

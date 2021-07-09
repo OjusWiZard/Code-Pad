@@ -10,6 +10,15 @@ li {
   padding: 1rem 0 0 0;
   cursor: pointer;
 }
+.score {
+  background: url("../../images/eventDetails/score-bg.svg") no-repeat;
+  background-size: contain;
+  background-position: center center;
+  width: 130px !important;
+  line-height: 40px !important;
+  text-align: center;
+  height: 40px;
+}
 
 .exit {
   text-align: left;
@@ -133,6 +142,6 @@ li {
     display: none;
   }
 }
-.min-height-event-details{
+.min-height-event-details {
   min-height: 200px;
 }

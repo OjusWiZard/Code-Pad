@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { editUserInfo } from "../../../api";
 import { ModalContext } from "../../../context/context";
@@ -18,17 +18,31 @@ function EditProfile() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    console.log(
+      Array.from(document.querySelectorAll(".img-avatar"))
+        .find((img) => img.name === String(formData.avatar))
+        .classList.add("active-avatar")
+    );
+  }, []);
+
   const handleAvatar = (e) => {
     setFormData({ ...formData, avatar: e.target.name });
+
     document
       .querySelectorAll(".avatar-container .img-fluid")
-      .forEach((img) => img.classList.add("active-avatar"));
-    e.target.classList.remove("active-avatar");
+      .forEach((img) => img.classList.remove("active-avatar"));
+    e.target.classList.add("active-avatar");
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     editUserInfo(formData, history, openModal, formMessage);
   };
+
+  // .find((img) => img.name === formData.avatar)
+  // .classList.add("active-avatar");
+
   return (
     <React.Fragment>
       <div className="main-background">
@@ -44,7 +58,7 @@ function EditProfile() {
                     name="1"
                     src={avatarOne}
                     alt=""
-                    className="img-fluid mx-2"
+                    className="img-fluid mx-2 img-avatar"
                     onClick={handleAvatar}
                     width="60px"
                     height="60px"
@@ -53,7 +67,7 @@ function EditProfile() {
                     name="2"
                     src={avatarTwo}
                     alt=""
-                    className="img-fluid mx-2"
+                    className="img-fluid mx-2 img-avatar"
                     onClick={handleAvatar}
                     width="60px"
                     height="60px"
@@ -62,7 +76,7 @@ function EditProfile() {
                     name="3"
                     src={avatarThree}
                     alt=""
-                    className="img-fluid mx-2"
+                    className="img-fluid mx-2 img-avatar"
                     onClick={handleAvatar}
                     width="60px"
                     height="60px"
@@ -74,7 +88,7 @@ function EditProfile() {
                     onClick={handleAvatar}
                     width="60px"
                     height="60px"
-                    className="img-fluid mx-2"
+                    className="img-fluid mx-2 img-avatar"
                   />
                 </div>
                 <form className="mt-5 px-lg-5 mx-lg-5">
