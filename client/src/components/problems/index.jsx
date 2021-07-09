@@ -355,7 +355,7 @@ function Problem() {
                                   >
                                     {" "}
                                     {moment(submission.datetime)
-                                      .startOf("hour")
+                                      .startOf("minutes")
                                       .fromNow()}
                                   </span>
                                   <img src={accepted} alt="12" />
@@ -389,7 +389,7 @@ function Problem() {
                                     style={{ width: "40%" }}
                                   >
                                     {moment(submission.datetime)
-                                      .startOf("hour")
+                                      .startOf("minutes")
                                       .fromNow()}
                                   </span>
                                   <img src={processing} alt="12" />

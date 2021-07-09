@@ -55,8 +55,8 @@ function SignUp() {
     setFormData({ ...formData, avatar: e.target.name });
     document
       .querySelectorAll(".avatar-container .img-fluid")
-      .forEach((img) => img.classList.add("active-avatar"));
-    e.target.classList.remove("active-avatar");
+      .forEach((img) => img.classList.remove("active-avatar"));
+    e.target.classList.add("active-avatar");
   };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -200,7 +200,10 @@ function SignUp() {
                   </div>
                 </form>
                 <div className="mt-4 text-center font-robot font-lightGrey">
-                  Already have an account? <Link to="/login" className="font-blue font-weight-bold">Login</Link>
+                  Already have an account?{" "}
+                  <Link to="/login" className="font-blue font-weight-bold">
+                    Login
+                  </Link>
                 </div>
                 <div className="mt-3 text-center">
                   <img src={line} alt="signup" className="img-fluid mt-4" />
