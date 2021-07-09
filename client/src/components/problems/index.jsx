@@ -166,7 +166,11 @@ function Problem() {
     try {
       await codeSubmission(data, openModal);
     } catch (error) {
-      openModal(error);
+      if (error.message === "URI malformed") {
+        setOutput("No Output");
+        return;
+      }
+      openModal(error.message);
       <Modal />;
     }
   };

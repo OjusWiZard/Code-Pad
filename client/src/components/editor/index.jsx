@@ -91,6 +91,10 @@ const Form = () => {
           : b64DecodeUnicode(res.data.compile_output);
       setOutput(out || res.data.status.description);
     } catch (error) {
+      if (error.message === "URI malformed") {
+        setOutput("No Output");
+        return;
+      }
       openModal("Write some code");
       <Modal />;
     }
