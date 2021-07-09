@@ -53,6 +53,7 @@ function SignUp() {
   const [formData, setFormData] = useState(initialState);
   const handleAvatar = (e) => {
     setFormData({ ...formData, avatar: e.target.name });
+
     document
       .querySelectorAll(".avatar-container .img-fluid")
       .forEach((img) => img.classList.remove("active-avatar"));
@@ -95,14 +96,17 @@ function SignUp() {
                 <p className="font-vcr font-lightGrey text-center mt-5">
                   SELECT YOUR AVATAR
                 </p>
-                <div className="d-flex justify-content-between mt-3 avatar-container px-lg-5 mx-lg-5 px-3">
+                <div
+                  id="avatar-sign-up"
+                  className="d-flex justify-content-center mt-3 avatar-container px-lg-5 mx-lg-5 px-3"
+                >
                   <img
                     width="60px"
                     height="60px"
                     name="1"
                     src={avatarOne}
                     alt=""
-                    className="img-fluid mx-2"
+                    className="img-fluid mx-2 active-avatar"
                     onClick={handleAvatar}
                   />
                   <img
@@ -111,7 +115,7 @@ function SignUp() {
                     name="2"
                     src={avatarTwo}
                     alt=""
-                    className="img-fluid mx-2"
+                    className="img-fluid mx-2 active-avatar"
                     onClick={handleAvatar}
                   />
                   <img
@@ -120,7 +124,7 @@ function SignUp() {
                     name="3"
                     src={avatarThree}
                     alt=""
-                    className="img-fluid mx-2"
+                    className="img-fluid mx-2 active-avatar"
                     onClick={handleAvatar}
                   />
                   <img
@@ -130,7 +134,7 @@ function SignUp() {
                     src={avatarFour}
                     alt=""
                     onClick={handleAvatar}
-                    className="img-fluid mx-2"
+                    className="img-fluid mx-2 active-avatar"
                   />
                 </div>
                 <div className="font-vcr font-14 text-center mt-2 text-muted">
