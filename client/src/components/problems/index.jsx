@@ -82,7 +82,11 @@ function Problem() {
   // Fetching Languages
   useEffect(() => {
     axios.get("https://judge.hackncs.com/languages", config).then((data) => {
-      setLanguages(data.data.filter((lang) => lang.id !== 54));
+      setLanguages(
+        data.data.filter(
+          (lang) => lang.id !== 54 && lang.id !== 44 && lang.id !== 89
+        )
+      );
     });
     getProblem(params.slug.toString().toUpperCase(), history)
       .then((data) => {
@@ -132,7 +136,9 @@ function Problem() {
         config
       );
       let out =
-        res.data.stdout !== null ? b64DecodeUnicode(res.data.stdout) : null;
+        res.data.stdout !== null
+          ? b64DecodeUnicode(res.data.stdout)
+          : b64DecodeUnicode(res.data.compile_output);
       setOutputData({
         ...outputData,
         memory: res.data.memory,
@@ -141,7 +147,11 @@ function Problem() {
       });
       setOutput(out || res.data.status.description);
     } catch (error) {
-      openModal("Write some Code");
+      if (error.message === "URI malformed") {
+        setOutput("No Output");
+        return;
+      }
+      openModal("Write some code");
       <Modal />;
     }
   };
@@ -443,7 +453,9 @@ function Problem() {
                               }}
                               className="font-vcr font-blue"
                             >
-                              <option selected>C++ (GCC 9.2.0)</option>
+                              <option selected value={54}>
+                                C++ (GCC 9.2.0)
+                              </option>
                               {languages.map((lan) => (
                                 <option
                                   value={lan.id}

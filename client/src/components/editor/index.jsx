@@ -129,7 +129,9 @@ const Form = () => {
                           }}
                           className="font-vcr font-blue"
                         >
-                          <option selected>C++ (GCC 9.2.0)</option>
+                          <option selected value={54}>
+                            C++ (GCC 9.2.0)
+                          </option>
                           {languages.map((lan) => (
                             <option value={lan.id} className="font-lightGrey">
                               {lan.name}
