@@ -1,4 +1,6 @@
 import React from "react";
+
+// Image imports
 import borderBottom from "../../images/footer/borderBottom.svg";
 import heart from "../../images/footer/heart.svg";
 

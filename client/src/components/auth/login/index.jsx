@@ -1,8 +1,12 @@
 import React, { useState, useContext } from "react";
-import { signIn } from "../../../api/index";
 import { useHistory, Link } from "react-router-dom";
-import line from "../../../images/home/line.svg";
+import { signIn } from "../../../api/index";
 import { ModalContext } from "../../../context/context";
+
+// Image Imports
+import line from "../../../images/home/line.svg";
+
+// Css Imports
 import "./login.css";
 
 function Login() {
@@ -26,7 +30,7 @@ function Login() {
     await signIn(formData, history, formMessage, openModal);
   };
   return (
-    <React.Fragment>
+    <>
       <div className="main-background">
         <div className="container py-sm-5">
           <div className="row d-flex justify-content-center">
@@ -133,14 +137,14 @@ function Login() {
                   Not yet registered? <Link to="/signup" className="font-blue font-weight-bold">Signup</Link>
                 </div>
                 <div className="mt-4 text-center">
-                  <img src={line} alt="signup" className="img-fluid mt-4" />
+                  <img src={line} alt="Login" className="img-fluid mt-4" />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

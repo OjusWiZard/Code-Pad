@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Modal from "../modal/index";
-import { ModalContext } from "../../context/context";
-import "./Editor.css";
-import IDE from "../../images/editor/IDE.svg";
 import Editor from "./Editor";
+import { ModalContext } from "../../context/context";
+
+// Image imports
+import IDE from "../../images/editor/IDE.svg";
+
+// CSS imports
+import "./Editor.css";
 
 const Form = () => {
   function b64DecodeUnicode(str) {
@@ -28,7 +32,6 @@ const Form = () => {
   const [output, setOutput] = useState("");
   const [languages, setLanguages] = useState([]);
   const [languageId, setLanguageId] = useState(54);
-
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -48,7 +51,7 @@ const Form = () => {
   };
 
   useEffect(() => {
-    axios.get("https://judge.hackncs.com/languages", config).then((data) => {
+    axios.get(`${process.env.REACT_APP_JUDGELANGUAGE}`, config).then((data) => {
       setLanguages(
         data.data.filter(
           (lang) => lang.id !== 54 && lang.id !== 44 && lang.id !== 89
@@ -64,7 +67,6 @@ const Form = () => {
     setOutput("");
     let data;
     let l = Number(languageId);
-
     if (input) {
       data = {
         source_code: btoa(value),
@@ -79,7 +81,7 @@ const Form = () => {
     }
     try {
       const res = await axios.post(
-        "https://judge.hackncs.com/submissions/?wait=true&base64_encoded=true",
+        `${process.env.REACT_APP_JUDGEHOST}`,
         data,
         config
       );
@@ -106,7 +108,7 @@ const Form = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div className="main-background">
         <div className="container pt-lg-5">
           <div className="row d-flex justify-content-center">
@@ -184,7 +186,6 @@ const Form = () => {
                   </div>
                 </div>
               </form>
-
               <p className="font-vcr font-blue font-weight-bold mt-5 text-center mb-3">
                 &lt;&lt;&nbsp;&nbsp;HELLO OUTPUT&nbsp;&nbsp;&gt;&gt;
               </p>
@@ -215,7 +216,7 @@ const Form = () => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

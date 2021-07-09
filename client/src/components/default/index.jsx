@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Default() {
   return (
-    <React.Fragment>
+    <>
       <div className="main-background">
         <div className="container py-lg-5">
           <div className="row d-flex justify-content-center">
@@ -27,7 +27,7 @@ function Default() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

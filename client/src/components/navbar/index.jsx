@@ -854,22 +854,22 @@ function Navbar() {
           <path
             d="M324 16H345"
             stroke="#3dbef5"
-            stroke-width="3"
-            stroke-linecap="square"
+            strokeWidth="3"
+            strokeLinecap="square"
             onClick={handleClick}
           />
           <path
             d="M328.5 22L345 22"
             stroke="#3dbef5"
-            stroke-width="3"
-            stroke-linecap="square"
+            strokeWidth="3"
+            strokeLinecap="square"
             onClick={handleClick}
           />
           <path
             d="M324 28H345"
             stroke="#3dbef5"
-            stroke-width="3"
-            stroke-linecap="square"
+            strokeWidth="3"
+            strokeLinecap="square"
             onClick={handleClick}
           />
           <rect

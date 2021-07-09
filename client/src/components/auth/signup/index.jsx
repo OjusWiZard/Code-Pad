@@ -1,13 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { signUp } from "../../../api";
+import { ModalContext } from "../../../context/context";
+
+// Image Imports
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
 import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
 import line from "../../../images/home/line.svg";
-import { signUp } from "../../../api";
-import { ModalContext } from "../../../context/context";
+
+// CSS imports
 import "./signup.css";
 
 function SignUp() {
@@ -84,7 +88,7 @@ function SignUp() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div className="main-background">
         <div className="container py-lg-5">
           <div className="row d-flex justify-content-center">
@@ -105,7 +109,7 @@ function SignUp() {
                     height="60px"
                     name="1"
                     src={avatarOne}
-                    alt=""
+                    alt="Peach"
                     className="img-fluid mx-2 active-avatar"
                     onClick={handleAvatar}
                   />
@@ -114,7 +118,7 @@ function SignUp() {
                     height="60px"
                     name="2"
                     src={avatarTwo}
-                    alt=""
+                    alt="Mario"
                     className="img-fluid mx-2 active-avatar"
                     onClick={handleAvatar}
                   />
@@ -123,7 +127,7 @@ function SignUp() {
                     height="60px"
                     name="3"
                     src={avatarThree}
-                    alt=""
+                    alt="Pacman"
                     className="img-fluid mx-2 active-avatar"
                     onClick={handleAvatar}
                   />
@@ -132,7 +136,7 @@ function SignUp() {
                     height="60px"
                     name="4"
                     src={avatarFour}
-                    alt=""
+                    alt="Frog"
                     onClick={handleAvatar}
                     className="img-fluid mx-2 active-avatar"
                   />
@@ -217,7 +221,7 @@ function SignUp() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import Modal from "../components/modal";
 
 const API = axios.create({
-  baseURL: "https://codepad-ncs.herokuapp.com",
+  baseURL:`${process.env.REACT_APP_BASEURL}`,
 });
 
 API.interceptors.request.use((req) => {
@@ -58,8 +58,8 @@ export const userInfo = async (history) => {
     const { data } = await API.get(`/accounts/users/me`, config);
     localStorage.setItem("user", JSON.stringify(data));
   } catch (error) {
-    history.push("/login");
     <Modal errorMessage="You are Logged out!!" />;
+    history.push("/login");
     localStorage.clear();
   }
 };

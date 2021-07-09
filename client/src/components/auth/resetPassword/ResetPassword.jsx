@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import { resetPassword } from "../../../api/index";
 import { useHistory, useParams } from "react-router-dom";
-import line from "../../../images/home/line.svg";
-import Modal from "../../modal";
 import { ModalContext } from "../../../context/context";
+import Modal from "../../modal";
+
+// Image Imports
+import line from "../../../images/home/line.svg";
 
 const ResetPassword = () => {
   const { openModal } = useContext(ModalContext);
@@ -34,7 +36,7 @@ const ResetPassword = () => {
   const params = useParams();
   const { uid, token } = params;
   return (
-    <React.Fragment>
+    <>
       <div className="main-background">
         <div className="container py-sm-5">
           <div className="row d-flex justify-content-center">
@@ -127,14 +129,14 @@ const ResetPassword = () => {
                   </div>
                 </form>
                 <div className="mt-4 text-center">
-                  <img src={line} alt="signup" className="img-fluid mt-4" />
+                  <img src={line} alt="Reset Password" className="img-fluid mt-4" />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

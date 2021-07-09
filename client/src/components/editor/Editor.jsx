@@ -1,19 +1,14 @@
-import "codemirror/lib/codemirror.css";
-import Editor1 from "@monaco-editor/react";
 import React from "react";
+import Editor1 from "@monaco-editor/react";
+
+// Code Mirror Css
+import "codemirror/lib/codemirror.css";
 
 const Editor = ({
-  language,
   value,
   onChange,
-  inputChange,
-  input,
   languageId,
 }) => {
-  // const handleChange = (editor, data, value) => {
-  //   onChange(value);
-  // };
-
   let judgeIdToMonaco = {
     46: "shell",
     48: "c",
@@ -51,7 +46,7 @@ const Editor = ({
     87: "fsharp",
   };
   return (
-    <React.Fragment>
+    <>
       <Editor1
         className="code-mirror-wrapper"
         language={judgeIdToMonaco[languageId]}
@@ -76,7 +71,7 @@ const Editor = ({
           wrappingIndent: "same",
         }}
       />
-    </React.Fragment>
+    </>
   );
 };
 

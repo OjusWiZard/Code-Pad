@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../images/home/logo.svg";
-import line from "../../images/home/line.svg";
 import { Link, useHistory } from "react-router-dom";
 import { getAllEvents } from "../../api/index";
 import Spinner from "../utils/Spinner";
 import Event from "../utils/Event";
+
+// Image Imports
+import logo from "../../images/home/logo.svg";
+import line from "../../images/home/line.svg";
+
+// CSS Imports
 import "./home.css";
 
 function Home() {
@@ -34,6 +38,7 @@ function Home() {
         history.push("/login");
       });
   }, []);
+
   if (loading) return <Spinner />;
   else
     return (
@@ -64,7 +69,6 @@ function Home() {
                 <div className="d-flex justify-content-center pt-5">
                   <img src={line} alt="" className="img-fluid" />
                 </div>
-
                 {events.length > 0 && (
                   <div>
                     <h4 className="font-vcr font-blue mt-5 pt-4 text-center mb-4">
@@ -76,7 +80,6 @@ function Home() {
                         <Event event={event} key={index} />
                       ))}
                     </div>
-
                     <div className="my-5 text-center button-hover px-5 home-events-button-bg">
                       <Link to="/events">
                         <div className="mt-4 see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">

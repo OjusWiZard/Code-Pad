@@ -53,10 +53,10 @@
   width: 50%;
 }
 .lower-section-images {
-  width: 40%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    width: 50%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 .lower-section-images img {
   cursor: pointer;
@@ -69,9 +69,12 @@
 .pagination span {
   cursor: pointer;
 }
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .lower-section {
     flex-direction: column;
+  }
+  .leaderboard-bg{
+    padding: 22px 10px;
   }
   .output {
     width: 100%;

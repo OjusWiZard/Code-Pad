@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import { forgotPassword } from "../../../api/index";
 import { useHistory } from "react-router-dom";
+import { ModalContext } from "../../../context/context";
+
+// Image Imports
 import Modal from "../../modal/index";
 import line from "../../../images/home/line.svg";
-import { ModalContext } from "../../../context/context";
 
 const ForgotPassword = () => {
   const history = useHistory();
@@ -28,7 +30,7 @@ const ForgotPassword = () => {
     forgotPassword(formData, history, openModal);
   };
   return (
-    <React.Fragment>
+    <>
       <div className="main-background">
         <div className="container py-sm-5">
           <div className="row d-flex justify-content-center">
@@ -66,14 +68,14 @@ const ForgotPassword = () => {
                   </div>
                 </form>
                 <div className="mt-4 text-center">
-                  <img src={line} alt="signup" className="img-fluid mt-4" />
+                  <img src={line} alt="Change" className="img-fluid mt-4" />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
