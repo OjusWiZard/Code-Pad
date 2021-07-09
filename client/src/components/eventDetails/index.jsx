@@ -130,12 +130,12 @@ function EventDetails() {
     String(leaderboard?.next)?.length - 1,
     String(leaderboard?.next)?.length
   );
-
+  console.log("NaN: ", page);
   if (isNaN(page)) {
-    if ((leaderboard?.count % 10) + 1 !== 1) {
-      page = (leaderboard?.count % 10) + 1;
+    if (leaderboard?.count > 10) {
+      page = (leaderboard.count % 10) + 1;
     } else {
-      page = 0;
+      page = 2;
     }
   }
   console.log(page);
@@ -229,7 +229,7 @@ function EventDetails() {
                             <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
                               <span className="ml-4">
-                                {user.score ? `${user.score}` : "0"}
+                                {user?.score ? `${user.score}` : "0"}
                               </span>
                             </div>
                           )}
