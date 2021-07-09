@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Modal from "../modal/index";
-import { ModalContext } from "../../context/context";
-import "./Editor.css";
-import IDE from "../../images/editor/IDE.svg";
 import Editor from "./Editor";
+import { ModalContext } from "../../context/context";
+
+// Image imports
+import IDE from "../../images/editor/IDE.svg";
+
+// CSS imports
+import "./Editor.css";
 
 const Form = () => {
   function b64DecodeUnicode(str) {
@@ -28,7 +32,6 @@ const Form = () => {
   const [output, setOutput] = useState("");
   const [languages, setLanguages] = useState([]);
   const [languageId, setLanguageId] = useState(54);
-
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -48,7 +51,7 @@ const Form = () => {
   };
 
   useEffect(() => {
-    axios.get("https://judge.hackncs.com/languages", config).then((data) => {
+    axios.get(`${process.env.REACT_APP_JUDGELANGUAGE}`, config).then((data) => {
       setLanguages(
         data.data.filter(
           (lang) => lang.id !== 54 && lang.id !== 44 && lang.id !== 89
@@ -64,7 +67,6 @@ const Form = () => {
     setOutput("");
     let data;
     let l = Number(languageId);
-
     if (input) {
       data = {
         source_code: btoa(value),
@@ -79,7 +81,7 @@ const Form = () => {
     }
     try {
       const res = await axios.post(
-        "https://judge.hackncs.com/submissions/?wait=true&base64_encoded=true",
+        `${process.env.REACT_APP_JUDGEHOST}`,
         data,
         config
       );
@@ -106,7 +108,7 @@ const Form = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div className="main-background">
         <div className="container pt-lg-5">
           <div className="row d-flex justify-content-center">
@@ -114,12 +116,8 @@ const Form = () => {
               <div className="d-flex justify-content-center pt-sm-5">
                 <img id="logo" src={IDE} alt="IDE" className="img-fluid" />
               </div>
-              <p className="font-robot font-lightGrey text-justify mt-5 pt-3 font-14 font-weight-bold">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. amet
-                qui! Sed, distinctio maiores consequatur velit, voluptatibus
-                deleniti voluptate suscipit corrupti odio amet inventore sunt,
-                esse molestiae et iusto tenetur laboriosam ipsam ab nemo harum
-                impedit.
+              <p className="font-robot font-lightGrey text-justify mt-3 pt-3 font-14 font-weight-bold">
+                Codepad's editor is a code-editor made for all the programmers out there.
               </p>
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="d-flex font-vcr justify-content-between align-items-center py-3 font-lightGrey">
@@ -133,7 +131,7 @@ const Form = () => {
                           }}
                           className="font-vcr font-blue"
                         >
-                          <option selected value={54}>
+                          <option selected value={54} className="font-lightGrey">
                             C++ (GCC 9.2.0)
                           </option>
                           {languages.map((lan) => (
@@ -184,7 +182,6 @@ const Form = () => {
                   </div>
                 </div>
               </form>
-
               <p className="font-vcr font-blue font-weight-bold mt-5 text-center mb-3">
                 &lt;&lt;&nbsp;&nbsp;HELLO OUTPUT&nbsp;&nbsp;&gt;&gt;
               </p>
@@ -215,7 +212,7 @@ const Form = () => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

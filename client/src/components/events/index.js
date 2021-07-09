@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import logo from "../../images/events/event_logo.svg";
 import line from "../../images/home/line.svg";
 
-
 import { useHistory } from "react-router-dom";
 // CSS IMPORTS
 import "./events.css";
@@ -29,7 +28,6 @@ function Events() {
       localStorage.clear();
       history.push("/login")
     })
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -41,7 +39,7 @@ function Events() {
   let pastEvents = allEvents?.filter((event) => event.status === "Past");
 
   return (
-    <React.Fragment>
+    <>
       {loading ? (
         <Spinner />
       ) : (
@@ -105,7 +103,7 @@ function Events() {
           </div>
         </div>
       )}
-    </React.Fragment>
+    </>
   );
 }
 export default Events;

@@ -1,22 +1,4 @@
-/* .main-background {
-  background: url("../../images/home/background.png");
-  background-repeat: no-repeat;
-  height: auto;
-  background-size: cover;
-} */
-
-/* .content-background {
-  background: url("../../images/home/contentBackground.png");
-  background-repeat: no-repeat;
-  height: auto;
-  overflow-y: auto;
-  background-size: cover;
-} */
-/* .main-background {
-  min-height: 100vh;
-} */
 .event-block {
-  /* border: 1px solid #3dbef5 !important; */
   background: transparent !important;
 }
 

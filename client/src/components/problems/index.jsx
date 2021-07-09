@@ -2,7 +2,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Modal from "../modal/index";
-import loginButton from "../../images/auth/login.svg";
 import { ModalContext } from "../../context/context";
 import avatar1 from "../../images/auth/peach.svg";
 import avatar2 from "../../images/auth/mario.svg";
@@ -83,7 +82,7 @@ function Problem() {
 
   // Fetching Languages
   useEffect(() => {
-    axios.get("https://judge.hackncs.com/languages", config).then((data) => {
+    axios.get(`${process.env.REACT_APP_JUDGELANGUAGE}`, config).then((data) => {
       setLanguages(
         data.data.filter(
           (lang) => lang.id !== 54 && lang.id !== 44 && lang.id !== 89
@@ -132,7 +131,7 @@ function Problem() {
         },
       };
       const res = await axios.post(
-        "https://judge.hackncs.com/submissions/?wait=true&base64_encoded=true",
+        `${process.env.REACT_APP_JUDGEHOST}`,
         data,
         config
       );
@@ -518,11 +517,11 @@ function Problem() {
                         onChange={(e) => setInput(e.target.value)}
                         id="custom"
                       />
-                      <div className="lower-section-images">
+                      <div className="d-flex justify-content-around lower-section-images ml-md-2">
                         <img
                           src={runCode}
                           alt="runCode"
-                          className="see-all-button"
+                          className="see-all-button mr-3"
                           onClick={(e) =>
                             handleRunCode(e, value, languageId, input)
                           }
@@ -531,16 +530,16 @@ function Problem() {
                           <img
                             src={submitCode}
                             alt="submitCode"
-                            className="see-all-button ml-3"
+                            className="see-all-button"
                             onClick={(e) => handleSubmitCode(e, value)}
                           />
                         ) : (
                           <Link to="/login">
-                            <img
-                              src={loginButton}
-                              alt="Login Button"
-                              className="see-all-button ml-3"
-                            />
+                            <div className="text-center button-hover">
+                              <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
+                                *LOGIN*
+                              </div>
+                            </div>
                           </Link>
                         )}
                       </div>

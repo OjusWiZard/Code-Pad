@@ -1,12 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState,useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { editUserInfo } from "../../../api";
 import { ModalContext } from "../../../context/context";
+
+// Images Imports
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
 import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
 import line from "../../../images/home/line.svg";
+
+// Css
 import "../editProfile/editProfile.css";
 
 function EditProfile() {
@@ -18,33 +22,28 @@ function EditProfile() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+useEffect(() => {
 
-  useEffect(() => {
-    console.log(
       Array.from(document.querySelectorAll(".img-avatar"))
         .find((img) => img.name === String(formData.avatar))
         .classList.add("active-avatar")
-    );
-  }, []);
 
+  }, []);
   const handleAvatar = (e) => {
     setFormData({ ...formData, avatar: e.target.name });
-
     document
       .querySelectorAll(".avatar-container .img-fluid")
       .forEach((img) => img.classList.remove("active-avatar"));
     e.target.classList.add("active-avatar");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     editUserInfo(formData, history, openModal, formMessage);
   };
 
-  // .find((img) => img.name === formData.avatar)
-  // .classList.add("active-avatar");
-
   return (
-    <React.Fragment>
+    <>
       <div className="main-background">
         <div className="container py-md-5">
           <div className="row d-flex justify-content-center">
@@ -57,7 +56,7 @@ function EditProfile() {
                   <img
                     name="1"
                     src={avatarOne}
-                    alt=""
+                    alt="peach"
                     className="img-fluid mx-2 img-avatar"
                     onClick={handleAvatar}
                     width="60px"
@@ -66,7 +65,7 @@ function EditProfile() {
                   <img
                     name="2"
                     src={avatarTwo}
-                    alt=""
+                    alt="mario"
                     className="img-fluid mx-2 img-avatar"
                     onClick={handleAvatar}
                     width="60px"
@@ -75,7 +74,7 @@ function EditProfile() {
                   <img
                     name="3"
                     src={avatarThree}
-                    alt=""
+                    alt="pacman"
                     className="img-fluid mx-2 img-avatar"
                     onClick={handleAvatar}
                     width="60px"
@@ -84,7 +83,7 @@ function EditProfile() {
                   <img
                     name="4"
                     src={avatarFour}
-                    alt=""
+                    alt="frog"
                     onClick={handleAvatar}
                     width="60px"
                     height="60px"
@@ -193,7 +192,7 @@ function EditProfile() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

@@ -126,19 +126,8 @@ function EventDetails() {
       console.log(data);
     });
   };
-  let page = String(leaderboard?.next)?.slice(
-    String(leaderboard?.next)?.length - 1,
-    String(leaderboard?.next)?.length
-  );
-  console.log("NaN: ", page);
-  if (isNaN(page)) {
-    if (leaderboard?.count > 10) {
-      page = (leaderboard.count % 10) + 1;
-    } else {
-      page = 2;
-    }
-  }
-  console.log(page);
+ let currentPage = leaderboard?.current;
+
   return (
     <React.Fragment>
       <div className="main-background">
@@ -225,11 +214,18 @@ function EventDetails() {
                             {counter > 0 && <span>Countdown: {counter}</span>}
                           </div> */}
                           </div>
-                          {user && (
+                          {user &&  user?.score ? (
                             <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
                               <span className="ml-4">
-                                {user?.score ? `${user.score}` : "0"}
+                               {user?.score ? `${user.score}` : "0"}
+                              </span>
+                            </div>
+                          ) : (
+                             <div className="score font-blue font-robot font-16">
+                              <img src={trophy} alt="trophy" />
+                              <span className="ml-4">
+                              0
                               </span>
                             </div>
                           )}
@@ -271,7 +267,7 @@ function EventDetails() {
                                 <div className="text-center my-2">
                                   <img src={noQuestions} alt="No Question" />
                                   <div className="mt-2 font-blue font-vcr font-16">
-                                    NO PROBLEMS
+                                   Problems will appear once the contest is live!
                                   </div>
                                 </div>
                               ) : (
@@ -354,11 +350,7 @@ function EventDetails() {
                                         className="user-rank"
                                         style={{ width: "20%" }}
                                       >
-                                        {String(
-                                          index +
-                                            1 * 10 * (parseInt(page) - 1) -
-                                            9
-                                        )}
+                                       {(currentPage-1)*10 + index + 1}
                                       </span>
                                       <div
                                         style={{ width: "60%" }}
