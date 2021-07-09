@@ -64,6 +64,8 @@ def submit(
             result = single_submission.submit(client)
         except Exception as err:
             print(err.response.text)
+            submission.status = "Evaluation Error"
+            submission.save()
             return
 
         wait_sec = 0.0625
