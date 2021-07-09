@@ -258,3 +258,6 @@ input#file-upload-button {
 .pagination-icon {
   font-size: 1.5rem;
 }
+.main-background{
+  min-height: 80vh;
+}
