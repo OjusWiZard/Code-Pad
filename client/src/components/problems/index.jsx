@@ -82,7 +82,7 @@ function Problem() {
   // Fetching Languages
   useEffect(() => {
     axios.get("https://judge.hackncs.com/languages", config).then((data) => {
-      setLanguages(data.data);
+      setLanguages(data.data.filter((lang) => lang.id !== 54));
     });
     getProblem(params.slug.toString().toUpperCase(), history)
       .then((data) => {
@@ -443,6 +443,7 @@ function Problem() {
                               }}
                               className="font-vcr font-blue"
                             >
+                              <option selected>C++ (GCC 9.2.0)</option>
                               {languages.map((lan) => (
                                 <option
                                   value={lan.id}
