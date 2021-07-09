@@ -2,18 +2,20 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Modal from "../modal/index";
+import loginButton from "../../images/auth/login.svg";
 import { ModalContext } from "../../context/context";
-import avatar1 from "../../images/auth/frog.svg";
+import avatar1 from "../../images/auth/peach.svg";
 import avatar2 from "../../images/auth/mario.svg";
-import avatar3 from "../../images/auth/peach.svg";
-import avatar4 from "../../images/auth/pacman.svg";
+import avatar3 from "../../images/auth/pacman.svg";
+import avatar4 from "../../images/auth/frog.svg";
+import noSubmissions from "../../images/eventDetails/nosubmissions.svg";
 import accepted from "../../images/problems/accepted.svg";
 import processing from "../../images/problems/pending.svg";
 import rejected from "../../images/problems/cross.svg";
 import runCode from "../../images/problems/runCode.svg";
 import submitCode from "../../images/problems/submitCode.svg";
 import Spinner from "../utils/Spinner";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import Editor from "../editor/Editor";
 import moment from "moment";
 import {
@@ -82,7 +84,11 @@ function Problem() {
   // Fetching Languages
   useEffect(() => {
     axios.get("https://judge.hackncs.com/languages", config).then((data) => {
-      setLanguages(data.data);
+      setLanguages(
+        data.data.filter(
+          (lang) => lang.id !== 54 && lang.id !== 44 && lang.id !== 89
+        )
+      );
     });
     getProblem(params.slug.toString().toUpperCase(), history)
       .then((data) => {
@@ -98,7 +104,6 @@ function Problem() {
     });
   }, [params.slug]);
   // Run Code
-  console.log(submissions);
   const handleRunCode = async (e, value, languageId, input) => {
     e.preventDefault();
     setOutput("");
@@ -131,8 +136,11 @@ function Problem() {
         data,
         config
       );
+      window.scrollTo(0, document.body.scrollHeight);
       let out =
-        res.data.stdout !== null ? b64DecodeUnicode(res.data.stdout) : null;
+        res.data.stdout !== null
+          ? b64DecodeUnicode(res.data.stdout)
+          : b64DecodeUnicode(res.data.compile_output);
       setOutputData({
         ...outputData,
         memory: res.data.memory,
@@ -141,7 +149,11 @@ function Problem() {
       });
       setOutput(out || res.data.status.description);
     } catch (error) {
-      openModal("Write some Code");
+      if (error.message === "URI malformed") {
+        setOutput("No Output");
+        return;
+      }
+      openModal("Write some code");
       <Modal />;
     }
   };
@@ -166,7 +178,11 @@ function Problem() {
     try {
       await codeSubmission(data, openModal);
     } catch (error) {
-      openModal(error);
+      if (error.message === "URI malformed") {
+        setOutput("No Output");
+        return;
+      }
+      openModal(error.message);
       <Modal />;
     }
   };
@@ -273,130 +289,146 @@ function Problem() {
                         flexDirection: "column",
                       }}
                     >
-                      <div
-                        className="d-flex leadeboard-leads justify-content-around"
-                        style={{
-                          border: "1px solid #405C6B",
-                        }}
-                      >
-                        <span
-                          className="font-robot"
-                          style={{ width: "10%" }}
-                        ></span>
-                        <span
-                          className="font-vcr text-center"
-                          style={{ width: "40%" }}
+                      {!submissions?.results ? (
+                        <div
+                          className="d-flex justify-content-center align-items-center text-center w-100 py-3"
+                          style={{ flexDirection: "column" }}
                         >
-                          Name
-                        </span>
-                        <span
-                          className="font-vcr text-center"
-                          style={{ width: "40%" }}
-                        >
-                          Time
-                        </span>
-                      </div>
-                      {submissions?.results?.map((submission, index) => {
-                        if (submission.status === "Accepted") {
-                          return (
-                            <div
-                              key={index}
-                              className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                          <img
+                            src={noSubmissions}
+                            style={{ width: "100px", height: "100px" }}
+                            alt="submissions"
+                          />
+                          <br />
+                          <div className="font-vcr font-blue font-16">
+                            NO SUBMISSION
+                          </div>
+                        </div>
+                      ) : (
+                        <React.Fragment>
+                          <div
+                            className="d-flex leadeboard-leads justify-content-around"
+                            style={{
+                              border: "1px solid #405C6B",
+                            }}
+                          >
+                            <span
+                              className="font-robot"
+                              style={{ width: "10%" }}
+                            ></span>
+                            <span
+                              className="font-vcr text-center"
+                              style={{ width: "40%" }}
                             >
-                              <span style={{ width: "10%" }}>
-                                <img
-                                  src={avatarData[submission.user.avatar]}
-                                  className="user-image"
-                                  alt="avatar"
-                                />
-                              </span>
-                              <div
-                                style={{ width: "40%" }}
-                                className="font-lightGrey"
-                              >
-                                {submission.user.username}
-                              </div>
-                              <span
-                                className="user-score"
-                                style={{ width: "40%" }}
-                              >
-                                {" "}
-                                {moment(
-                                  submission?.datetime,
-                                  "YYYYMMDD"
-                                ).fromNow()}
-                              </span>
-                              <img src={accepted} alt="12" />
-                            </div>
-                          );
-                        } else if (
-                          submission.status === "Processing" ||
-                          submission.status === "In Queue"
-                        ) {
-                          return (
-                            <div
-                              key={index}
-                              className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                              Name
+                            </span>
+                            <span
+                              className="font-vcr text-center"
+                              style={{ width: "40%" }}
                             >
-                              {" "}
-                              <span style={{ width: "10%" }}>
-                                <img
-                                  src={avatarData[submission.user.avatar]}
-                                  className="user-image"
-                                  alt="avatar"
-                                />
-                              </span>
-                              <div
-                                style={{ width: "40%" }}
-                                className="font-lightGrey"
-                              >
-                                {submission.user.username}
-                              </div>
-                              <span
-                                className="user-score"
-                                style={{ width: "40%" }}
-                              >
-                                {moment(
-                                  submission?.datetime,
-                                  "YYYYMMDD"
-                                ).fromNow()}
-                              </span>
-                              <img src={processing} alt="12" />
-                            </div>
-                          );
-                        } else {
-                          return (
-                            <div
-                              key={index}
-                              className="user-data d-flex justify-content-around leaderboard-bg font-robot"
-                            >
-                              <span style={{ width: "10%" }}>
-                                <img
-                                  src={avatarData[submission.user.avatar]}
-                                  className="user-image"
-                                  alt="avatar"
-                                />
-                              </span>
-                              <div
-                                style={{ width: "40%" }}
-                                className="font-lightGrey"
-                              >
-                                {submission.user.username}
-                              </div>
-                              <span
-                                className="user-score"
-                                style={{ width: "40%" }}
-                              >
-                                {moment(
-                                  submission?.datetime,
-                                  "YYYYMMDD"
-                                ).fromNow()}
-                              </span>
-                              <img src={rejected} alt="12" />
-                            </div>
-                          );
-                        }
-                      })}
+                              Time
+                            </span>
+                          </div>
+                          {submissions?.results?.map((submission, index) => {
+                            if (submission.status === "Accepted") {
+                              return (
+                                <div
+                                  key={index}
+                                  className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                                >
+                                  <span style={{ width: "10%" }}>
+                                    <img
+                                      src={avatarData[submission.user.avatar]}
+                                      className="user-image"
+                                      alt="avatar"
+                                    />
+                                  </span>
+                                  <div
+                                    style={{ width: "40%" }}
+                                    className="font-lightGrey"
+                                  >
+                                    {submission.user.username}
+                                  </div>
+                                  <span
+                                    className="user-score"
+                                    style={{ width: "40%" }}
+                                  >
+                                    {" "}
+                                    {moment(submission.datetime)
+                                      .startOf("hour")
+                                      .fromNow()}
+                                  </span>
+                                  <img src={accepted} alt="12" />
+                                </div>
+                              );
+                            } else if (
+                              submission.status === "Processing" ||
+                              submission.status === "In Queue"
+                            ) {
+                              return (
+                                <div
+                                  key={index}
+                                  className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                                >
+                                  {" "}
+                                  <span style={{ width: "10%" }}>
+                                    <img
+                                      src={avatarData[submission.user.avatar]}
+                                      className="user-image"
+                                      alt="avatar"
+                                    />
+                                  </span>
+                                  <div
+                                    style={{ width: "40%" }}
+                                    className="font-lightGrey"
+                                  >
+                                    {submission.user.username}
+                                  </div>
+                                  <span
+                                    className="user-score"
+                                    style={{ width: "40%" }}
+                                  >
+                                    {moment(submission.datetime)
+                                      .startOf("hour")
+                                      .fromNow()}
+                                  </span>
+                                  <img src={processing} alt="12" />
+                                </div>
+                              );
+                            } else {
+                              return (
+                                <div
+                                  key={index}
+                                  className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                                >
+                                  <span style={{ width: "10%" }}>
+                                    <img
+                                      src={avatarData[submission.user.avatar]}
+                                      className="user-image"
+                                      alt="avatar"
+                                    />
+                                  </span>
+                                  <div
+                                    style={{ width: "40%" }}
+                                    className="font-lightGrey"
+                                  >
+                                    {submission.user.username}
+                                  </div>
+                                  <span
+                                    className="user-score"
+                                    style={{ width: "40%" }}
+                                  >
+                                    {moment(submission.datetime)
+                                      .startOf("minutes")
+                                      .fromNow()}
+                                  </span>
+                                  <img src={rejected} alt="12" />
+                                </div>
+                              );
+                            }
+                          })}
+                        </React.Fragment>
+                      )}
 
                       <div className="d-flex justify-content-center font-robot font-blue ">
                         <nav className="mt-4">
@@ -439,6 +471,9 @@ function Problem() {
                               }}
                               className="font-vcr font-blue"
                             >
+                              <option selected value={54}>
+                                C++ (GCC 9.2.0)
+                              </option>
                               {languages.map((lan) => (
                                 <option
                                   value={lan.id}
@@ -489,13 +524,21 @@ function Problem() {
                             handleRunCode(e, value, languageId, input)
                           }
                         />
-                        {user && (
+                        {user ? (
                           <img
                             src={submitCode}
                             alt="submitCode"
                             className="see-all-button ml-3"
                             onClick={(e) => handleSubmitCode(e, value)}
                           />
+                        ) : (
+                          <Link to="/login">
+                            <img
+                              src={loginButton}
+                              alt="Login Button"
+                              className="see-all-button ml-3"
+                            />
+                          </Link>
                         )}
                       </div>
                     </div>

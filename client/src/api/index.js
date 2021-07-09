@@ -66,9 +66,8 @@ export const userInfo = async (history) => {
 
 export const editUserInfo = async (formData, history, openModal, formMessage) => {
   try {
-    console.log(formData);
     const { data } = await API.patch(`/accounts/users/me/`, formData, config);
-    console.log("NAYA WALA ", data);
+
     localStorage.setItem("user", JSON.stringify(data));
     openModal("Information updated", "Okay");
     <Modal />;
@@ -110,13 +109,11 @@ export const codeSubmission = async (formData, openModal) => {
   try {
     let res = await API.post(`/submissions/`, formData, config);
     let status, id;
-    openModal(`Processing - Wait for the verdict", "Okay"`);
+    openModal("Processing - Wait for the verdict", "okay");
     <Modal />;
     id = res.data.id;
-    console.log("OUTSIDE: ", res.data);
     const interval = setInterval(() => {
       API.get(`/viewsubmission/${id}`).then(res => {
-        console.log("Inside Data: ", res.data);
         if (res.data.status !== "In Queue" && res.data.status !== "Processing") {
 
           openModal(`${res.data.status} - ${res.data.testcases_passed} passed`, "okay");

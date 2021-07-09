@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./navbar.css";
-import avatar1 from "../../images/auth/frog.svg";
+import avatar1 from "../../images/auth/peach.svg";
 import avatar2 from "../../images/auth/mario.svg";
-import avatar3 from "../../images/auth/peach.svg";
-import avatar4 from "../../images/auth/pacman.svg";
+import avatar3 from "../../images/auth/pacman.svg";
+import avatar4 from "../../images/auth/frog.svg";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { ModalContext } from "../../context/context";
 import { signOut } from "../../api";
@@ -461,10 +461,10 @@ function Navbar() {
               fill="#131C20"
             />
           </mask>
-
           {token ? (
             <Link
               className=" sidebar-item px-3 d-flex font-25 mb-4 mt-3"
+              style={{ cursor: "pointer" }}
               onClick={() => setProfileDisplay(!profileDisplay)}
             >
               <image
@@ -540,14 +540,6 @@ function Navbar() {
             />
           </Link>
           <Link to="/editor" onClick={() => setProfileDisplay(false)}>
-            {/* <text
-            x="1230.23"
-            y="115.656"
-            fill={`${location.pathname === "/editor" ? "#131C20" : "#3dbef5"}`}
-            class="font-vcr font-blue"
-          >
-            EDITOR
-          </text> */}
             <path
               d="M1260.13 120.007V121.96H1252.32V125.866H1258.18V127.82H1252.32V131.726H1260.13V133.679H1250.36V120.007H1260.13ZM1264.03 121.96V131.726H1268.92V130.749H1269.89V122.937H1268.92V121.96H1264.03ZM1262.08 133.679V120.007H1269.89V120.984H1270.87V121.96H1271.85V131.726H1270.87V132.702H1269.89V133.679H1262.08ZM1275.75 133.679V131.726H1277.71V121.96H1275.75V120.007H1281.61V121.96H1279.66V131.726H1281.61V133.679H1275.75ZM1289.43 121.96H1285.52V120.007H1295.28V121.96H1291.38V133.679H1289.43V121.96ZM1304.07 121.96H1300.17V122.937H1299.19V130.749H1300.17V131.726H1304.07V130.749H1305.05V122.937H1304.07V121.96ZM1299.19 120.984V120.007H1305.05V120.984H1306.03V121.96H1307V131.726H1306.03V132.702H1305.05V133.679H1299.19V132.702H1298.21V131.726H1297.24V121.96H1298.21V120.984H1299.19ZM1310.91 121.96V125.866H1315.79V124.89H1316.77V122.937H1315.79V121.96H1310.91ZM1311.89 127.82H1310.91V133.679H1308.96V120.007H1316.77V120.984H1317.75V121.96H1318.72V125.866H1317.75V126.843H1316.77V127.82H1314.82V128.796H1315.79V129.773H1316.77V130.749H1317.75V131.726H1318.72V133.679H1316.77V132.702H1315.79V131.726H1314.82V130.749H1313.84V129.773H1312.86V128.796H1311.89V127.82Z"
               fill={`${
@@ -563,6 +555,7 @@ function Navbar() {
               y="78"
               fontSize="22px"
               className="font-vcr"
+              style={{ cursor: "pointer" }}
               onClick={() => setProfileDisplay(!profileDisplay)}
             >
               {user?.full_name?.split(" ")[0]}
@@ -795,56 +788,58 @@ function Navbar() {
           <line x1="321.5" y1="48.5" x2="337.5" y2="48.5" stroke="#405C6B" />
           <line x1="335.5" y1="48.5" x2="345.005" y2="48.5" stroke="#405C6B" />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M44.4543 16.1112H38.854V17.0455H37.9146V24.4749H38.854V25.4003H44.4543V24.4749H45.3845V17.0455H44.4543V16.1112ZM43.5239 19.8304V23.5406H39.7844V17.9706H43.5239V19.8302V19.8304ZM53.2013 17.0364H52.2617V16.1021H46.6615V25.3912H52.2617V24.4658H53.2013V23.5315H54.1315V17.9616H53.2013V17.0362V17.0364ZM52.2617 19.8207V23.531H48.5314V17.9616H52.2617V19.8211V19.8207ZM61.0091 16.1019H55.4085V25.391H62.8785V23.5314H57.2782V21.6808H61.0091V20.7465H61.9486V19.8211H57.2781V17.9616H62.8784V16.1019H61.0091ZM70.6955 16.111H64.1554V25.4001H66.0252V22.6158H69.7557V21.6815H70.6951V20.7563H71.6254V17.0453H70.6951V16.1112L70.6955 16.111ZM67.896 20.7561H66.0252V17.9718H69.7557V20.7561H67.8951H67.896ZM79.4431 17.0459H78.5127V16.1112H74.7722V17.0455H73.8418V17.9707H72.9024V25.4001H74.7722V22.6158H78.5117V25.4001H80.3724V17.9707H79.4421V17.0455L79.4431 17.0459ZM78.5218 20.747H74.7814V18.8955H75.7117V17.9612H77.5815V18.8955H78.5209V20.7461L78.5218 20.747Z"
             fill="#00425E"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M34.2109 16.0757H24.6105V17.6774H23V30.4134H24.6105V31.9996H34.2109V30.4134H35.8058V27.2258H32.6004V28.8119H26.2053V19.2637H32.6004V20.8652H35.8058V17.6774H34.2109V16.0757Z"
             fill="#00425E"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M93.6537 17.6774H92.0433V16.0757H82.4429V31.9999H92.0433V30.4134H93.6537V28.8119H95.2487V19.2637H93.6537V17.6774ZM92.0433 22.4515V28.8119H85.6481V19.2637H92.0433V22.4515Z"
             fill="#00425E"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M37.96 29.1351H80.3191V31.9432H37.96V29.1351Z"
             fill="#00425E"
           />
+          <Link to="/">
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M44.4543 15.0352H38.854V15.9695H37.9146V23.3989H38.854V24.3243H44.4543V23.3989H45.3845V15.9695H44.4543V15.0352ZM43.5239 18.7544V22.4646H39.7844V16.8947H43.5239V18.7544ZM53.2013 15.9604H52.2617V15.0261H46.6615V24.3152H52.2617V23.3898H53.2013V22.4555H54.1315V16.8856H53.2013V15.9604ZM52.2617 18.7447V22.4549H48.5314V16.8856H52.2617V18.7457V18.7447ZM61.0091 15.0261H55.4085V24.3152H62.8785V22.4555H57.2782V20.6049H61.0091V19.6706H61.9486V18.7457H57.2781V16.8856H62.8784V15.0261H61.0091ZM70.6955 15.0352H64.1554V24.3243H66.0252V21.5399H69.7557V20.6056H70.6951V19.6804H71.6254V15.9695H70.6951V15.0352H70.6955ZM67.896 19.6803H66.0252V16.8959H69.7557V19.6803H67.8951H67.896ZM79.4431 15.97H78.5127V15.0357H74.7722V15.97H73.8418V16.8952H72.9024V24.3247H74.7722V21.5403H78.5117V24.3247H80.3724V16.8952H79.4421V15.9695L79.4431 15.97ZM78.5218 19.6712H74.7814V17.82H75.7117V16.8856H77.5815V17.82H78.5209V19.6706L78.5218 19.6712Z"
+              fill="#3dbef5"
+            />
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M34.2109 15H24.6105V16.6017H23V29.338H24.6105V30.9242H34.2109V29.338H35.8058V26.1501H32.6004V27.7362H26.2053V18.188H32.6004V19.7897H35.8058V16.6017H34.2109V15Z"
+              fill="#3dbef5"
+            />
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M93.6537 16.6017H92.0433V15H82.4429V30.9242H92.0433V29.338H93.6537V27.7362H95.2487V18.188H93.6537V16.6017ZM92.0433 21.3759V27.7362H85.6481V18.188H92.0433V21.3759Z"
+              fill="#3dbef5"
+            />
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M37.96 28.0592H80.3191V30.8673H37.96V28.0592Z"
+              fill="#3dbef5"
+            />
+          </Link>
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M44.4543 15.0352H38.854V15.9695H37.9146V23.3989H38.854V24.3243H44.4543V23.3989H45.3845V15.9695H44.4543V15.0352ZM43.5239 18.7544V22.4646H39.7844V16.8947H43.5239V18.7544ZM53.2013 15.9604H52.2617V15.0261H46.6615V24.3152H52.2617V23.3898H53.2013V22.4555H54.1315V16.8856H53.2013V15.9604ZM52.2617 18.7447V22.4549H48.5314V16.8856H52.2617V18.7457V18.7447ZM61.0091 15.0261H55.4085V24.3152H62.8785V22.4555H57.2782V20.6049H61.0091V19.6706H61.9486V18.7457H57.2781V16.8856H62.8784V15.0261H61.0091ZM70.6955 15.0352H64.1554V24.3243H66.0252V21.5399H69.7557V20.6056H70.6951V19.6804H71.6254V15.9695H70.6951V15.0352H70.6955ZM67.896 19.6803H66.0252V16.8959H69.7557V19.6803H67.8951H67.896ZM79.4431 15.97H78.5127V15.0357H74.7722V15.97H73.8418V16.8952H72.9024V24.3247H74.7722V21.5403H78.5117V24.3247H80.3724V16.8952H79.4421V15.9695L79.4431 15.97ZM78.5218 19.6712H74.7814V17.82H75.7117V16.8856H77.5815V17.82H78.5209V19.6706L78.5218 19.6712Z"
-            fill="#35A4D3"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M34.2109 15H24.6105V16.6017H23V29.338H24.6105V30.9242H34.2109V29.338H35.8058V26.1501H32.6004V27.7362H26.2053V18.188H32.6004V19.7897H35.8058V16.6017H34.2109V15Z"
-            fill="#35A4D3"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M93.6537 16.6017H92.0433V15H82.4429V30.9242H92.0433V29.338H93.6537V27.7362H95.2487V18.188H93.6537V16.6017ZM92.0433 21.3759V27.7362H85.6481V18.188H92.0433V21.3759Z"
-            fill="#35A4D3"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M37.96 28.0592H80.3191V30.8673H37.96V28.0592Z"
-            fill="#35A4D3"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M38.8163 28.6269H76.8726V29.2543H38.8163V28.6269ZM77.6609 28.6269H79.6365V29.2543H77.6609V28.6269ZM83.5106 15.5872H90.967V16.5432H83.5106V15.5872ZM25.6001 15.5872H33.0564V16.5432H25.6001V15.5872ZM75.2544 15.4976H77.9201V16.1548H75.2544V15.4976ZM64.7679 15.4976H70.0243V16.1548H64.7677V15.4976H64.7679ZM47.2417 15.4976H51.7619V16.1548H47.2417V15.4976ZM39.3946 15.3781H43.7122V16.0353H39.3945V15.3778L39.3946 15.3781ZM56.0311 15.5051H62.3425V16.1474H56.031V15.5051H56.0311Z"
             fill="#BAEAFF"
           />
@@ -858,21 +853,21 @@ function Navbar() {
           />
           <path
             d="M324 16H345"
-            stroke="#35A4D3"
+            stroke="#3dbef5"
             stroke-width="3"
             stroke-linecap="square"
             onClick={handleClick}
           />
           <path
             d="M328.5 22L345 22"
-            stroke="#35A4D3"
+            stroke="#3dbef5"
             stroke-width="3"
             stroke-linecap="square"
             onClick={handleClick}
           />
           <path
             d="M324 28H345"
-            stroke="#35A4D3"
+            stroke="#3dbef5"
             stroke-width="3"
             stroke-linecap="square"
             onClick={handleClick}
@@ -913,13 +908,17 @@ function Navbar() {
               <img
                 src={close}
                 alt="close"
-                width="30px"
-                height="30px"
+                width="20px"
+                height="20px"
                 className="m-4"
               />
             </div>
             {token && user && (
-              <Link to="/profile" className="px-5 d-flex mb-4 mt-3">
+              <Link
+                to="/profile"
+                className="px-5 d-flex mb-4 mt-3"
+                style={{ cursor: "pointer" }}
+              >
                 <img
                   src={avatarData[user?.avatar]}
                   alt="avatar"
@@ -929,12 +928,16 @@ function Navbar() {
                 />
                 <div className="ml-3">
                   <div
+                    style={{ cursor: "pointer" }}
                     className="font-vcr mt-1 font-blue"
                     style={{ fontSize: "22px" }}
                   >
                     {user.full_name}
                   </div>
-                  <span className="font-robot mt-2 font-blue">
+                  <span
+                    style={{ cursor: "pointer" }}
+                    className="font-robot mt-2 font-blue"
+                  >
                     {user.username}
                   </span>
                 </div>
@@ -970,9 +973,13 @@ function Navbar() {
                     Edit Profile
                   </div>
                 </Link>
-                <div onClick={() => signOut(history, openModal)}>
+                <div
+                  onClick={() => signOut(history, openModal)}
+                  style={{ cursor: "pointer" }}
+                >
                   <div
-                    className={`mt-2 font-vcr px-5 sidebar-item text-uppercase py-2`}
+                    className={`mt-2 font-vcr px-5 sidebar-item text-uppercase py-2 mb-5`}
+                    style={{ cursor: "pointer" }}
                   >
                     Logout
                   </div>
@@ -991,7 +998,7 @@ function Navbar() {
                 </Link>
                 <Link to="/login">
                   <div
-                    className={`mt-2 font-vcr px-5 sidebar-item py-2 ${
+                    className={`mt-2 font-vcr px-5 sidebar-item text-uppercase py-2 mb-5 ${
                       location.pathname === "/login" && "sidebar-item-active"
                     }`}
                   >

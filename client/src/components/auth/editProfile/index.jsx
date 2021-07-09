@@ -1,13 +1,12 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { editUserInfo } from "../../../api";
+import { ModalContext } from "../../../context/context";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
 import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
-import update from "../../../images/auth/update.svg";
 import line from "../../../images/home/line.svg";
-import { editUserInfo } from "../../../api";
-import { ModalContext } from "../../../context/context";
 import "../editProfile/editProfile.css";
 
 function EditProfile() {
@@ -26,7 +25,6 @@ function EditProfile() {
       .forEach((img) => img.classList.add("active-avatar"));
     e.target.classList.remove("active-avatar");
   };
-  console.log(formData);
   const handleSubmit = (e) => {
     e.preventDefault();
     editUserInfo(formData, history, openModal, formMessage);
@@ -34,10 +32,10 @@ function EditProfile() {
   return (
     <React.Fragment>
       <div className="main-background">
-        <div className="container py-5">
+        <div className="container py-md-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-xl-7 col-lg-7 col-md-8 col-sm-11 col-11 mx-auto my-5 content-background px-lg-5">
-              <div className="my-lg-5 py-3 px-lg-3">
+            <div className="col-xl-7 col-lg-7 col-md-8 col-sm-11 col-11 mx-auto my-md-5 content-background px-lg-5">
+              <div className="my-md-5 py-lg-3 px-lg-3">
                 <h4 className="font-vcr font-blue text-center font-weight-bold">
                   **&nbsp;EDIT PROFILE&nbsp;**
                 </h4>

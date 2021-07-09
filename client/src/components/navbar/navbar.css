@@ -30,12 +30,12 @@
   position: fixed;
   top: 0px;
   right: 0px;
-  width: 25vw;
-  height: 65%;
+  width: 45vw;
+  height: auto;
   z-index: 1;
   background-color: #131c20;
   color: #7a8589;
-  border-left: 2px solid #405c6b;
+  border: 2px solid #405c6b;
   animation: all 1s ease;
   display: block;
 }

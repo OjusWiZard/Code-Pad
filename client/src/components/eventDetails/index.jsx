@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import pointerLeft from "../../images/eventDetails/pointer-left.svg";
 import dash from "../../images/eventDetails/dash.svg";
 import "./eventDetails.css";
-import avatar1 from "../../images/auth/frog.svg";
+import avatar1 from "../../images/auth/peach.svg";
 import avatar2 from "../../images/auth/mario.svg";
-import avatar3 from "../../images/auth/peach.svg";
-import avatar4 from "../../images/auth/pacman.svg";
+import avatar3 from "../../images/auth/pacman.svg";
+import avatar4 from "../../images/auth/frog.svg";
 import noLeaderboard from "../../images/eventDetails/noleaderboard.svg";
+import noQuestions from "../../images/eventDetails/noquestions.svg";
 import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
@@ -40,6 +41,7 @@ function EventDetails() {
       .then((data) => {
         setEvent(data);
         console.log(data);
+        const abc = new Date(data.datetime);
         const currentTime = new Date().getTime();
         const eventStartTime = new Date(data.datetime).getTime();
         const duration = data.duration;
@@ -49,16 +51,27 @@ function EventDetails() {
           Number(duration.split(":")[2]);
         const eventEndTime = eventStartTime + eventDuration * 1000;
 
+        console.log(Date.parse(data.duration));
+
+        if (abc == new Date()) {
+          const eventStartTime = new Date(data.datetime).getTime();
+          const eventDuration =
+            Number(duration.split(":")[0]) * 60 * 60 +
+            Number(duration.split(":")[1]) * 60 +
+            Number(duration.split(":")[2]);
+          console.log("EventStartTime: ", eventStartTime);
+          console.log("eventDuration: ", eventDuration * 1000);
+        }
         // const getTime = new Date(today - eventtime);
         // console.log(today);
         // console.log(data.datetime);
         // console.log("GETTTTTTTTTTTTTTTT", getTime);
-        console.log("CurrenTime: ", currentTime);
-        console.log("EventStartTime: ", eventStartTime);
-        console.log("eventDuration: ", eventDuration * 1000);
-        console.log("eventEndTime: ", eventEndTime);
+        // console.log("CurrenTime: ", currentTime);
+        // console.log("EventStartTime: ", eventStartTime);
+        // console.log("eventDuration: ", eventDuration * 1000);
+        // console.log("eventEndTime: ", eventEndTime);
         const timeLeft = eventEndTime - currentTime;
-        console.log("TimeLeft: ", timeLeft);
+        // console.log("TimeLeft: ", timeLeft);
         setCounter(timeLeft);
 
         seteventdate(data.datetime);
@@ -79,6 +92,7 @@ function EventDetails() {
     getLeaderboard(params.slug)
       .then((data) => {
         setLeaderboard(data);
+        console.log(data);
       })
       .catch((err) => {
         console.log("Leaderboard Error: ", err);
@@ -97,7 +111,7 @@ function EventDetails() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.slug]);
-  setInterval(() => setCounter(counter - 1), 1000);
+  // setInterval(() => setCounter(counter - 1), 1000);
   const [active, setActive] = useState("about");
   const removeClass = (e) => {
     document
@@ -108,13 +122,16 @@ function EventDetails() {
   const paginationLeaderboard = (text) => {
     getLeaderboardPagination(text).then((data) => {
       setLeaderboard(data);
+      console.log(data);
     });
   };
   let page = String(leaderboard?.next)?.slice(
     String(leaderboard?.next)?.length - 1,
     String(leaderboard?.next)?.length
   );
-
+  if (isNaN(page)) {
+    page = Math.ceil(leaderboard?.count % 10) + 1;
+  }
   return (
     <React.Fragment>
       <div className="main-background">
@@ -196,9 +213,9 @@ function EventDetails() {
                       <div>
                         <div className="dashboard font-vcr font-lightGrey">
                           <h5>*&nbsp;Dashboard&nbsp;*</h5>
-                          <div>
+                          {/* <div>
                             {counter > 0 && <span>Countdown: {counter}</span>}
-                          </div>
+                          </div> */}
                         </div>
                         {user && (
                           <div className="score">
@@ -238,54 +255,62 @@ function EventDetails() {
                               <div className="font-blue font-vcr font-18 mt-3">
                                 #PROBLEMS
                               </div>
-                              <div
-                                className=" d-flex mt-3"
-                                style={{ flexDirection: "column" }}
-                              >
-                                <div className=" d-flex leadeboard-leads justify-content-between">
-                                  <span>Name</span>
-                                  <span
-                                    className="text-right"
-                                    style={{ width: "30%" }}
-                                  >
-                                    Q.Code
-                                  </span>
-                                  <span>Points</span>
+                              {!event?.problem_set ? (
+                                <div className="text-center my-2">
+                                  <img src={noQuestions} alt="No Question" />
+                                  <div className="mt-2 font-blue font-vcr font-16">
+                                    NO PROBLEMS
+                                  </div>
                                 </div>
-                                {event?.problem_set?.map((problem, index) => (
-                                  <Link
-                                    key={index}
-                                    to={`/problems/${problem.slug}`}
-                                    target="_blank"
-                                  >
-                                    <div className="user-data d-flex justify-content-between leaderboard-bg">
-                                      <div
-                                        className="user-rank font-blue font-vcr"
-                                        style={{
-                                          width: "40%",
-                                          textAlign: "left",
-                                        }}
-                                      >
-                                        {problem.title}
-                                      </div>
-                                      <div className="user-info px-lg-3 mx-auto">
-                                        <span
-                                          className="user-name"
-                                          style={{ width: "40%" }}
+                              ) : (
+                                <div
+                                  className=" d-flex mt-3"
+                                  style={{ flexDirection: "column" }}
+                                >
+                                  <div className=" d-flex leadeboard-leads justify-content-between">
+                                    <span>Name</span>
+                                    <span
+                                      className="text-right"
+                                      style={{ width: "30%" }}
+                                    >
+                                      Q.Code
+                                    </span>
+                                    <span>Points</span>
+                                  </div>
+                                  {event?.problem_set?.map((problem, index) => (
+                                    <Link
+                                      key={index}
+                                      to={`/problems/${problem.slug}`}
+                                    >
+                                      <div className="user-data d-flex justify-content-between leaderboard-bg">
+                                        <div
+                                          className="user-rank font-blue font-vcr"
+                                          style={{
+                                            width: "40%",
+                                            textAlign: "left",
+                                          }}
                                         >
-                                          {problem.slug}
-                                        </span>
+                                          {problem.title}
+                                        </div>
+                                        <div className="user-info px-lg-3 mx-auto">
+                                          <span
+                                            className="user-name"
+                                            style={{ width: "40%" }}
+                                          >
+                                            {problem.slug}
+                                          </span>
+                                        </div>
+                                        <div
+                                          className="user-score text-right"
+                                          style={{ width: "20%" }}
+                                        >
+                                          {problem?.points}
+                                        </div>
                                       </div>
-                                      <div
-                                        className="user-score text-right"
-                                        style={{ width: "20%" }}
-                                      >
-                                        {problem?.points}
-                                      </div>
-                                    </div>
-                                  </Link>
-                                ))}
-                              </div>
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           )}
                           {active === "leaderboard" && (
@@ -319,7 +344,7 @@ function EventDetails() {
                                       >
                                         {String(
                                           index +
-                                            1 * 10 * (Number(page) - 1) -
+                                            1 * 10 * (parseInt(page) - 1) -
                                             9
                                         )}
                                       </span>
