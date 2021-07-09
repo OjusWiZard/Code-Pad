@@ -289,7 +289,7 @@ function Problem() {
                         flexDirection: "column",
                       }}
                     >
-                      {!submissions?.results ? (
+                      {!submissions?.results?.length > 0 ? (
                         <div
                           className="d-flex justify-content-center align-items-center text-center w-100 py-3"
                           style={{ flexDirection: "column" }}
