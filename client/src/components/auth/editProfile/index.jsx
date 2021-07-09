@@ -1,13 +1,12 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { editUserInfo } from "../../../api";
+import { ModalContext } from "../../../context/context";
 import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
 import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
-import update from "../../../images/auth/update.svg";
 import line from "../../../images/home/line.svg";
-import { editUserInfo } from "../../../api";
-import { ModalContext } from "../../../context/context";
 import "../editProfile/editProfile.css";
 
 function EditProfile() {
@@ -26,7 +25,6 @@ function EditProfile() {
       .forEach((img) => img.classList.add("active-avatar"));
     e.target.classList.remove("active-avatar");
   };
-  console.log(formData);
   const handleSubmit = (e) => {
     e.preventDefault();
     editUserInfo(formData, history, openModal, formMessage);
@@ -43,7 +41,7 @@ function EditProfile() {
                 </h4>
                 <div className="d-flex justify-content-center mt-5 avatar-container">
                   <img
-                    name="0"
+                    name="1"
                     src={avatarOne}
                     alt=""
                     className="img-fluid mx-2"
@@ -52,7 +50,7 @@ function EditProfile() {
                     height="60px"
                   />
                   <img
-                    name="1"
+                    name="2"
                     src={avatarTwo}
                     alt=""
                     className="img-fluid mx-2"
@@ -61,7 +59,7 @@ function EditProfile() {
                     height="60px"
                   />
                   <img
-                    name="2"
+                    name="3"
                     src={avatarThree}
                     alt=""
                     className="img-fluid mx-2"
@@ -70,7 +68,7 @@ function EditProfile() {
                     height="60px"
                   />
                   <img
-                    name="3"
+                    name="4"
                     src={avatarFour}
                     alt=""
                     onClick={handleAvatar}

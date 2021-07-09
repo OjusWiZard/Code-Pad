@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./navbar.css";
-import avatar1 from "../../images/auth/frog.svg";
+import avatar1 from "../../images/auth/peach.svg";
 import avatar2 from "../../images/auth/mario.svg";
-import avatar3 from "../../images/auth/peach.svg";
-import avatar4 from "../../images/auth/pacman.svg";
+import avatar3 from "../../images/auth/pacman.svg";
+import avatar4 from "../../images/auth/frog.svg";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { ModalContext } from "../../context/context";
 import { signOut } from "../../api";
@@ -464,6 +464,7 @@ function Navbar() {
           {token ? (
             <Link
               className=" sidebar-item px-3 d-flex font-25 mb-4 mt-3"
+              style={{ cursor: "pointer" }}
               onClick={() => setProfileDisplay(!profileDisplay)}
             >
               <image
@@ -554,6 +555,7 @@ function Navbar() {
               y="78"
               fontSize="22px"
               className="font-vcr"
+              style={{ cursor: "pointer" }}
               onClick={() => setProfileDisplay(!profileDisplay)}
             >
               {user?.full_name?.split(" ")[0]}
@@ -912,7 +914,11 @@ function Navbar() {
               />
             </div>
             {token && user && (
-              <Link to="/profile" className="px-5 d-flex mb-4 mt-3">
+              <Link
+                to="/profile"
+                className="px-5 d-flex mb-4 mt-3"
+                style={{ cursor: "pointer" }}
+              >
                 <img
                   src={avatarData[user?.avatar]}
                   alt="avatar"
@@ -922,12 +928,16 @@ function Navbar() {
                 />
                 <div className="ml-3">
                   <div
+                    style={{ cursor: "pointer" }}
                     className="font-vcr mt-1 font-blue"
                     style={{ fontSize: "22px" }}
                   >
                     {user.full_name}
                   </div>
-                  <span className="font-robot mt-2 font-blue">
+                  <span
+                    style={{ cursor: "pointer" }}
+                    className="font-robot mt-2 font-blue"
+                  >
                     {user.username}
                   </span>
                 </div>
@@ -963,9 +973,13 @@ function Navbar() {
                     Edit Profile
                   </div>
                 </Link>
-                <div onClick={() => signOut(history, openModal)}>
+                <div
+                  onClick={() => signOut(history, openModal)}
+                  style={{ cursor: "pointer" }}
+                >
                   <div
                     className={`mt-2 font-vcr px-5 sidebar-item text-uppercase py-2 mb-5`}
+                    style={{ cursor: "pointer" }}
                   >
                     Logout
                   </div>

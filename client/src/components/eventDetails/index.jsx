@@ -54,12 +54,12 @@ function EventDetails() {
         // console.log(today);
         // console.log(data.datetime);
         // console.log("GETTTTTTTTTTTTTTTT", getTime);
-        console.log("CurrenTime: ", currentTime);
-        console.log("EventStartTime: ", eventStartTime);
-        console.log("eventDuration: ", eventDuration * 1000);
-        console.log("eventEndTime: ", eventEndTime);
+        // console.log("CurrenTime: ", currentTime);
+        // console.log("EventStartTime: ", eventStartTime);
+        // console.log("eventDuration: ", eventDuration * 1000);
+        // console.log("eventEndTime: ", eventEndTime);
         const timeLeft = eventEndTime - currentTime;
-        console.log("TimeLeft: ", timeLeft);
+        // console.log("TimeLeft: ", timeLeft);
         setCounter(timeLeft);
 
         seteventdate(data.datetime);

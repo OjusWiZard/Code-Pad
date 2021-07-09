@@ -103,7 +103,6 @@ function Problem() {
     });
   }, [params.slug]);
   // Run Code
-  console.log(submissions);
   const handleRunCode = async (e, value, languageId, input) => {
     e.preventDefault();
     setOutput("");
@@ -136,6 +135,7 @@ function Problem() {
         data,
         config
       );
+      window.scrollTo(0, document.body.scrollHeight);
       let out =
         res.data.stdout !== null
           ? b64DecodeUnicode(res.data.stdout)
