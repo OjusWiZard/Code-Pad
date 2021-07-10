@@ -55,17 +55,7 @@ function EventDetails() {
     getEvent(params.slug, history)
       .then((data) => {
         setEvent(data);
-        // console.log(data);
-        // let start = new Date();
-        // // console.log("START: ", start);
-        // let end = new Date(data.endtime);
-        // // console.log("END: ", end);
-        // let left = new Date(end - start).getTime();
-        // // console.log("LEFT: : ", left);
-        // // console.log(msToTime(left));
-        // // const time = moment(left).format("DD MMM YYYY hh:mm a");
-        // // console.log(time);
-        // // seteventdate(data.datetime);
+
         getLeaderboard(params.slug).then((data) => {
           setLeaderboard(data);
           getLeaderboardUser(
@@ -80,7 +70,6 @@ function EventDetails() {
     getLeaderboard(params.slug)
       .then((data) => {
         setLeaderboard(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log("Leaderboard Error: ", err);
@@ -110,7 +99,6 @@ function EventDetails() {
   const paginationLeaderboard = (text) => {
     getLeaderboardPagination(text).then((data) => {
       setLeaderboard(data);
-      console.log(data);
     });
   };
   let currentPage = leaderboard?.current;

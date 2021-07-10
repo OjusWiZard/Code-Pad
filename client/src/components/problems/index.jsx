@@ -496,7 +496,7 @@ function Problem() {
                               <option selected value={54}>
                                 C++ (GCC 9.2.0)
                               </option>
-                              {console.log(languages)}
+
                               {languages &&
                                 languages?.map((lan) => (
                                   <option
@@ -564,7 +564,6 @@ function Problem() {
                                 className="see-all-button"
                                 onClick={(e) => {
                                   handleSubmitCode(e, value);
-                                  console.log(disabled);
                                 }}
                               />
                             ) : (
