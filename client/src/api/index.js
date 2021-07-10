@@ -138,6 +138,9 @@ export const getLeaderboard = async (slug) => {
 
 export const getLeaderboardPagination = async (text) => {
   try {
+    console.log(text.split("/")[4], text.split('/')[5]);
+    console.log(`/leaderboard/${text.split("/")[4]}${text.split("/")[5]}`)
+    console.log(`/leaderboard/${text.split("/")[4]}${text.split("/")[5]}`)
     const { data } = await API.get(text);
     return data;
   } catch (error) {
@@ -147,7 +150,9 @@ export const getLeaderboardPagination = async (text) => {
 
 export const getSubmissionsPagination = async (text) => {
   try {
-    const { data } = await API.get(text);
+    console.log(text.split("/")[4], text.split('/')[5]);
+    console.log(`/submissions/${text.split("/")[4]}${text.split("/")[5]}`)
+    const { data } = await API.get(`/submissions/${text.split("/")[4]}${text.split("/")[5]}`);
     return data;
   } catch (error) {
     console.log(error);
