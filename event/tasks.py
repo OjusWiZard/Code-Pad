@@ -46,21 +46,20 @@ def submit(
     submission.save()
 
     for testcase in testcases:
-        tc_inp_file = testcase.tc_input.open(mode="r")
-        tc_out_file = testcase.tc_output.open(mode="r")
-        tc_out = str(tc_out_file.read().decode())
-        tc_inp = str(tc_inp_file.read().decode())
-        tc_inp_file.close()
-        tc_out_file.close()
-        single_submission = SingleSubmission(
-            source_code=solution,
-            language_id=lang_id,
-            stdin=tc_inp,
-            expected_output=tc_out,
-            cpu_time_limit=testcase.time_limit(lang_id),
-        )
-
         try:
+            tc_inp_file = testcase.tc_input.open(mode="r")
+            tc_out_file = testcase.tc_output.open(mode="r")
+            tc_out = str(tc_out_file.read().decode())
+            tc_inp = str(tc_inp_file.read().decode())
+            tc_inp_file.close()
+            tc_out_file.close()
+            single_submission = SingleSubmission(
+                source_code=solution,
+                language_id=lang_id,
+                stdin=tc_inp,
+                expected_output=tc_out,
+                cpu_time_limit=testcase.time_limit(lang_id),
+            )
             result = single_submission.submit(client)
         except Exception as err:
             print(err.response.text)
