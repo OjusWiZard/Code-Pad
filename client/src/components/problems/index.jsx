@@ -299,7 +299,9 @@ function Problem() {
                       {problem?.contraints && (
                         <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
                           <div className="font-blue pb-2">CONSTRAINTS:</div>
-                          <span>{problem.contraints}</span>
+                          <pre className="font-robot font-14 font-lightGrey">
+                            {problem.contraints}
+                          </pre>
                         </p>
                       )}
 

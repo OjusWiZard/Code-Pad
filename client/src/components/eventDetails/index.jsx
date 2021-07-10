@@ -201,7 +201,7 @@ function EventDetails() {
                           </div>
                           {user && user?.score ? (
                             <div className="score font-blue font-robot font-16">
-                              <img src={trophy} alt="trophy"/>
+                              <img src={trophy} alt="trophy" />
                               <span className="ml-4">
                                 {user?.score ? `${user.score}` : "0"}
                               </span>
@@ -410,7 +410,12 @@ function EventDetails() {
                               <div className="font-blue font-vcr font-18 mt-3">
                                 #RULES
                               </div>
-                              <li>{event.rules}</li>
+                              <p
+                                style={{ whiteSpace: "pre-wrap" }}
+                                className="font-robot font-18 font-lightGrey w-100"
+                              >
+                                {event.rules}
+                              </p>
                             </div>
                           )}
                         </div>
