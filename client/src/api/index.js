@@ -147,6 +147,7 @@ export const getLeaderboardPagination = async (text) => {
 
 export const getSubmissionsPagination = async (text) => {
   try {
+    console.log(text);
     const { data } = await API.get(text);
     return data;
   } catch (error) {
