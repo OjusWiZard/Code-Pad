@@ -549,19 +549,30 @@ function Problem() {
                             handleRunCode(e, value, languageId, input)
                           }
                         />
+
                         {user ? (
-                          <img
-                            src={submitCode}
-                            alt="submitCode"
-                            style={{
-                              pointerEvents: disabled ? "none" : "inherit",
-                            }}
-                            className="see-all-button"
-                            onClick={(e) => {
-                              handleSubmitCode(e, value);
-                              console.log(disabled);
-                            }}
-                          />
+                          <div>
+                            {!disabled ? (
+                              <img
+                                src={submitCode}
+                                alt="submitCode"
+                                style={{
+                                  pointerEvents: disabled ? "none" : "inherit",
+                                }}
+                                className="see-all-button"
+                                onClick={(e) => {
+                                  handleSubmitCode(e, value);
+                                  console.log(disabled);
+                                }}
+                              />
+                            ) : (
+                              <div className="my-5 text-center button-hover">
+                                <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
+                                  *WAIT*
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         ) : (
                           <Link to="/login">
                             <div className="text-center button-hover">
