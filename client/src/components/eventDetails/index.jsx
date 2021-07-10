@@ -11,6 +11,7 @@ import trophy from "../../images/events/trophy.svg";
 import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
+import EventTime from "./EventTime";
 import moment from "moment";
 import {
   getEvent,
@@ -20,7 +21,7 @@ import {
 } from "../../api/index";
 import { useParams, Redirect, Link, useHistory } from "react-router-dom";
 
-function EventDetails() {
+function EventDetails({}) {
   const history = useHistory();
   const params = useParams();
   function msToTime(duration) {
@@ -124,8 +125,16 @@ function EventDetails() {
                 <div className="row">
                   <div className="col-lg-3 col-md-5 col-sm-5 col-12">
                     <div className="font-vcr font-lightGrey">
-                      <span className="exit" onClick={() => history.goBack()}>
-                        <img src={pointerLeft} alt="left-pointer" /> Exit
+                      <span
+                        className="exit d-flex align-items-center"
+                        onClick={() => history.goBack()}
+                      >
+                        <img
+                          src={pointerLeft}
+                          alt="left-pointer"
+                          className="mr-1"
+                        />
+                        <span>Exit</span>
                       </span>
                       <div className="d-flex codewars mt-5 pt-2 pb-5">
                         <div>
@@ -193,21 +202,22 @@ function EventDetails() {
                         <div className="top-section d-flex justify-content-between align-items-center">
                           <div className="dashboard font-vcr font-lightGrey">
                             <h5>*&nbsp;Dashboard&nbsp;*</h5>
-                            {diffDays > 1 ? (
-                              <span>{diffDays} days left</span>
-                            ) : null}
+                            <EventTime
+                              datetime={event.datetime}
+                              endtime={event.endtime}
+                            />
                           </div>
                           {user && user?.score ? (
                             <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
-                              <span className="ml-4">
+                              <span className="ml-5">
                                 {user?.score ? `${user.score}` : "0"}
                               </span>
                             </div>
                           ) : (
                             <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
-                              <span className="ml-4">0</span>
+                              <span className="ml-5">0</span>
                             </div>
                           )}
                         </div>
