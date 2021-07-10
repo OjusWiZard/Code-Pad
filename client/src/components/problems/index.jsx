@@ -555,7 +555,7 @@ function Problem() {
                             src={submitCode}
                             alt="submitCode"
                             style={{
-                              pointerEvent: disabled ? "none" : "default",
+                              pointerEvents: !disabled ? "none" : "default",
                             }}
                             className="see-all-button"
                             onClick={(e) => {
