@@ -4,11 +4,7 @@ import Editor1 from "@monaco-editor/react";
 // Code Mirror Css
 import "codemirror/lib/codemirror.css";
 
-const Editor = ({
-  value,
-  onChange,
-  languageId,
-}) => {
+const Editor = ({ value, onChange, languageId }) => {
   let judgeIdToMonaco = {
     46: "shell",
     48: "c",
@@ -54,6 +50,7 @@ const Editor = ({
         theme="vs-dark"
         value={value}
         height="50vh"
+        automaticLayout={true}
         onChange={onChange}
         options={{
           acceptSuggestionOnEnter: "smart",

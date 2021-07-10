@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import pointerLeft from "../../images/eventDetails/pointer-left.svg";
-import dash from "../../images/eventDetails/dash.svg";
+import NoLeaderBoard from "../utils/NoLeaderboard";
+import NoProblem from "../utils/NoProblem";
 import "./eventDetails.css";
 import avatar1 from "../../images/auth/peach.svg";
 import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/pacman.svg";
 import avatar4 from "../../images/auth/frog.svg";
-import noLeaderboard from "../../images/eventDetails/noleaderboard.svg";
 import trophy from "../../images/events/trophy.svg";
-import noQuestions from "../../images/eventDetails/noquestions.svg";
 import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
+import moment from "moment";
 import {
   getEvent,
   getLeaderboard,
@@ -19,10 +19,22 @@ import {
   getLeaderboardPagination,
 } from "../../api/index";
 import { useParams, Redirect, Link, useHistory } from "react-router-dom";
-import moment from "moment";
+
 function EventDetails() {
   const history = useHistory();
   const params = useParams();
+  function msToTime(duration) {
+    var milliseconds = parseInt((duration % 1000) / 100),
+      seconds = Math.floor((duration / 1000) % 60),
+      minutes = Math.floor((duration / (1000 * 60)) % 60),
+      hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+  }
   const [leaderboard, setLeaderboard] = useState([]);
   const [user, setUser] = useState({});
   const [event, setEvent] = useState({});
@@ -37,44 +49,21 @@ function EventDetails() {
     3: avatar3,
     4: avatar4,
   };
+  let diffDays;
   useEffect(() => {
     getEvent(params.slug, history)
       .then((data) => {
         setEvent(data);
         console.log(data);
-        const abc = new Date(data.datetime);
-        const currentTime = new Date().getTime();
-        const eventStartTime = new Date(data.datetime).getTime();
-        const duration = data.duration;
-        const eventDuration =
-          Number(duration.split(":")[0]) * 60 * 60 +
-          Number(duration.split(":")[1]) * 60 +
-          Number(duration.split(":")[2]);
-        const eventEndTime = eventStartTime + eventDuration * 1000;
-
-        console.log(Date.parse(data.duration));
-
-        if (abc == new Date()) {
-          const eventStartTime = new Date(data.datetime).getTime();
-          const eventDuration =
-            Number(duration.split(":")[0]) * 60 * 60 +
-            Number(duration.split(":")[1]) * 60 +
-            Number(duration.split(":")[2]);
-          console.log("EventStartTime: ", eventStartTime);
-          console.log("eventDuration: ", eventDuration * 1000);
-        }
-        // const getTime = new Date(today - eventtime);
-        // console.log(today);
-        // console.log(data.datetime);
-        // console.log("GETTTTTTTTTTTTTTTT", getTime);
-        // console.log("CurrenTime: ", currentTime);
-        // console.log("EventStartTime: ", eventStartTime);
-        // console.log("eventDuration: ", eventDuration * 1000);
-        // console.log("eventEndTime: ", eventEndTime);
-        const timeLeft = eventEndTime - currentTime;
-        // console.log("TimeLeft: ", timeLeft);
-        setCounter(timeLeft);
-
+        let start = new Date();
+        console.log("START: ", start);
+        let end = new Date(data.endtime);
+        console.log("END: ", end);
+        let left = new Date(end - start).getTime();
+        console.log("LEFT: : ", left);
+        console.log(msToTime(left));
+        const time = moment(left).format("DD MMM YYYY hh:mm a");
+        console.log(time);
         seteventdate(data.datetime);
         getLeaderboard(params.slug).then((data) => {
           setLeaderboard(data);
@@ -86,10 +75,7 @@ function EventDetails() {
           });
         });
       })
-      .catch((err) => {
-        localStorage.clear();
-        history.push("/login");
-      });
+      .catch((err) => {});
     getLeaderboard(params.slug)
       .then((data) => {
         setLeaderboard(data);
@@ -126,7 +112,7 @@ function EventDetails() {
       console.log(data);
     });
   };
- let currentPage = leaderboard?.current;
+  let currentPage = leaderboard?.current;
 
   return (
     <React.Fragment>
@@ -142,11 +128,8 @@ function EventDetails() {
                         <img src={pointerLeft} alt="left-pointer" /> Exit
                       </span>
                       <div className="d-flex codewars mt-5 pt-2 pb-5">
-                        <div className="dash">
-                          <img src={dash} alt="dash" className="img-fluid" />
-                        </div>
                         <div>
-                          <div className="main mb-3">
+                          <div className="mb-3">
                             <img
                               src={folder}
                               alt="folder"
@@ -210,23 +193,21 @@ function EventDetails() {
                         <div className="top-section d-flex justify-content-between align-items-center">
                           <div className="dashboard font-vcr font-lightGrey">
                             <h5>*&nbsp;Dashboard&nbsp;*</h5>
-                            {/* <div>
-                            {counter > 0 && <span>Countdown: {counter}</span>}
-                          </div> */}
+                            {diffDays > 1 ? (
+                              <span>{diffDays} days left</span>
+                            ) : null}
                           </div>
-                          {user &&  user?.score ? (
+                          {user && user?.score ? (
                             <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
                               <span className="ml-4">
-                               {user?.score ? `${user.score}` : "0"}
+                                {user?.score ? `${user.score}` : "0"}
                               </span>
                             </div>
                           ) : (
-                             <div className="score font-blue font-robot font-16">
+                            <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
-                              <span className="ml-4">
-                              0
-                              </span>
+                              <span className="ml-4">0</span>
                             </div>
                           )}
                         </div>
@@ -265,9 +246,10 @@ function EventDetails() {
                               </div>
                               {!event?.problem_set ? (
                                 <div className="text-center my-2">
-                                  <img src={noQuestions} alt="No Question" />
+                                  <NoProblem />
                                   <div className="mt-2 font-blue font-vcr font-16">
-                                   Problems will appear once the contest is live!
+                                    Problems will appear once the contest is
+                                    live!
                                   </div>
                                 </div>
                               ) : (
@@ -350,7 +332,7 @@ function EventDetails() {
                                         className="user-rank"
                                         style={{ width: "20%" }}
                                       >
-                                       {(currentPage-1)*10 + index + 1}
+                                        {(currentPage - 1) * 10 + index + 1}
                                       </span>
                                       <div
                                         style={{ width: "60%" }}
@@ -407,11 +389,7 @@ function EventDetails() {
                                 </div>
                               ) : (
                                 <div className="mt-3 mx-auto text-center">
-                                  <img
-                                    src={noLeaderboard}
-                                    className="img-fluid"
-                                    alt="no leaderboard"
-                                  />{" "}
+                                  <NoLeaderBoard />
                                   <br />
                                   <div className="mt-2 py-2 font-vcr font-blue">
                                     No Leadeboard
