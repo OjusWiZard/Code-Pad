@@ -81,8 +81,8 @@ class Leaderboard_Serializer(serializers.HyperlinkedModelSerializer):
 
 
 class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
-
     status = serializers.SerializerMethodField("event_status")
+    endtime = serializers.SerializerMethodField("get_endtime")
 
     def event_status(self, event):
         if timezone.now() < event.datetime:
@@ -91,6 +91,9 @@ class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
             return "Ongoing"
         else:
             return "Past"
+
+    def get_endtime(self, event):
+        return timezone.localtime(event.datetime + event.duration)
 
     class Meta:
         model = Event
@@ -102,6 +105,7 @@ class Event_List_Serializer(serializers.HyperlinkedModelSerializer):
 class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
     problem_set = serializers.SerializerMethodField("get_problem_set")
     status = serializers.SerializerMethodField("event_status")
+    endtime = serializers.SerializerMethodField("get_endtime")
 
     def get_problem_set(self, event):
         problems = event.problem_set.order_by("points")
@@ -117,6 +121,9 @@ class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
         else:
             return "Past"
 
+    def get_endtime(self, event):
+        return timezone.localtime(event.datetime + event.duration)
+
     class Meta:
         model = Event
         fields = [
@@ -126,6 +133,7 @@ class Event_Details_Serializer(serializers.HyperlinkedModelSerializer):
             "is_contest",
             "icon",
             "status",
+            "endtime",
             "datetime",
             "duration",
             "problem_set",
