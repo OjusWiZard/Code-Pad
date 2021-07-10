@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { editUserInfo } from "../../../api";
 import { ModalContext } from "../../../context/context";
@@ -22,12 +22,10 @@ function EditProfile() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-useEffect(() => {
-
-      Array.from(document.querySelectorAll(".img-avatar"))
-        .find((img) => img.name === String(formData.avatar))
-        .classList.add("active-avatar")
-
+  useEffect(() => {
+    Array.from(document.querySelectorAll(".img-avatar"))
+      .find((img) => img.name === String(formData.avatar))
+      .classList.add("active-avatar");
   }, []);
   const handleAvatar = (e) => {
     setFormData({ ...formData, avatar: e.target.name });
@@ -168,12 +166,12 @@ useEffect(() => {
                     )}
                   </div>
                 </form>
-                {errorMessage?.detail && (
+                {errorMessage?.contact_no && (
                   <div
                     id="error"
-                    className="font-vcr font-14 text-center mt-4 text-muted"
+                    className="font-vcr text-center font-14 pl-3 text-muted"
                   >
-                    {errorMessage.detail}
+                    {errorMessage.contact_no}
                   </div>
                 )}
                 <div className="mt-5 text-center button-hover">
