@@ -174,8 +174,7 @@ function Problem() {
     }
     try {
       setDisabled(true);
-      await codeSubmission(data, openModal);
-      setDisabled(false);
+      await codeSubmission(data, openModal, setDisabled);
     } catch (error) {
       if (error.message === "URI malformed") {
         setOutput("No Output");
@@ -555,7 +554,7 @@ function Problem() {
                             src={submitCode}
                             alt="submitCode"
                             style={{
-                              pointerEvents: !disabled ? "none" : "default",
+                              pointerEvents: disabled ? "none" : "inherit",
                             }}
                             className="see-all-button"
                             onClick={(e) => {

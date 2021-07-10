@@ -102,7 +102,7 @@ export const getProblem = async (slug, history) => {
   }
 };
 
-export const codeSubmission = async (formData, openModal) => {
+export const codeSubmission = async (formData, openModal, setDisabled) => {
   try {
     let res = await API.post(`/submissions/`, formData, config);
     let id;
@@ -112,6 +112,7 @@ export const codeSubmission = async (formData, openModal) => {
     if (!id) {
       openModal("Too many submissions");
       <Modal />
+      setDisabled(false);
       return;
     } else {
       const interval = setInterval(() => {
@@ -122,12 +123,14 @@ export const codeSubmission = async (formData, openModal) => {
 
             <Modal />;
             clearInterval(interval);
+            setDisabled(false);
             return res.data;
           }
         })
       }, 2000)
     }
   } catch (error) {
+    setDisabled(false);
     openModal("Please Login to Continue");
     <Modal />
   }
