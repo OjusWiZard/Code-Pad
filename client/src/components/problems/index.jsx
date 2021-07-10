@@ -89,15 +89,11 @@ function Problem() {
         )
       );
     });
-    getProblem(params.slug.toString().toUpperCase(), history)
-      .then((data) => {
-        setProblem(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        localStorage.clear();
-        history.push("/login");
-      });
+    getProblem(params.slug.toString().toUpperCase(), history).then((data) => {
+      setProblem(data);
+      setLoading(false);
+    });
+
     getSubmissions(params.slug.toString().toUpperCase()).then((data) => {
       setSubmissions(data);
     });

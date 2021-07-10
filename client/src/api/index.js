@@ -2,7 +2,7 @@ import axios from "axios";
 import Modal from "../components/modal";
 
 const API = axios.create({
-  baseURL:`${process.env.REACT_APP_BASEURL}`,
+  baseURL: `${process.env.REACT_APP_BASEURL}`,
 });
 
 API.interceptors.request.use((req) => {
@@ -58,8 +58,7 @@ export const userInfo = async (history) => {
     const { data } = await API.get(`/accounts/users/me`, config);
     localStorage.setItem("user", JSON.stringify(data));
   } catch (error) {
-    <Modal errorMessage="You are Logged out!!" />;
-    localStorage.clear();
+
   }
 };
 
@@ -90,8 +89,7 @@ export const getEvent = async (slug, history) => {
     const { data } = await API.get(`/events/${slug}`, config);
     return data;
   } catch (error) {
-    localStorage.clear();
-    history.push("/login")
+
   }
 };
 
