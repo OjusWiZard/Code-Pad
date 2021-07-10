@@ -344,40 +344,6 @@ function Navbar() {
                 }`}
               />
             </Link>
-            <g opacity="0.015">
-              <line
-                x1="4.93652"
-                y1="110.458"
-                x2="1919.06"
-                y2="110.458"
-                stroke="white"
-                strokeWidth="2"
-              />
-              <line
-                x1="4.93652"
-                y1="121.668"
-                x2="1919.06"
-                y2="121.668"
-                stroke="white"
-                strokeWidth="2"
-              />
-              <line
-                x1="4.93652"
-                y1="132.878"
-                x2="1919.06"
-                y2="132.878"
-                stroke="white"
-                strokeWidth="2"
-              />
-              <line
-                x1="4.93652"
-                y1="144.088"
-                x2="1919.06"
-                y2="144.088"
-                stroke="white"
-                strokeWidth="2"
-              />
-            </g>
           </g>
           <mask
             id="mask2"
@@ -409,40 +375,6 @@ function Navbar() {
                 onClick={() => setProfileDisplay(false)}
               />
             </Link>
-            <g opacity="0.015" style={{ cursor: "pointer" }}>
-              <line
-                x1="327.228"
-                y1="110.458"
-                x2="2241.35"
-                y2="110.458"
-                stroke="white"
-                strokeWidth="2"
-              />
-              <line
-                x1="327.228"
-                y1="121.668"
-                x2="2241.35"
-                y2="121.668"
-                stroke="white"
-                strokeWidth="2"
-              />
-              <line
-                x1="327.228"
-                y1="132.878"
-                x2="2241.35"
-                y2="132.878"
-                stroke="white"
-                strokeWidth="2"
-              />
-              <line
-                x1="327.228"
-                y1="144.088"
-                x2="2241.35"
-                y2="144.088"
-                stroke="white"
-                strokeWidth="2"
-              />
-            </g>
           </g>
           <mask
             id="mask3"
