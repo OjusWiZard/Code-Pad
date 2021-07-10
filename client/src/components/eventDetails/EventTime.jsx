@@ -5,8 +5,8 @@ const EventTime = ({ datetime, endtime }) => {
   if (new Date(datetime).getTime() > Date.now()) {
     return (
       <div>
-        Starts {moment(datetime).format("MMMM Do YYYY")} at{" "}
-        {moment(datetime).format("h:mm:ss a")}{" "}
+        START ON {moment(datetime).format("MMMM Do YYYY")},{" "}
+        {moment(datetime).format("hh:mm a")}{" "}
       </div>
     );
   }
