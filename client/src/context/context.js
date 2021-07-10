@@ -10,8 +10,7 @@ export function ModalProvider({ children }) {
     modalHeading: "",
   });
   const formMessage = (e) => {
-    setState((prevState) => ({
-      ...prevState,
+    setState(() => ({
       errorMessage: Object.assign({}, e),
     }));
   };

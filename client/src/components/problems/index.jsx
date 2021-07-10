@@ -13,6 +13,7 @@ import processing from "../../images/problems/pending.svg";
 import rejected from "../../images/problems/cross.svg";
 import runCode from "../../images/problems/runCode.svg";
 import submitCode from "../../images/problems/submitCode.svg";
+import pointerLeft from "../../images/eventDetails/pointer-left.svg";
 import Spinner from "../utils/Spinner";
 import { useParams, Link, useHistory } from "react-router-dom";
 import Editor from "../editor/Editor";
@@ -84,7 +85,7 @@ function Problem() {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_JUDGELANGUAGE}`, config).then((data) => {
       setLanguages(
-        data.data?.filter(
+        data?.data?.filter(
           (lang) => lang.id !== 54 && lang.id !== 44 && lang.id !== 89
         )
       );
@@ -192,261 +193,280 @@ function Problem() {
             <div className="row d-flex justify-content-center">
               <div className="col-xl-12 col-lg-10 col-md-10 col-sm-11 col-11 mx-auto my-md-5 my-2 content-background pb-5">
                 <div className="row pt-3">
-                  <div className="col-lg-5 col-md-12 col-sm-12 col-12 pt-md-5 py-2 left-section">
-                    <div className="d-flex font-vcr font-blue font-heading font-weight-bold px-xl-3">
-                      {problem?.title}
-                    </div>
-                    <div className="mt-2 font-robot d-flex px-xl-3 text-uppercase font-weight-bold">
-                      <span className="font-blue">
-                        Points: {problem?.points}
+                  <div className="col-lg-5 col-md-12 col-sm-12 col-12 pt-md-5 py-2 ">
+                    <div className="font-lightGrey font-vcr">
+                      <span
+                        className="exit d-flex align-items-center px-3 mt-2"
+                        onClick={() => history.goBack()}
+                      >
+                        <img
+                          src={pointerLeft}
+                          alt="left-pointer"
+                          className="mr-1"
+                        />
+                        <span>Exit</span>
                       </span>
                     </div>
-                    <div className="mt-2 font-robot d-flex px-xl-3 text-uppercase font-weight-bold">
-                      <span className="font-lightGrey">
-                        Penalty: {problem?.penalty}
-                      </span>
-                    </div>
-                    {problem?.problem_statement && (
-                      <>
-                        <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
-                          <div className="font-blue pb-2">QUESTION:</div>
-                          <span>{problem.problem_statement}</span>
-                        </p>
-                        <hr />
-                      </>
-                    )}
-                    {problem?.input_statement && (
-                      <>
+                    <div className="left-section">
+                      <div className="d-flex font-vcr font-blue font-heading font-weight-bold px-xl-3">
+                        {problem?.title}
+                      </div>
+                      <div className="mt-2 font-robot d-flex px-xl-3 text-uppercase font-weight-bold">
+                        <span className="font-blue">
+                          Points: {problem?.points}
+                        </span>
+                      </div>
+                      <div className="mt-2 font-robot d-flex px-xl-3 text-uppercase font-weight-bold">
+                        <span className="font-lightGrey">
+                          Penalty: {problem?.penalty}
+                        </span>
+                      </div>
+                      {problem?.problem_statement && (
+                        <>
+                          <p className="font-robot font-lightGrey mt-5 font-14 font-weight-bold px-xl-3 text-justify">
+                            <div className="font-blue pb-2">QUESTION:</div>
+                            <span>{problem.problem_statement}</span>
+                          </p>
+                          <hr />
+                        </>
+                      )}
+                      {problem?.input_statement && (
+                        <>
+                          <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                            <div className="font-blue pb-2">
+                              INPUT STATMENT:
+                            </div>{" "}
+                            <span>{problem.input_statement}</span>
+                          </p>
+                          <hr />
+                        </>
+                      )}
+                      {problem?.example_input && (
+                        <>
+                          <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                            <div className="font-blue pb-2">EXAMPLE INPUT:</div>
+                            <pre className="font-lightGrey" style={{fontSize: '17px'}}>
+                              {problem.example_input}
+                            </pre>
+                          </p>
+                          <hr />
+                        </>
+                      )}
+                      {problem?.output_statement && (
+                        <>
+                          <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                            <div className="font-blue pb-2">
+                              OUTPUT STATEMENT:
+                            </div>
+                            <span>{problem.output_statement}</span>
+                          </p>
+                          <hr />
+                        </>
+                      )}
+                      {problem?.example_output && (
+                        <>
+                          <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                            <div className="font-blue pb-2">
+                              EXAMPLE OUTPUT:
+                            </div>
+                            <pre className="font-lightGrey" style={{fontSize: '17px'}}>
+                              {problem.example_output}
+                            </pre>
+                          </p>
+                          <hr />
+                        </>
+                      )}
+                      {problem?.example_explanation && (
+                        <>
+                          <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
+                            <div className="font-blue pb-2">
+                              EXAMPLE EXPLANATION:
+                            </div>
+                            <span>{problem.example_explanation}</span>
+                          </p>
+                          <hr />
+                        </>
+                      )}
+                      {problem?.contraints && (
                         <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
-                          <div className="font-blue pb-2">INPUT STATMENT:</div>{" "}
-                          <span>{problem.input_statement}</span>
+                          <div className="font-blue pb-2">CONSTRAINTS:</div>
+                          <span>{problem.contraints}</span>
                         </p>
-                        <hr />
-                      </>
-                    )}
-                    {problem?.example_input && (
-                      <>
-                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
-                          <div className="font-blue pb-2">EXAMPLE INPUT:</div>
-                          <pre className="font-lightGrey">
-                            {problem.example_input}
-                          </pre>
-                        </p>
-                        <hr />
-                      </>
-                    )}
-                    {problem?.output_statement && (
-                      <>
-                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
-                          <div className="font-blue pb-2">
-                            OUTPUT STATEMENT:
-                          </div>
-                          <span>{problem.output_statement}</span>
-                        </p>
-                        <hr />
-                      </>
-                    )}
-                    {problem?.example_output && (
-                      <>
-                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
-                          <div className="font-blue pb-2">EXAMPLE OUTPUT:</div>
-                          <pre className="font-lightGrey">
-                            {problem.example_output}
-                          </pre>
-                        </p>
-                        <hr />
-                      </>
-                    )}
-                    {problem?.example_explanation && (
-                      <>
-                        <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
-                          <div className="font-blue pb-2">
-                            EXAMPLE EXPLANATION:
-                          </div>
-                          <span>{problem.example_explanation}</span>
-                        </p>
-                        <hr />
-                      </>
-                    )}
-                    {problem?.contraints && (
-                      <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
-                        <div className="font-blue pb-2">CONSTRAINTS:</div>
-                        <span>{problem.contraints}</span>
-                      </p>
-                    )}
-
-                    <div className=" font-robot font-18 mt-5 px-xl-3 font-blue text-uppercase font-weight-blue">
-                      Recent Submissions
-                    </div>
-                    <div
-                      className=" d-flex mt-3 px-xl-3"
-                      style={{
-                        flexDirection: "column",
-                      }}
-                    >
-                      {!submissions?.results?.length > 0 ? (
-                        <div
-                          className="d-flex justify-content-center align-items-center text-center w-100 py-3"
-                          style={{ flexDirection: "column" }}
-                        >
-                          <NoSubmission />
-                          <br />
-                          <div className="font-vcr font-blue font-16">
-                            NO SUBMISSION
-                          </div>
-                        </div>
-                      ) : (
-                        <React.Fragment>
-                          <div
-                            className="d-flex leadeboard-leads justify-content-around"
-                            style={{
-                              border: "1px solid #405C6B",
-                            }}
-                          >
-                            <span
-                              className="font-robot"
-                              style={{ width: "10%" }}
-                            ></span>
-                            <span
-                              className="font-vcr text-center"
-                              style={{ width: "40%" }}
-                            >
-                              Name
-                            </span>
-                            <span
-                              className="font-vcr text-center"
-                              style={{ width: "40%" }}
-                            >
-                              Time
-                            </span>
-                          </div>
-                          {submissions?.results?.map((submission, index) => {
-                            if (submission.status === "Accepted") {
-                              return (
-                                <div
-                                  key={index}
-                                  className="user-data d-flex justify-content-around leaderboard-bg font-robot"
-                                >
-                                  <span style={{ width: "10%" }}>
-                                    <img
-                                      src={avatarData[submission.user.avatar]}
-                                      className="user-image"
-                                      alt="avatar"
-                                    />
-                                  </span>
-                                  <div
-                                    style={{ width: "40%" }}
-                                    className="font-lightGrey"
-                                  >
-                                    {submission.user.username}
-                                  </div>
-                                  <span
-                                    className="user-score"
-                                    style={{ width: "40%" }}
-                                  >
-                                    {" "}
-                                    {moment(submission.datetime)
-                                      .startOf("minutes")
-                                      .fromNow()}
-                                  </span>
-                                  <img src={accepted} alt="12" />
-                                </div>
-                              );
-                            } else if (
-                              submission.status === "Processing" ||
-                              submission.status === "In Queue"
-                            ) {
-                              return (
-                                <div
-                                  key={index}
-                                  className="user-data d-flex justify-content-around leaderboard-bg font-robot"
-                                >
-                                  {" "}
-                                  <span style={{ width: "10%" }}>
-                                    <img
-                                      src={avatarData[submission.user.avatar]}
-                                      className="user-image"
-                                      alt="avatar"
-                                    />
-                                  </span>
-                                  <div
-                                    style={{ width: "40%" }}
-                                    className="font-lightGrey"
-                                  >
-                                    {submission.user.username}
-                                  </div>
-                                  <span
-                                    className="user-score"
-                                    style={{ width: "40%" }}
-                                  >
-                                    {moment(submission.datetime)
-                                      .startOf("minutes")
-                                      .fromNow()}
-                                  </span>
-                                  <img src={processing} alt="12" />
-                                </div>
-                              );
-                            } else {
-                              return (
-                                <div
-                                  key={index}
-                                  className="user-data d-flex justify-content-around leaderboard-bg font-robot"
-                                >
-                                  <span style={{ width: "10%" }}>
-                                    <img
-                                      src={avatarData[submission.user.avatar]}
-                                      className="user-image"
-                                      alt="avatar"
-                                    />
-                                  </span>
-                                  <div
-                                    style={{ width: "40%" }}
-                                    className="font-lightGrey"
-                                  >
-                                    {submission.user.username}
-                                  </div>
-                                  <span
-                                    className="user-score"
-                                    style={{ width: "40%" }}
-                                  >
-                                    {moment(submission.datetime)
-                                      .startOf("minutes")
-                                      .fromNow()}
-                                  </span>
-                                  <img src={rejected} alt="12" />
-                                </div>
-                              );
-                            }
-                          })}
-                        </React.Fragment>
                       )}
 
-                      <div className="d-flex justify-content-center font-robot font-blue ">
-                        <nav className="mt-4">
-                          <div className="pagination">
-                            {submissions?.previous && (
-                              <span
-                                className="pagination-previous pagination-icon"
-                                onClick={() =>
-                                  paginationSubmission(submissions.previous)
-                                }
-                              >
-                                <i className="fas fa-arrow-left"></i>
-                              </span>
-                            )}
-
-                            {submissions?.next && (
-                              <span
-                                className="pagination-next pagination-icon ml-3"
-                                onClick={() =>
-                                  paginationSubmission(submissions.next)
-                                }
-                              >
-                                <i className="fas fa-arrow-right"></i>
-                              </span>
-                            )}
+                      <div className=" font-robot font-18 mt-5 px-xl-3 font-blue text-uppercase font-weight-blue">
+                        Recent Submissions
+                      </div>
+                      <div
+                        className=" d-flex mt-3 px-xl-3"
+                        style={{
+                          flexDirection: "column",
+                        }}
+                      >
+                        {!submissions?.results?.length > 0 ? (
+                          <div
+                            className="d-flex justify-content-center align-items-center text-center w-100 py-3"
+                            style={{ flexDirection: "column" }}
+                          >
+                            <NoSubmission />
+                            <br />
+                            <div className="font-vcr font-blue font-16">
+                              NO SUBMISSION
+                            </div>
                           </div>
-                        </nav>
+                        ) : (
+                          <React.Fragment>
+                            <div
+                              className="d-flex leadeboard-leads justify-content-around"
+                              style={{
+                                border: "1px solid #405C6B",
+                              }}
+                            >
+                              <span
+                                className="font-robot"
+                                style={{ width: "10%" }}
+                              ></span>
+                              <span
+                                className="font-vcr text-center"
+                                style={{ width: "40%" }}
+                              >
+                                Name
+                              </span>
+                              <span
+                                className="font-vcr text-center"
+                                style={{ width: "40%" }}
+                              >
+                                Time
+                              </span>
+                            </div>
+                            {submissions?.results?.map((submission, index) => {
+                              if (submission.status === "Accepted") {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                                  >
+                                    <span style={{ width: "10%" }}>
+                                      <img
+                                        src={avatarData[submission.user.avatar]}
+                                        className="user-image"
+                                        alt="avatar"
+                                      />
+                                    </span>
+                                    <div
+                                      style={{ width: "40%" }}
+                                      className="font-lightGrey"
+                                    >
+                                      {submission.user.username}
+                                    </div>
+                                    <span
+                                      className="user-score"
+                                      style={{ width: "40%" }}
+                                    >
+                                      {" "}
+                                      {moment(submission.datetime)
+                                        .startOf("minutes")
+                                        .fromNow()}
+                                    </span>
+                                    <img src={accepted} alt="12" />
+                                  </div>
+                                );
+                              } else if (
+                                submission.status === "Processing" ||
+                                submission.status === "In Queue"
+                              ) {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                                  >
+                                    {" "}
+                                    <span style={{ width: "10%" }}>
+                                      <img
+                                        src={avatarData[submission.user.avatar]}
+                                        className="user-image"
+                                        alt="avatar"
+                                      />
+                                    </span>
+                                    <div
+                                      style={{ width: "40%" }}
+                                      className="font-lightGrey"
+                                    >
+                                      {submission.user.username}
+                                    </div>
+                                    <span
+                                      className="user-score"
+                                      style={{ width: "40%" }}
+                                    >
+                                      {moment(submission.datetime)
+                                        .startOf("minutes")
+                                        .fromNow()}
+                                    </span>
+                                    <img src={processing} alt="12" />
+                                  </div>
+                                );
+                              } else {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="user-data d-flex justify-content-around leaderboard-bg font-robot"
+                                  >
+                                    <span style={{ width: "10%" }}>
+                                      <img
+                                        src={avatarData[submission.user.avatar]}
+                                        className="user-image"
+                                        alt="avatar"
+                                      />
+                                    </span>
+                                    <div
+                                      style={{ width: "40%" }}
+                                      className="font-lightGrey"
+                                    >
+                                      {submission.user.username}
+                                    </div>
+                                    <span
+                                      className="user-score"
+                                      style={{ width: "40%" }}
+                                    >
+                                      {moment(submission.datetime)
+                                        .startOf("minutes")
+                                        .fromNow()}
+                                    </span>
+                                    <img src={rejected} alt="12" />
+                                  </div>
+                                );
+                              }
+                            })}
+                          </React.Fragment>
+                        )}
+
+                        <div className="d-flex justify-content-center font-robot font-blue ">
+                          <nav className="mt-4">
+                            <div className="pagination">
+                              {submissions?.previous && (
+                                <span
+                                  className="pagination-previous pagination-icon"
+                                  onClick={() =>
+                                    paginationSubmission(submissions.previous)
+                                  }
+                                >
+                                  <i className="fas fa-arrow-left"></i>
+                                </span>
+                              )}
+
+                              {submissions?.next && (
+                                <span
+                                  className="pagination-next pagination-icon ml-3"
+                                  onClick={() =>
+                                    paginationSubmission(submissions.next)
+                                  }
+                                >
+                                  <i className="fas fa-arrow-right"></i>
+                                </span>
+                              )}
+                            </div>
+                          </nav>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -465,14 +485,16 @@ function Problem() {
                               <option selected value={54}>
                                 C++ (GCC 9.2.0)
                               </option>
-                              {languages?.map((lan) => (
-                                <option
-                                  value={lan.id}
-                                  className="font-lightGrey"
-                                >
-                                  {lan.name}
-                                </option>
-                              ))}
+                              {console.log(languages)}
+                              {languages &&
+                                languages?.map((lan) => (
+                                  <option
+                                    value={lan.id}
+                                    className="font-lightGrey"
+                                  >
+                                    {lan.name}
+                                  </option>
+                                ))}
                             </select>
                           </div>
                         </div>
