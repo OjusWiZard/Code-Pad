@@ -75,7 +75,7 @@ class Submission_Viewset(ReadOnlyModelViewSet):
             datetime__gt=current_time - timedelta(minutes=5)
         )
 
-        if very_frequent_submission.count() > 2:
+        if very_frequent_submission.count() > 0:
             return Response(data="Too Frequent Submissions!!!")
 
         submission = Submission.objects.create(
