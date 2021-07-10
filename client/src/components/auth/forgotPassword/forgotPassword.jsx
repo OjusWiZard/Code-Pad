@@ -20,10 +20,14 @@ const ForgotPassword = () => {
       await forgotPassword(formData, history, openModal);
     }
   };
+  function validateEmail(email) {
+    var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    return pattern.test(String(email).toLowerCase());
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.email === "") {
-      openModal("Type your email");
+    if (formData.email === "" || !validateEmail(formData.email)) {
+      openModal("Type a valid email address");
       <Modal />;
       return;
     }
@@ -50,7 +54,7 @@ const ForgotPassword = () => {
                             name="email"
                             onKeyPress={handleSubmitOnEnter}
                             value={formData.email}
-                            type="Email"
+                            type="email"
                             className="font-vcr font-blue "
                             placeholder="Email"
                           />
@@ -68,8 +72,10 @@ const ForgotPassword = () => {
                   </div>
                 </form>
                 <div className="mt-4 text-center">
-
-                 <div className="mt-4"> <Line /></div>
+                  <div className="mt-4">
+                    {" "}
+                    <Line />
+                  </div>
                 </div>
               </div>
             </div>
