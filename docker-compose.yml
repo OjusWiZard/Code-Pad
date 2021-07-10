@@ -16,8 +16,8 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - media:/usr/scr/cdn/media/
-      - static:/usr/scr/cdn/static/
+      - media:/usr/src/cdn/media/
+      - static:/usr/src/cdn/static/
     command: >
       bash -c "python3 manage.py migrate
       && python3 manage.py collectstatic
