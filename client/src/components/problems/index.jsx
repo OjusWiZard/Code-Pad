@@ -30,11 +30,11 @@ function Problem() {
   function b64DecodeUnicode(str) {
     return decodeURIComponent(
       atob(str)
-        .split("")
-        .map(function (c) {
+        ?.split("")
+        ?.map(function (c) {
           return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
         })
-        .join("")
+        ?.join("")
     );
   }
   let fileReader;
@@ -84,7 +84,7 @@ function Problem() {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_JUDGELANGUAGE}`, config).then((data) => {
       setLanguages(
-        data.data.filter(
+        data.data?.filter(
           (lang) => lang.id !== 54 && lang.id !== 44 && lang.id !== 89
         )
       );
@@ -134,15 +134,15 @@ function Problem() {
       window.scrollTo(0, document.body.scrollHeight);
       let out =
         res.data.stdout !== null
-          ? b64DecodeUnicode(res.data.stdout)
-          : b64DecodeUnicode(res.data.compile_output);
+          ? b64DecodeUnicode(res?.data?.stdout)
+          : b64DecodeUnicode(res?.data?.compile_output);
       setOutputData({
         ...outputData,
         memory: res.data.memory,
         time: res.data.time,
-        status: res.data.status.description,
+        status: res?.data?.status?.description,
       });
-      setOutput(out || res.data.status.description);
+      setOutput(out || res?.data?.status?.description);
     } catch (error) {
       if (error.message === "URI malformed") {
         setOutput("No Output");
@@ -465,7 +465,7 @@ function Problem() {
                               <option selected value={54}>
                                 C++ (GCC 9.2.0)
                               </option>
-                              {languages.map((lan) => (
+                              {languages?.map((lan) => (
                                 <option
                                   value={lan.id}
                                   className="font-lightGrey"

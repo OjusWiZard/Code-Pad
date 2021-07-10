@@ -5,7 +5,7 @@ import Editor from "./Editor";
 import { ModalContext } from "../../context/context";
 
 // Image imports
-import IDE from "../../images/editor/IDE.svg";
+import IDE from "../utils/IDELogo";
 
 // CSS imports
 import "./Editor.css";
@@ -114,9 +114,9 @@ const Form = () => {
           <div className="row d-flex justify-content-center">
             <div className="col-lg-10 col-md-10 col-sm-10 col-10 mx-auto my-5 content-background px-lg-5 py-lg-3">
               <div className="d-flex justify-content-center pt-sm-5">
-                <img id="logo" src={IDE} alt="IDE" className="img-fluid" />
+                <IDE />
               </div>
-              <p className="font-robot font-lightGrey text-justify mt-3 pt-3 font-14 font-weight-bold">
+              <p className="font-robot font-lightGrey text-justify mt-3 pt-3 font-14 font-weight-bold text-center mb-4">
                 Codepad's editor is a code-editor made for all the programmers
                 out there.
               </p>

@@ -5,7 +5,7 @@ import { ModalContext } from "../../../context/context";
 
 // Image Imports
 import Modal from "../../modal/index";
-import line from "../../../images/home/line.svg";
+import Line from "../../utils/Line";
 
 const ForgotPassword = () => {
   const history = useHistory();
@@ -68,7 +68,8 @@ const ForgotPassword = () => {
                   </div>
                 </form>
                 <div className="mt-4 text-center">
-                  <img src={line} alt="Change" className="img-fluid mt-4" />
+
+                 <div className="mt-4"> <Line /></div>
                 </div>
               </div>
             </div>

@@ -9,10 +9,10 @@ import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
 import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
-import line from "../../../images/home/line.svg";
 
 // CSS imports
 import "./signup.css";
+import Line from "../../utils/Line";
 
 function SignUp() {
   const { openModal, formMessage, errorMessage } = useContext(ModalContext);
@@ -252,7 +252,7 @@ function SignUp() {
                   </Link>
                 </div>
                 <div className="mt-3 text-center">
-                  <img src={line} alt="signup" className="img-fluid mt-4" />
+                  <Line />
                 </div>
               </div>
             </div>

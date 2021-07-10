@@ -8,9 +8,9 @@ import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/pacman.svg";
 import avatar4 from "../../images/auth/frog.svg";
 import trophy from "../../images/events/trophy.svg";
-import line from "../../images/eventDetails/line.svg";
-import heart from "../../images/footer/heart.svg";
-import folder from "../../images/eventDetails/folder.svg";
+import Line from "../utils/Line";
+import Star from "../utils/Star";
+import Folder from "../utils/Folder";
 import EventTime from "./EventTime";
 
 import {
@@ -139,13 +139,9 @@ function EventDetails() {
                       <div className="d-flex codewars mt-5 pt-2 pb-5">
                         <div>
                           <div className="mb-3">
-                            <img
-                              src={folder}
-                              alt="folder"
-                              className="img-fluid"
-                            />
-                            <span className="codewars-span font-vcr font-16 mt-3 font-blue">
-                              CODEWARS
+                            <Folder />
+                            <span className="codewars-span font-vcr font-16 mt-3 font-blue text-uppercase">
+                              {event?.title}
                             </span>
                           </div>
                           <div className="flex-mobile">
@@ -205,7 +201,7 @@ function EventDetails() {
                           </div>
                           {user && user?.score ? (
                             <div className="score font-blue font-robot font-16">
-                              <img src={trophy} alt="trophy" />
+                              <img src={trophy} alt="trophy"/>
                               <span className="ml-4">
                                 {user?.score ? `${user.score}` : "0"}
                               </span>
@@ -213,7 +209,7 @@ function EventDetails() {
                           ) : (
                             <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
-                              <span className="ml-4">0</span>
+                              <span className="ml-5">0</span>
                             </div>
                           )}
                         </div>
@@ -228,16 +224,20 @@ function EventDetails() {
                                 />
                                 <div className="about__header__content">
                                   <div className="mx-3">
-                                    <span className="font-blue font-vcr font-18">
+                                    <span className="font-blue font-vcr font-18 text-uppercase">
                                       {event?.title}{" "}
                                     </span>
                                     <br />
-                                    <img src={heart} alt="heart" />{" "}
-                                    <img src={heart} alt="heart" /> <br />
-                                    <EventTime
-                                      datetime={event.datetime}
-                                      endtime={event.endtime}
-                                    />
+                                    <span className="mr-2">
+                                      <Star />
+                                    </span>
+                                    <Star />
+                                    <div className="text-uppercase">
+                                      <EventTime
+                                        datetime={event.datetime}
+                                        endtime={event.endtime}
+                                      />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -420,7 +420,10 @@ function EventDetails() {
                 </div>
                 <div className="d-flex justify-content-center pt-5"></div>
                 <div className="mt-4 text-center">
-                  <img src={line} alt="line" className="img-fluid mt-4" />
+                  <div className="mt-4">
+                    {" "}
+                    <Line />
+                  </div>
                 </div>
               </div>
             </div>

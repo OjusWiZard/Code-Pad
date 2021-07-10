@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 // IAMAGE IMPORTS
-import logo from "../../images/events/event_logo.svg";
-import line from "../../images/home/line.svg";
+import EventHeader from "../utils/EventHeader";
+import Line from "../utils/Line";
 
 import { useHistory } from "react-router-dom";
 // CSS IMPORTS
@@ -48,7 +48,7 @@ function Events() {
             <div className="row d-flex justify-content-center">
               <div className="col-lg-10 col-md-8 col-sm-10 col-10 mx-auto my-5 content-background px-lg-5 py-md-5">
                 <div className="d-flex justify-content-center pt-md-5">
-                  <img src={logo} alt="" className="img-fluid" />
+                 <EventHeader />
                 </div>
 
                 {/* ONGOING EVENTS */}
@@ -63,7 +63,7 @@ function Events() {
                       ))}
                     </div>
                     <div className="d-flex justify-content-center pt-5">
-                      <img src={line} alt="" className="img-fluid" />
+                      <Line />
                     </div>
                   </div>
                 )}
@@ -86,7 +86,7 @@ function Events() {
                 {pastEvents?.length > 0 && (
                   <div>
                     <div className="d-flex justify-content-center pt-4">
-                      <img src={line} alt="" className="img-fluid" />
+                      <Line />
                     </div>
                     <h4 className="font-vcr font-blue mt-5 pt-4 text-center font-24 mb-4">
                       &lt;&lt;&nbsp;PAST EVENTS&nbsp;&gt;&gt;

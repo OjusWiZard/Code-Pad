@@ -3,9 +3,7 @@ import { resetPassword } from "../../../api/index";
 import { useHistory, useParams } from "react-router-dom";
 import { ModalContext } from "../../../context/context";
 import Modal from "../../modal";
-
-// Image Imports
-import line from "../../../images/home/line.svg";
+import Line from "../../utils/Line";
 
 const ResetPassword = () => {
   const { openModal } = useContext(ModalContext);
@@ -129,7 +127,7 @@ const ResetPassword = () => {
                   </div>
                 </form>
                 <div className="mt-4 text-center">
-                  <img src={line} alt="Reset Password" className="img-fluid mt-4" />
+                  <Line />
                 </div>
               </div>
             </div>

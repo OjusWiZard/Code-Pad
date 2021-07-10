@@ -13,7 +13,7 @@ function Event({ event }) {
         <div className="text-center">
           <img src={event.icon} alt="Events" className="img-fluid frame mt-3" />
           <div className="text-center pt-3">
-            <span className="font-vcr font-blue">{event.title}</span>
+            <span className="font-vcr font-blue text-uppercase">{event.title}</span>
             <p className="date pt-1 pb-4 font-robot">
               {moment(event?.datetime).format("MMMM Do YYYY")}
             </p>

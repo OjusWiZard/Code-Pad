@@ -5,11 +5,11 @@ import Spinner from "../utils/Spinner";
 import Event from "../utils/Event";
 
 // Image Imports
-import logo from "../../images/home/logo.svg";
-import line from "../../images/home/line.svg";
+import Line from "../utils/Line";
 
 // CSS Imports
 import "./home.css";
+import Codepad from "../utils/Codepad";
 
 function Home() {
   const history = useHistory();
@@ -48,7 +48,7 @@ function Home() {
             <div className="col-lg-10 col-md-10 col-sm-10 col-10 mx-auto my-md-5 my-2 content-background px-lg-5 py-sm-3">
               <div>
                 <div className="d-flex justify-content-center pt-md-5">
-                  <img src={logo} alt="Codepad" className="img-fluid" />
+                  <Codepad />
                 </div>
                 <p className="font-robot font-lightGrey text-justify mt-5 font-14 font-weight-bold px-lg-5">
                   Codepad was created as a platform to help programmers make it
@@ -67,7 +67,7 @@ function Home() {
                   learning while solving them.
                 </p>
                 <div className="d-flex justify-content-center pt-5">
-                  <img src={line} alt="" className="img-fluid" />
+                  <Line />
                 </div>
                 {events.length > 0 && (
                   <div>
