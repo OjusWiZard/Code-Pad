@@ -121,9 +121,7 @@ class View_Submission_Viewset(ReadOnlyModelViewSet):
 
 class Problem_Viewset(ReadOnlyModelViewSet):
     queryset = (
-        Problem.objects.filter(
-            event__datetime__lt=timezone.now(), testcases__isnull=False
-        )
+        Problem.objects.filter(event__datetime__lt=timezone.now())
         .distinct()
         .order_by("-event__datetime")
     )
