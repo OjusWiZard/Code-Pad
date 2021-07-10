@@ -1,3 +1,4 @@
+from datetime import timedelta
 from os import environ
 
 from django.db.models import F
@@ -63,6 +64,19 @@ class Submission_Viewset(ReadOnlyModelViewSet):
         language_id = int(get_submission_data("language_id"))
         submitted_solution = str(get_submission_data("solution"))
         current_time = timezone.now()
+
+        ongoing_submission = Submission.objects.filter(
+            user=request.user, problem=problem, status="In Queue"
+        )
+        ongoing_submission |= Submission.objects.filter(
+            user=request.user, problem=problem, status="Processing"
+        )
+        very_frequent_submission = ongoing_submission.filter(
+            datetime__gt=current_time - timedelta(minutes=5)
+        )
+
+        if very_frequent_submission.count() > 2:
+            return Response(data="Too Frequent Submissions!!!")
 
         submission = Submission.objects.create(
             user=request.user,
