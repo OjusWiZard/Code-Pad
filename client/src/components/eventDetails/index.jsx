@@ -55,17 +55,7 @@ function EventDetails() {
     getEvent(params.slug, history)
       .then((data) => {
         setEvent(data);
-        // console.log(data);
-        // let start = new Date();
-        // // console.log("START: ", start);
-        // let end = new Date(data.endtime);
-        // // console.log("END: ", end);
-        // let left = new Date(end - start).getTime();
-        // // console.log("LEFT: : ", left);
-        // // console.log(msToTime(left));
-        // // const time = moment(left).format("DD MMM YYYY hh:mm a");
-        // // console.log(time);
-        // // seteventdate(data.datetime);
+
         getLeaderboard(params.slug).then((data) => {
           setLeaderboard(data);
           getLeaderboardUser(
@@ -80,7 +70,6 @@ function EventDetails() {
     getLeaderboard(params.slug)
       .then((data) => {
         setLeaderboard(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log("Leaderboard Error: ", err);
@@ -110,7 +99,6 @@ function EventDetails() {
   const paginationLeaderboard = (text) => {
     getLeaderboardPagination(text).then((data) => {
       setLeaderboard(data);
-      console.log(data);
     });
   };
   let currentPage = leaderboard?.current;
@@ -201,7 +189,7 @@ function EventDetails() {
                           </div>
                           {user && user?.score ? (
                             <div className="score font-blue font-robot font-16">
-                              <img src={trophy} alt="trophy"/>
+                              <img src={trophy} alt="trophy" />
                               <span className="ml-4">
                                 {user?.score ? `${user.score}` : "0"}
                               </span>
@@ -407,10 +395,15 @@ function EventDetails() {
                           )}
                           {active === "rules" && (
                             <div className="min-height-event-details">
-                              <div className="font-blue font-vcr font-18 mt-3">
+                              <div className="font-blue font-vcr font-18 my-3">
                                 #RULES
                               </div>
-                              <li>{event.rules}</li>
+                              <p
+                                style={{ whiteSpace: "pre-wrap" }}
+                                className="font-robot font-lightGrey w-100"
+                              >
+                                {event.rules}
+                              </p>
                             </div>
                           )}
                         </div>

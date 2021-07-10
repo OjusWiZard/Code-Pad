@@ -299,7 +299,9 @@ function Problem() {
                       {problem?.contraints && (
                         <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
                           <div className="font-blue pb-2">CONSTRAINTS:</div>
-                          <span>{problem.contraints}</span>
+                          <pre className="font-robot font-14 font-lightGrey">
+                            {problem.contraints}
+                          </pre>
                         </p>
                       )}
 
@@ -494,10 +496,11 @@ function Problem() {
                               <option selected value={54}>
                                 C++ (GCC 9.2.0)
                               </option>
-                              {console.log(languages)}
+
                               {languages &&
-                                languages?.map((lan) => (
+                                languages?.map((lan, index) => (
                                   <option
+                                    key={index}
                                     value={lan.id}
                                     className="font-lightGrey"
                                   >
@@ -562,11 +565,10 @@ function Problem() {
                                 className="see-all-button"
                                 onClick={(e) => {
                                   handleSubmitCode(e, value);
-                                  console.log(disabled);
                                 }}
                               />
                             ) : (
-                              <div className="my-5 text-center button-hover">
+                              <div className="text-center button-hover">
                                 <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
                                   *WAIT*
                                 </div>

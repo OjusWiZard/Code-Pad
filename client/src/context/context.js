@@ -9,6 +9,14 @@ export function ModalProvider({ children }) {
     message: "",
     modalHeading: "",
   });
+
+  const clearErrors = () => {
+    setState((prevState) => ({
+      ...prevState,
+      errorMessage: {},
+    }))
+  }
+
   const formMessage = (e) => {
     setState(() => ({
       errorMessage: Object.assign({}, e),
@@ -35,6 +43,7 @@ export function ModalProvider({ children }) {
         openModal,
         closeModal,
         formMessage,
+        clearErrors
       }}
     >
       {children}
