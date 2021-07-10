@@ -26,6 +26,7 @@ function EditProfile() {
     Array.from(document.querySelectorAll(".img-avatar"))
       .find((img) => img.name === String(formData.avatar))
       .classList.add("active-avatar");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleAvatar = (e) => {
     setFormData({ ...formData, avatar: e.target.name });

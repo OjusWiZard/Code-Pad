@@ -12,7 +12,7 @@ import line from "../../images/eventDetails/line.svg";
 import heart from "../../images/footer/heart.svg";
 import folder from "../../images/eventDetails/folder.svg";
 import EventTime from "./EventTime";
-import moment from "moment";
+
 import {
   getEvent,
   getLeaderboard,
@@ -21,51 +21,51 @@ import {
 } from "../../api/index";
 import { useParams, Redirect, Link, useHistory } from "react-router-dom";
 
-function EventDetails({}) {
+function EventDetails() {
   const history = useHistory();
   const params = useParams();
-  function msToTime(duration) {
-    var milliseconds = parseInt((duration % 1000) / 100),
-      seconds = Math.floor((duration / 1000) % 60),
-      minutes = Math.floor((duration / (1000 * 60)) % 60),
-      hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+  // function msToTime(duration) {
+  //   var milliseconds = parseInt((duration % 1000) / 100),
+  //     seconds = Math.floor((duration / 1000) % 60),
+  //     minutes = Math.floor((duration / (1000 * 60)) % 60),
+  //     hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-    hours = hours < 10 ? "0" + hours : hours;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+  //   hours = hours < 10 ? "0" + hours : hours;
+  //   minutes = minutes < 10 ? "0" + minutes : minutes;
+  //   seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
-  }
+  //   return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+  // }
   const [leaderboard, setLeaderboard] = useState([]);
   const [user, setUser] = useState({});
   const [event, setEvent] = useState({});
-  const [counter, setCounter] = React.useState(1000);
+  // const [counter, setCounter] = React.useState(1000);
 
   // First Attempts
 
-  const [eventdate, seteventdate] = useState();
+  // const [eventdate, seteventdate] = useState();
   const avatarData = {
     1: avatar1,
     2: avatar2,
     3: avatar3,
     4: avatar4,
   };
-  let diffDays;
+  // let diffDays;
   useEffect(() => {
     getEvent(params.slug, history)
       .then((data) => {
         setEvent(data);
-        console.log(data);
-        let start = new Date();
-        console.log("START: ", start);
-        let end = new Date(data.endtime);
-        console.log("END: ", end);
-        let left = new Date(end - start).getTime();
-        console.log("LEFT: : ", left);
-        console.log(msToTime(left));
-        const time = moment(left).format("DD MMM YYYY hh:mm a");
-        console.log(time);
-        seteventdate(data.datetime);
+        // console.log(data);
+        // let start = new Date();
+        // // console.log("START: ", start);
+        // let end = new Date(data.endtime);
+        // // console.log("END: ", end);
+        // let left = new Date(end - start).getTime();
+        // // console.log("LEFT: : ", left);
+        // // console.log(msToTime(left));
+        // // const time = moment(left).format("DD MMM YYYY hh:mm a");
+        // // console.log(time);
+        // // seteventdate(data.datetime);
         getLeaderboard(params.slug).then((data) => {
           setLeaderboard(data);
           getLeaderboardUser(
