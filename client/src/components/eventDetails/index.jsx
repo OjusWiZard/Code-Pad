@@ -202,22 +202,18 @@ function EventDetails({}) {
                         <div className="top-section d-flex justify-content-between align-items-center">
                           <div className="dashboard font-vcr font-lightGrey">
                             <h5>*&nbsp;Dashboard&nbsp;*</h5>
-                            <EventTime
-                              datetime={event.datetime}
-                              endtime={event.endtime}
-                            />
                           </div>
                           {user && user?.score ? (
                             <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
-                              <span className="ml-5">
+                              <span className="ml-4">
                                 {user?.score ? `${user.score}` : "0"}
                               </span>
                             </div>
                           ) : (
                             <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
-                              <span className="ml-5">0</span>
+                              <span className="ml-4">0</span>
                             </div>
                           )}
                         </div>
@@ -238,9 +234,10 @@ function EventDetails({}) {
                                     <br />
                                     <img src={heart} alt="heart" />{" "}
                                     <img src={heart} alt="heart" /> <br />
-                                    {moment(event?.datetime).format(
-                                      "MMMM Do YYYY"
-                                    )}
+                                    <EventTime
+                                      datetime={event.datetime}
+                                      endtime={event.endtime}
+                                    />
                                   </div>
                                 </div>
                               </div>

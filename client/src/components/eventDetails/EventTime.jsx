@@ -3,7 +3,12 @@ import moment from "moment";
 const EventTime = ({ datetime, endtime }) => {
   console.log(datetime, endtime, Date.now());
   if (new Date(datetime).getTime() > Date.now()) {
-    return <div>Starts {moment(datetime).calendar()} </div>;
+    return (
+      <div>
+        Starts {moment(datetime).format("MMMM Do YYYY")} at{" "}
+        {moment(datetime).format("h:mm:ss a")}{" "}
+      </div>
+    );
   }
   if (
     Date.now() < new Date(endtime).getTime() &&
