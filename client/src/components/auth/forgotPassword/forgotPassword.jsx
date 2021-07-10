@@ -20,13 +20,13 @@ const ForgotPassword = () => {
       await forgotPassword(formData, history, openModal);
     }
   };
-  function validateEmail(email) {
-    var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    return pattern.test(String(email).toLowerCase());
-  }
+  // function validateEmail(email) {
+  //   var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  //   return pattern.test(String(email).toLowerCase());
+  // }
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.email === "" || !validateEmail(formData.email)) {
+    if (formData.email === "") {
       openModal("Type a valid email address");
       <Modal />;
       return;
