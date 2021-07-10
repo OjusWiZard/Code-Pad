@@ -10,8 +10,8 @@ const NoSubmission = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M72.3792 0H14.0596V73.9409H78.6276L78.6277 6.76923H72.3792V0Z"
         fill="#00425E"
       />
