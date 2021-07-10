@@ -245,7 +245,7 @@ function Problem() {
                         <>
                           <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
                             <div className="font-blue pb-2">EXAMPLE INPUT:</div>
-                            <pre className="font-lightGrey">
+                            <pre className="font-lightGrey" style={{fontSize: '17px'}}>
                               {problem.example_input}
                             </pre>
                           </p>
@@ -269,7 +269,7 @@ function Problem() {
                             <div className="font-blue pb-2">
                               EXAMPLE OUTPUT:
                             </div>
-                            <pre className="font-lightGrey">
+                            <pre className="font-lightGrey" style={{fontSize: '17px'}}>
                               {problem.example_output}
                             </pre>
                           </p>
