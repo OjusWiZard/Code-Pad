@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ["DEBUG"]
+DEBUG = bool(os.environ["DEBUG"])
 
 ALLOWED_HOSTS = ["localhost", os.environ["SERVER_HOST"]]
 
@@ -204,9 +204,15 @@ DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL"]
 CELERY_TIMEZONE = "Asia/Kolkata"
 CELERY_TASK_ROUTES = {"event.tasks.submit": {"queue": "submissions"}}
 
+
 # RabbitMQ settings
 
 RABBITMQ_VHOST = os.environ["RABBITMQ_DEFAULT_VHOST"]
 RABBITMQ_USER = os.environ["RABBITMQ_DEFAULT_USER"]
 RABBITMQ_PASS = os.environ["RABBITMQ_DEFAULT_PASS"]
 RABBITMQ_HOST = os.environ["RABBITMQ_DEFAULT_HOST"]
+
+
+# SSL Settings
+
+SECURE_SSL_REDIRECT = bool(os.environ["SECURE_SSL_REDIRECT"])
