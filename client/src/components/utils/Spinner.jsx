@@ -3,7 +3,9 @@ import spinner from "../../images/common/loader.gif";
 
 const Spinner = () => {
   return (
-    <div style={{ minHeight: "100vh", textAlign: "center" }}>
+    <div
+      style={{ minHeight: "100vh", textAlign: "center", lineHeight: "50vh" }}
+    >
       <img src={spinner} height="20px" alt="spinner" />;
     </div>
   );
