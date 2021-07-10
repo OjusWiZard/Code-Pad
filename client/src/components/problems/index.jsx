@@ -498,8 +498,9 @@ function Problem() {
                               </option>
 
                               {languages &&
-                                languages?.map((lan) => (
+                                languages?.map((lan, index) => (
                                   <option
+                                    key={index}
                                     value={lan.id}
                                     className="font-lightGrey"
                                   >
