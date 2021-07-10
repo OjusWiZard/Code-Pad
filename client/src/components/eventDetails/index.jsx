@@ -201,7 +201,7 @@ function EventDetails() {
                           </div>
                           {user && user?.score ? (
                             <div className="score font-blue font-robot font-16">
-                              <img src={trophy} alt="trophy" />
+                              <img src={trophy} alt="trophy"/>
                               <span className="ml-4">
                                 {user?.score ? `${user.score}` : "0"}
                               </span>
@@ -209,7 +209,7 @@ function EventDetails() {
                           ) : (
                             <div className="score font-blue font-robot font-16">
                               <img src={trophy} alt="trophy" />
-                              <span className="ml-4">0</span>
+                              <span className="ml-5">0</span>
                             </div>
                           )}
                         </div>

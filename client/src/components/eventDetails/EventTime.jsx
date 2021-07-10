@@ -5,7 +5,7 @@ const EventTime = ({ datetime, endtime }) => {
   if (new Date(datetime).getTime() > Date.now()) {
     return (
       <div>
-        START ON {moment(datetime).format("MMMM Do YYYY")},{" "}
+        STARTS ON {moment(datetime).format("Do MMMM")},{" "}
         {moment(datetime).format("hh:mm a")}{" "}
       </div>
     );
@@ -17,7 +17,7 @@ const EventTime = ({ datetime, endtime }) => {
     return <div>ENDS ON {(moment(endtime).format("Do MMMM"))}, {moment(endtime).format("hh:mm a")} </div>;
   }
   if (Date.now() > new Date(endtime).getTime()) {
-    return <div>ENDED ON {moment(endtime).format("MMMM Do YYYY")}</div>;
+    return <div>ENDED ON {moment(endtime).format("Do MMMM YYYY")}</div>;
   }
   return <div>*</div>;
 };
