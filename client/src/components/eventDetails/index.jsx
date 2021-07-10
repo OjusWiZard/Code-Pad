@@ -395,12 +395,12 @@ function EventDetails() {
                           )}
                           {active === "rules" && (
                             <div className="min-height-event-details">
-                              <div className="font-blue font-vcr font-18 mt-3">
+                              <div className="font-blue font-vcr font-18 my-3">
                                 #RULES
                               </div>
                               <p
                                 style={{ whiteSpace: "pre-wrap" }}
-                                className="font-robot font-18 font-lightGrey w-100"
+                                className="font-robot font-lightGrey w-100"
                               >
                                 {event.rules}
                               </p>
