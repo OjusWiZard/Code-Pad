@@ -53,6 +53,7 @@ function Problem() {
   const history = useHistory();
   const { openModal } = useContext(ModalContext);
   const params = useParams();
+  const [disabled, setDisabled] = useState(false);
   const [value, setValue] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -172,12 +173,15 @@ function Problem() {
       return;
     }
     try {
+      setDisabled(true);
       await codeSubmission(data, openModal);
+      setDisabled(false);
     } catch (error) {
       if (error.message === "URI malformed") {
         setOutput("No Output");
         return;
       }
+      setDisabled(false);
       openModal(error.message);
       <Modal />;
     }
@@ -245,7 +249,10 @@ function Problem() {
                         <>
                           <p className="font-robot font-lightGrey mt-4 font-14 font-weight-bold px-xl-3 text-justify">
                             <div className="font-blue pb-2">EXAMPLE INPUT:</div>
-                            <pre className="font-lightGrey" style={{fontSize: '17px'}}>
+                            <pre
+                              className="font-lightGrey"
+                              style={{ fontSize: "17px" }}
+                            >
                               {problem.example_input}
                             </pre>
                           </p>
@@ -269,7 +276,10 @@ function Problem() {
                             <div className="font-blue pb-2">
                               EXAMPLE OUTPUT:
                             </div>
-                            <pre className="font-lightGrey" style={{fontSize: '17px'}}>
+                            <pre
+                              className="font-lightGrey"
+                              style={{ fontSize: "17px" }}
+                            >
                               {problem.example_output}
                             </pre>
                           </p>
@@ -544,8 +554,14 @@ function Problem() {
                           <img
                             src={submitCode}
                             alt="submitCode"
+                            style={{
+                              pointerEvent: disabled ? "none" : "default",
+                            }}
                             className="see-all-button"
-                            onClick={(e) => handleSubmitCode(e, value)}
+                            onClick={(e) => {
+                              handleSubmitCode(e, value);
+                              console.log(disabled);
+                            }}
                           />
                         ) : (
                           <Link to="/login">

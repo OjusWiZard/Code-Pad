@@ -109,18 +109,24 @@ export const codeSubmission = async (formData, openModal) => {
     openModal("Processing - Wait for the verdict", "okay");
     <Modal />;
     id = res.data.id;
-    const interval = setInterval(() => {
-      API.get(`/viewsubmission/${id}`).then(res => {
-        if (res.data.status !== "In Queue" && res.data.status !== "Processing") {
+    if (!id) {
+      openModal("Too many submissions");
+      <Modal />
+      return;
+    } else {
+      const interval = setInterval(() => {
+        API.get(`/viewsubmission/${id}`).then(res => {
+          if (res.data.status !== "In Queue" && res.data.status !== "Processing") {
 
-          openModal(`${res.data.status} - ${res.data.testcases_passed} passed`, "okay");
+            openModal(`${res.data.status} - ${res.data.testcases_passed} passed`, "okay");
 
-          <Modal />;
-          clearInterval(interval);
-          return res.data;
-        }
-      })
-    }, 2000)
+            <Modal />;
+            clearInterval(interval);
+            return res.data;
+          }
+        })
+      }, 2000)
+    }
   } catch (error) {
     openModal("Please Login to Continue");
     <Modal />
