@@ -2,9 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { signIn } from "../../../api/index";
 import { ModalContext } from "../../../context/context";
-
-// Image Imports
-import line from "../../../images/home/line.svg";
+import Line from "../../utils/Line";
 
 // Css Imports
 import "./login.css";
@@ -137,7 +135,7 @@ function Login() {
                   Not yet registered? <Link to="/signup" className="font-blue font-weight-bold">Signup</Link>
                 </div>
                 <div className="mt-4 text-center">
-                  <img src={line} alt="Login" className="img-fluid mt-4" />
+                  <Line />
                 </div>
               </div>
             </div>

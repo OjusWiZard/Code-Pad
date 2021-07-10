@@ -8,7 +8,7 @@ import avatarOne from "../../../images/auth/peach.svg";
 import avatarTwo from "../../../images/auth/mario.svg";
 import avatarThree from "../../../images/auth/pacman.svg";
 import avatarFour from "../../../images/auth/frog.svg";
-import line from "../../../images/home/line.svg";
+import Line from "../../utils/Line";
 
 // Css
 import "../editProfile/editProfile.css";
@@ -184,7 +184,7 @@ function EditProfile() {
                   </div>
                 </div>
                 <div className="mt-4 text-center">
-                  <img src={line} alt="signup" className="img-fluid mt-4" />
+                  <Line />
                 </div>
               </div>
             </div>

@@ -9,7 +9,7 @@ function Footer() {
     <footer>
       <div className="font-lightGrey font-vcr mt-4">
         <p className="px-3 text-center mb-0">
-          MADE WITH <img src={heart} alt="heart" className="img-fluid" /> BY
+          MADE WITH <img src={heart} alt="heart" className="img-fluid" width="15px" height="15px"/> BY
           NIBBLE COMPUTER SOCIETY
         </p>
       </div>

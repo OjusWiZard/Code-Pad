@@ -1,0 +1,113 @@
+import React from "react";
+
+const Star = () => {
+  return (
+    <svg
+      width="14"
+      height="15"
+      viewBox="0 0 14 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect x="6.16675" width="1.16666" height="11.1666" fill="#35A4D3" />
+      <rect
+        x="4.99982"
+        y="2.58337"
+        width="1.16666"
+        height="9.91657"
+        fill="#35A4D3"
+      />
+      <rect
+        x="3.83325"
+        y="5.00012"
+        width="1.16666"
+        height="8.58325"
+        fill="#35A4D3"
+      />
+      <rect
+        x="2.50006"
+        y="5.00012"
+        width="1.33332"
+        height="3.5833"
+        fill="#35A4D3"
+      />
+      <rect
+        x="2.50006"
+        y="9.99963"
+        width="1.33332"
+        height="3.5833"
+        fill="#35A4D3"
+      />
+      <rect
+        x="9.66669"
+        y="9.99963"
+        width="1.33332"
+        height="3.5833"
+        fill="#35A4D3"
+      />
+      <rect
+        x="9.66669"
+        y="5.00012"
+        width="1.33332"
+        height="3.5833"
+        fill="#35A4D3"
+      />
+      <rect
+        x="1.24988"
+        y="5.00012"
+        width="1.24999"
+        height="2.49998"
+        fill="#35A4D3"
+      />
+      <rect
+        x="1.24988"
+        y="12.5001"
+        width="1.24999"
+        height="2.49998"
+        fill="#35A4D3"
+      />
+      <rect
+        x="10.9999"
+        y="12.5001"
+        width="1.24999"
+        height="2.49998"
+        fill="#35A4D3"
+      />
+      <rect
+        x="10.9999"
+        y="5.00012"
+        width="1.24999"
+        height="2.49998"
+        fill="#35A4D3"
+      />
+      <rect y="5.00012" width="1.24999" height="1.24999" fill="#35A4D3" />
+      <rect
+        x="12.2498"
+        y="5.00012"
+        width="1.24999"
+        height="1.24999"
+        fill="#35A4D3"
+      />
+      <rect
+        x="8.49988"
+        y="5.00012"
+        width="1.16666"
+        height="8.58325"
+        fill="#35A4D3"
+      />
+      <rect
+        x="7.33325"
+        y="2.58337"
+        width="1.16666"
+        height="9.91657"
+        fill="#35A4D3"
+      />
+      <rect y="5" width="5" height="1" fill="#BAEAFF" />
+      <rect x="6" width="0.5" height="1" fill="#BAEAFF" />
+      <rect x="5" y="3" width="1" height="1" fill="#BAEAFF" />
+      <rect x="9" y="5" width="3" height="1" fill="#BAEAFF" />
+    </svg>
+  );
+};
+
+export default Star;

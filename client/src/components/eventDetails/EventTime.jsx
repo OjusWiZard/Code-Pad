@@ -14,10 +14,10 @@ const EventTime = ({ datetime, endtime }) => {
     Date.now() < new Date(endtime).getTime() &&
     Date.now() > new Date(datetime).getTime()
   ) {
-    return <div>Ends {moment(endtime).calendar()} </div>;
+    return <div>ENDS ON {(moment(endtime).format("Do MMMM"))}, {moment(endtime).format("hh:mm a")} </div>;
   }
   if (Date.now() > new Date(endtime).getTime()) {
-    return <div>Ended on {moment(endtime).format("MMMM Do YYYY")}</div>;
+    return <div>ENDED ON {moment(endtime).format("MMMM Do YYYY")}</div>;
   }
   return <div>*</div>;
 };
