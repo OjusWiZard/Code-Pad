@@ -566,7 +566,7 @@ function Problem() {
                                 }}
                               />
                             ) : (
-                              <div className="my-5 text-center button-hover">
+                              <div className="text-center button-hover">
                                 <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
                                   *WAIT*
                                 </div>
