@@ -34,8 +34,7 @@ function Home() {
         return events;
       })
       .catch((err) => {
-        localStorage.clear();
-        history.push("/login");
+       console.log(err);
       });
   }, []);
 
