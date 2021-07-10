@@ -15,7 +15,8 @@ import "./signup.css";
 import Line from "../../utils/Line";
 
 function SignUp() {
-  const { openModal, formMessage, errorMessage } = useContext(ModalContext);
+  const { openModal, formMessage, errorMessage, clearErrors } =
+    useContext(ModalContext);
   const [passwordType, setPasswordType] = useState("password");
   const [rePasswordType, setRePasswordType] = useState("password");
   const [arrFields, setarrFields] = useState({
@@ -28,7 +29,10 @@ function SignUp() {
     re_password: "",
   });
   const history = useHistory();
-
+  useEffect(() => {
+    clearErrors();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     setarrFields(initialState);
     for (const property in errorMessage) {

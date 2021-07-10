@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { signIn } from "../../../api/index";
 import { ModalContext } from "../../../context/context";
@@ -8,12 +8,16 @@ import Line from "../../utils/Line";
 import "./login.css";
 
 function Login() {
-  const { openModal, formMessage, errorMessage } = useContext(ModalContext);
+  const { openModal, formMessage, errorMessage, clearErrors } =
+    useContext(ModalContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  useEffect(() => {
+    clearErrors();
+  }, []);
   const [passwordType, setPasswordType] = useState("password");
   const handleSubmitOnEnter = async (e) => {
     if (e.which === 13) {
@@ -132,7 +136,10 @@ function Login() {
                   </div>
                 </form>
                 <div className="mt-4 text-center font-robot font-lightGrey">
-                  Not yet registered? <Link to="/signup" className="font-blue font-weight-bold">Signup</Link>
+                  Not yet registered?{" "}
+                  <Link to="/signup" className="font-blue font-weight-bold">
+                    Signup
+                  </Link>
                 </div>
                 <div className="mt-4 text-center">
                   <Line />

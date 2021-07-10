@@ -14,7 +14,8 @@ import Line from "../../utils/Line";
 import "../editProfile/editProfile.css";
 
 function EditProfile() {
-  const { openModal, errorMessage, formMessage } = useContext(ModalContext);
+  const { openModal, errorMessage, formMessage, clearErrors } =
+    useContext(ModalContext);
   const history = useHistory();
   const [formData, setFormData] = useState({
     ...JSON.parse(localStorage.getItem("user")),
@@ -23,6 +24,8 @@ function EditProfile() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   useEffect(() => {
+    clearErrors();
+
     Array.from(document.querySelectorAll(".img-avatar"))
       .find((img) => img.name === String(formData.avatar))
       .classList.add("active-avatar");
