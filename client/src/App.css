@@ -112,7 +112,6 @@ body {
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
-  z-index: 1;
   display: flex;
   top: 0;
   bottom: 0;
