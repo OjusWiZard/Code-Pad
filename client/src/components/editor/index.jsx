@@ -139,7 +139,7 @@ const Form = () => {
                           >
                             C++ (GCC 9.2.0)
                           </option>
-                          {languages.map((lan) => (
+                          {languages?.map((lan) => (
                             <option value={lan.id} className="font-lightGrey">
                               {lan.name}
                             </option>
