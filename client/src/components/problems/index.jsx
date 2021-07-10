@@ -7,7 +7,7 @@ import avatar1 from "../../images/auth/peach.svg";
 import avatar2 from "../../images/auth/mario.svg";
 import avatar3 from "../../images/auth/pacman.svg";
 import avatar4 from "../../images/auth/frog.svg";
-import noSubmissions from "../../images/eventDetails/nosubmissions.svg";
+import NoSubmission from "../utils/NoSubmission";
 import accepted from "../../images/problems/accepted.svg";
 import processing from "../../images/problems/pending.svg";
 import rejected from "../../images/problems/cross.svg";
@@ -289,11 +289,7 @@ function Problem() {
                           className="d-flex justify-content-center align-items-center text-center w-100 py-3"
                           style={{ flexDirection: "column" }}
                         >
-                          <img
-                            src={noSubmissions}
-                            style={{ width: "100px", height: "100px" }}
-                            alt="submissions"
-                          />
+                          <NoSubmission />
                           <br />
                           <div className="font-vcr font-blue font-16">
                             NO SUBMISSION

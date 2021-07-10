@@ -117,7 +117,8 @@ const Form = () => {
                 <img id="logo" src={IDE} alt="IDE" className="img-fluid" />
               </div>
               <p className="font-robot font-lightGrey text-justify mt-3 pt-3 font-14 font-weight-bold">
-                Codepad's editor is a code-editor made for all the programmers out there.
+                Codepad's editor is a code-editor made for all the programmers
+                out there.
               </p>
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="d-flex font-vcr justify-content-between align-items-center py-3 font-lightGrey">
@@ -131,7 +132,11 @@ const Form = () => {
                           }}
                           className="font-vcr font-blue"
                         >
-                          <option selected value={54} className="font-lightGrey">
+                          <option
+                            selected
+                            value={54}
+                            className="font-lightGrey"
+                          >
                             C++ (GCC 9.2.0)
                           </option>
                           {languages.map((lan) => (
@@ -159,13 +164,16 @@ const Form = () => {
                     />
                   </div>
                 </div>
+
                 <Editor
                   languageId={languageId}
                   displayName="Code"
                   value={value}
                   input={input}
                   onChange={setValue}
+                  resizeable
                 ></Editor>
+
                 <div className="lower-section d-flex w-100 justify-content-between align-item-start pt-5">
                   <div className="textarea-input ">
                     <textarea

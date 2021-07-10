@@ -105,7 +105,7 @@ export const getProblem = async (slug, history) => {
 export const codeSubmission = async (formData, openModal) => {
   try {
     let res = await API.post(`/submissions/`, formData, config);
-    let status, id;
+    let id;
     openModal("Processing - Wait for the verdict", "okay");
     <Modal />;
     id = res.data.id;

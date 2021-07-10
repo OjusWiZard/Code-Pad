@@ -17,6 +17,7 @@ import "./signup.css";
 function SignUp() {
   const { openModal, formMessage, errorMessage } = useContext(ModalContext);
   const [passwordType, setPasswordType] = useState("password");
+  const [rePasswordType, setRePasswordType] = useState("password");
   const [arrFields, setarrFields] = useState({
     username: "",
     admission_no: "",
@@ -153,18 +154,22 @@ function SignUp() {
                             <div className="pixel-input-wrapper">
                               <span></span>
                               <div className="pixel-input w-100">
-                                <input
-                                  required
-                                  onChange={handleChange}
-                                  name={field}
-                                  value={formData.field}
-                                  onKeyPress={handleSubmitOnEnter}
-                                  type={
-                                    field === "password" ? passwordType : "text"
-                                  }
-                                  className="font-vcr font-blue"
-                                  placeholder={field}
-                                />
+                                {field !== "re_password" && (
+                                  <input
+                                    required
+                                    onChange={handleChange}
+                                    name={field}
+                                    value={formData.field}
+                                    onKeyPress={handleSubmitOnEnter}
+                                    type={
+                                      field === "password"
+                                        ? passwordType
+                                        : "text"
+                                    }
+                                    className="font-vcr font-blue"
+                                    placeholder={field}
+                                  />
+                                )}
                                 {field === "password" && (
                                   <div
                                     onClick={() => {
@@ -185,6 +190,39 @@ function SignUp() {
                                       />
                                     )}
                                   </div>
+                                )}
+                                {field === "re_password" && (
+                                  <>
+                                    <input
+                                      required
+                                      onChange={handleChange}
+                                      name={field}
+                                      value={formData.field}
+                                      onKeyPress={handleSubmitOnEnter}
+                                      type={rePasswordType}
+                                      className="font-vcr font-blue"
+                                      placeholder={field}
+                                    />
+                                    <div
+                                      onClick={() => {
+                                        rePasswordType === "password"
+                                          ? setRePasswordType("text")
+                                          : setRePasswordType("password");
+                                      }}
+                                    >
+                                      {rePasswordType === "password" ? (
+                                        <i
+                                          className="fas fa-eye font-blue"
+                                          style={{ marginTop: "0.6rem" }}
+                                        />
+                                      ) : (
+                                        <i
+                                          className="fas fa-eye-slash font-blue"
+                                          style={{ marginTop: "0.6rem" }}
+                                        />
+                                      )}
+                                    </div>
+                                  </>
                                 )}
                               </div>
                             </div>
