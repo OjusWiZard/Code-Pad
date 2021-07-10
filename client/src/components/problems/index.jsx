@@ -30,8 +30,8 @@ function Problem() {
   function b64DecodeUnicode(str) {
     return decodeURIComponent(
       atob(str)
-        .split("")
-        .map(function (c) {
+        ?.split("")
+        ?.map(function (c) {
           return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
         })
         .join("")
@@ -465,7 +465,7 @@ function Problem() {
                               <option selected value={54}>
                                 C++ (GCC 9.2.0)
                               </option>
-                              {languages.map((lan) => (
+                              {languages?.map((lan) => (
                                 <option
                                   value={lan.id}
                                   className="font-lightGrey"
