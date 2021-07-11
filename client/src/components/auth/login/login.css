@@ -133,3 +133,6 @@ input:focus {
   box-shadow: none;
   outline: none !important;
 }
+.primaryColor-hover:hover{
+  color: var(--primaryColor);
+}
