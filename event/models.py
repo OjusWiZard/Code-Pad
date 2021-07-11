@@ -64,6 +64,7 @@ class Problem(models.Model):
     point_loss = models.PositiveSmallIntegerField(
         default=2, help_text="Point loss per minute."
     )
+    cpp_solution = models.TextField(max_length=4096, blank=True, null=True)
 
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     submission_from = models.ManyToManyField(User, through="Submission")
