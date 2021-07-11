@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Event, Leaderboard, Problem, Submission, Testcase
-from .tasks import submit
+from .tasks import submit, set_tc_time_limits
 
 
 class Event_Admin(admin.ModelAdmin):
@@ -23,6 +23,11 @@ class Problem_Admin(admin.ModelAdmin):
     list_filter = ["event"]
     ordering = ["-event__datetime"]
     search_fields = ["title"]
+    actions = ["set_testcases_time_limits"]
+
+    def set_testcases_time_limits(self, request, queryset):
+        for problem in queryset:
+            set_tc_time_limits.delay(problem.id)
 
 
 class Testcase_Admin(admin.ModelAdmin):
