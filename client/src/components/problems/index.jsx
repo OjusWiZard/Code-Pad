@@ -613,7 +613,7 @@ function Problem() {
                       )}
 
                       <textarea
-                        className="output w-100 font-robot"
+                        className="output w-100 font-robot p-3"
                         value={output}
                         rows="10"
                         disabled
