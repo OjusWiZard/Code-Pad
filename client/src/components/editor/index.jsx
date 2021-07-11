@@ -117,8 +117,9 @@ const Form = () => {
                 <IDE />
               </div>
               <p className="font-robot font-lightGrey text-justify mt-3 pt-3 font-14 font-weight-bold text-center mb-4">
-                Codepad's editor is a code-editor made for all the programmers
-                out there.
+                Compile & run your code with the Codepad online IDE. Our online
+                compiler supports multiple programming languages like C++, C,
+                Java, Python Kotlin, NodeJS, and many more.
               </p>
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="d-flex font-vcr justify-content-between align-items-center py-3 font-lightGrey">
@@ -148,21 +149,28 @@ const Form = () => {
                       </div>
                     </div>
                   </div>
-                  <div
-                    className="file-button font-vcr font-blue"
-                    style={{ cursor: "pointer" }}
-                  >
-                    Choose File
-                    <input
-                      type="file"
-                      value=""
-                      onChange={(e) => {
-                        setValue(".");
-                        handleFileChosen(e.target.files[0]);
-                      }}
-                      className="hide-file"
-                    />
+
+                  <div className="input-group" style={{ width: "auto", cursor:"pointer" }}>
+                    <div className="pixel-input-wrapper">
+                      <span></span>
+                      <div
+                        className="pixel-input file-button font-vcr font-blue"
+                        style={{ whiteSpace: "pre", cursor: "pointer" }}
+                      >
+                        Choose File
+                        <input
+                          type="file"
+                          className="hide-file"
+                          value=""
+                          onChange={(e) => {
+                            setValue(".");
+                            handleFileChosen(e.target.files[0]);
+                          }}
+                        />
+                      </div>
+                    </div>
                   </div>
+
                 </div>
 
                 <Editor

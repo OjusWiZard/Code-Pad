@@ -114,7 +114,7 @@ function Login() {
                   </div>
                   <Link
                     to="/forgot-password"
-                    className="d-flex justify-content-end font-vcr font-lightGrey mt-3"
+                    className="d-flex justify-content-end font-vcr font-lightGrey mt-3 primaryColor-hover"
                   >
                     FORGOT PASSWORD?
                   </Link>
