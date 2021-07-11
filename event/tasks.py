@@ -41,7 +41,7 @@ def submit(
 
     print("Submission " + str(submission.id) + ": Evaluation Started")
     problem = Problem.objects.get(id=problem_id)
-    testcases = Testcase.objects.filter(problem=problem)
+    testcases = problem.testcases.all()
     submission.status = "Processing"
     submission.save()
 
