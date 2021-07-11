@@ -512,19 +512,27 @@ function Problem() {
                         </div>
                       </div>
                       <div
-                        className="file-button font-vcr font-blue"
-                        style={{ cursor: "pointer" }}
+                        className="input-group"
+                        style={{ width: "auto", cursor: "pointer" }}
                       >
-                        Choose File
-                        <input
-                          type="file"
-                          value=""
-                          onChange={(e) => {
-                            setValue(".");
-                            handleFileChosen(e.target.files[0]);
-                          }}
-                          className="hide-file"
-                        />
+                        <div className="pixel-input-wrapper">
+                          <span></span>
+                          <div
+                            className="pixel-input file-button font-vcr font-blue"
+                            style={{ whiteSpace: "pre", cursor: "pointer" }}
+                          >
+                            Choose File
+                            <input
+                              type="file"
+                              className="hide-file"
+                              value=""
+                              onChange={(e) => {
+                                setValue(".");
+                                handleFileChosen(e.target.files[0]);
+                              }}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <Editor

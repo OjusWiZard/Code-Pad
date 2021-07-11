@@ -155,7 +155,7 @@ const Form = () => {
                       <span></span>
                       <div
                         className="pixel-input file-button font-vcr font-blue"
-                        style={{ whiteSpace: "pre" }}
+                        style={{ whiteSpace: "pre", cursor: "pointer" }}
                       >
                         Choose File
                         <input
@@ -170,6 +170,7 @@ const Form = () => {
                       </div>
                     </div>
                   </div>
+
                 </div>
 
                 <Editor
