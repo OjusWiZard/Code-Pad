@@ -120,18 +120,20 @@ class View_Submission_Viewset(ReadOnlyModelViewSet):
 
 
 class Problem_Viewset(ReadOnlyModelViewSet):
-    queryset = (
-        Problem.objects.filter(event__datetime__lt=timezone.now())
-        .distinct()
-        .order_by("-event__datetime")
-    )
+    queryset = Problem.objects.all()
     lookup_field = "slug"
-    pagination_class = Pagination_Size10
 
     def get_serializer_class(self):
         if self.action == "retrieve":
             return Problem_Detail_Serializer
         return Problem_List_Serializer
+
+    def get_queryset(self):
+        return (
+            Problem.objects.filter(event__datetime__lt=timezone.now())
+            .distinct()
+            .order_by("-event__datetime")
+        )
 
 
 class Event_Viewset(ReadOnlyModelViewSet):
