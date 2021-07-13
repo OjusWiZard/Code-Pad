@@ -110,9 +110,14 @@ def submit(
     ):
         user = User.objects.get(id=user_id)
         submissions = Submission.objects.filter(user=user, problem=problem)
+        print(submissions)
+        submissions = submissions.exclude(status="In Queue")
+        submissions = submissions.exclude(status="Processing")
+        print(submissions)
         correct_submissions = submissions.filter(status="Accepted")
         if not correct_submissions and verdict == "Accepted":
             incorrect_submissions = submissions.difference(correct_submissions)
+            print(incorrect_submissions)
             current_leaderboard_field = Leaderboard.objects.get_or_create(
                 user=user, event=event
             )[0]
