@@ -33,6 +33,12 @@ class Problem_Admin(admin.ModelAdmin):
 class Testcase_Admin(admin.ModelAdmin):
     list_filter = ["problem__title"]
     search_fields = ["problem__title"]
+    list_display = ["__str__", "tc_input_size", "tc_output_size"]
+    actions = ["set_tc_files_size"]
+
+    def set_tc_files_size(self, request, testcases):
+        for testcase in testcases:
+            testcase.save()
 
 
 class Submission_Admin(admin.ModelAdmin):
