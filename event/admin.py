@@ -37,7 +37,7 @@ class Testcase_Admin(admin.ModelAdmin):
 
 class Submission_Admin(admin.ModelAdmin):
     list_display = ["user", "status", "problem", "datetime"]
-    list_filter = ["problem__event"]
+    list_filter = ["problem__event", "problem"]
     ordering = ["-datetime"]
     search_fields = ["user", "problem", "problem__event"]
     actions = ["evaluate"]
