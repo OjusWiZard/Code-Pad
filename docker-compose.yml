@@ -16,11 +16,15 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - media:/usr/src/cdn/media/
-      - static:/usr/src/cdn/static/
+      - type: bind
+        source: ./media
+        target: /codepad/media/
+      - type: bind
+        source: ./static
+        target: /codepad/static/
     command: >
       bash -c "python3 manage.py migrate
-      && python3 manage.py collectstatic
+      && python3 manage.py collectstatic --noinput
       && /usr/local/bin/gunicorn CodePad.wsgi:application -w 2 -b :8000"
     depends_on:
       postgres:
@@ -66,6 +70,4 @@ services:
       retries: 10
 
 volumes:
-  static:
-  media:
   pgdbdata:

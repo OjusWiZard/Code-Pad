@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getAllEvents } from "../../api/index";
 import Spinner from "../utils/Spinner";
 import Event from "../utils/Event";
@@ -12,7 +12,6 @@ import "./home.css";
 import Codepad from "../utils/Codepad";
 
 function Home() {
-  const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState([]);
   useEffect(() => {
@@ -34,7 +33,7 @@ function Home() {
         return events;
       })
       .catch((err) => {
-       console.log(err);
+        console.log(err);
       });
   }, []);
 
@@ -50,20 +49,17 @@ function Home() {
                   <Codepad />
                 </div>
                 <p className="font-robot font-lightGrey text-justify mt-5 font-14 font-weight-bold px-lg-5">
-                  Codepad was created as a platform to help programmers make it
-                  big in the world of algorithms, computer programming, and
-                  programming contests. At Codepad, we work hard to revive the
-                  geek in you by hosting a programming contest at the start of
-                  the month and another smaller programming challenge in the
-                  middle of the month.Codepad Long Challenge is a 10-day monthly
-                  coding contest where you can show off your computer
-                  programming skills. The significance being - it gives you
-                  enough time to think about a problem, try different ways of
-                  attacking the problem, read the concepts etc. If you’re
-                  usually slow at solving problems and have ample time at hand,
-                  this is ideal for you. We also put in a lot of efforts in
-                  getting quality problems, which would, in turn, foster your
-                  learning while solving them.
+                  Codepad is an online quiz platform that enpowers programmers
+                  to solve coding problems in real-time with an online code
+                  editor and compilers for popular languages. It was created
+                  as a platform to help programmers make it big in the world of
+                  algorithms, computer programming, and programming contests. At
+                  Codepad, we work hard to revive the geek in you by hosting a
+                  programming contest at the start of the month and another
+                  smaller programming challenge in the middle of the
+                  month. We also put in a lot of efforts in getting quality
+                  problems, which would, in turn, foster your learning while
+                  solving them.
                 </p>
                 <div className="d-flex justify-content-center pt-5">
                   <Line />

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Event, Leaderboard, Problem, Submission, Testcase
-from .tasks import submit
+from .tasks import submit, set_tc_time_limits
 
 
 class Event_Admin(admin.ModelAdmin):
@@ -23,16 +23,27 @@ class Problem_Admin(admin.ModelAdmin):
     list_filter = ["event"]
     ordering = ["-event__datetime"]
     search_fields = ["title"]
+    actions = ["set_testcases_time_limits"]
+
+    def set_testcases_time_limits(self, request, queryset):
+        for problem in queryset:
+            set_tc_time_limits.delay(problem.id)
 
 
 class Testcase_Admin(admin.ModelAdmin):
     list_filter = ["problem__title"]
     search_fields = ["problem__title"]
+    list_display = ["__str__", "tc_input_size", "tc_output_size"]
+    actions = ["set_tc_files_size"]
+
+    def set_tc_files_size(self, request, testcases):
+        for testcase in testcases:
+            testcase.save()
 
 
 class Submission_Admin(admin.ModelAdmin):
     list_display = ["user", "status", "problem", "datetime"]
-    list_filter = ["problem__event"]
+    list_filter = ["problem__event", "problem"]
     ordering = ["-datetime"]
     search_fields = ["user", "problem", "problem__event"]
     actions = ["evaluate"]

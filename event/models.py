@@ -64,6 +64,7 @@ class Problem(models.Model):
     point_loss = models.PositiveSmallIntegerField(
         default=2, help_text="Point loss per minute."
     )
+    cpp_solution = models.TextField(max_length=4096, blank=True, null=True)
 
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     submission_from = models.ManyToManyField(User, through="Submission")
@@ -115,6 +116,8 @@ class Testcase(models.Model):
         default=1,
         help_text="Standard time limit for all other languages including C/C++",
     )
+    tc_input_size = models.FloatField(default=0)
+    tc_output_size = models.FloatField(default=0)
 
     def time_limit(self, lang_id):
         if lang_id in (70, 71):
@@ -125,6 +128,15 @@ class Testcase(models.Model):
             return self.slow_time_limit  # [C#, Java, javaScript, Kotlin, Scala]
         else:
             return self.std_time_limit  # All other Languages
+
+    def save(self, *args, **kwargs):
+        tc_input = self.tc_input.read()
+        tc_output = self.tc_output.read()
+
+        self.tc_input_size = len(tc_input) / 1024  # in KB
+        self.tc_output_size = len(tc_output) / 1024  # in KB
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.problem.title + "'s testcase"

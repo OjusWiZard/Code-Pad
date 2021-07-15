@@ -3,6 +3,4 @@
 *.pyc
 *.tmp
 .env
-media
-static
 judge0-v1.12.0
