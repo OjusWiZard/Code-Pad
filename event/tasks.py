@@ -1,5 +1,6 @@
 from os import environ
 from time import sleep
+from traceback import format_exc
 
 from celery import shared_task
 from django.utils.timezone import datetime
@@ -62,7 +63,7 @@ def submit(
             )
             result = single_submission.submit(client)
         except Exception as err:
-            print(str(err))
+            print(format_exc())
             submission.status = "Evaluation Error"
             submission.save()
             return
@@ -110,14 +111,11 @@ def submit(
     ):
         user = User.objects.get(id=user_id)
         submissions = Submission.objects.filter(user=user, problem=problem)
-        print(submissions)
         submissions = submissions.exclude(status="In Queue")
         submissions = submissions.exclude(status="Processing")
-        print(submissions)
         correct_submissions = submissions.filter(status="Accepted")
         if not correct_submissions and verdict == "Accepted":
             incorrect_submissions = submissions.difference(correct_submissions)
-            print(incorrect_submissions)
             current_leaderboard_field = Leaderboard.objects.get_or_create(
                 user=user, event=event
             )[0]
@@ -167,7 +165,7 @@ def set_tc_time_limits(problem_id: int):
             )
             result = single_submission.submit(client)
         except Exception as err:
-            print(str(err))
+            print(format_exc())
             return
 
         wait_sec = 0.0625

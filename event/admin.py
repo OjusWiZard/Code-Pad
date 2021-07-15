@@ -33,6 +33,7 @@ class Problem_Admin(admin.ModelAdmin):
 class Testcase_Admin(admin.ModelAdmin):
     list_filter = ["problem__title"]
     search_fields = ["problem__title"]
+    ordering = ["-problem__event__datetime", "problem__slug"]
     list_display = ["__str__", "tc_input_size", "tc_output_size"]
     actions = ["set_tc_files_size"]
 
