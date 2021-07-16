@@ -10,7 +10,7 @@ from pytz import UTC
 from account.models import User
 
 from .judge import SingleSubmission
-from .models import Leaderboard, Problem, Submission, Testcase
+from .models import Leaderboard, Problem, Submission
 
 
 @shared_task
@@ -48,12 +48,8 @@ def submit(
 
     for testcase in testcases:
         try:
-            tc_inp_file = testcase.tc_input.open(mode="r")
-            tc_out_file = testcase.tc_output.open(mode="r")
-            tc_out = str(tc_out_file.read().decode())
-            tc_inp = str(tc_inp_file.read().decode())
-            tc_inp_file.close()
-            tc_out_file.close()
+            tc_inp, tc_out = testcase.get_tc_str()
+
             single_submission = SingleSubmission(
                 source_code=solution,
                 language_id=lang_id,
@@ -62,7 +58,7 @@ def submit(
                 cpu_time_limit=testcase.time_limit(lang_id),
             )
             result = single_submission.submit(client)
-        except Exception as err:
+        except:
             print(format_exc())
             submission.status = "Evaluation Error"
             submission.save()
@@ -150,12 +146,8 @@ def set_tc_time_limits(problem_id: int):
 
     for testcase in testcases:
         try:
-            tc_inp_file = testcase.tc_input.open(mode="r")
-            tc_out_file = testcase.tc_output.open(mode="r")
-            tc_out = str(tc_out_file.read().decode())
-            tc_inp = str(tc_inp_file.read().decode())
-            tc_inp_file.close()
-            tc_out_file.close()
+            tc_inp, tc_out = testcase.get_tc_str()
+
             single_submission = SingleSubmission(
                 source_code=solution,
                 language_id=54,
@@ -176,15 +168,19 @@ def set_tc_time_limits(problem_id: int):
                 break
             wait_sec *= 2
 
-        time_limit = float(result.time) + 0.2
-        testcase.std_time_limit = time_limit
-        testcase.slow_time_limit = time_limit * 2
-        testcase.slower_time_limit = time_limit * 3
-        testcase.slowest_time_limit = time_limit * 5
-        testcase.save()
-        print(
-            "Testcase: "
-            + str(testcase.id)
-            + " std_time_limit set to "
-            + str(time_limit)
-        )
+        if result.status["id"] == 3:
+            time_limit = float(result.time) + 0.2
+            testcase.std_time_limit = time_limit
+            testcase.slow_time_limit = time_limit * 2
+            testcase.slower_time_limit = time_limit * 3
+            testcase.slowest_time_limit = time_limit * 5
+            testcase.save()
+            print(
+                "Testcase: "
+                + str(testcase.id)
+                + " std_time_limit set to "
+                + str(time_limit)
+            )
+        else:
+            print("Wrong code in problem.cpp_solution")
+            return

@@ -1,10 +1,8 @@
 import os
 
 from django.core.exceptions import ValidationError
-from django.core.validators import (
-    FileExtensionValidator,
-    get_available_image_extensions,
-)
+from django.core.validators import (FileExtensionValidator,
+                                    get_available_image_extensions)
 
 
 def validate_text_file(value):

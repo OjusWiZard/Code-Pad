@@ -88,10 +88,10 @@ class Problem(models.Model):
 
 class Testcase(models.Model):
     def get_input_testcase_path(instance, filename):
-        return "testcases/{0}/input.txt".format(instance.problem.title)
+        return "testcases/{0}/input.txt".format(instance.problem.id)
 
     def get_output_testcase_path(instance, filename):
-        return "testcases/{0}/output.txt".format(instance.problem.title)
+        return "testcases/{0}/output.txt".format(instance.problem.id)
 
     problem = models.ForeignKey(
         Problem, on_delete=models.CASCADE, related_name="testcases"
@@ -129,12 +129,24 @@ class Testcase(models.Model):
         else:
             return self.std_time_limit  # All other Languages
 
-    def save(self, *args, **kwargs):
-        tc_input = self.tc_input.read()
-        tc_output = self.tc_output.read()
+    def get_tc_str(self):
+        try:
+            tc_inp = self.tc_input.read().decode()
+            tc_out = self.tc_output.read().decode()
+        except:
+            try:
+                tc_inp = self.tc_input.read()
+                tc_out = self.tc_output.read()
+            except Exception:
+                print("ERROR Reading Input/Output Files!")
+                return
+        return (tc_inp, tc_out)
 
-        self.tc_input_size = len(tc_input) / 1024  # in KB
-        self.tc_output_size = len(tc_output) / 1024  # in KB
+    def save(self, *args, **kwargs):
+        tc_inp, tc_out = self.get_tc_str()
+
+        self.tc_input_size = len(tc_inp) / 1024  # in KB
+        self.tc_output_size = len(tc_out) / 1024  # in KB
 
         super().save(*args, **kwargs)
 

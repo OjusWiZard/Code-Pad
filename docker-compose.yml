@@ -16,11 +16,11 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - type: bind
-        source: ./media
+      - type: volume
+        source: media
         target: /codepad/media/
-      - type: bind
-        source: ./static
+      - type: volume
+        source: static
         target: /codepad/static/
     command: >
       bash -c "python3 manage.py migrate
@@ -36,6 +36,10 @@ services:
     build: .
     env_file: .env
     command: celery worker --app CodePad --loglevel info --queue submissions --broker amqp://$RABBITMQ_DEFAULT_USER:$RABBITMQ_DEFAULT_PASS@$RABBITMQ_DEFAULT_HOST/$RABBITMQ_DEFAULT_VHOST
+    volumes:
+      - type: volume
+        source: media
+        target: /codepad/media/
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -71,3 +75,5 @@ services:
 
 volumes:
   pgdbdata:
+  media:
+  static:
