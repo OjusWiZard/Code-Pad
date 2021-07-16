@@ -25,7 +25,7 @@ services:
     command: >
       bash -c "python3 manage.py migrate
       && python3 manage.py collectstatic --noinput
-      && /usr/local/bin/gunicorn CodePad.wsgi:application -b 8000"
+      && /usr/local/bin/gunicorn CodePad.wsgi:application -b :8000"
     depends_on:
       postgres:
         condition: service_healthy
