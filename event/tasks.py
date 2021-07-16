@@ -31,6 +31,7 @@ def submit(
 
     verdict = "Accepted"
     tc_passed = 0
+    tc_skipped = 0
     avg_time = 0
     avg_memory = 0
 
@@ -49,6 +50,18 @@ def submit(
     for testcase in testcases:
         try:
             tc_inp, tc_out = testcase.get_tc_str()
+            tc_inp_size = len(tc_inp) / 1024
+            tc_out_size = len(tc_out) / 1024
+            size_limit = float(environ.get("FILE_SIZE_LIMIT_KB"))
+
+            if tc_inp_size + tc_out_size > size_limit:
+                print(
+                    "SkippingTestcase "
+                    + str(testcase.id)
+                    + ": File Size Limit Exceeded"
+                )
+                tc_skipped += 1
+                continue
 
             single_submission = SingleSubmission(
                 source_code=solution,
@@ -93,6 +106,12 @@ def submit(
         avg_time += float(result.time)
         avg_memory += float(result.memory)
         tc_passed += 1
+
+    if tc_skipped == len(testcases):
+        print("All Testcases skipped!")
+        submission.status = "Evaluation Error"
+        submission.save()
+        return
 
     if tc_passed > 0:
         avg_time /= tc_passed
@@ -147,6 +166,17 @@ def set_tc_time_limits(problem_id: int):
     for testcase in testcases:
         try:
             tc_inp, tc_out = testcase.get_tc_str()
+            tc_inp_size = len(tc_inp) / 1024
+            tc_out_size = len(tc_out) / 1024
+            size_limit = float(environ.get("FILE_SIZE_LIMIT_KB"))
+
+            if tc_inp_size + tc_out_size > size_limit:
+                print(
+                    "SkippingTestcase "
+                    + str(testcase.id)
+                    + ": File Size Limit Exceeded"
+                )
+                continue
 
             single_submission = SingleSubmission(
                 source_code=solution,

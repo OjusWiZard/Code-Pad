@@ -35,11 +35,16 @@ class Testcase_Admin(admin.ModelAdmin):
     search_fields = ["problem__title"]
     ordering = ["-problem__event__datetime", "problem__slug"]
     list_display = ["__str__", "tc_input_size", "tc_output_size", "std_time_limit"]
-    actions = ["set_tc_files_size"]
+    actions = ["set_tc_files_size", "set_testcases_time_limits"]
 
     def set_tc_files_size(self, request, testcases):
         for testcase in testcases:
             testcase.save()
+
+    def set_testcases_time_limits(self, request, testcases):
+        problem_ids = {testcase.problem.id for testcase in testcases}
+        for problem_id in problem_ids:
+            set_tc_time_limits.delay(problem_id)
 
 
 class Submission_Admin(admin.ModelAdmin):

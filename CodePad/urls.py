@@ -22,4 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("account.urls")),
     path("", include("event.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(
+    settings.MEDIA_URL + "event_icons",
+    document_root=settings.MEDIA_ROOT + "/event_icons",
+)
