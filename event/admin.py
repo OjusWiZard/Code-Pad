@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Event, Leaderboard, Problem, Submission, Testcase
-from .tasks import submit, set_tc_time_limits
+from .tasks import set_tc_time_limits, submit
 
 
 class Event_Admin(admin.ModelAdmin):
@@ -34,7 +34,7 @@ class Testcase_Admin(admin.ModelAdmin):
     list_filter = ["problem__title"]
     search_fields = ["problem__title"]
     ordering = ["-problem__event__datetime", "problem__slug"]
-    list_display = ["__str__", "tc_input_size", "tc_output_size"]
+    list_display = ["__str__", "tc_input_size", "tc_output_size", "std_time_limit"]
     actions = ["set_tc_files_size"]
 
     def set_tc_files_size(self, request, testcases):
