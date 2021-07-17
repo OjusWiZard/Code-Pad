@@ -17,11 +17,40 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="CodePad API",
+        description="Codepad is an online quiz platform that enpowers programmers to solve coding problems in real-time with an online code editor and compilers for popular languages.",
+        default_version="v1",
+        contact=openapi.Contact(email="support@codepad.tech"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("account.urls")),
     path("", include("event.urls")),
+    path(
+        "docs/swagger<str:format>",
+        schema_view.without_ui(),
+        name="schema-json",
+    ),
+    path(
+        "docs/swagger/",
+        schema_view.with_ui("swagger"),
+        name="schema-swagger-ui",
+    ),
+    path(
+        "docs/redoc/",
+        schema_view.with_ui("redoc"),
+        name="schema-redoc",
+    ),
 ] + static(
     settings.MEDIA_URL + "event_icons",
     document_root=settings.MEDIA_ROOT + "/event_icons",
