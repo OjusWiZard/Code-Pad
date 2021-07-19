@@ -2,8 +2,9 @@ from datetime import timedelta
 from inspect import currentframe, getouterframes
 
 from django.db.models import F
-from django.http.response import HttpResponseBadRequest
+from django.http.response import HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.utils import timezone
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -191,3 +192,7 @@ class Leaderboard_Viewset(ReadOnlyModelViewSet):
 
     def list(self, request, *args, **kwargs):
         return HttpResponseBadRequest()
+
+
+def index(request):
+    return HttpResponseRedirect(reverse("schema-swagger-ui"))
