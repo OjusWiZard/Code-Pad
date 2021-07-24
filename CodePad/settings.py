@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "cloudinary",
     "cloudinary_storage",
+    "drf_yasg",
 ]
 
 REST_FRAMEWORK = {
@@ -78,6 +79,8 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(weeks=4),
     "REFRESH_TOKEN_LIFETIME": timedelta(weeks=4),
 }
+
+SWAGGER_SETTINGS = {"DOC_EXPANSION": "none", "DEEP_LINKING": True}
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",

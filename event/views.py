@@ -1,9 +1,10 @@
 from datetime import timedelta
-from os import environ
+from inspect import currentframe, getouterframes
 
 from django.db.models import F
-from django.http.response import HttpResponseBadRequest
+from django.http.response import HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.utils import timezone
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -12,11 +13,15 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from .models import Event, Leaderboard, Problem, Submission
 from .paginations import Pagination_Size10
-from .serializers import (Event_Details_Serializer, Event_List_Serializer,
-                          Leaderboard_Serializer, Problem_Detail_Serializer,
-                          Problem_List_Serializer,
-                          Submission_Detail_Serializer,
-                          Submission_List_Serializer)
+from .serializers import (
+    Event_Details_Serializer,
+    Event_List_Serializer,
+    Leaderboard_Serializer,
+    Problem_Detail_Serializer,
+    Problem_List_Serializer,
+    Submission_Detail_Serializer,
+    Submission_List_Serializer,
+)
 from .tasks import submit
 
 
@@ -102,7 +107,12 @@ class View_Submission_Viewset(ReadOnlyModelViewSet):
 
     def get_serializer_class(self):
         if self.action == "retrieve":
-            submission = self.get_object()
+            try:
+                submission = self.get_object()
+            except AssertionError:
+                outerframes = getouterframes(currentframe())
+                if "drf_yasg" in outerframes[2].filename:
+                    return Submission_Detail_Serializer
             problem = submission.problem
             event = problem.event
             live_events = Event.objects.filter(datetime__lt=timezone.now()).filter(
@@ -138,7 +148,12 @@ class Event_Viewset(ReadOnlyModelViewSet):
 
     def get_serializer_class(self):
         if self.action == "retrieve":
-            event = self.get_object()
+            try:
+                event = self.get_object()
+            except AssertionError:
+                outerframes = getouterframes(currentframe())
+                if "drf_yasg" in outerframes[2].filename:
+                    return Event_Details_Serializer
             if timezone.localtime(event.datetime) < timezone.now():
                 return Event_Details_Serializer
         return Event_List_Serializer
@@ -177,3 +192,7 @@ class Leaderboard_Viewset(ReadOnlyModelViewSet):
 
     def list(self, request, *args, **kwargs):
         return HttpResponseBadRequest()
+
+
+def index(request):
+    return HttpResponseRedirect(reverse("schema-swagger-ui"))
