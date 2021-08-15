@@ -54,11 +54,9 @@ function Home() {
                   editor and compilers for popular languages. It was created
                   as a platform to help programmers make it big in the world of
                   algorithms, computer programming, and programming contests. At
-                  Codepad, we work hard to revive the geek in you by hosting a
-                  programming contest at the start of the month and another
-                  smaller programming challenge in the middle of the
-                  month. We also put in a lot of efforts in getting quality
-                  problems, which would, in turn, foster your learning while
+                  Codepad, we work hard to revive the geek in you by hosting
+                  programming contests. We also put in a lot of efforts in getting
+                  quality problems, which would, in turn, foster your learning while
                   solving them.
                 </p>
                 <div className="d-flex justify-content-center pt-5">
