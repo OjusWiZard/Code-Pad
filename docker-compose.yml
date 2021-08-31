@@ -6,6 +6,8 @@ services:
     build:
       context: client
       dockerfile: Dockerfile
+    networks:
+      - default
     ports:
       - 3000:80
 
@@ -22,6 +24,8 @@ services:
       - type: volume
         source: static
         target: /codepad/static/
+    networks:
+      - default
     command: >
       bash -c "python3 manage.py migrate
       && python3 manage.py collectstatic --noinput
@@ -40,6 +44,8 @@ services:
       - type: volume
         source: media
         target: /codepad/media/
+    networks:
+      - default
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -77,3 +83,8 @@ volumes:
   pgdbdata:
   media:
   static:
+
+networks:
+  default:
+    external:
+      name: codenet

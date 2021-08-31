@@ -30,7 +30,8 @@ The Competitive Programming Platform of JSSATEN.<br/>See you on the Leaderboard!
         <li><a href="#docker-way-to-quick-start-the-complete-project">Docker-way to quick start the complete project</a></li>
       </ul>
     </li>
-    <!-- <li><a href="#contributers">Contributers</a></li> -->
+    <li><a href="#contributers">Contributers</a></li>
+    <li><a href="#license">License</a></li>
   </ul>
 </details>
 
@@ -128,6 +129,7 @@ STATIC_ROOT="static/"
 # Email Settings
 
 # Emailing stuff will not work without these environment variables. Rest will work, if you leave them empty.
+EMAIL_USE_TLS= # True/False
 EMAIL_HOST=""
 EMAIL_PORT=587
 EMAIL_HOST_USER=""
@@ -285,14 +287,25 @@ lsof -i -P -n | grep 127.0.0.1:<port_number>
 
 If there are some services running then terminate them using their respective closing commands.
 
-4. Finally, in the root directory, **Spin-Up** the project using
+4. Create a docker network which might come useful to connect the django server to the judge0.
+```bash
+docker network create codenet
+```
+
+5. Finally, in the root directory, **Spin-Up** the project using
 ```bash
 docker-compose up
 ```
 
-<!-- <a id=contributers></a>
+<a id=contributers></a>
 
 # Contributers
 <a href="https://github.com/SingingApple/Code-Pad/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=SingingApple/Code-Pad" />
-</a> -->
+</a>
+
+<a id=license></a>
+
+# 📝 License
+
+This project follows the [MIT License](LICENSE).
