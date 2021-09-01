@@ -39,6 +39,7 @@ def submit(
         client = Client(environ["JUDGE_HOST"], environ["X_Auth_Token"])
     except Exception:
         print("ERROR Connecting the Judge!")
+        print(format_exc())
         return
 
     print("Submission " + str(submission.id) + ": Evaluation Started")
