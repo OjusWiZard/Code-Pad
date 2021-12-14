@@ -313,9 +313,10 @@ function EventDetails() {
                                     style={{ textAlign: "center" }}
                                   >
                                     <span style={{ width: "20%" }}>Rank</span>
-                                    <span style={{ width: "60%" }}>
+                                    <span style={{ width: "40%" }}>
                                       Username
                                     </span>
+                                    <span style={{ width: "20%" }}>Year</span>
                                     <span style={{ width: "20%" }}>Score</span>
                                   </div>
                                   {leaderboard?.results?.map((user, index) => (
@@ -330,7 +331,7 @@ function EventDetails() {
                                         {(currentPage - 1) * 10 + index + 1}
                                       </span>
                                       <div
-                                        style={{ width: "60%" }}
+                                        style={{ width: "40%" }}
                                         className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
                                       >
                                         <img
@@ -342,6 +343,12 @@ function EventDetails() {
                                           {user?.user?.username}
                                         </span>
                                       </div>
+                                      <span
+                                        className="user-score"
+                                        style={{ width: "20%" }}
+                                      >
+                                        {user?.user?.year}
+                                      </span>
                                       <span
                                         className="user-score"
                                         style={{ width: "20%" }}
@@ -411,15 +418,18 @@ function EventDetails() {
                     </div>
                   </div>
                 </div>
-                <div className="d-flex justify-content-end pt-5">  {!user && (
-                  <Link to="/login">
-                            <div className="text-center button-hover">
-                              <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
-                                *LOGIN*
-                              </div>
-                            </div>
-                          </Link>
-                )} </div>
+                <div className="d-flex justify-content-end pt-5">
+                  {" "}
+                  {!user && (
+                    <Link to="/login">
+                      <div className="text-center button-hover">
+                        <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
+                          *LOGIN*
+                        </div>
+                      </div>
+                    </Link>
+                  )}{" "}
+                </div>
                 <div className="mt-4 text-center">
                   <div className="mt-4">
                     {" "}
