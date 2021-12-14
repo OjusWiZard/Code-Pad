@@ -1,0 +1,24 @@
+<svg width="1919" height="123" viewBox="0 0 1919 123" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_928_148" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1919" height="123">
+<path d="M1838.22 13.3459H70.944H0V122.923H1919V2.10725L1848.06 0L1838.22 13.3459Z" fill="#000A0F"/>
+</mask>
+<g mask="url(#mask0_928_148)">
+<path d="M1838.92 13.3466H70.944H0V122.923H1919V2.10791H1848.06L1838.92 13.3466Z" fill="#000A0F"/>
+<line x1="70.2417" y1="14.0477" x2="1838.92" y2="14.0479" stroke="#405C6B" stroke-width="1.40556"/>
+<line y1="-0.702782" x2="16.0175" y2="-0.702782" transform="matrix(0.613941 -0.789352 -0.789352 -0.613941 1837.52 14.7505)" stroke="#405C6B" stroke-width="1.40556"/>
+<g opacity="0.015">
+<line y1="-0.702439" x2="1919" y2="-0.702439" stroke="white" stroke-width="2.81113"/>
+<line y1="10.5358" x2="1919" y2="10.5358" stroke="white" stroke-width="2.81113"/>
+<line y1="21.7751" x2="1919" y2="21.7751" stroke="white" stroke-width="2.81113"/>
+<line y1="33.0134" x2="1919" y2="33.0134" stroke="white" stroke-width="2.81113"/>
+<line y1="44.2522" x2="1919" y2="44.2522" stroke="white" stroke-width="2.81113"/>
+<line y1="55.4909" x2="1919" y2="55.4909" stroke="white" stroke-width="2.81113"/>
+<line y1="66.7292" x2="1919" y2="66.7292" stroke="white" stroke-width="2.81113"/>
+<line y1="77.968" x2="1919" y2="77.968" stroke="white" stroke-width="2.81113"/>
+<line y1="89.2067" x2="1919" y2="89.2067" stroke="white" stroke-width="2.81113"/>
+<line y1="100.445" x2="1919" y2="100.445" stroke="white" stroke-width="2.81113"/>
+<line y1="111.684" x2="1919" y2="111.684" stroke="white" stroke-width="2.81113"/>
+<line y1="122.923" x2="1919" y2="122.923" stroke="white" stroke-width="2.81113"/>
+</g>
+</g>
+</svg>

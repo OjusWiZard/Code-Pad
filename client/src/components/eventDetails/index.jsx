@@ -122,7 +122,7 @@ function EventDetails() {
                           alt="left-pointer"
                           className="mr-1"
                         />
-                        <span>Exit</span>
+                        <span className="exit-button">Exit</span>
                       </span>
                       <div className="d-flex codewars mt-5 pt-2 pb-5">
                         <div>
@@ -313,9 +313,10 @@ function EventDetails() {
                                     style={{ textAlign: "center" }}
                                   >
                                     <span style={{ width: "20%" }}>Rank</span>
-                                    <span style={{ width: "60%" }}>
+                                    <span style={{ width: "40%" }}>
                                       Username
                                     </span>
+                                    <span style={{ width: "20%" }}>Year</span>
                                     <span style={{ width: "20%" }}>Score</span>
                                   </div>
                                   {leaderboard?.results?.map((user, index) => (
@@ -330,7 +331,7 @@ function EventDetails() {
                                         {(currentPage - 1) * 10 + index + 1}
                                       </span>
                                       <div
-                                        style={{ width: "60%" }}
+                                        style={{ width: "40%" }}
                                         className="d-flex user-info px-lg-3 mx-auto justify-content-center align-items-center"
                                       >
                                         <img
@@ -342,6 +343,12 @@ function EventDetails() {
                                           {user?.user?.username}
                                         </span>
                                       </div>
+                                      <span
+                                        className="user-score"
+                                        style={{ width: "20%" }}
+                                      >
+                                        {user?.user?.year}
+                                      </span>
                                       <span
                                         className="user-score"
                                         style={{ width: "20%" }}
@@ -362,7 +369,7 @@ function EventDetails() {
                                               )
                                             }
                                           >
-                                            <i className="fas fa-arrow-left"></i>
+                                            <i className="fas pagination-button fa-arrow-left"></i>
                                           </span>
                                         )}
 
@@ -375,7 +382,7 @@ function EventDetails() {
                                               )
                                             }
                                           >
-                                            <i className="fas fa-arrow-right"></i>
+                                            <i className="fas pagination-button fa-arrow-right"></i>
                                           </span>
                                         )}
                                       </div>
@@ -400,7 +407,7 @@ function EventDetails() {
                               </div>
                               <p
                                 style={{ whiteSpace: "pre-wrap" }}
-                                className="font-robot font-lightGrey w-100"
+                                className="font-vcr font-lightGrey w-100"
                               >
                                 {event.rules}
                               </p>
@@ -411,7 +418,18 @@ function EventDetails() {
                     </div>
                   </div>
                 </div>
-                <div className="d-flex justify-content-center pt-5"></div>
+                <div className="d-flex justify-content-end pt-5">
+                  {" "}
+                  {!user && (
+                    <Link to="/login">
+                      <div className="text-center button-hover">
+                        <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
+                          *LOGIN*
+                        </div>
+                      </div>
+                    </Link>
+                  )}{" "}
+                </div>
                 <div className="mt-4 text-center">
                   <div className="mt-4">
                     {" "}

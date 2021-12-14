@@ -207,7 +207,7 @@ function Problem() {
                           alt="left-pointer"
                           className="mr-1"
                         />
-                        <span>Exit</span>
+                        <span className="exit-button">Exit</span>
                       </span>
                     </div>
                     <div className="left-section">
@@ -456,7 +456,7 @@ function Problem() {
                             <div className="pagination">
                               {submissions?.previous && (
                                 <span
-                                  className="pagination-previous pagination-icon"
+                                  className="pagination-previous pagination-icon pagination-button"
                                   onClick={() =>
                                     paginationSubmission(submissions.previous)
                                   }
@@ -467,7 +467,7 @@ function Problem() {
 
                               {submissions?.next && (
                                 <span
-                                  className="pagination-next pagination-icon ml-3"
+                                  className="pagination-next pagination-icon pagination-button ml-3"
                                   onClick={() =>
                                     paginationSubmission(submissions.next)
                                   }
@@ -518,7 +518,7 @@ function Problem() {
                         <div className="pixel-input-wrapper">
                           <span></span>
                           <div
-                            className="pixel-input file-button font-vcr font-blue"
+                            className="pixel-input file-button font-vcr font-blue pagination-button"
                             style={{ whiteSpace: "pre", cursor: "pointer" }}
                           >
                             Choose File
