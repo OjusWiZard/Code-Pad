@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
-from .validators import validate_contact_number
+from .validators import validate_admission_number, validate_contact_number
 
 
 class UserManager(BaseUserManager):
@@ -47,7 +47,7 @@ class User(AbstractUser):
     date_joined = models.DateTimeField(default=timezone.now)
 
     username = models.SlugField(max_length=16, unique=True)
-    admission_no = models.CharField(max_length=16, unique=True)
+    admission_no = models.CharField(max_length=16, unique=True, validators=[validate_admission_number])
     full_name = models.CharField(max_length=32)
     contact_no = models.CharField(max_length=10, validators=[validate_contact_number])
     avatar = models.SmallIntegerField()
