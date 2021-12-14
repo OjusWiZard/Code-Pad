@@ -49,15 +49,14 @@ function Home() {
                   <Codepad />
                 </div>
                 <p className="font-robot font-lightGrey text-justify mt-5 font-14 font-weight-bold px-lg-5">
-                  Codepad is an online quiz platform that enpowers programmers
-                  to solve coding problems in real-time with an online code
-                  editor and compilers for popular languages. It was created
-                  as a platform to help programmers make it big in the world of
-                  algorithms, computer programming, and programming contests. At
-                  Codepad, we work hard to revive the geek in you by hosting
-                  programming contests. We also put in a lot of efforts in getting
-                  quality problems, which would, in turn, foster your learning while
-                  solving them.
+                  CodePad is the Competetive Programming platform of JSSATEN.
+                  This platform is way cooler than a normal coding website
+                  because of it's Retro VCR Design, Integrated Coding Editor for
+                  45+ languages, Programming Contests, and their Live
+                  Leaderboards. At CodePad, The Nibble Computer Society will
+                  conduct multiple Programming Competitions to revive the geek
+                  in you, and keep promoting the coding culture in our college.
+                  So, charge all your laptops and Happy Coding!
                 </p>
                 <div className="d-flex justify-content-center pt-5">
                   <Line />
