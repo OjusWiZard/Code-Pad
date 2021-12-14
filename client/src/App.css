@@ -257,6 +257,12 @@ input#file-upload-button {
 .pagination-icon {
   font-size: 1.5rem;
 }
-.main-background{
+.main-background {
   min-height: 80vh;
+}
+.pagination-button:active {
+  opacity: 0.5;
+}
+.exit-button:active {
+  color: rgb(58, 100, 139);
 }

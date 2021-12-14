@@ -122,7 +122,7 @@ function EventDetails() {
                           alt="left-pointer"
                           className="mr-1"
                         />
-                        <span>Exit</span>
+                        <span className="exit-button">Exit</span>
                       </span>
                       <div className="d-flex codewars mt-5 pt-2 pb-5">
                         <div>
@@ -362,7 +362,7 @@ function EventDetails() {
                                               )
                                             }
                                           >
-                                            <i className="fas fa-arrow-left"></i>
+                                            <i className="fas pagination-button fa-arrow-left"></i>
                                           </span>
                                         )}
 
@@ -375,7 +375,7 @@ function EventDetails() {
                                               )
                                             }
                                           >
-                                            <i className="fas fa-arrow-right"></i>
+                                            <i className="fas pagination-button fa-arrow-right"></i>
                                           </span>
                                         )}
                                       </div>
@@ -400,7 +400,7 @@ function EventDetails() {
                               </div>
                               <p
                                 style={{ whiteSpace: "pre-wrap" }}
-                                className="font-robot font-lightGrey w-100"
+                                className="font-vcr font-lightGrey w-100"
                               >
                                 {event.rules}
                               </p>
@@ -411,7 +411,15 @@ function EventDetails() {
                     </div>
                   </div>
                 </div>
-                <div className="d-flex justify-content-center pt-5"></div>
+                <div className="d-flex justify-content-end pt-5">  {!user && (
+                  <Link to="/login">
+                            <div className="text-center button-hover">
+                              <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
+                                *LOGIN*
+                              </div>
+                            </div>
+                          </Link>
+                )} </div>
                 <div className="mt-4 text-center">
                   <div className="mt-4">
                     {" "}
