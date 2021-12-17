@@ -65,6 +65,9 @@ REST_FRAMEWORK = {
 }
 
 DJOSER = {
+    "EMAIL": {
+        "password_reset": "account.views.PasswordResetEmail"
+    },
     "USERNAME_RESET_CONFIRM_URL": "i/have/bad/memory/username/{uid}/{token}",
     "PASSWORD_RESET_CONFIRM_URL": "i/have/bad/memory/password/{uid}/{token}",
     "USERNAME_CHANGED_EMAIL_CONFIRMATION": True,
@@ -103,7 +106,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
