@@ -147,8 +147,7 @@ export const getLeaderboard = async (slug) => {
 
 export const getLeaderboardPagination = async (text) => {
   try {
-
-    const { data } = await API.get(text);
+    const { data } = await API.get(`/leaderboard/${text.split("/")[4]}${text.split("/")[5]}`);
     return data;
   } catch (error) {
     console.log(error);
