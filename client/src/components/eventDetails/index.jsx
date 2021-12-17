@@ -167,6 +167,7 @@ function EventDetails() {
                             </div>
                             <div
                               className="mt-3 events-options"
+                              id="problems"
                               onClick={(e) => {
                                 setActive("problems");
                                 removeClass(e);
@@ -420,7 +421,7 @@ function EventDetails() {
                 </div>
                 <div className="d-flex justify-content-end pt-5">
                   {" "}
-                  {!localStorage.getItem("user") && (
+                  {!localStorage.getItem("user") ? (
                     <Link to="/login">
                       <div className="text-center button-hover">
                         <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
@@ -428,6 +429,21 @@ function EventDetails() {
                         </div>
                       </div>
                     </Link>
+                  ) : (active!=="problems" && (
+   <div className="text-center button-hover" onClick={(e) => {
+                                setActive("problems");
+                                removeClass(e);
+                                document.querySelector("#problems").classList.add("active-event")
+                               
+                              }}>
+                        <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
+                          *PROBLEMS*
+                        </div>
+                      </div>
+                  )
+                   
+                   
+                  
                   )}{" "}
                 </div>
                 <div className="mt-4 text-center">
