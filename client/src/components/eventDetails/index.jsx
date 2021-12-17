@@ -420,7 +420,7 @@ function EventDetails() {
                 </div>
                 <div className="d-flex justify-content-end pt-5">
                   {" "}
-                  {!user && (
+                  {!localStorage.getItem("user") && (
                     <Link to="/login">
                       <div className="text-center button-hover">
                         <div className="see-all-buttons font-vcr px-5 pt-2 pb-3 text-black">
