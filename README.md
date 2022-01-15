@@ -42,7 +42,7 @@ The Competitive Programming Platform of JSSATEN.<br/>See you on the Leaderboard!
 This platform is way cooler than a normal coding website because of it's Retro VCR Design, [Integrated Coding Editor](https://codepad.tech/editor) for 45+ languages, [Programming Contests](https://codepad.tech/events), and their Live
 Leaderboards.
 
-At CodePad, The [Nibble Computer Society](https://hackncs.com/) will conduct multiple Programming Competitions to revive the geek in you, and keep promoting the coding culture in our college.
+At CodePad, The [Nibble Computer Society](https://hackncs.com/) conducts multiple Programming Competitions to revive the geek in you, and keep promoting the coding culture in our college.
 
 So, charge all your laptops and Happy Coding!
 
