@@ -8,7 +8,7 @@
 The Competitive Programming Platform of JSSATEN.<br/>See you on the Leaderboard!
 </p>
 <p align="center">
-<a href="http://codepad.tech/">View Demo</a>
+<a href="http://codepad.tech/">View CodePad</a>
 ·
 <a href="https://github.com/SingingApple/Code-Pad/issues">Raise Issue</a>
 ·
