@@ -70,7 +70,7 @@ services:
     env_file: .env
     image: postgres:latest
     ports:
-      - "5432:5433"
+      - "5433:5432"
     volumes:
       - pgdbdata:/var/lib/postgresql/data/
     healthcheck:
