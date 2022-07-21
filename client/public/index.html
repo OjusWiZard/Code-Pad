@@ -1,91 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Codepad - Compiler for NCS" />
-    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  -->
-    <meta
-      name="keywords"
-      content="Codepad, NCS, JSS Noida, JSS, NCS JSS, Student society, Computer society"
-    />
-    <meta name="description" content="Codepad - Compiler for NCS" />
-    <meta name="author" content="@codepad" />
-    <meta itemprop="name" content="Codepad" />
-    <meta itemprop="description" content="Codepad - Compiler for NCS" />
-    <meta name="twitter:card" content="Summary" />
-    <meta name="twitter:site" content="@codepad" />
-    <meta name="twitter:title" content="Codepad" />
-    <meta name="twitter:description" content="Codepad - Compiler for NCS" />
-    <meta name="twitter:creator" content="@codepad" />
-    <meta property="og:title" content="Codepad" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://codepad.tech/" />
-    <meta property="og:description" content="Codepad - Compiler for NCS" />
-    <meta property="og:site_name" content="Codepad" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <script
-      src="https://kit.fontawesome.com/bd43ee06c8.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <lottie-player
-      src="https://assets2.lottiefiles.com/private_files/lf30_uzgpqom9.json"
-      background="https://assets2.lottiefiles.com/private_files/lf30_uzgpqom9.json"
-      speed="1"
-      style="position: fixed; top: 0; left: 0; width: 100%; height: 100%"
-      loop
-      autoplay
-    ></lottie-player>
-    <style>
-      #preloader {
-        position: fixed;
-        background: #000;
-        bottom: 0;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10000;
-        overflow: hidden !important;
-      }
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Codepad - Compiler for NCS" />
+  <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  -->
+  <meta name="keywords" content="Codepad, NCS, JSS Noida, JSS, NCS JSS, Student society, Computer society" />
+  <meta name="description" content="Codepad - Compiler for NCS" />
+  <meta name="author" content="@codepad" />
+  <meta itemprop="name" content="Codepad" />
+  <meta itemprop="description" content="Codepad - Compiler for NCS" />
+  <meta name="twitter:card" content="Summary" />
+  <meta name="twitter:site" content="@codepad" />
+  <meta name="twitter:title" content="Codepad" />
+  <meta name="twitter:description" content="Codepad - Compiler for NCS" />
+  <meta name="twitter:creator" content="@codepad" />
+  <meta property="og:title" content="Codepad" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://codepad.hackncs.com/" />
+  <meta property="og:description" content="Codepad - Compiler for NCS" />
+  <meta property="og:site_name" content="Codepad" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <script src="https://kit.fontawesome.com/bd43ee06c8.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <lottie-player src="https://assets2.lottiefiles.com/private_files/lf30_uzgpqom9.json"
+    background="https://assets2.lottiefiles.com/private_files/lf30_uzgpqom9.json" speed="1"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%" loop autoplay></lottie-player>
+  <style>
+    #preloader {
+      position: fixed;
+      background: #000;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10000;
+      overflow: hidden !important;
+    }
+
+    #status {
+      width: 20%;
+      height: 20px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-image: url("./loader.gif");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    @media (max-width: 540px) {
       #status {
-        width: 20%;
+        width: 60%;
         height: 20px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background-image: url("./loader.gif");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
       }
-      @media (max-width: 540px) {
-        #status {
-          width: 60%;
-          height: 20px;
-        }
-      }
-    </style>
-    <title>Codepad</title>
-  </head>
-  <body onload="preloader()">
-    <div id="preloader">
-      <div id="status"></div>
-    </div>
-    <script>
-      var myVar;
-      function preloader() {
-        myVar = setTimeout(showPage, 2000);
-      }
-      function showPage() {
-        document.getElementById("preloader").style.display = "none";
-      }
-    </script>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+    }
+  </style>
+  <title>Codepad</title>
+</head>
+
+<body onload="preloader()">
+  <div id="preloader">
+    <div id="status"></div>
+  </div>
+  <script>
+    var myVar;
+    function preloader() {
+      myVar = setTimeout(showPage, 2000);
+    }
+    function showPage() {
+      document.getElementById("preloader").style.display = "none";
+    }
+  </script>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+
 </html>
