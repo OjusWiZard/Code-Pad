@@ -26,7 +26,7 @@ schema_view = get_schema_view(
         title="CodePad API",
         description="Codepad is an online quiz platform that enpowers programmers to solve coding problems in real-time with an online code editor and compilers for popular languages.",
         default_version="v1",
-        contact=openapi.Contact(email="support@codepad.tech"),
+        contact=openapi.Contact(email="ojuswimail@gmail.com"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
