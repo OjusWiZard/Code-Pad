@@ -33,4 +33,4 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
-        script: ./projects/codepad/redeploy.sh
+        script: /home/webmaster/projects/codepad/redeploy.sh
