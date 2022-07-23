@@ -38,9 +38,9 @@ The Competitive Programming Platform of JSSATEN.<br/>See you on the Leaderboard!
 <a id=about-the-project></a>
 
 # 🔎 About the Project
-[CodePad](https://codepad.hackncs.com) is the Competetive Programming platform of JSSATEN.
+[CodePad](https://codepad.hackncs.com) is the Competitive Programming platform of JSSATEN.
 This platform is way cooler than a normal coding website because of it's Retro VCR Design, [Integrated Coding Editor](https://codepad.hackncs.com/editor) for 45+ languages, [Programming Contests](https://codepad.hackncs.com/events), and their Live
-Leaderboards.
+Leader-boards.
 
 At CodePad, The [Nibble Computer Society](https://hackncs.com/) conducts multiple Programming Competitions to revive the geek in you, and keep promoting the coding culture in our college.
 
