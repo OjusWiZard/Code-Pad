@@ -1,5 +1,6 @@
+<p></p>
 <p align="center">
-    <a href="http://codepad.hackncs.com/">
+    <a href="http://codepad.hackncs.in/">
     <img alt="CodePad" height="125" src="./client/public/CodePad.svg">
   </a>
 </p>
@@ -8,7 +9,7 @@
 The Competitive Programming Platform of JSSATEN.<br/>See you on the Leaderboard!
 </p>
 <p align="center">
-<a href="http://codepad.hackncs.com/">View CodePad</a>
+<a href="http://codepad.hackncs.in/">View CodePad</a>
 ·
 <a href="https://github.com/SingingApple/Code-Pad/issues">Raise Issue</a>
 ·
@@ -38,11 +39,11 @@ The Competitive Programming Platform of JSSATEN.<br/>See you on the Leaderboard!
 <a id=about-the-project></a>
 
 # 🔎 About the Project
-[CodePad](https://codepad.hackncs.com) is the Competetive Programming platform of JSSATEN.
-This platform is way cooler than a normal coding website because of it's Retro VCR Design, [Integrated Coding Editor](https://codepad.hackncs.com/editor) for 45+ languages, [Programming Contests](https://codepad.hackncs.com/events), and their Live
-Leaderboards.
+[CodePad](https://codepad.hackncs.in) is the Competitive Programming platform of JSSATEN.
+This platform is way cooler than a normal coding website because of it's Retro VCR Design, [Integrated Coding Editor](https://codepad.hackncs.in/editor) for 45+ languages, [Programming Contests](https://codepad.hackncs.com/events), and their Live
+Leader-boards.
 
-At CodePad, The [Nibble Computer Society](https://hackncs.com/) conducts multiple Programming Competitions to revive the geek in you, and keep promoting the coding culture in our college.
+At CodePad, The [Nibble Computer Society](https://hackncs.in/) conducts multiple Programming Competitions to revive the geek in you, and keep promoting the coding culture in our college.
 
 So, charge all your laptops and Happy Coding!
 

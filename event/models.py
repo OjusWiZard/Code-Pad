@@ -69,13 +69,13 @@ class Problem(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     submission_from = models.ManyToManyField(User, through="Submission")
 
-    def clean(self, *args, **kwargs):
-        minutes = self.event.duration.total_seconds() // 60
-        if minutes * self.point_loss > self.points * 70 / 100:
-            raise ValidationError(
-                "Point Loss per minute is too high, points should not get less than 30% of the initial value.\nRefer https://codeforces.com/blog/entry/456"
-            )
-        super().clean(*args, **kwargs)
+    # def clean(self, *args, **kwargs):
+    #     minutes = self.event.duration.total_seconds() // 60
+    #     if minutes * self.point_loss > self.points * 70 / 100:
+    #         raise ValidationError(
+    #             "Point Loss per minute is too high, points should not get less than 30% of the initial value.\nRefer https://codeforces.com/blog/entry/456"
+    #         )
+    #     super().clean(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         self.slug = self.slug.upper()
