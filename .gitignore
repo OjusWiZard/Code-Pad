@@ -3,5 +3,5 @@
 *.pyc
 *.tmp
 .env
-judge0-v1.12.0
+judge0-v1.12.0/judge0.conf
 backup/
