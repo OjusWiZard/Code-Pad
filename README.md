@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-The Competitive Programming Platform of JSSATEN.<br/>See you on the Leaderboard!
+A state-of-the-art Competitive Programming platform.<br/>See you on the Leaderboard!
 </p>
 <p align="center">
 <a href="http://codepad.hackncs.in/">View CodePad</a>
