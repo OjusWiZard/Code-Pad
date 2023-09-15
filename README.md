@@ -31,7 +31,7 @@ A state-of-the-art Competitive Programming platform.<br/>See you on the Leaderbo
         <li><a href="#docker-way-to-quick-start-the-complete-project">Docker-way to quick start the complete project</a></li>
       </ul>
     </li>
-    <li><a href="#contributers">Contributers</a></li>
+    <li><a href="#contributors">Contributors</a></li>
     <li><a href="#license">License</a></li>
   </ul>
 </details>
@@ -300,9 +300,9 @@ docker network create codenet
 docker-compose up
 ```
 
-<a id=contributers></a>
+<a id=contributors></a>
 
-# Contributers
+# Contributors
 <a href="https://github.com/SingingApple/Code-Pad/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=SingingApple/Code-Pad" />
 </a>
